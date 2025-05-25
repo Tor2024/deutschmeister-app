@@ -125,10 +125,17 @@ Die Entwicklung von Medienkompetenz in der Bevölkerung ist daher eine zentrale 
     },
     {
       id: 'c2-lexik-medienkritik-test-q4',
-      type: 'short_answer', 
+      type: 'short_answer',
       question: 'Nennen Sie zwei mögliche Gefahren, die von unkritischem Medienkonsum ausgehen können. (Назовите две возможные опасности, исходящие от некритического потребления медиа.)',
       correctAnswer: 'Mögliche Antworten: Verbreitung von Fake News, Manipulation der öffentlichen Meinung, Entstehung von Filterblasen, Radikalisierung, Verlust der Privatsphäre etc.',
       explanation: 'Dies erfordert eine freie Antwort, die das Verständnis der Thematik zeigt.'
+    },
+    {
+      id: 'c2-lexik-medienkritik-wp1',
+      type: 'writing_prompt',
+      question: 'Diskutieren Sie die Verantwortung von Social-Media-Plattformen im Kampf gegen Desinformation. Welche Maßnahmen könnten effektiv sein? (ca. 6-8 Sätze)',
+      suggestedLength: '6-8 Sätze',
+      explanation: 'Обсудите ответственность платформ социальных сетей в борьбе с дезинформацией. Какие меры могли бы быть эффективными?'
     }
   ],
 };
