@@ -34,7 +34,6 @@ import { lessonA1LexikGefuehleZustaende } from './lessons/a1-lexik-gefuehle-zust
 import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung';
 import { lessonA1LexikOrdinalzahlenDatum } from './lessons/a1-lexik-ordinalzahlen-datum';
 
-
 // A2 Grammar
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
@@ -72,7 +71,6 @@ import { lessonA2LexikKonflikteLoesungen } from './lessons/a2-lexik-konflikte-lo
 import { lessonA2LexikBank } from './lessons/a2-lexik-bank';
 import { lessonA2LexikSchuleKurse } from './lessons/a2-lexik-schule-kurse';
 
-
 // B1 Grammar
 import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
 import { lessonB1PerfektReview } from './lessons/b1-perfekt-review';
@@ -87,6 +85,8 @@ import { lessonB1NDeklination } from './lessons/b1-n-deklination';
 import { lessonB1Indefinitpronomen } from './lessons/b1-indefinitpronomen';
 import { lessonB1InfinitivMitZu } from './lessons/b1-infinitiv-mit-zu';
 import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
+import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze'; // Ensured this import is correct
+import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 // B1 Lexik
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
 import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere';
@@ -94,7 +94,6 @@ import { lessonB1LexikMedienKommunikation } from './lessons/b1-lexik-medien-komm
 import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter';
 import { lessonB1LexikKulturFreizeit } from './lessons/b1-lexik-kultur-freizeit';
 import { lessonB1LexikBeziehungen } from './lessons/b1-lexik-beziehungen';
-
 
 // B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -114,7 +113,6 @@ import { lessonB2LexikMedienKommunikation } from './lessons/b2-lexik-medien-komm
 import { lessonB2LexikPolitik } from './lessons/b2-lexik-politik';
 import { lessonB2LexikWirtschaftKonsum } from './lessons/b2-lexik-wirtschaft-konsum';
 
-
 // C1 Grammar
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
 import { lessonC1Partizipialkonstruktionen } from './lessons/c1-partizipialkonstruktionen';
@@ -126,7 +124,6 @@ import { lessonC1LexikPolitikGesellschaft } from './lessons/c1-lexik-politik-ges
 import { lessonC1LexikWissenschaftForschung } from './lessons/c1-lexik-wissenschaft-forschung';
 import { lessonC1LexikWirtschaftGlobalermarkt } from './lessons/c1-lexik-wirtschaft-globalermarkt';
 import { lessonC1LexikInterkulturelleKommunikation } from './lessons/c1-lexik-interkulturelle-kommunikation';
-
 
 // C2 Grammar
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
@@ -146,8 +143,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1ArtikelGenus,
   lessonA1Pluralbildung,
   lessonA1LexikZahlenFarben,
-  lessonA1LexikFamilie,
   lessonA1GrammatikPraesensVerben,
+  lessonA1LexikFamilie,
   lessonA1Akkusativ,
   lessonA1Possessivpronomen,
   lessonA1LexikKleidung,
@@ -223,7 +220,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikUmweltWetter,
   lessonB1PassivEinfuehrung,
   lessonB1Konsekutivsaetze,
-  lessonB1Nebensaetze,
+  lessonB1Nebensaetze, // Ensured it is used here
   lessonB1LexikKulturFreizeit,
   lessonB1Relativsaetze,
   lessonB1LexikBeziehungen,
@@ -231,20 +228,19 @@ export const MOCK_LESSONS: Lesson[] = [
   // B2 Level - Ordered
   lessonB2Konjunktiv2,
   lessonB2Passiv,
-  lessonB2PassivErsatzformen,
   lessonB2LexikUmweltNachhaltigkeit,
   lessonB2SubjektiveModalverben,
   lessonB2NomenVerb,
   lessonB2LexikKulturKunst,
+  lessonB2PassivErsatzformen,
   lessonB2KomplexeSatzverbindungen,
-  lessonB2NominalisierungVerbalisierung,
   lessonB2LexikWissenschaftTechnologie,
+  lessonB2NominalisierungVerbalisierung,
   lessonB2Futur2,
-  lessonB2Wortbildung,
   lessonB2LexikMedienKommunikation,
+  lessonB2Wortbildung,
   lessonB2LexikPolitik,
   lessonB2LexikWirtschaftKonsum,
-
 
   // C1 Level - Ordered
   lessonC1IndirekteRede,
