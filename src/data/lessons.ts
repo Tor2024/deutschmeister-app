@@ -5,6 +5,7 @@ import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
 import { lessonA2Pluralbildung } from './lessons/a2-pluralbildung';
 import { lessonA2Perfekt } from './lessons/a2-perfekt';
+import { lessonA2Modalverben } from './lessons/a2-modalverben'; // Новый импорт
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
@@ -22,6 +23,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2VerbenPraesens,
   lessonA2Pluralbildung,
   lessonA2Perfekt,
+  lessonA2Modalverben, // Добавлен в массив
   lessonB1Nebensaetze,
   lessonB1Relativsaetze,
   lessonB1Praeteritum,
@@ -33,5 +35,3 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
 ];
-
-    
