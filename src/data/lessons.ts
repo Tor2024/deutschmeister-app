@@ -102,11 +102,13 @@ import { lessonC1AdverbialsaetzeVertiefung } from './lessons/c1-adverbialsaetze-
 import { lessonC1LexikPolitikGesellschaft } from './lessons/c1-lexik-politik-gesellschaft';
 import { lessonC1LexikWissenschaftForschung } from './lessons/c1-lexik-wissenschaft-forschung';
 
-
 // C2 Grammar
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
 import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalstil';
 import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
+
+// C2 Lexik
+import { lessonC2LexikGlobaleProbleme } from './lessons/c2-lexik-globale-probleme';
 
 export const MOCK_LESSONS: Lesson[] = [
   // A1 Grammar
@@ -203,11 +205,12 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC1LexikPolitikGesellschaft,
   lessonC1LexikWissenschaftForschung,
 
-
   // C2 Grammar
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
   lessonC2Modalpartikeln,
+  // C2 Lexik
+  lessonC2LexikGlobaleProbleme,
 ];
 
 // Helper function to get the count of lessons per level
@@ -223,5 +226,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
-    
