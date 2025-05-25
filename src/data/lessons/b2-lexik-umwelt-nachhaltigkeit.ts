@@ -128,5 +128,11 @@ Jeder Einzelne kann einen Beitrag zum Umweltschutz leisten. Ob durch die Wahl um
       correctAnswer: 'Müll trennen',
       explanation: '"Müll trennen" означает "сортировать мусор".',
     },
+    {
+      id: 'b2-lexik-umwelt-wp1',
+      type: 'writing_prompt',
+      question: 'Nennen Sie drei konkrete Maßnahmen, die jeder Einzelne zum Umweltschutz beitragen kann, und begründen Sie kurz Ihre Auswahl. (Назовите три конкретные меры, которые каждый может предпринять для защиты окружающей среды, и кратко обоснуйте свой выбор.)',
+      suggestedLength: '4-6 Sätze'
+    }
   ],
 };
