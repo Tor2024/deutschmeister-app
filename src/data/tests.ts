@@ -1,11 +1,13 @@
 
 import type { Test } from '@/types';
 import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
+import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
 
 export const MOCK_TESTS: Test[] = [
   testA1ArtikelGenus,
+  testA1PronomenSeinHaben,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
