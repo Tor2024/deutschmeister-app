@@ -28,6 +28,7 @@ import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tage
 import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbeit-einfach';
 import { lessonA1LexikWetter } from './lessons/a1-lexik-wetter';
 import { lessonA1LexikPersoenlicheInfos } from './lessons/a1-lexik-persoenliche-infos';
+import { lessonA1LexikGefuehleZustaende } from './lessons/a1-lexik-gefuehle-zustaende';
 
 
 // A2 Grammar
@@ -155,6 +156,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikSchuleArbeitEinfach,
   lessonA1LexikWetter,
   lessonA1LexikPersoenlicheInfos,
+  lessonA1LexikGefuehleZustaende,
 
   // A2 Grammar
   lessonA2Artikel,

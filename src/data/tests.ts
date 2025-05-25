@@ -23,6 +23,7 @@ import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesabl
 import { testA1LexikSchuleArbeitEinfach } from './tests/a1-lexik-schule-arbeit-einfach-test';
 import { testA1LexikWetter } from './tests/a1-lexik-wetter-test';
 import { testA1LexikPersoenlicheInfos } from './tests/a1-lexik-persoenliche-infos-test';
+import { testA1LexikGefuehleZustaende } from './tests/a1-lexik-gefuehle-zustaende-test';
 
 
 // A2 Tests
@@ -48,7 +49,7 @@ import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 import { testA2LexikArbeitBeruf } from './tests/a2-lexik-arbeit-beruf-test';
 import { testA2LexikReisenVerkehr } from './tests/a2-lexik-reisen-verkehr-test';
 import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerper-test';
-import { testA2LexikKleidung as testA2LexikKleidungTest } from './tests/a2-lexik-kleidung-test';
+import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
 import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
 import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
@@ -148,6 +149,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikSchuleArbeitEinfach,
   testA1LexikWetter,
   testA1LexikPersoenlicheInfos,
+  testA1LexikGefuehleZustaende,
 
 
   // A2 Grammar Tests
@@ -174,7 +176,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikArbeitBeruf,
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
-  testA2LexikKleidungTest,
+  testA2LexikKleidung,
   testA2LexikEinkaufen,
   testA2LexikInDerStadt,
   testA2LexikFesteTraditionen,
