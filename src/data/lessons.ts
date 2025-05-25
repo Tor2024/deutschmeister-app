@@ -38,6 +38,7 @@ import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
 import { lessonB2NomenVerb } from './lessons/b2-nomen-verb';
 import { lessonB2Passiv } from './lessons/b2-passiv';
+import { lessonB2PassivErsatzformen } from './lessons/b2-passiv-ersatzformen';
 
 // C1 Lessons
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
@@ -85,6 +86,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2Konjunktiv2,
   lessonB2NomenVerb,
   lessonB2Passiv,
+  lessonB2PassivErsatzformen,
   
   // C1
   lessonC1IndirekteRede,
