@@ -105,6 +105,25 @@ export const lessonA1LexikZahlenFarben: Lesson = {
     { german: 'die Farbe (-n)', russian: 'цвет' },
     { german: 'die Zahl (-en)', russian: 'число, цифра' },
   ],
+  readingText: `
+In meinem Zimmer gibt es viele bunte Dinge. Ich habe zwei rote Kissen auf meinem Bett. Neben dem Bett steht ein kleiner Tisch. Der Tisch ist blau. Auf dem Tisch liegen fünf gelbe Bleistifte und ein grünes Heft. Ich habe auch zehn Bücher. Die Bücher sind alt, aber interessant. Eins ist schwarz und neun sind braun.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a1-lexik-zahlen-farben-rq1',
+      question: 'Какого цвета стол в комнате?',
+      options: ['Красный', 'Синий', 'Желтый', 'Зеленый'],
+      correctAnswer: 'Синий',
+      explanation: 'В тексте сказано: "Der Tisch ist blau." (Стол синий.)'
+    },
+    {
+      id: 'a1-lexik-zahlen-farben-rq2',
+      question: 'Сколько коричневых книг в комнате?',
+      options: ['Две', 'Пять', 'Девять', 'Десять'],
+      correctAnswer: 'Девять',
+      explanation: 'В тексте сказано: "Eins ist schwarz und neun sind braun." (Одна черная и девять коричневых.)'
+    }
+  ],
   exercises: [
     {
       id: 'a1-lexik-zahlen-farben-ex1',
