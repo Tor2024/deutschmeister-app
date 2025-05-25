@@ -17,6 +17,7 @@ import { testA1LexikHausWohnung } from './tests/a1-lexik-haus-wohnung-test';
 import { testA1LexikEssenTrinken } from './tests/a1-lexik-essen-trinken-test';
 import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test';
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
+import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
 
 
 // A2 Tests
@@ -99,6 +100,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikEssenTrinken,
   testA1LexikHobbysFreizeit,
   testA1LexikZahlenFarben,
+  testA1LexikWochentageMonateJahreszeiten,
 
   // A2 Tests
   testA2Artikel,

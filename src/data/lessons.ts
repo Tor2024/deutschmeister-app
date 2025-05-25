@@ -20,6 +20,7 @@ import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung';
 import { lessonA1LexikEssenTrinken } from './lessons/a1-lexik-essen-trinken';
 import { lessonA1LexikHobbysFreizeit } from './lessons/a1-lexik-hobbys-freizeit';
 import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
+import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
 
 
 // A2 Lessons
@@ -106,6 +107,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikEssenTrinken,
   lessonA1LexikHobbysFreizeit,
   lessonA1LexikZahlenFarben,
+  lessonA1LexikWochentageMonateJahreszeiten,
 
   // A2
   lessonA2Artikel,
