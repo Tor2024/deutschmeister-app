@@ -25,7 +25,7 @@ const AdaptiveLessonInputSchema = z.object({
 export type AdaptiveLessonInput = z.infer<typeof AdaptiveLessonInputSchema>;
 
 const AdaptiveLessonOutputSchema = z.object({
-  lessonTopic: z.string().describe('The suggested lesson topic for the user. This topic should be in Russian or use common German grammatical terms if referring to grammar (e.g., "Dativ", "Perfekt"). The topic should be concise and sound like a typical lesson title.'),
+  lessonTopic: z.string().describe('The suggested lesson topic for the user. This topic should be in Russian or use common German grammatical terms if referring to grammar (e.g., "Dativ", "Perfekt", "Adjektivdeklination"). The topic should be concise and sound like a typical lesson title.'),
   reason: z.string().describe('The reason why this lesson is suggested based on the user input. This explanation MUST be in Russian.'),
 });
 export type AdaptiveLessonOutput = z.infer<typeof AdaptiveLessonOutputSchema>;
@@ -41,14 +41,17 @@ const adaptiveLearningPathPrompt = ai.definePrompt({
   prompt: `You are an expert German language tutor. Based on the user's current level ({currentLevel}),
 the lessons they have completed ({completedLessons}), their test results ({testResults}),
 and their learning goals ({learningGoals}), suggest the next best lesson topic for them.
-Explain why you are suggesting this particular lesson. The explanation (reason) MUST be in Russian.
+The explanation (reason field) MUST be in Russian.
 
 Consider the user's learning goals and areas where they have performed poorly in tests.
 Suggest lessons that will help them improve in those areas. Suggest lessons the user has not taken yet.
 
-Output the lesson topic and the reason for your suggestion. The lesson topic should be in Russian or use common German grammatical terms if it's a grammar topic (e.g., "Дательный падеж (Dativ)", "Время Perfekt").
-Ensure the suggested 'lessonTopic' is concise and sounds like a typical lesson title.
-Focus on Grammar, Vocabulary, Listening Comprehension, Reading Comprehension, Writing and Speaking.
+Output the lesson topic and the reason for your suggestion.
+The 'lessonTopic' MUST be concise and sound like a typical lesson title for a German language course.
+The 'lessonTopic' SHOULD be primarily in Russian. If it's a grammar topic, it can use common German grammatical terms (e.g., "Дательный падеж (Dativ)", "Время Perfekt", "Склонение прилагательных (Adjektivdeklination)").
+Do NOT invent overly creative or long lesson titles. Prefer standard and recognizable topic names.
+Focus on suggesting topics from these areas: Grammar, Vocabulary, Listening Comprehension, Reading Comprehension, Writing, and Speaking.
+If suggesting a grammar topic, try to use a common term like "Склонение прилагательных", "Винительный падеж", "Порядок слов".
 `,
 });
 
@@ -63,4 +66,3 @@ const adaptiveLearningPathFlow = ai.defineFlow(
     return output!;
   }
 );
-
