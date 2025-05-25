@@ -138,35 +138,33 @@ import { lessonC2LexikSozialeTrends } from './lessons/c2-lexik-soziale-trends';
 
 
 export const MOCK_LESSONS: Lesson[] = [
-  // A1 Grammar
+  // A1 - Interleaved Order
   lessonA1AlphabetBegruessungen,
   lessonA1PersonalpronomenSeinHaben,
+  lessonA1LexikPersoenlicheInfos,
   lessonA1ArtikelGenus,
   lessonA1Pluralbildung,
+  lessonA1LexikZahlenFarben,
+  lessonA1LexikFamilie,
   lessonA1Akkusativ,
+  lessonA1Possessivpronomen,
+  lessonA1LexikKleidung,
   lessonA1Negation,
+  lessonA1LexikEssenTrinken,
   lessonA1SatzbauGrundlagen,
   lessonA1Modalverben,
-  lessonA1Possessivpronomen,
+  lessonA1LexikHobbysFreizeit,
   lessonA1Imperativ,
+  lessonA1LexikUhrzeitTagesablauf,
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
-  lessonA1TrennbarVerben,
-  // A1 Lexik
-  lessonA1LexikFamilie,
-  lessonA1LexikHausWohnung,
-  lessonA1LexikEssenTrinken,
-  lessonA1LexikHobbysFreizeit,
-  lessonA1LexikZahlenFarben,
-  lessonA1LexikWochentageMonateJahreszeiten,
-  lessonA1LexikKleidung,
-  lessonA1LexikUhrzeitTagesablauf,
   lessonA1LexikSchuleArbeitEinfach,
+  lessonA1TrennbarVerben,
   lessonA1LexikWetter,
-  lessonA1LexikPersoenlicheInfos,
+  lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1LexikGefuehleZustaende,
-
-  // A2 Grammar
+  
+  // A2 Grammar (current order)
   lessonA2Artikel,
   lessonA2VerbenPraesens,
   lessonA2Pluralbildung,
@@ -186,7 +184,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2TemporalsaetzeAlsWenn,
   lessonA2Demonstrativpronomen,
   lessonA2OrdinalzahlenDatum,
-  // A2 Lexik
+  // A2 Lexik (current order)
   lessonA2LexikArbeitBeruf,
   lessonA2LexikReisenVerkehr,
   lessonA2LexikGesundheitKoerper,
@@ -201,7 +199,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikKonflikteLoesungen,
   lessonA2LexikBank,
 
-  // B1 Grammar
+  // B1 Grammar (current order)
   lessonB1Nebensaetze,
   lessonB1Relativsaetze,
   lessonB1Praeteritum,
@@ -216,7 +214,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Indefinitpronomen,
   lessonB1InfinitivMitZu,
   lessonB1Konsekutivsaetze,
-  // B1 Lexik
+  // B1 Lexik (current order)
   lessonB1LexikBildungStudium,
   lessonB1LexikArbeitKarriere,
   lessonB1LexikMedienKommunikation,
@@ -224,8 +222,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikKulturFreizeit,
   lessonB1LexikBeziehungen,
 
-
-  // B2 Grammar
+  // B2 Grammar (current order)
   lessonB2Konjunktiv2,
   lessonB2NomenVerb,
   lessonB2Passiv,
@@ -235,7 +232,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2NominalisierungVerbalisierung,
   lessonB2Futur2,
   lessonB2Wortbildung,
-  // B2 Lexik
+  // B2 Lexik (current order)
   lessonB2LexikUmweltNachhaltigkeit,
   lessonB2LexikKulturKunst,
   lessonB2LexikWissenschaftTechnologie,
@@ -243,22 +240,22 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2LexikPolitik,
   lessonB2LexikWirtschaftKonsum,
 
-  // C1 Grammar
+  // C1 Grammar (current order)
   lessonC1IndirekteRede,
   lessonC1Partizipialkonstruktionen,
   lessonC1KonjunktivVertiefung,
   lessonC1PartizipialkonstruktionenAdverbial,
   lessonC1AdverbialsaetzeVertiefung,
-  // C1 Lexik
+  // C1 Lexik (current order)
   lessonC1LexikPolitikGesellschaft,
   lessonC1LexikWissenschaftForschung,
   lessonC1LexikWirtschaftGlobalermarkt,
 
-  // C2 Grammar
+  // C2 Grammar (current order)
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
   lessonC2Modalpartikeln,
-  // C2 Lexik
+  // C2 Lexik (current order)
   lessonC2LexikGlobaleProbleme,
   lessonC2LexikMedienkritikDigitaleGesellschaft,
   lessonC2LexikSozialeTrends,
@@ -277,4 +274,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
