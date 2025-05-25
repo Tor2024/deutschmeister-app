@@ -12,7 +12,9 @@ import { testA1Imperativ } from './tests/a1-imperativ-test';
 import { testA1PraepositionenAkkusativ } from './tests/a1-praepositionen-akkusativ-test';
 import { testA1PraepositionenDativ } from './tests/a1-praepositionen-dativ-test';
 import { testA1TrennbarVerben } from './tests/a1-trennbar-verben-test';
-import { testA1LexikFamilie } from './tests/a1-lexik-familie-test'; // New test import
+import { testA1LexikFamilie } from './tests/a1-lexik-familie-test';
+import { testA1LexikHausWohnung } from './tests/a1-lexik-haus-wohnung-test';
+
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -89,7 +91,8 @@ export const MOCK_TESTS: Test[] = [
   testA1PraepositionenAkkusativ,
   testA1PraepositionenDativ,
   testA1TrennbarVerben,
-  testA1LexikFamilie, // New test
+  testA1LexikFamilie,
+  testA1LexikHausWohnung,
 
   // A2 Tests
   testA2Artikel,
