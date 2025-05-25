@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonA1LexikHobbysFreizeit: Lesson = {
   id: 'a1-lexik-hobbys-freizeit',
@@ -58,6 +58,28 @@ export const lessonA1LexikHobbysFreizeit: Lesson = {
     { german: 'spazieren gehen', russian: 'гулять, идти на прогулку', example: 'Nach dem Abendessen gehen wir spazieren.' },
     { german: 'fernsehen (sieht fern)', russian: 'смотреть телевизор', example: 'Abends sehe ich manchmal fern.' },
     { german: 'gern(e)', russian: 'охотно, с удовольствием', example: 'Ich spiele gerne Klavier.' },
+  ],
+  readingText: `
+Hallo, ich heiße Anna. In meiner Freizeit mache ich viele Dinge.
+Ich lese gern Bücher. Mein Lieblingsbuch ist über Tiere.
+Am Samstag spiele ich Fußball mit meinen Freunden. Das macht Spaß!
+Sonntags gehe ich oft mit meinem Hund spazieren. Manchmal male ich auch Bilder.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a1-lexik-hobbys-freizeit-rq1',
+      question: 'Что Анна любит делать в свободное время?',
+      options: ['Смотреть телевизор', 'Читать книги', 'Готовить еду', 'Играть в компьютерные игры'],
+      correctAnswer: 'Читать книги',
+      explanation: 'В тексте сказано: "Ich lese gern Bücher."'
+    },
+    {
+      id: 'a1-lexik-hobbys-freizeit-rq2',
+      question: 'С кем Анна играет в футбол по субботам?',
+      options: ['С семьей', 'С собакой', 'С друзьями', 'Одна'],
+      correctAnswer: 'С друзьями',
+      explanation: 'В тексте сказано: "Am Samstag spiele ich Fußball mit meinen Freunden."'
+    }
   ],
   exercises: [
     {
