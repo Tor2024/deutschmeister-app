@@ -87,6 +87,9 @@ import { lessonB2NominalisierungVerbalisierung } from './lessons/b2-nominalisier
 import { lessonB2Futur2 } from './lessons/b2-futur2';
 import { lessonB2Wortbildung } from './lessons/b2-wortbildung';
 
+// B2 Lexik
+import { lessonB2LexikUmweltNachhaltigkeit } from './lessons/b2-lexik-umwelt-nachhaltigkeit';
+
 // C1 Grammar
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
 import { lessonC1Partizipialkonstruktionen } from './lessons/c1-partizipialkonstruktionen';
@@ -180,6 +183,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2NominalisierungVerbalisierung,
   lessonB2Futur2,
   lessonB2Wortbildung,
+  // B2 Lexik
+  lessonB2LexikUmweltNachhaltigkeit,
 
   // C1 Grammar
   lessonC1IndirekteRede,
@@ -207,3 +212,4 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+

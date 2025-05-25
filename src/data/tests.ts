@@ -76,6 +76,7 @@ import { testB2KomplexeSatzverbindungen } from './tests/b2-komplexe-satzverbindu
 import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-verbalisierung-test';
 import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
+import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
 
 // C1 Tests
 import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
@@ -167,6 +168,7 @@ export const MOCK_TESTS: Test[] = [
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
   testB2Wortbildung,
+  testB2LexikUmweltNachhaltigkeit,
 
   // C1 Tests
   testC1IndirekteRede,
@@ -185,3 +187,4 @@ export const MOCK_TESTS: Test[] = [
 export const getTestById = (id: string): Test | undefined => {
   return MOCK_TESTS.find(test => test.id === id);
 };
+
