@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonC2LexikGlobaleProbleme: Lesson = {
   id: 'c2-lexik-globale-probleme',
@@ -44,6 +44,49 @@ export const lessonC2LexikGlobaleProbleme: Lesson = {
     { german: 'die Verantwortung', russian: 'ответственность', example: 'Jeder Einzelne trägt Verantwortung für die Umwelt.' },
     { german: 'die Herausforderung (-en)', russian: 'вызов, сложная задача', example: 'Das ist eine große Herausforderung für die internationale Gemeinschaft.' },
     { german: 'die Lösungsansätze (Pl.)', russian: 'подходы к решению (проблемы)', example: 'Es gibt verschiedene Lösungsansätze für dieses Problem.' },
+  ],
+  readingText: `
+Die Vernetzung der Welt durch Globalisierung und digitale Technologien hat zu einer beispiellosen Beschleunigung des Informationsaustauschs und des wirtschaftlichen Wandels geführt. Während dies einerseits enorme Chancen für Innovation, Wohlstand und interkulturelles Verständnis eröffnet, birgt es andererseits auch Risiken wie die Verschärfung globaler Ungleichheiten und die Anfälligkeit für systemische Krisen.
+Ein zentrales Dilemma der modernen Menschheit liegt in der Balance zwischen wirtschaftlichem Wachstum und ökologischer Nachhaltigkeit. Die endlichen Ressourcen unseres Planeten und die sichtbaren Folgen des Klimawandels zwingen uns, traditionelle Wirtschaftsmodelle zu überdenken und verstärkt auf Kreislaufwirtschaft, erneuerbare Energien und einen bewussteren Konsum zu setzen. Dies erfordert nicht nur technologische Innovationen, sondern auch einen tiefgreifenden Wandel im gesellschaftlichen Bewusstsein und in politischen Rahmenbedingungen.
+Die Rolle internationaler Kooperationen und supranationaler Organisationen bei der Bewältigung dieser Herausforderungen kann kaum hoch genug eingeschätzt werden. Probleme wie Pandemien, Terrorismus oder die Regulierung global agierender Konzerne überschreiten nationale Grenzen und erfordern gemeinsame, koordinierte Antworten. Die Zukunft wird maßgeblich davon abhängen, inwieweit es der Weltgemeinschaft gelingt, trotz unterschiedlicher Interessen gemeinsame Nenner zu finden und effektive globale Governance-Strukturen zu etablieren.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'c2-lexik-globale-probleme-rq1',
+      question: 'Welches zentrale Dilemma der modernen Menschheit wird im Text hervorgehoben?',
+      options: [
+        'Der Konflikt zwischen technologischem Fortschritt und Datenschutz.',
+        'Die Balance zwischen wirtschaftlichem Wachstum und ökologischer Nachhaltigkeit.',
+        'Die Schwierigkeit, internationale politische Abkommen zu schließen.',
+        'Die Zunahme von Desinformation durch digitale Medien.'
+      ],
+      correctAnswer: 'Die Balance zwischen wirtschaftlichem Wachstum und ökologischer Nachhaltigkeit.',
+      explanation: 'Der Text nennt explizit: "Ein zentrales Dilemma der modernen Menschheit liegt in der Balance zwischen wirtschaftlichem Wachstum und ökologischer Nachhaltigkeit."'
+    },
+    {
+      id: 'c2-lexik-globale-probleme-rq2',
+      question: 'Was ist laut Text für die Bewältigung globaler Probleme wie Pandemien oder Terrorismus besonders wichtig?',
+      options: [
+        'Die Stärkung nationaler Grenzen und Autarkiebestrebungen.',
+        'Die alleinige Verantwortung der technologisch führenden Nationen.',
+        'Internationale Kooperationen und supranationale Organisationen.',
+        'Eine Reduzierung der globalen Vernetzung.'
+      ],
+      correctAnswer: 'Internationale Kooperationen und supranationale Organisationen.',
+      explanation: 'Der Text betont: "Die Rolle internationaler Kooperationen und supranationaler Organisationen bei der Bewältigung dieser Herausforderungen kann kaum hoch genug eingeschätzt werden."'
+    },
+    {
+      id: 'c2-lexik-globale-probleme-rq3',
+      question: 'Welche zwei Faktoren werden als notwendig für einen tiefgreifenden Wandel hin zu mehr Nachhaltigkeit genannt, zusätzlich zu technologischen Innovationen?',
+      options: [
+        'Erhöhung der staatlichen Subventionen und Verringerung der Bevölkerungszahl.',
+        'Wandel im gesellschaftlichen Bewusstsein und in politischen Rahmenbedingungen.',
+        'Ausweitung der industriellen Produktion und Erschließung neuer Märkte.',
+        'Verstärkter Wettbewerb zwischen Nationen und Reduzierung der internationalen Hilfe.'
+      ],
+      correctAnswer: 'Wandel im gesellschaftlichen Bewusstsein und in politischen Rahmenbedingungen.',
+      explanation: 'Der Text erwähnt: "...sondern auch einen tiefgreifenden Wandel im gesellschaftlichen Bewusstsein und in politischen Rahmenbedingungen."'
+    }
   ],
   exercises: [
     {
