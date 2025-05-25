@@ -27,24 +27,24 @@ export const lessonB1IndirekteRedeEinfuehrung: Lesson = {
        -   Прямая речь: *Sie fragt: "Wann beginnt der Film?"* (Она спрашивает: "Когда начинается фильм?")
        -   Косвенная речь: *Sie fragt, **wann der Film beginnt**.* (Она спрашивает, когда начинается фильм.)
 
-**4. Использование Konjunktiv I (основы):**
-   Konjunktiv I – это основное наклонение для косвенной речи. Для многих глаголов в 3-м лице единственного числа (er/sie/es) он образуется путем добавления **-e** к основе инфинитива.
+**4. Введение в Konjunktiv I (для ознакомления):**
+   Konjunktiv I – это специальное наклонение для косвенной речи. Для многих глаголов в 3-м лице единственного числа (er/sie/es) он образуется от основы инфинитива + **-e**.
    -   *sagen -> er sag**e***
    -   *kommen -> er komm**e***
-   -   *haben -> er hab**e***
-   -   *sein -> er sei*
+   -   Для \`sein\`: *er/sie/es **sei***
+   -   Для \`haben\`: *er/sie/es **habe***
 
-   *Примеры с Konjunktiv I:*
+   *Примеры с Konjunktiv I (чаще в письменной речи):*
    -   Прямая речь: *Peter sagt: "Ich **habe** keine Zeit."*
    -   Косвенная речь: *Peter sagt, er **habe** keine Zeit.* (Петер говорит, что у него (якобы) нет времени.)
    -   Прямая речь: *Lisa erzählt: "Ich **bin** glücklich."*
    -   Косвенная речь: *Lisa erzählt, sie **sei** glücklich.*
 
-   На уровне B1 часто достаточно использовать Präsens Indikativ в придаточном предложении (как в первых примерах с \`dass\` и \`ob\`), особенно если нет двусмысленности. Но знакомство с Konjunktiv I важно для понимания и перехода к более высоким уровням.
+   На уровне B1 часто достаточно использовать Präsens Indikativ в придаточном предложении (как в первых примерах с \`dass\` и \`ob\`), особенно если нет двусмысленности. Но важно знать, что Konjunktiv I существует.
 
 **5. Сдвиг местоимений:**
    При переходе из прямой речи в косвенную часто необходимо изменять личные и притяжательные местоимения в зависимости от того, кто передает речь.
-   -   *Er sagt: "**Ich** gehe zu **meinem** Freund."* -> *Er sagt, **er** gehe zu **seinem** Freund.*
+   -   *Er sagt: "**Ich** gehe zu **meinem** Freund."* -> *Er sagt, **er** gehe zu **seinem** Freund.* (или ...dass er zu seinem Freund geht.)
 
 Это основы косвенной речи. Главное – помнить о союзах \`dass\`, \`ob\`, вопросительных словах и о том, что глагол в придаточном уходит в конец.
   `,
@@ -57,30 +57,31 @@ export const lessonB1IndirekteRedeEinfuehrung: Lesson = {
     { german: 'antworten', russian: 'отвечать', example: 'Sie antwortete, dass sie keine Ahnung habe.' },
     { german: 'erzählen', russian: 'рассказывать', example: 'Er erzählte, er habe Urlaub gemacht.' },
     { german: 'meinen', russian: 'полагать, иметь в виду', example: 'Ich meine, dass das eine gute Idee ist.' },
-    { german: 'der Konjunktiv I', russian: 'Конъюнктив I (сослагательное наклонение I)' },
+    { german: 'der Konjunktiv I', russian: 'Конъюнктив I (сослагательное наклонение I) - введение' },
     { german: 'sei (Konj. I von sein)', russian: 'форма "быть" в Konj. I (er/sie/es sei)', example: 'Er behauptet, er sei reich.' },
     { german: 'habe (Konj. I von haben)', russian: 'форма "иметь" в Konj. I (er/sie/es habe)', example: 'Sie meint, sie habe das Recht.' },
   ],
   readingText: `
-Reporter: Herr Meier, was sagen Sie zu den aktuellen Entwicklungen?
-Herr Meier: Ich bin der Meinung, dass wir vor großen Herausforderungen stehen. Viele Bürger fragen mich, ob die Regierung die Situation im Griff hat. Ich antworte dann, dass wir alle zusammenarbeiten müssen. Es ist wichtig, dass jeder seinen Beitrag leistet. Ein Kollege meinte neulich, die Lage sei kompliziert, aber nicht hoffnungslos.
+Anna fragt ihren Bruder Paul: "Was machst du heute Abend?" Paul antwortet: "Ich weiß es noch nicht genau. Vielleicht treffe ich mich mit Freunden."
+Später erzählt Anna ihrer Mutter: "Paul hat gesagt, dass er heute Abend vielleicht seine Freunde trifft. Er meinte auch, er wisse noch nicht genau, was er macht."
+Die Mutter fragt Anna: "Und was hat er gefragt, ob du mitkommen möchtest?" Anna lacht und sagt: "Nein, das hat er nicht gefragt."
   `,
   readingComprehensionExercises: [
     {
-      id: 'b1-indirekte-rede-rq1',
+      id: 'b1-indirekte-rede-einf-rq1',
       type: 'multiple_choice',
-      question: 'Что, по мнению господина Майера, важно в текущей ситуации?',
-      options: ['Чтобы каждый решал свои проблемы сам.', 'Чтобы все работали вместе, и каждый вносил свой вклад.', 'Чтобы правительство все контролировало в одиночку.', 'Чтобы не обращать внимания на проблемы.'],
-      correctAnswer: 'Чтобы все работали вместе, и каждый вносил свой вклад.',
-      explanation: 'Herr Meier sagt: "...dass wir alle zusammenarbeiten müssen. Es ist wichtig, dass jeder seinen Beitrag leistet."',
+      question: 'Was antwortet Paul auf Annas Frage, was er heute Abend macht?',
+      options: ['Er geht sicher ins Kino.', 'Er trifft sich definitiv mit Anna.', 'Er weiß es noch nicht genau, vielleicht trifft er Freunde.', 'Er bleibt zu Hause.'],
+      correctAnswer: 'Er weiß es noch nicht genau, vielleicht trifft er Freunde.',
+      explanation: 'Paul antwortet: "Ich weiß es noch nicht genau. Vielleicht treffe ich mich mit Freunden."',
     },
     {
-      id: 'b1-indirekte-rede-rq2',
+      id: 'b1-indirekte-rede-einf-rq2',
       type: 'multiple_choice',
-      question: 'Какой вопрос, по словам господина Майера, ему задают многие граждане?',
-      options: ['Когда будут следующие выборы?', 'Контролирует ли правительство ситуацию?', 'Почему налоги такие высокие?', 'Какая погода будет завтра?'],
-      correctAnswer: 'Контролирует ли правительство ситуацию?',
-      explanation: 'Herr Meier sagt: "Viele Bürger fragen mich, ob die Regierung die Situation im Griff hat."',
+      question: 'Wie gibt Anna die Antwort von Paul an ihre Mutter weiter?',
+      options: ['Paul sagte, er habe heute Abend keine Zeit.', 'Paul sagte, dass er heute Abend vielleicht seine Freunde trifft.', 'Paul fragte, ob die Mutter mit ihm ausgeht.', 'Paul sagte, er gehe auf jeden Fall ins Kino.'],
+      correctAnswer: 'Paul sagte, dass er heute Abend vielleicht seine Freunde trifft.',
+      explanation: 'Anna erzählt: "Paul hat gesagt, dass er heute Abend vielleicht seine Freunde trifft."',
     },
   ],
   exercises: [
@@ -111,16 +112,8 @@ Herr Meier: Ich bin der Meinung, dass wir vor großen Herausforderungen stehen. 
     },
     {
       id: 'b1-indirekte-rede-einf-ex4',
-      type: 'fill_in_the_blank',
-      question: 'Косвенная речь (Konjunktiv I): Der Lehrer sagt, der Test ___ nicht schwer. (sein)',
-      sentenceParts: ['Der Lehrer sagt, der Test ', ' nicht schwer.'],
-      correctAnswer: 'sei',
-      explanation: 'Konjunktiv I от "sein" для 3-го лица единственного числа (der Test - er) - "sei".',
-    },
-    {
-      id: 'b1-indirekte-rede-einf-wp1',
       type: 'writing_prompt',
-      question: 'Dein Freund hat dir gesagt: "Ich fahre morgen ans Meer." Berichte das in indirekter Rede. (Твой друг сказал тебе: "Я завтра еду на море." Передай это в косвенной речи.)',
+      question: 'Dein Freund hat dir gesagt: "Ich habe heute keine Zeit für Sport." Berichte das in indirekter Rede. (Твой друг сказал тебе: "У меня сегодня нет времени на спорт." Передай это в косвенной речи.)',
       suggestedLength: '1 предложение',
     },
   ],

@@ -11,7 +11,7 @@ export const testB1IndirekteRedeEinfuehrung: Test = {
     {
       id: 'b1-indirekte-rede-einf-test-q1',
       type: 'multiple_choice',
-      question: 'Выберите правильный союз для косвенного утверждения: "Er sagt, ___ er müde ist."',
+      question: 'Выберите правильный союз: "Er sagt, ___ er müde ist."',
       options: ['ob', 'wenn', 'dass', 'weil'],
       correctAnswer: 'dass',
       explanation: 'Союз "dass" (что) вводит косвенное утвердительное предложение.',
@@ -36,10 +36,10 @@ export const testB1IndirekteRedeEinfuehrung: Test = {
     {
       id: 'b1-indirekte-rede-einf-test-q4',
       type: 'multiple_choice',
-      question: 'Какая форма Konjunktiv I от глагола "haben" для "er/sie/es"?',
-      options: ['hat', 'habe', 'hätte', 'hättest'],
-      correctAnswer: 'habe',
-      explanation: 'Konjunktiv I от "haben" для 3-го лица единственного числа - "habe".',
+      question: 'Какая форма Konjunktiv I от глагола "sein" для "er/sie/es"?',
+      options: ['ist', 'war', 'wäre', 'sei'],
+      correctAnswer: 'sei',
+      explanation: 'Konjunktiv I от "sein" для 3-го лица единственного числа - "sei".',
     },
     {
       id: 'b1-indirekte-rede-einf-test-q5',
