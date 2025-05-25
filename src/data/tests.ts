@@ -67,6 +67,7 @@ import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test
 import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test';
 import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunikation-test';
 import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
+import { testB1LexikKulturFreizeit } from './tests/b1-lexik-kultur-freizeit-test';
 
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -167,6 +168,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikArbeitKarriere,
   testB1LexikMedienKommunikation,
   testB1LexikUmweltWetter,
+  testB1LexikKulturFreizeit,
 
   // B2 Tests
   testB2Konjunktiv2,
