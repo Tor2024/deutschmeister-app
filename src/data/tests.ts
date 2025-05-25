@@ -3,7 +3,7 @@ import type { Test, ModularTest } from '@/types';
 // A1 Grammar Tests
 import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
-import { testA1GrammatikPraesensVerben } from './tests/a1-grammatik-praesens-verben-test'; // Added
+import { testA1GrammatikPraesensVerben } from './tests/a1-grammatik-praesens-verben-test';
 import { testA1Pluralbildung } from './tests/a1-pluralbildung-test';
 import { testA1Akkusativ } from './tests/a1-akkusativ-test';
 import { testA1Modalverben } from './tests/a1-modalverben-test';
@@ -13,9 +13,9 @@ import { testA1Possessivpronomen } from './tests/a1-possessivpronomen-test';
 import { testA1Imperativ } from './tests/a1-imperativ-test';
 import { testA1PraepositionenAkkusativ } from './tests/a1-praepositionen-akkusativ-test';
 import { testA1PraepositionenDativ } from './tests/a1-praepositionen-dativ-test';
-import { testA1PraepositionenDativWechsel } from './tests/a1-praepositionen-dativ-wechsel-test'; // Added
+import { testA1PraepositionenDativWechsel } from './tests/a1-praepositionen-dativ-wechsel-test';
 import { testA1TrennbarVerben } from './tests/a1-trennbar-verben-test';
-import { testA1WFragen } from './tests/a1-w-fragen-test'; // Added
+import { testA1WFragen } from './tests/a1-w-fragen-test';
 // A1 Lexik Tests
 import { testA1LexikFamilie } from './tests/a1-lexik-familie-test';
 import { testA1LexikHausWohnung } from './tests/a1-lexik-haus-wohnung-test';
@@ -27,20 +27,20 @@ import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
 import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
 import { testA1LexikSchuleArbeitEinfach } from './tests/a1-lexik-schule-arbeit-einfach-test';
 import { testA1LexikWetter } from './tests/a1-lexik-wetter-test';
-import { testA1LexikPersoenlicheInfos } from './tests/a1-lexik-persoenliche-infos-test'; // Added
-import { testA1LexikGefuehleZustaende } from './tests/a1-lexik-gefuehle-zustaende-test'; // Added
-import { testA1LexikOrdinalzahlenDatum } from './tests/a1-lexik-ordinalzahlen-datum-test'; // Added
+import { testA1LexikPersoenlicheInfos } from './tests/a1-lexik-persoenliche-infos-test';
+import { testA1LexikGefuehleZustaende } from './tests/a1-lexik-gefuehle-zustaende-test';
+import { testA1LexikOrdinalzahlenDatum } from './tests/a1-lexik-ordinalzahlen-datum-test';
 
 // A2 Grammar Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
 import { testA2VerbenPraesens } from './tests/a2-verben-praesens-test';
-import { testA2GrammatikPraeteritumSeinHabenModal } from './tests/a2-grammatik-praeteritum-sein-haben-modal-test'; // Added
+import { testA2GrammatikPraeteritumSeinHabenModal } from './tests/a2-grammatik-praeteritum-sein-haben-modal-test';
 import { testA2Pluralbildung } from './tests/a2-pluralbildung-test';
-import { testA2TrennbareUntrennbareVerben } from './tests/a2-trennbare-untrennbare-verben-test'; // Added
+import { testA2TrennbareUntrennbareVerben } from './tests/a2-trennbare-untrennbare-verben-test';
 import { testA2Perfekt } from './tests/a2-perfekt-test';
 import { testA2Modalverben } from './tests/a2-modalverben-test';
-import { testA2ModalverbenPerfekt } from './tests/a2-modalverben-perfekt-test'; // Added
-import { testA2VerbLassen } from './tests/a2-verb-lassen-test'; // Added
+import { testA2ModalverbenPerfekt } from './tests/a2-modalverben-perfekt-test';
+import { testA2VerbLassen } from './tests/a2-verb-lassen-test';
 import { testA2Praepositionen } from './tests/a2-praepositionen-test';
 import { testA2Possessivpronomen } from './tests/a2-possessivpronomen-test';
 import { testA2PersonalpronomenAkkDat } from './tests/a2-personalpronomen-akk-dat-test';
@@ -48,8 +48,8 @@ import { testA2Adjektivsteigerung } from './tests/a2-adjektivsteigerung-test';
 import { testA2Adjektivdeklination } from './tests/a2-adjektivdeklination-test';
 import { testA2Imperativ } from './tests/a2-imperativ-test';
 import { testA2Satzbau } from './tests/a2-satzbau-test';
-import { testA2NebensaetzeEinfach } from './tests/a2-nebensaetze-einfach-test';
 import { testA2NebenordnendeKonjunktionen } from './tests/a2-nebenordnende-konjunktionen-test';
+import { testA2NebensaetzeEinfach } from './tests/a2-nebensaetze-einfach-test';
 import { testA2Negation } from './tests/a2-negation-test';
 import { testA2ReflexiveVerben } from './tests/a2-reflexive-verben-test';
 import { testA2TemporalsaetzeAlsWenn } from './tests/a2-temporalsaetze-als-wenn-test';
@@ -63,17 +63,17 @@ import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
 import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
 import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
-import { testA2LexikLebensstilGewohnheiten } from './tests/a2-lexik-lebensstil-gewohnheiten-test'; // Added
-import { testA2LexikErnaehrungRezepte } from './tests/a2-lexik-ernaehrung-rezepte-test'; // Added
-import { testA2LexikElektronikTechnik } from './tests/a2-lexik-elektronik-technik-test'; // Added
-import { testA2LexikBriefeEmails } from './tests/a2-lexik-briefe-emails-test'; // Added
-import { testA2LexikKonflikteLoesungen } from './tests/a2-lexik-konflikte-loesungen-test'; // Added
-import { testA2LexikBank } from './tests/a2-lexik-bank-test'; // Added
-import { testA2LexikSchuleKurse } from './tests/a2-lexik-schule-kurse-test'; // Added
+import { testA2LexikLebensstilGewohnheiten } from './tests/a2-lexik-lebensstil-gewohnheiten-test';
+import { testA2LexikErnaehrungRezepte } from './tests/a2-lexik-ernaehrung-rezepte-test';
+import { testA2LexikElektronikTechnik } from './tests/a2-lexik-elektronik-technik-test';
+import { testA2LexikBriefeEmails } from './tests/a2-lexik-briefe-emails-test';
+import { testA2LexikKonflikteLoesungen } from './tests/a2-lexik-konflikte-loesungen-test';
+import { testA2LexikBank } from './tests/a2-lexik-bank-test';
+import { testA2LexikSchuleKurse } from './tests/a2-lexik-schule-kurse-test';
 
 // B1 Grammar Tests
 import { testB1Praeteritum } from './tests/b1-praeteritum-test';
-import { testB1PerfektReview } from './tests/b1-perfekt-review-test'; // Added
+import { testB1PerfektReview } from './tests/b1-perfekt-review-test';
 import { testB1Plusquamperfekt } from './tests/b1-plusquamperfekt-test';
 import { testB1Futur1 } from './tests/b1-futur1-test';
 import { testB1Adjektivdeklination } from './tests/b1-adjektivdeklination-test';
@@ -87,6 +87,7 @@ import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
 import { testB1Relativsaetze } from './tests/b1-relativsaetze-test';
+import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test'; // Added
 // B1 Lexik Tests
 import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
 import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test';
@@ -113,6 +114,7 @@ import { testB2LexikMedienKommunikation } from './tests/b2-lexik-medien-kommunik
 import { testB2LexikPolitik } from './tests/b2-lexik-politik-test';
 import { testB2LexikWirtschaftKonsum } from './tests/b2-lexik-wirtschaft-konsum-test';
 
+
 // C1 Grammar Tests
 import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
 import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstruktionen-test';
@@ -134,19 +136,14 @@ import { testC2LexikGlobaleProbleme } from './tests/c2-lexik-globale-probleme-te
 import { testC2LexikMedienkritikDigitaleGesellschaft } from './tests/c2-lexik-medienkritik-digitale-gesellschaft-test';
 import { testC2LexikSozialeTrends } from './tests/c2-lexik-soziale-trends-test';
 
-// Level Tests
-import { testA1LevelTest } from './tests/a1-level-test';
-import { testA2LevelTest } from './tests/a2-level-test';
-import { testB1LevelTest } from './tests/b1-level-test';
-import { testB2LevelTest } from './tests/b2-level-test';
-import { testC1LevelTest } from './tests/c1-level-test';
-import { testC2LevelTest } from './tests/c2-level-test';
 
+// --- MOCK_TESTS ---
+// Contains all thematic tests
 export const MOCK_TESTS: Test[] = [
-  // A1 Thematic Grammar
+  // A1 Thematic Grammar & Lexik
   testA1ArtikelGenus,
   testA1PronomenSeinHaben,
-  testA1GrammatikPraesensVerben, // Added
+  testA1GrammatikPraesensVerben,
   testA1Pluralbildung,
   testA1Akkusativ,
   testA1Modalverben,
@@ -156,10 +153,9 @@ export const MOCK_TESTS: Test[] = [
   testA1Imperativ,
   testA1PraepositionenAkkusativ,
   testA1PraepositionenDativ,
-  testA1PraepositionenDativWechsel, // Added
+  testA1PraepositionenDativWechsel,
   testA1TrennbarVerben,
-  testA1WFragen, // Added
-  // A1 Thematic Lexik
+  testA1WFragen,
   testA1LexikFamilie,
   testA1LexikHausWohnung,
   testA1LexikEssenTrinken,
@@ -170,20 +166,20 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikUhrzeitTagesablauf,
   testA1LexikSchuleArbeitEinfach,
   testA1LexikWetter,
-  testA1LexikPersoenlicheInfos, // Added
-  testA1LexikGefuehleZustaende, // Added
-  testA1LexikOrdinalzahlenDatum, // Added
+  testA1LexikPersoenlicheInfos,
+  testA1LexikGefuehleZustaende,
+  testA1LexikOrdinalzahlenDatum,
 
-  // A2 Thematic Grammar
+  // A2 Thematic Grammar & Lexik
   testA2Artikel,
   testA2VerbenPraesens,
-  testA2GrammatikPraeteritumSeinHabenModal, // Added
+  testA2GrammatikPraeteritumSeinHabenModal,
   testA2Pluralbildung,
-  testA2TrennbareUntrennbareVerben, // Added
+  testA2TrennbareUntrennbareVerben,
   testA2Perfekt,
   testA2Modalverben,
-  testA2ModalverbenPerfekt, // Added
-  testA2VerbLassen, // Added
+  testA2ModalverbenPerfekt,
+  testA2VerbLassen,
   testA2Praepositionen,
   testA2Possessivpronomen,
   testA2PersonalpronomenAkkDat,
@@ -198,7 +194,6 @@ export const MOCK_TESTS: Test[] = [
   testA2TemporalsaetzeAlsWenn,
   testA2Demonstrativpronomen,
   testA2OrdinalzahlenDatum,
-  // A2 Thematic Lexik
   testA2LexikArbeitBeruf,
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
@@ -206,17 +201,17 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikEinkaufen,
   testA2LexikInDerStadt,
   testA2LexikFesteTraditionen,
-  testA2LexikLebensstilGewohnheiten, // Added
-  testA2LexikErnaehrungRezepte, // Added
-  testA2LexikElektronikTechnik, // Added
-  testA2LexikBriefeEmails, // Added
-  testA2LexikKonflikteLoesungen, // Added
-  testA2LexikBank, // Added
-  testA2LexikSchuleKurse, // Added
+  testA2LexikLebensstilGewohnheiten,
+  testA2LexikErnaehrungRezepte,
+  testA2LexikElektronikTechnik,
+  testA2LexikBriefeEmails,
+  testA2LexikKonflikteLoesungen,
+  testA2LexikBank,
+  testA2LexikSchuleKurse,
 
-  // B1 Thematic Grammar
+  // B1 Thematic Grammar & Lexik
   testB1Praeteritum,
-  testB1PerfektReview, // Added
+  testB1PerfektReview,
   testB1Plusquamperfekt,
   testB1Futur1,
   testB1Adjektivdeklination,
@@ -230,7 +225,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Konsekutivsaetze,
   testB1Nebensaetze,
   testB1Relativsaetze,
-  // B1 Thematic Lexik
+  testB1KonditionalsaetzeTyp1, // Added
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
   testB1LexikMedienKommunikation,
@@ -238,7 +233,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikKulturFreizeit,
   testB1LexikBeziehungen,
 
-  // B2 Thematic Grammar
+  // B2 Thematic Grammar & Lexik
   testB2Konjunktiv2,
   testB2NomenVerb,
   testB2Passiv,
@@ -248,7 +243,6 @@ export const MOCK_TESTS: Test[] = [
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
   testB2Wortbildung,
-  // B2 Thematic Lexik
   testB2LexikUmweltNachhaltigkeit,
   testB2LexikKulturKunst,
   testB2LexikWissenschaftTechnologie,
@@ -256,27 +250,34 @@ export const MOCK_TESTS: Test[] = [
   testB2LexikPolitik,
   testB2LexikWirtschaftKonsum,
 
-  // C1 Thematic Grammar
+  // C1 Thematic Grammar & Lexik
   testC1IndirekteRede,
   testC1Partizipialkonstruktionen,
   testC1KonjunktivVertiefung,
   testC1PartizipialkonstruktionenAdverbial,
   testC1AdverbialsaetzeVertiefung,
-  // C1 Thematic Lexik
   testC1LexikPolitikGesellschaft,
   testC1LexikWissenschaftForschung,
   testC1LexikWirtschaftGlobalermarkt,
   testC1LexikInterkulturelleKommunikation,
 
-  // C2 Thematic Grammar
+  // C2 Thematic Grammar & Lexik
   testC2Stilmittel,
   testC2NominalstilVerbalstil,
   testC2Modalpartikeln,
-  // C2 Thematic Lexik
   testC2LexikGlobaleProbleme,
   testC2LexikMedienkritikDigitaleGesellschaft,
   testC2LexikSozialeTrends,
 ];
+
+// --- MOCK_MODULAR_TESTS ---
+// Contains all modular and level tests
+import { testA1LevelTest } from './tests/a1-level-test';
+import { testA2LevelTest } from './tests/a2-level-test';
+import { testB1LevelTest } from './tests/b1-level-test';
+import { testB2LevelTest } from './tests/b2-level-test';
+import { testC1LevelTest } from './tests/c1-level-test';
+import { testC2LevelTest } from './tests/c2-level-test';
 
 export const MOCK_MODULAR_TESTS: ModularTest[] = [
   {
@@ -288,19 +289,19 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     coveredLessonIds: [
       'a1-alphabet-begruessungen',
       'a1-personalpronomen-sein-haben',
-      'a1-grammatik-praesens-verben', // Updated to reflect new lesson
+      'a1-grammatik-praesens-verben',
       'a1-artikel-genus',
       'a1-pluralbildung',
-      'a1-w-fragen', // Updated to reflect new lesson
+      'a1-w-fragen',
     ],
     questions: [
       testA1ArtikelGenus.questions[0],
       testA1PersonalpronomenSeinHaben.questions[1],
-      testA1GrammatikPraesensVerben.questions[0], // From new test
+      testA1GrammatikPraesensVerben.questions[0],
       testA1Pluralbildung.questions[2],
-      testA1WFragen.questions[0], // From new test
+      testA1WFragen.questions[0],
       {
-        id: 'a1-gm1-q5-alphabet', // This question was custom, let's keep it or replace
+        id: 'a1-gm1-q5-alphabet',
         type: 'multiple_choice',
         question: 'Как по-немецки сказать "Спасибо"?',
         options: ['Bitte', 'Hallo', 'Danke', 'Tschüss'],
@@ -315,20 +316,22 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     level: 'A1',
     topic: 'A1 - Грамматический Модуль 2 (Тест)',
     testType: 'modular',
-    description: 'Проверка знаний по темам: Akkusativ, Притяжательные местоимения, Отрицание (nicht/kein), Порядок слов (основы), Модальные глаголы (основы).',
+    description: 'Проверка знаний по темам: Akkusativ, Притяжательные местоимения, Отрицание (nicht/kein), Порядок слов (основы), Модальные глаголы (основы), Imperativ.',
     coveredLessonIds: [
       'a1-akkusativ',
       'a1-possessivpronomen',
       'a1-negation',
       'a1-satzbau-grundlagen',
       'a1-modalverben',
+      'a1-imperativ',
     ],
     questions: [
       testA1Akkusativ.questions[0],
       testA1Possessivpronomen.questions[0],
       testA1Negation.questions[0],
       testA1SatzbauGrundlagen.questions[2],
-      testA1Modalverben.questions[0]
+      testA1Modalverben.questions[0],
+      testA1Imperativ.questions[0]
     ]
   },
   {
@@ -336,25 +339,22 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     level: 'A2',
     topic: 'A2 - Грамматический Модуль 1 (Тест)',
     testType: 'modular',
-    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt, Модальные глаголы в Präsens и Perfekt, Глагол lassen.',
+    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt, Модальные глаголы, Предлоги.',
     coveredLessonIds: [
       'a2-artikel',
       'a2-verben-praesens',
       'a2-pluralbildung',
-      'a2-trennbare-untrennbare-verben', // Added
-      'a2-grammatik-praeteritum-sein-haben-modal', // Added
       'a2-perfekt',
       'a2-modalverben',
-      'a2-modalverben-perfekt', // Added
-      'a2-verb-lassen', // Added
+      'a2-praepositionen',
     ],
     questions: [
       testA2Artikel.questions[0],
       testA2VerbenPraesens.questions[1],
       testA2Pluralbildung.questions[0],
       testA2Perfekt.questions[0],
-      testA2ModalverbenPerfekt.questions[0], // From new test
-      testA2VerbLassen.questions[0], // From new test
+      testA2Modalverben.questions[0],
+      testA2Praepositionen.questions[2],
     ]
   },
   {
@@ -454,4 +454,3 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   return allTests.find(test => test.id === id);
 };
 
-    
