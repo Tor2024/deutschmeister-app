@@ -43,6 +43,7 @@ import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
 import { lessonA2Demonstrativpronomen } from './lessons/a2-demonstrativpronomen';
 import { lessonA2OrdinalzahlenDatum } from './lessons/a2-ordinalzahlen-datum';
+import { lessonA2LexikArbeitBeruf } from './lessons/a2-lexik-arbeit-beruf';
 
 
 // B1 Lessons
@@ -129,6 +130,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2TemporalsaetzeAlsWenn,
   lessonA2Demonstrativpronomen,
   lessonA2OrdinalzahlenDatum,
+  lessonA2LexikArbeitBeruf,
 
   // B1
   lessonB1Nebensaetze,
