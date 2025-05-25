@@ -40,6 +40,8 @@ import { lessonB2NomenVerb } from './lessons/b2-nomen-verb';
 import { lessonB2Passiv } from './lessons/b2-passiv';
 import { lessonB2PassivErsatzformen } from './lessons/b2-passiv-ersatzformen';
 import { lessonB2SubjektiveModalverben } from './lessons/b2-subjektive-modalverben';
+import { lessonB2KomplexeSatzverbindungen } from './lessons/b2-komplexe-satzverbindungen';
+
 
 // C1 Lessons
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
@@ -89,6 +91,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2Passiv,
   lessonB2PassivErsatzformen,
   lessonB2SubjektiveModalverben,
+  lessonB2KomplexeSatzverbindungen,
   
   // C1
   lessonC1IndirekteRede,
