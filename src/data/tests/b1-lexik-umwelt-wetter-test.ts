@@ -49,5 +49,3 @@ export const testB1LexikUmweltWetter: Test = {
       },
   ],
 };
-
-    

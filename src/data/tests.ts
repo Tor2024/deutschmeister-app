@@ -68,6 +68,7 @@ import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
 import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test';
 import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunikation-test';
+import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 
 
 // B2 Tests
@@ -166,6 +167,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
   testB1LexikMedienKommunikation,
+  testB1LexikUmweltWetter,
 
   // B2 Tests
   testB2Konjunktiv2,
