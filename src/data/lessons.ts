@@ -97,6 +97,7 @@ import { lessonB2Wortbildung } from './lessons/b2-wortbildung';
 import { lessonB2LexikUmweltNachhaltigkeit } from './lessons/b2-lexik-umwelt-nachhaltigkeit';
 import { lessonB2LexikKulturKunst } from './lessons/b2-lexik-kultur-kunst';
 import { lessonB2LexikWissenschaftTechnologie } from './lessons/b2-lexik-wissenschaft-technologie';
+import { lessonB2LexikMedienKommunikation } from './lessons/b2-lexik-medien-kommunikation';
 
 
 // C1 Grammar
@@ -145,8 +146,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikHobbysFreizeit,
   lessonA1LexikZahlenFarben,
   lessonA1LexikWochentageMonateJahreszeiten,
-  lessonA1LexikUhrzeitTagesablauf,
   lessonA1LexikKleidung,
+  lessonA1LexikUhrzeitTagesablauf,
 
   // A2 Grammar
   lessonA2Artikel,
@@ -215,6 +216,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2LexikUmweltNachhaltigkeit,
   lessonB2LexikKulturKunst,
   lessonB2LexikWissenschaftTechnologie,
+  lessonB2LexikMedienKommunikation,
 
   // C1 Grammar
   lessonC1IndirekteRede,
@@ -250,3 +252,4 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+

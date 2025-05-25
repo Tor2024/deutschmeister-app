@@ -86,6 +86,7 @@ import { testB2Wortbildung } from './tests/b2-wortbildung-test';
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
 import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
 import { testB2LexikWissenschaftTechnologie } from './tests/b2-lexik-wissenschaft-technologie-test';
+import { testB2LexikMedienKommunikation } from './tests/b2-lexik-medien-kommunikation-test';
 
 
 // C1 Tests
@@ -207,6 +208,7 @@ export const MOCK_TESTS: Test[] = [
   testB2LexikUmweltNachhaltigkeit,
   testB2LexikKulturKunst,
   testB2LexikWissenschaftTechnologie,
+  testB2LexikMedienKommunikation,
 
   // C1 Grammar Tests
   testC1IndirekteRede,
@@ -234,6 +236,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'a1-grammar-module-1-test',
     level: 'A1',
     topic: 'A1 - Грамматический Модуль 1 (Тест)',
+    testType: 'modular',
     description: 'Проверка знаний по темам: Алфавит и приветствия, Личные местоимения и sein/haben, Артикли и род, Множественное число (основы), Akkusativ.',
     coveredLessonIds: [
       'a1-alphabet-begruessungen',
@@ -261,6 +264,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'a1-grammar-module-2-test',
     level: 'A1',
     topic: 'A1 - Грамматический Модуль 2 (Тест)',
+    testType: 'modular',
     description: 'Проверка знаний по темам: Отрицание (nicht/kein), Порядок слов (основы), Модальные глаголы (основы), Притяжательные местоимения (Nom/Akk), Imperativ (основы).',
     coveredLessonIds: [
       'a1-negation',
@@ -287,6 +291,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'a2-grammar-module-1-test',
     level: 'A2',
     topic: 'A2 - Грамматический Модуль 1 (Тест)',
+    testType: 'modular',
     description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt и Модальные глаголы.',
     coveredLessonIds: [
       'a2-artikel',
@@ -307,6 +312,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'b1-grammar-module-1-test',
     level: 'B1',
     topic: 'B1 - Грамматический Модуль 1 (Тест)',
+    testType: 'modular',
     description: 'Проверка знаний по темам: Придаточные предложения, Относительные предложения, Präteritum, Склонение прилагательных и Глаголы с предлогами.',
     coveredLessonIds: [
       'b1-nebensaetze',
@@ -327,6 +333,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'b2-grammar-module-1-test',
     level: 'B2',
     topic: 'B2 - Грамматический Модуль 1 (Тест)',
+    testType: 'modular',
     description: 'Проверка знаний по темам: Konjunktiv II (углубленно), Nomen-Verb-Verbindungen, Passiv (углубленно), Subjektive Bedeutung der Modalverben.',
     coveredLessonIds: [
       'b2-konjunktiv2',
@@ -346,6 +353,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'c1-grammar-module-1-test',
     level: 'C1',
     topic: 'C1 - Грамматический Модуль 1 (Тест)',
+    testType: 'modular',
     description: 'Проверка знаний по темам: Косвенная речь, Причастные обороты (атрибуты и обстоятельства), Konjunktiv I/II (углубленно), Обстоятельственные придаточные (углубленно).',
     coveredLessonIds: [
       'c1-indirekte-rede',
@@ -366,6 +374,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'c2-grammar-module-1-test',
     level: 'C2',
     topic: 'C2 - Грамматический Модуль 1 (Тест)',
+    testType: 'modular',
     description: 'Проверка знаний по темам: Стилистические средства и языковые регистры, Номинальный и вербальный стили, Модальные частицы.',
     coveredLessonIds: [
       'c2-stilmittel',
@@ -389,3 +398,4 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
+
