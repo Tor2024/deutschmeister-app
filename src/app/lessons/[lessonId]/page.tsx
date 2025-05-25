@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useParams } from 'next/navigation';
@@ -14,7 +15,7 @@ import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
 import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-exercise';
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
-import { generateAudioExercises, type GenerateAudioExercisesInput } from '@/ai/flows/ai-audio-integration';
+import { generateAudioExercises, type GenerateAudioExercisesInput, type GenerateAudioExercisesOutput } from '@/ai/flows/ai-audio-integration';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -32,7 +33,7 @@ export default function LessonPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
   const [exerciseFeedback, setExerciseFeedback] = useState<Record<string, { correct: boolean; explanation?: string }>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Not currently used, but good for future form submissions
   const [aiExercises, setAiExercises] = useState<ExerciseTypeUnion[]>([]);
   const [isGeneratingAiExercises, setIsGeneratingAiExercises] = useState(false);
 
@@ -61,27 +62,34 @@ export default function LessonPage() {
         topic: lesson.topic,
         level: lesson.level,
       };
-      // This is a simplified interpretation. The AI returns strings, which need to be parsed into Exercise objects.
-      // For this example, we'll assume the AI can return structured exercises or we have a parser.
-      // For now, we'll mock this part or log the string array.
-      const result = await generateAudioExercises(input);
-      console.log("AI Generated Exercise Strings:", result.exercises);
-      // Here you would parse result.exercises into actual Exercise objects.
-      // Mocking parsing for now:
-      const parsedAiExercises: ExerciseTypeUnion[] = result.exercises.map((exStr, index) => ({
-        id: `ai-ex-${lesson.id}-${index}`,
-        type: 'multiple_choice', // Assuming multiple choice for simplicity
-        question: exStr.split('?')[0] + '?', // Basic parsing
-        options: ["Вариант A", "Вариант B", "Вариант C"], // Placeholder options
-        correctAnswer: "Вариант A", // Placeholder
-        explanation: "Это упражнение сгенерировано ИИ."
-      } as MultipleChoiceExercise));
+      const result: GenerateAudioExercisesOutput = await generateAudioExercises(input);
       
-      setAiExercises(parsedAiExercises);
-      toast({ title: "Успех", description: "Дополнительные упражнения сгенерированы!" });
+      // For now, we'll assume the AI returns strings, and we'll parse them into MultipleChoiceExercise for simplicity.
+      // This part needs to be more robust if the AI can return different exercise types or structured JSON.
+      const parsedAiExercises: ExerciseTypeUnion[] = result.exercises.map((exStr, index) => {
+        // Basic parsing: try to extract a question part. If no '?', use the whole string.
+        const questionParts = exStr.split('?');
+        const questionText = questionParts.length > 1 ? questionParts[0] + '?' : exStr;
+        
+        // Placeholder options and correct answer
+        const options = ["Вариант A", "Вариант B", "Вариант C", "Вариант D"];
+        const correctAnswer = options[Math.floor(Math.random() * options.length)]; // Random correct answer for placeholder
+        
+        return {
+          id: `ai-ex-${lesson.id}-${Date.now()}-${index}`, // Ensure unique ID
+          type: 'multiple_choice', 
+          question: questionText,
+          options: options,
+          correctAnswer: correctAnswer,
+          explanation: "Это упражнение сгенерировано ИИ. Правильный ответ и варианты являются заглушками."
+        } as MultipleChoiceExercise;
+      });
+      
+      setAiExercises(prevAiExercises => [...prevAiExercises, ...parsedAiExercises]);
+      toast({ title: "Успех", description: `${parsedAiExercises.length} дополнительных упражнений сгенерировано!` });
     } catch (error) {
       console.error("Failed to generate AI exercises:", error);
-      toast({ title: "Ошибка", description: "Не удалось сгенерировать упражнения от ИИ.", variant: "destructive" });
+      toast({ title: "Ошибка генерации ИИ упражнений", description: "Не удалось сгенерировать упражнения. Пожалуйста, попробуйте позже.", variant: "destructive" });
     } finally {
       setIsGeneratingAiExercises(false);
     }
@@ -90,7 +98,6 @@ export default function LessonPage() {
 
   const handleAnswerChange = (exerciseId: string, answer: string) => {
     setUserAnswers(prev => ({ ...prev, [exerciseId]: answer }));
-    // Clear feedback for this exercise when answer changes
     setExerciseFeedback(prev => {
       const newFeedback = { ...prev };
       delete newFeedback[exerciseId];
@@ -106,10 +113,9 @@ export default function LessonPage() {
     }
 
     let isCorrect = false;
-    // This logic needs to be robust for different exercise types
     switch (exercise.type) {
         case 'multiple_choice':
-        case 'listening_comprehension': // Assuming similar structure for now
+        case 'listening_comprehension': 
             isCorrect = userAnswer === (exercise as MultipleChoiceExercise).correctAnswer;
             break;
         case 'fill_in_the_blank':
@@ -138,11 +144,9 @@ export default function LessonPage() {
   
   const handleCompleteLesson = () => {
     if (lesson) {
-      // Basic check: ensure all exercises have been attempted at least once
-      // More sophisticated logic would check for mastery
-      const allAttempted = lesson.exercises.every(ex => userAnswers[ex.id] !== undefined);
-      if (!allAttempted && lesson.exercises.length > 0) {
-          toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните все упражнения перед завершением урока.", variant: "destructive" });
+      const allLessonExercises = lesson.exercises.every(ex => userAnswers[ex.id] !== undefined);
+      if (!allLessonExercises && lesson.exercises.length > 0) {
+          toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните все стандартные упражнения урока перед завершением.", variant: "destructive" });
           return;
       }
       completeLesson(lesson.id);
@@ -159,6 +163,7 @@ export default function LessonPage() {
     return <div className="text-center py-10">Урок не найден. <Link href="/lessons" className="text-primary hover:underline">Вернуться к списку уроков.</Link></div>;
   }
   
+  // Combine lesson exercises and AI-generated exercises
   const allExercises = [...lesson.exercises, ...aiExercises];
 
   return (
@@ -284,3 +289,4 @@ export default function LessonPage() {
     </div>
   );
 }
+
