@@ -16,6 +16,7 @@ import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-e
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
 import { generateAudioExercises, type GenerateAudioExercisesInput } from '@/ai/flows/ai-audio-integration';
 import { Separator } from '@/components/ui/separator';
+import { Badge } from '@/components/ui/badge'; // Added import for Badge
 
 // Helper to get a lesson, simulating data fetching
 const getLessonById = (id: string): Lesson | undefined => {
