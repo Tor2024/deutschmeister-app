@@ -122,5 +122,11 @@ Der Besuch von Museen, Galerien oder Theateraufführungen bietet die Möglichkei
       correctAnswer: 'представление/спектакль',
       explanation: '"Die Aufführung" означает "представление", "спектакль", "постановка".',
     },
+    {
+      id: 'b2-lexik-kultur-kunst-wp1',
+      type: 'writing_prompt',
+      question: 'Schreiben Sie einen kurzen Text (ca. 5-7 Sätze) über Ihren letzten Kulturbesuch (z.B. Theater, Museum, Konzert). Was hat Ihnen gefallen oder nicht gefallen und warum?',
+      suggestedLength: '5-7 Sätze'
+    }
   ],
 };
