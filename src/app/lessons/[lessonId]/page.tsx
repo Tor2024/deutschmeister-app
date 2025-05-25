@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, MessageSquareText } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, MessageSquareText, Info } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -34,7 +34,7 @@ export default function LessonPage() {
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
-  const [exerciseFeedback, setExerciseFeedback] = useState<Record<string, { correct: boolean; explanation?: string }>>({});
+  const [exerciseFeedback, setExerciseFeedback] = useState<Record<string, { correct: boolean | null; explanation?: string }>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [aiExercises, setAiExercises] = useState<ExerciseTypeUnion[]>([]);
   const [isGeneratingAiExercises, setIsGeneratingAiExercises] = useState(false);
@@ -91,7 +91,14 @@ export default function LessonPage() {
       });
       
       setAiExercises(prevAiExercises => [...prevAiExercises, ...parsedAiExercises]);
-      toast({ title: "Успех", description: `${parsedAiExercises.length} ${parsedAiExercises.length === 1 ? 'дополнительное упражнение сгенерировано' : parsedAiExercises.length >=2 && parsedAiExercises.length <=4 ? 'дополнительных упражнения сгенерировано' : 'дополнительных упражнений сгенерировано'}!` });
+      const exercisesCount = parsedAiExercises.length;
+      let exercisesWord = 'упражнений';
+      if (exercisesCount === 1) {
+        exercisesWord = 'упражнение';
+      } else if (exercisesCount >= 2 && exercisesCount <= 4) {
+        exercisesWord = 'упражнения';
+      }
+      toast({ title: "Успех", description: `${exercisesCount} дополнительных ${exercisesWord} сгенерировано!` });
     } catch (error) {
       console.error("Failed to generate AI exercises:", error);
       toast({ title: "Ошибка генерации ИИ упражнений", description: "Не удалось сгенерировать упражнения. Пожалуйста, попробуйте позже.", variant: "destructive" });
@@ -125,6 +132,21 @@ export default function LessonPage() {
 
 
   const handleSubmitExercise = (exercise: ExerciseTypeUnion) => {
+    if (exercise.type === 'writing_prompt') {
+        const userAnswer = userWritingAnswers[exercise.id];
+        if (userAnswer === undefined || userAnswer.trim() === '') {
+            toast({ title: "Внимание", description: "Пожалуйста, напишите ваш ответ.", variant: "destructive" });
+            return;
+        }
+        toast({ title: "Ответ сохранен", description: "Ваш письменный ответ сохранен для самостоятельной работы.", variant: "default" });
+        setExerciseFeedback(prev => ({
+          ...prev,
+          [exercise.id]: { correct: null, explanation: "Письменное задание сохранено. Автоматическая проверка не предусмотрена." }
+        }));
+        // Не вызываем recordExerciseAttempt для письменных заданий, так как нет автоматической проверки
+        return;
+    }
+
     const userAnswer = userAnswers[exercise.id];
     if (userAnswer === undefined || userAnswer.trim() === '') {
       toast({ title: "Внимание", description: "Пожалуйста, дайте ответ.", variant: "destructive" });
@@ -143,17 +165,6 @@ export default function LessonPage() {
         case 'translation':
             isCorrect = userAnswer.toLowerCase().trim() === (exercise as TranslationExercise).correctAnswer.toLowerCase().trim();
             break;
-        // Writing prompts are not auto-checked for correctness in this version
-        case 'writing_prompt':
-            isCorrect = true; // Assume "correct" for now as there's no auto-check
-            toast({ title: "Ответ принят", description: "Ваш письменный ответ сохранен (проверка не автоматическая).", variant: "default" });
-            // We don't record writing prompt attempts in the same way as other exercises
-            // and don't provide immediate correctness feedback in the same UI.
-             setExerciseFeedback(prev => ({
-              ...prev,
-              [exercise.id]: { correct: true, explanation: "Письменное задание. Проверка не автоматическая." }
-            }));
-            return; // Skip standard feedback toast for writing prompts
         default:
             break;
     }
@@ -200,10 +211,12 @@ export default function LessonPage() {
   const handleCompleteLesson = () => {
     if (lesson) {
       const allStandardExercisesAttempted = lesson.exercises
-        .filter(ex => ex.type !== 'writing_prompt') // Writing prompts don't block completion
-        .every(ex => userAnswers[ex.id] !== undefined);
+        .filter(ex => ex.type !== 'writing_prompt') 
+        .every(ex => userAnswers[ex.id] !== undefined || progress.exerciseAttempts[ex.id]?.mastered);
       
-      if (!allStandardExercisesAttempted && lesson.exercises.filter(ex => ex.type !== 'writing_prompt').length > 0) {
+      const standardExercisesExist = lesson.exercises.filter(ex => ex.type !== 'writing_prompt').length > 0;
+
+      if (standardExercisesExist && !allStandardExercisesAttempted) {
           toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните все стандартные упражнения урока перед завершением.", variant: "destructive" });
           return;
       }
@@ -310,7 +323,7 @@ export default function LessonPage() {
                   >
                     <p className="font-semibold text-lg mb-3">Вопрос {index + 1} к тексту: {exercise.question}</p>
                     <MultipleChoiceExerciseComponent
-                      exercise={{ ...exercise, type: 'multiple_choice' }} // Adapt to fit MultipleChoiceExerciseProps
+                      exercise={{ ...exercise, type: 'multiple_choice' }} 
                       onAnswerChange={(answer) => handleReadingAnswerChange(exercise.id, answer)}
                       userAnswer={userReadingAnswers[exercise.id]}
                       disabled={!!feedback}
@@ -349,8 +362,18 @@ export default function LessonPage() {
             {allExercises.map((exercise, index) => {
               const isMastered = progress.exerciseAttempts[exercise.id]?.mastered;
               const feedback = exerciseFeedback[exercise.id];
-              const isAttemptedAndCorrect = feedback?.correct;
-              const isAttemptedAndIncorrect = feedback?.correct === false;
+              
+              // Adjust styling logic for writing prompts
+              let isAttemptedAndCorrect = false;
+              let isAttemptedAndIncorrect = false;
+              let isWritingPromptSubmittedAndUnverified = false;
+
+              if (exercise.type !== 'writing_prompt' && feedback) {
+                isAttemptedAndCorrect = feedback.correct === true;
+                isAttemptedAndIncorrect = feedback.correct === false;
+              } else if (exercise.type === 'writing_prompt' && feedback) {
+                isWritingPromptSubmittedAndUnverified = true; // correct is null
+              }
 
               return (
                 <Card 
@@ -360,6 +383,7 @@ export default function LessonPage() {
                     isMastered ? "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500" :
                     isAttemptedAndCorrect ? "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600" :
                     isAttemptedAndIncorrect ? "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600" :
+                    isWritingPromptSubmittedAndUnverified ? "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600" : // Neutral color for submitted writing
                     "border-border"
                   )}
                 >
@@ -426,18 +450,26 @@ export default function LessonPage() {
                       disabled={isMastered || !!feedback || isSubmitting || !userWritingAnswers[exercise.id]} 
                       className="mt-4"
                     >
-                      Отправить ответ (без автопроверки)
+                      Сохранить ответ
                     </Button>
                   )}
 
 
-                  {feedback && !isMastered && ( // Show immediate feedback only if not mastered
+                  {feedback && !isMastered && (
                     <div className={cn(
                       "mt-4 p-3 rounded-md text-sm",
-                      feedback.correct ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300"
+                      feedback.correct === true ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : 
+                      feedback.correct === false ? "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300" :
+                      "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300" // Neutral for submitted writing
                     )}>
-                      {feedback.correct ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <XCircle className="inline mr-2 h-5 w-5" />}
-                      {feedback.explanation || (feedback.correct ? "Верно!" : "Неверно.")}
+                      {feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : 
+                       feedback.correct === false ? <XCircle className="inline mr-2 h-5 w-5" /> :
+                       <Info className="inline mr-2 h-5 w-5" /> // Neutral icon
+                      }
+                      {feedback.explanation || 
+                       (feedback.correct === true ? "Верно!" : 
+                        feedback.correct === false ? "Неверно." : 
+                        "Ответ сохранен для самостоятельной проверки.")}
                     </div>
                   )}
                   {index < allExercises.length - 1 && <Separator className="my-8" />}
