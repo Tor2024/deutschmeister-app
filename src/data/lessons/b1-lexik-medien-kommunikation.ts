@@ -152,5 +152,11 @@ Deshalb ist Medienkompetenz heute wichtiger denn je. Das bedeutet, dass man lern
       correctAnswer: 'die Meinung',
       explanation: '"Die Meinung" означает "мнение".',
     },
+    {
+      id: 'b1-lexik-medien-kommunikation-wp1',
+      type: 'writing_prompt',
+      question: 'Welche Rolle spielen soziale Medien in Ihrem Leben? Schreiben Sie 3-4 Sätze. (Какую роль социальные сети играют в вашей жизни? Напишите 3-4 предложения.)',
+      suggestedLength: '3-4 Sätze'
+    }
   ],
 };
