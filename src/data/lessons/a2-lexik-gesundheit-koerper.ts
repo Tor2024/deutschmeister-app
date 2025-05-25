@@ -81,6 +81,34 @@ export const lessonA2LexikGesundheitKoerper: Lesson = {
     { german: 'die Apotheke (-n)', russian: 'аптека' },
     { german: 'sich fühlen', russian: 'чувствовать себя', example: 'Wie fühlen Sie sich?' },
   ],
+  readingText: `
+Gestern ging es Paul nicht gut. Er hatte Kopfschmerzen und sein Hals tat weh. Seine Mutter sagte: "Du hast vielleicht eine Erkältung. Du musst im Bett bleiben."
+Paul blieb den ganzen Tag im Bett. Er trank viel warmen Tee mit Honig. Seine Mutter gab ihm auch ein Medikament gegen die Halsschmerzen. Am Abend fühlte sich Paul schon ein bisschen besser. Er hatte kein Fieber.
+Heute Morgen ist Paul wieder gesund. Er kann zur Schule gehen. Seine Mutter sagt: "Zieh dich warm an! Es ist kalt draußen."
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a2-lexik-gesundheit-koerper-rq1',
+      question: 'Какие симптомы были у Пауля вчера?',
+      options: ['Боль в животе и насморк', 'Головная боль и боль в горле', 'Кашель и температура', 'Боль в спине и усталость'],
+      correctAnswer: 'Головная боль и боль в горле',
+      explanation: 'В тексте сказано: "Er hatte Kopfschmerzen und sein Hals tat weh."'
+    },
+    {
+      id: 'a2-lexik-gesundheit-koerper-rq2',
+      question: 'Что делал Пауль, когда болел?',
+      options: ['Играл в футбол', 'Ходил в школу', 'Пил холодную воду', 'Оставался в постели и пил теплый чай'],
+      correctAnswer: 'Оставался в постели и пил теплый чай',
+      explanation: 'В тексте сказано: "Paul blieb den ganzen Tag im Bett. Er trank viel warmen Tee mit Honig."'
+    },
+    {
+      id: 'a2-lexik-gesundheit-koerper-rq3',
+      question: 'Как Пауль чувствует себя сегодня утром?',
+      options: ['Ему хуже', 'Ему все еще нехорошо', 'Он снова здоров', 'У него высокая температура'],
+      correctAnswer: 'Он снова здоров',
+      explanation: 'В тексте сказано: "Heute Morgen ist Paul wieder gesund."'
+    }
+  ],
   exercises: [
     {
       id: 'a2-lexik-gesundheit-koerper-ex1',
@@ -117,3 +145,5 @@ export const lessonA2LexikGesundheitKoerper: Lesson = {
     },
   ],
 };
+
+    
