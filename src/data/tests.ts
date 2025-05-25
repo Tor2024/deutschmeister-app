@@ -11,6 +11,7 @@ import { testA1Possessivpronomen } from './tests/a1-possessivpronomen-test';
 import { testA1Imperativ } from './tests/a1-imperativ-test';
 import { testA1PraepositionenAkkusativ } from './tests/a1-praepositionen-akkusativ-test';
 import { testA1PraepositionenDativ } from './tests/a1-praepositionen-dativ-test';
+import { testA1TrennbarVerben } from './tests/a1-trennbar-verben-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -27,6 +28,7 @@ export const MOCK_TESTS: Test[] = [
   testA1Imperativ,
   testA1PraepositionenAkkusativ,
   testA1PraepositionenDativ,
+  testA1TrennbarVerben,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
