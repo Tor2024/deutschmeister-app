@@ -58,16 +58,15 @@ export default function UserProgressPage() {
     // Fallback if exerciseId not found in standard or AI exercises by direct ID match
     if (exerciseId.startsWith('ai-ex-')) {
         const parts = exerciseId.split('-');
-        if (parts.length > 2) { 
-            // Assuming lessonId is the third part (index 2) after "ai-ex-"
-            // e.g. ai-ex-a2-artikel-timestamp-index
-            // This logic might need refinement if lesson IDs can contain hyphens
-            const lessonIdCandidate = parts[2];
+        if (parts.length >= 4) { // e.g. ai-ex-lessonIdPart1-lessonIdPart2-timestamp-index
+            // Reconstruct lessonId by joining parts between "ai-ex-" and the last two numeric parts
+            const lessonIdParts = parts.slice(2, parts.length - 2);
+            const lessonIdCandidate = lessonIdParts.join('-');
             const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdCandidate);
             if (aiLesson) {
               return {
                 lessonTopic: aiLesson.topic,
-                exerciseQuestion: "Упражнение от ИИ (детали в уроке)" 
+                exerciseQuestion: "Упражнение от ИИ (детали в уроке)"
               }
             }
         }
@@ -145,14 +144,14 @@ export default function UserProgressPage() {
             </CardHeader>
             <CardContent>
               {exerciseAttemptsArray.length > 0 ? (
-                <ScrollArea className="h-[400px] w-full rounded-md border"> {/* Added ScrollArea with height, removed p-1 to prevent double padding */}
+                <ScrollArea className="h-[400px] w-full rounded-md border">
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="w-[200px]">Урок</TableHead> {/* Added width for better layout */}
+                        <TableHead className="w-[200px]">Урок</TableHead>
                         <TableHead>Вопрос (начало)</TableHead>
-                        <TableHead className="text-center w-[100px]">Попыток</TableHead> {/* Added width */}
-                        <TableHead className="text-center w-[100px]">Освоено</TableHead> {/* Added width */}
+                        <TableHead className="text-center w-[100px]">Попыток</TableHead>
+                        <TableHead className="text-center w-[100px]">Освоено</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -163,9 +162,9 @@ export default function UserProgressPage() {
                           <TableCell className="text-center">{attempt.attemptsCount}</TableCell>
                           <TableCell className="text-center">
                             {attempt.mastered ? (
-                              <Award className="h-5 w-5 text-green-500 inline" />
+                              <Award className="h-5 w-5 text-green-500 dark:text-green-400 inline" />
                             ) : (
-                              <TrendingUp className="h-5 w-5 text-yellow-500 inline" />
+                              <TrendingUp className="h-5 w-5 text-yellow-500 dark:text-yellow-400 inline" />
                             )}
                           </TableCell>
                         </TableRow>
