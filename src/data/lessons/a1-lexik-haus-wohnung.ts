@@ -68,6 +68,28 @@ export const lessonA1LexikHausWohnung: Lesson = {
     { german: 'wohnen', russian: 'жить, проживать', example: 'Wo wohnst du?' },
     { german: 'möbliert', russian: 'меблированный', example: 'Ist die Wohnung möbliert?' },
   ],
+  readingText: `
+Das ist mein Haus. Mein Haus ist nicht sehr groß, aber es ist schön. Es hat einen Garten.
+Im Haus gibt es drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und eine Küche.
+Im Wohnzimmer stehen ein Sofa und ein Tisch. In der Küche kochen wir. Mein Zimmer ist klein. Dort steht mein Bett.
+Ich mag mein Haus sehr.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a1-lexik-haus-wohnung-rq1',
+      question: 'Сколько комнат в доме, описанном в тексте?',
+      options: ['Одна', 'Две', 'Три', 'Четыре'],
+      correctAnswer: 'Три',
+      explanation: 'В тексте сказано: "Im Haus gibt es drei Zimmer: ein Wohnzimmer, ein Schlafzimmer und eine Küche."'
+    },
+    {
+      id: 'a1-lexik-haus-wohnung-rq2',
+      question: 'Что находится в гостиной?',
+      options: ['Кровать и стол', 'Диван и стол', 'Шкаф и диван', 'Только стол'],
+      correctAnswer: 'Диван и стол',
+      explanation: 'В тексте сказано: "Im Wohnzimmer stehen ein Sofa und ein Tisch."'
+    }
+  ],
   exercises: [
     {
       id: 'a1-lexik-haus-wohnung-ex1',
