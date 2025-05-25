@@ -278,7 +278,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
   testA1LevelTest,
   testA2LevelTest,
   testB1LevelTest,
-  testB2LevelTest,
+  testB2LevelTest, 
   testC1LevelTest,
   testC2LevelTest, 
   {
