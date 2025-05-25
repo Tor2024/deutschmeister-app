@@ -84,7 +84,6 @@ import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-
 import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
-import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
 
 
 // C1 Tests
@@ -190,7 +189,6 @@ export const MOCK_TESTS: Test[] = [
   testB2Futur2,
   testB2Wortbildung,
   testB2LexikUmweltNachhaltigkeit,
-  testB2LexikKulturKunst,
 
   // C1 Tests
   testC1IndirekteRede,

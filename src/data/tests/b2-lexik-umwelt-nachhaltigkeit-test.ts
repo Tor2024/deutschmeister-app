@@ -50,4 +50,3 @@ export const testB2LexikUmweltNachhaltigkeit: Test = {
     },
   ],
 };
-
