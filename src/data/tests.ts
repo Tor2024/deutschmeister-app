@@ -43,6 +43,7 @@ import { testA2LexikArbeitBeruf } from './tests/a2-lexik-arbeit-beruf-test';
 import { testA2LexikReisenVerkehr } from './tests/a2-lexik-reisen-verkehr-test';
 import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerper-test';
 import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
+import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
 
 
 // B1 Tests
@@ -130,6 +131,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
   testA2LexikKleidung,
+  testA2LexikEinkaufen,
 
   // B1 Tests
   testB1Nebensaetze,

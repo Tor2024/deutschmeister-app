@@ -51,6 +51,7 @@ import { lessonA2LexikArbeitBeruf } from './lessons/a2-lexik-arbeit-beruf';
 import { lessonA2LexikReisenVerkehr } from './lessons/a2-lexik-reisen-verkehr';
 import { lessonA2LexikGesundheitKoerper } from './lessons/a2-lexik-gesundheit-koerper';
 import { lessonA2LexikKleidung } from './lessons/a2-lexik-kleidung';
+import { lessonA2LexikEinkaufen } from './lessons/a2-lexik-einkaufen';
 
 
 // B1 Grammar
@@ -140,6 +141,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikReisenVerkehr,
   lessonA2LexikGesundheitKoerper,
   lessonA2LexikKleidung,
+  lessonA2LexikEinkaufen,
 
   // B1 Grammar
   lessonB1Nebensaetze,
