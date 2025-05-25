@@ -11,11 +11,11 @@ import type { Exercise } from '@/types';
 import { BarChart, CheckCircle, ListChecks, TrendingUp, Zap, Activity, Award } from 'lucide-react';
 import Image from "next/image";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useToast } from "@/hooks/use-toast"; // <<< ДОБАВЛЕН ИМПОРТ
+import { useToast } from "@/hooks/use-toast";
 
 export default function UserProgressPage() {
   const { progress, isLoading, clearProgress } = useUserProgress();
-  const { toast } = useToast(); // <<< ИСПОЛЬЗОВАНИЕ ХУКА
+  const { toast } = useToast();
 
   if (isLoading) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Zap className="animate-spin h-12 w-12 text-primary" /></div>;
@@ -28,7 +28,7 @@ export default function UserProgressPage() {
   const handleClearProgress = () => {
     if (window.confirm('Вы уверены, что хотите сбросить весь прогресс? Это действие необратимо.')) {
       clearProgress();
-      toast({ // <<< ЗАМЕНА ALERT НА TOAST
+      toast({
         title: "Прогресс сброшен",
         description: "Все ваши данные обучения были удалены.",
       });
@@ -46,16 +46,15 @@ export default function UserProgressPage() {
         };
       }
     }
-    // Attempt to parse lessonId from AI exercise ID format: ai-ex-${lesson.id}-${Date.now()}-${index}
     if (exerciseId.startsWith('ai-ex-')) {
         const parts = exerciseId.split('-');
-        if (parts.length > 3) { // ai, ex, lessonId, ...
-            const lessonIdFromAIEx = parts[2]; 
+        if (parts.length > 3) {
+            const lessonIdFromAIEx = parts[2];
             const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdFromAIEx);
             if (aiLesson) {
               return {
                 lessonTopic: aiLesson.topic,
-                exerciseQuestion: "Упражнение от ИИ" 
+                exerciseQuestion: "Упражнение от ИИ"
               }
             }
         }
@@ -72,7 +71,7 @@ export default function UserProgressPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Card className="mb-8 shadow-lg">
+      <Card key={progress.lastActivity || 'cleared'} className="mb-8 shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-primary flex items-center">
             <BarChart className="mr-3 h-8 w-8" /> Ваш Прогресс в DeutschMeister
@@ -175,4 +174,3 @@ export default function UserProgressPage() {
     </div>
   );
 }
-
