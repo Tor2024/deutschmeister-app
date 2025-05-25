@@ -45,7 +45,7 @@ import { testB1Futur1 } from './tests/b1-futur1-test';
 import { testB1Konjunktiv2Einfuehrung } from './tests/b1-konjunktiv2-einfuehrung-test';
 import { testB1PassivEinfuehrung } from './tests/b1-passiv-einfuehrung-test';
 import { testB1Genitiv } from './tests/b1-genitiv-test';
-
+import { testB1NDeklination } from './tests/b1-n-deklination-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -97,6 +97,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Konjunktiv2Einfuehrung,
   testB1PassivEinfuehrung,
   testB1Genitiv,
+  testB1NDeklination,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
