@@ -12,40 +12,42 @@ import { LANGUAGE_LEVELS, type LanguageLevel } from '@/lib/constants';
 import { Lightbulb, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { MOCK_LESSONS } from '@/data/lessons'; // Import MOCK_LESSONS
+import { MOCK_LESSONS } from '@/data/lessons';
 
 export default function DashboardPage() {
   const { progress, isLoading, setCurrentLevel, setLearningGoals } = useUserProgress();
   const [suggestedLesson, setSuggestedLesson] = useState<AdaptiveLessonOutput | null>(null);
+  const [suggestedLessonId, setSuggestedLessonId] = useState<string | null>(null);
   const [isGeneratingLesson, setIsGeneratingLesson] = useState(false);
+  const [currentGoalsInput, setCurrentGoalsInput] = useState(progress.learningGoals || '');
 
   useEffect(() => {
-    // Effect for any on-load logic if needed
-  }, [isLoading, progress]);
+    setCurrentGoalsInput(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
+  }, [progress.learningGoals]);
 
   const handleLevelSelect = (level: LanguageLevel) => {
     setCurrentLevel(level);
   };
   
-  const handleGoalsChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    // Directly update learningGoals in progress object,
-    // setLearningGoals from hook will persist it.
-    // This makes the textarea responsive.
-    progress.learningGoals = event.target.value; 
-    // We need to trigger a re-render or ensure the hook's setLearningGoals is called on blur/save
+  const handleGoalsInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCurrentGoalsInput(event.target.value);
   };
 
   const handleSaveGoals = () => {
-    setLearningGoals(progress.learningGoals);
+    setLearningGoals(currentGoalsInput);
     // Add a toast notification for success if desired
+    // toast({ title: "Цели сохранены!", description: "Ваши учебные цели обновлены." });
   };
 
   const fetchAndSetSuggestedLesson = async () => {
     if (!progress.currentLevel) {
       // Consider using toast for user feedback
+      alert("Пожалуйста, сначала выберите ваш текущий уровень.");
       return;
     }
     setIsGeneratingLesson(true);
+    setSuggestedLesson(null); // Reset previous suggestion
+    setSuggestedLessonId(null); // Reset previous lesson ID
     try {
       const adaptiveInput: AdaptiveLessonInput = {
         currentLevel: progress.currentLevel,
@@ -58,9 +60,14 @@ export default function DashboardPage() {
       };
       const suggestion = await generateAdaptiveLesson(adaptiveInput);
       setSuggestedLesson(suggestion);
+      if (suggestion && suggestion.lessonTopic) {
+        const matchedLesson = MOCK_LESSONS.find(l => l.topic.trim().toLowerCase() === suggestion.lessonTopic.trim().toLowerCase());
+        setSuggestedLessonId(matchedLesson ? matchedLesson.id : null);
+      }
     } catch (error) {
       console.error("Failed to generate adaptive lesson:", error);
       // Consider using toast
+      // toast({ title: "Ошибка", description: "Не удалось сгенерировать урок.", variant: "destructive" });
     } finally {
       setIsGeneratingLesson(false);
     }
@@ -114,7 +121,7 @@ export default function DashboardPage() {
                 <ProgressBar value={progressPercentage} className="w-full h-2.5" />
               </div>
               
-              <Button onClick={fetchAndSetSuggestedLesson} disabled={isGeneratingLesson} className="mt-4">
+              <Button onClick={fetchAndSetSuggestedLesson} disabled={isGeneratingLesson || !progress.currentLevel} className="mt-4">
                 <Lightbulb className="mr-2 h-5 w-5" />
                 {isGeneratingLesson ? "Генерация урока..." : "Предложить следующий урок"}
               </Button>
@@ -132,10 +139,13 @@ export default function DashboardPage() {
           <CardContent>
             <h3 className="text-xl font-semibold mb-2">{suggestedLesson.lessonTopic}</h3>
             <p className="text-md text-muted-foreground mb-4">{suggestedLesson.reason}</p>
-            <Button asChild>
-              {/* TODO: Ensure this link works or is handled if lesson is not in MOCK_LESSONS */}
-              <Link href={`/lessons/suggested/${encodeURIComponent(suggestedLesson.lessonTopic)}`}>Начать урок</Link>
-            </Button>
+            {suggestedLessonId ? (
+              <Button asChild>
+                <Link href={`/lessons/${suggestedLessonId}`}>Начать урок</Link>
+              </Button>
+            ) : (
+              <p className="text-sm text-destructive">К сожалению, урок с таким точным названием не найден. Попробуйте поискать похожие темы в общем <Link href="/lessons" className="underline hover:text-primary/80">списке уроков</Link>.</p>
+            )}
           </CardContent>
         </Card>
       )}
@@ -181,8 +191,8 @@ export default function DashboardPage() {
         <CardContent>
           <textarea
             className="w-full p-2 border rounded-md min-h-[100px] text-sm bg-background"
-            defaultValue={progress.learningGoals} // Use defaultValue for initial state
-            onChange={handleGoalsChange} // Update state on change
+            value={currentGoalsInput}
+            onChange={handleGoalsInputChange}
             placeholder="Например: Я хочу улучшить грамматику и подготовиться к разговорной практике."
           />
         </CardContent>
@@ -193,5 +203,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-
-    
