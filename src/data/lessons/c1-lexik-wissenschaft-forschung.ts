@@ -92,27 +92,28 @@ Allerdings ist auch die Wissenschaft nicht frei von Herausforderungen. Finanzier
     {
       id: 'c1-lexik-wissenschaft-forschung-ex1',
       type: 'multiple_choice',
-      question: 'Как по-немецки "гипотеза"?',
+      question: 'Как по-немецки "доказательство"?',
       options: ['die Theorie', 'die Hypothese', 'der Beweis', 'das Experiment'],
-      correctAnswer: 'die Hypothese',
-      explanation: '"Die Hypothese" означает "гипотеза".',
+      correctAnswer: 'der Beweis',
+      explanation: '"Der Beweis" означает "доказательство".',
     },
     {
       id: 'c1-lexik-wissenschaft-forschung-ex2',
       type: 'fill_in_the_blank',
-      question: 'Вставьте пропущенное слово: "Viele ___ (ученые) arbeiten an der Entwicklung eines neuen Impfstoffs."',
-      sentenceParts: ['Viele ', ' arbeiten an der Entwicklung eines neuen Impfstoffs.'],
-      correctAnswer: 'Wissenschaftler',
-      explanation: '"Ученый" по-немецки "der Wissenschaftler" (мн.ч. "die Wissenschaftler").',
+      question: 'Вставьте пропущенное слово: "Der ___ (исследователь) präsentierte seine neuesten Ergebnisse."',
+      sentenceParts: ['Der ', ' präsentierte seine neuesten Ergebnisse.'],
+      correctAnswer: 'Forscher',
+      explanation: '"Исследователь" по-немецки "der Forscher".',
     },
     {
       id: 'c1-lexik-wissenschaft-forschung-ex3',
       type: 'translation',
-      question: 'Переведите на немецкий: "Они опубликовали результаты своего исследования."',
-      prompt: 'Они опубликовали результаты своего исследования.',
+      question: 'Переведите на немецкий: "Эта теория еще не была доказана."',
+      prompt: 'Эта теория еще не была доказана.',
       languageDirection: 'to_german',
-      correctAnswer: 'Sie haben die Ergebnisse ihrer Forschung veröffentlicht.',
-      explanation: '"Опубликовать" - "veröffentlichen". "Результаты их исследования" - "die Ergebnisse ihrer Forschung".',
+      correctAnswer: 'Diese Theorie ist noch nicht bewiesen worden.',
+      // Альтернатива: Diese Theorie wurde noch nicht bewiesen.
+      explanation: '"Доказать" - "beweisen". Используется Perfekt Passiv или Präteritum Passiv.',
     },
     {
       id: 'c1-lexik-wissenschaft-forschung-ex4',
@@ -122,5 +123,12 @@ Allerdings ist auch die Wissenschaft nicht frei von Herausforderungen. Finanzier
       correctAnswer: 'тщательно исследовать',
       explanation: '"Erforschen" означает "исследовать" (часто более глубоко и систематически, чем "untersuchen").',
     },
+    {
+      id: 'c1-lexik-wissenschaft-forschung-wp1',
+      type: 'writing_prompt',
+      question: 'Diskutieren Sie die ethischen Implikationen einer wichtigen wissenschaftlichen Entdeckung oder technologischen Entwicklung der letzten Jahre. (ca. 5-7 Sätze)',
+      suggestedLength: '5-7 Sätze',
+      explanation: 'Обсудите этические последствия важного научного открытия или технологического развития последних лет.'
+    }
   ],
 };
