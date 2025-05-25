@@ -42,6 +42,8 @@ import { testB1Adjektivdeklination } from './tests/b1-adjektivdeklination-test';
 import { testB1VerbenMitPraepositionen } from './tests/b1-verben-mit-praepositionen-test';
 import { testB1Plusquamperfekt } from './tests/b1-plusquamperfekt-test';
 import { testB1Futur1 } from './tests/b1-futur1-test';
+import { testB1Konjunktiv2Einfuehrung } from './tests/b1-konjunktiv2-einfuehrung-test';
+
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -90,6 +92,7 @@ export const MOCK_TESTS: Test[] = [
   testB1VerbenMitPraepositionen,
   testB1Plusquamperfekt,
   testB1Futur1,
+  testB1Konjunktiv2Einfuehrung,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
