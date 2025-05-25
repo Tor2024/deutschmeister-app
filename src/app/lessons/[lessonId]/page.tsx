@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -19,6 +19,7 @@ import { generateAudioExercises, type GenerateAudioExercisesInput, type Generate
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { cn } from '@/lib/utils';
 
 
 // Helper to get a lesson, simulating data fetching
@@ -33,7 +34,7 @@ export default function LessonPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
   const [exerciseFeedback, setExerciseFeedback] = useState<Record<string, { correct: boolean; explanation?: string }>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false); // Not currently used, but good for future form submissions
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [aiExercises, setAiExercises] = useState<ExerciseTypeUnion[]>([]);
   const [isGeneratingAiExercises, setIsGeneratingAiExercises] = useState(false);
 
@@ -64,19 +65,15 @@ export default function LessonPage() {
       };
       const result: GenerateAudioExercisesOutput = await generateAudioExercises(input);
       
-      // For now, we'll assume the AI returns strings, and we'll parse them into MultipleChoiceExercise for simplicity.
-      // This part needs to be more robust if the AI can return different exercise types or structured JSON.
       const parsedAiExercises: ExerciseTypeUnion[] = result.exercises.map((exStr, index) => {
-        // Basic parsing: try to extract a question part. If no '?', use the whole string.
         const questionParts = exStr.split('?');
         const questionText = questionParts.length > 1 ? questionParts[0] + '?' : exStr;
         
-        // Placeholder options and correct answer
         const options = ["Вариант A", "Вариант B", "Вариант C", "Вариант D"];
-        const correctAnswer = options[Math.floor(Math.random() * options.length)]; // Random correct answer for placeholder
+        const correctAnswer = options[Math.floor(Math.random() * options.length)];
         
         return {
-          id: `ai-ex-${lesson.id}-${Date.now()}-${index}`, // Ensure unique ID
+          id: `ai-ex-${lesson.id}-${Date.now()}-${index}`,
           type: 'multiple_choice', 
           question: questionText,
           options: options,
@@ -86,7 +83,7 @@ export default function LessonPage() {
       });
       
       setAiExercises(prevAiExercises => [...prevAiExercises, ...parsedAiExercises]);
-      toast({ title: "Успех", description: `${parsedAiExercises.length} дополнительных упражнений сгенерировано!` });
+      toast({ title: "Успех", description: `${parsedAiExercises.length} ${parsedAiExercises.length === 1 ? 'дополнительное упражнение сгенерировано' : parsedAiExercises.length >=2 && parsedAiExercises.length <=4 ? 'дополнительных упражнения сгенерировано' : 'дополнительных упражнений сгенерировано'}!` });
     } catch (error) {
       console.error("Failed to generate AI exercises:", error);
       toast({ title: "Ошибка генерации ИИ упражнений", description: "Не удалось сгенерировать упражнения. Пожалуйста, попробуйте позже.", variant: "destructive" });
@@ -100,7 +97,7 @@ export default function LessonPage() {
     setUserAnswers(prev => ({ ...prev, [exerciseId]: answer }));
     setExerciseFeedback(prev => {
       const newFeedback = { ...prev };
-      delete newFeedback[exerciseId];
+      delete newFeedback[exerciseId]; // Clear previous feedback for this exercise on new answer
       return newFeedback;
     });
   };
@@ -144,8 +141,8 @@ export default function LessonPage() {
   
   const handleCompleteLesson = () => {
     if (lesson) {
-      const allLessonExercises = lesson.exercises.every(ex => userAnswers[ex.id] !== undefined);
-      if (!allLessonExercises && lesson.exercises.length > 0) {
+      const allStandardExercisesAttempted = lesson.exercises.every(ex => userAnswers[ex.id] !== undefined);
+      if (!allStandardExercisesAttempted && lesson.exercises.length > 0) {
           toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните все стандартные упражнения урока перед завершением.", variant: "destructive" });
           return;
       }
@@ -163,7 +160,6 @@ export default function LessonPage() {
     return <div className="text-center py-10">Урок не найден. <Link href="/lessons" className="text-primary hover:underline">Вернуться к списку уроков.</Link></div>;
   }
   
-  // Combine lesson exercises and AI-generated exercises
   const allExercises = [...lesson.exercises, ...aiExercises];
 
   return (
@@ -231,49 +227,75 @@ export default function LessonPage() {
             <CardTitle className="text-2xl font-semibold">Упражнения</CardTitle>
           </CardHeader>
           <CardContent className="space-y-8">
-            {allExercises.map((exercise, index) => (
-              <Card key={exercise.id} className={`p-6 rounded-lg ${exerciseFeedback[exercise.id]?.correct === true ? 'border-green-500 bg-green-50' : exerciseFeedback[exercise.id]?.correct === false ? 'border-red-500 bg-red-50' : 'border-border'}`}>
-                <p className="font-semibold text-lg mb-3">Упражнение {index + 1}: {exercise.question}</p>
-                
-                {exercise.type === 'multiple_choice' && (
-                  <MultipleChoiceExerciseComponent 
-                    exercise={exercise as MultipleChoiceExercise} 
-                    onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
-                    userAnswer={userAnswers[exercise.id]}
-                    disabled={!!exerciseFeedback[exercise.id]}
-                  />
-                )}
-                {exercise.type === 'fill_in_the_blank' && (
-                   <FillInTheBlankExerciseComponent
-                    exercise={exercise as FillInTheBlankExercise}
-                    onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
-                    userAnswer={userAnswers[exercise.id]}
-                    disabled={!!exerciseFeedback[exercise.id]}
-                  />
-                )}
-                {exercise.type === 'translation' && (
-                  <TranslationExerciseComponent
-                    exercise={exercise as TranslationExercise}
-                    onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
-                    userAnswer={userAnswers[exercise.id]}
-                    disabled={!!exerciseFeedback[exercise.id]}
-                  />
-                )}
-                 {/* TODO: Listening comprehension component */}
+            {allExercises.map((exercise, index) => {
+              const isMastered = progress.exerciseAttempts[exercise.id]?.mastered;
+              const feedback = exerciseFeedback[exercise.id];
+              const isAttemptedAndCorrect = feedback?.correct;
+              const isAttemptedAndIncorrect = feedback?.correct === false;
 
-                <Button onClick={() => handleSubmitExercise(exercise)} disabled={!!exerciseFeedback[exercise.id] || isSubmitting} className="mt-4">
-                  Проверить ответ
-                </Button>
+              return (
+                <Card 
+                  key={exercise.id} 
+                  className={cn(
+                    "p-6 rounded-lg",
+                    isMastered ? "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500" :
+                    isAttemptedAndCorrect ? "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600" :
+                    isAttemptedAndIncorrect ? "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600" :
+                    "border-border"
+                  )}
+                >
+                  <p className="font-semibold text-lg mb-3">
+                    {isMastered && <Award className="inline mr-2 h-5 w-5 text-green-600 dark:text-green-400" />}
+                    Упражнение {index + 1}: {exercise.question}
+                  </p>
+                  
+                  {exercise.type === 'multiple_choice' && (
+                    <MultipleChoiceExerciseComponent 
+                      exercise={exercise as MultipleChoiceExercise} 
+                      onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
+                      userAnswer={userAnswers[exercise.id]}
+                      disabled={isMastered || !!feedback}
+                    />
+                  )}
+                  {exercise.type === 'fill_in_the_blank' && (
+                     <FillInTheBlankExerciseComponent
+                      exercise={exercise as FillInTheBlankExercise}
+                      onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
+                      userAnswer={userAnswers[exercise.id]}
+                      disabled={isMastered || !!feedback}
+                    />
+                  )}
+                  {exercise.type === 'translation' && (
+                    <TranslationExerciseComponent
+                      exercise={exercise as TranslationExercise}
+                      onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
+                      userAnswer={userAnswers[exercise.id]}
+                      disabled={isMastered || !!feedback}
+                    />
+                  )}
+                   {/* TODO: Listening comprehension component */}
 
-                {exerciseFeedback[exercise.id] && (
-                  <div className={`mt-4 p-3 rounded-md text-sm ${exerciseFeedback[exercise.id]?.correct ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                    {exerciseFeedback[exercise.id]?.correct ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <XCircle className="inline mr-2 h-5 w-5" />}
-                    {exerciseFeedback[exercise.id]?.explanation || (exerciseFeedback[exercise.id]?.correct ? "Верно!" : "Неверно.")}
-                  </div>
-                )}
-                {index < allExercises.length - 1 && <Separator className="my-8" />}
-              </Card>
-            ))}
+                  <Button 
+                    onClick={() => handleSubmitExercise(exercise)} 
+                    disabled={isMastered || !!feedback || isSubmitting || !userAnswers[exercise.id]} 
+                    className="mt-4"
+                  >
+                    {isMastered ? <><Award className="mr-2 h-4 w-4"/>Освоено</> : "Проверить ответ"}
+                  </Button>
+
+                  {feedback && !isMastered && ( // Show immediate feedback only if not mastered
+                    <div className={cn(
+                      "mt-4 p-3 rounded-md text-sm",
+                      feedback.correct ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300"
+                    )}>
+                      {feedback.correct ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <XCircle className="inline mr-2 h-5 w-5" />}
+                      {feedback.explanation || (feedback.correct ? "Верно!" : "Неверно.")}
+                    </div>
+                  )}
+                  {index < allExercises.length - 1 && <Separator className="my-8" />}
+                </Card>
+              );
+            })}
           </CardContent>
         </Card>
       )}
@@ -289,4 +311,3 @@ export default function LessonPage() {
     </div>
   );
 }
-
