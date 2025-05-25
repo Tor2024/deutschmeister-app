@@ -32,6 +32,7 @@ import { lessonA2Satzbau } from './lessons/a2-satzbau';
 import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
 import { lessonA2Negation } from './lessons/a2-negation';
+import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
 
 
 // B1 Lessons
@@ -101,6 +102,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2NebensaetzeEinfach,
   lessonA2NebenordnendeKonjunktionen,
   lessonA2Negation,
+  lessonA2ReflexiveVerben,
 
   // B1
   lessonB1Nebensaetze,
