@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useUserProgress } from '@/hooks/use-user-progress';
@@ -104,25 +105,25 @@ export default function UserProgressPage() {
           
           <Card>
             <CardHeader>
-                <CardTitle className="text-xl flex items-center"><CheckCircle className="mr-2 h-6 w-6 text-primary"/> Список пройденных уроков</CardTitle>
+                <CardTitle className="text-xl flex items-center"><CheckCircle className="mr-2 h-6 w-6 text-green-600 dark:text-green-400"/> Список пройденных уроков</CardTitle>
             </CardHeader>
             <CardContent>
                 {completedLessonsCount > 0 ? (
                     <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
                         {progress.completedLessons.map(lessonId => {
                             const lesson = MOCK_LESSONS.find(l => l.id === lessonId);
-                            return <li key={lessonId}>{lesson ? lesson.topic : lessonId}</li>;
+                            return <li key={lessonId}>{lesson ? `${lesson.topic} (${lesson.level})` : lessonId}</li>;
                         })}
                     </ul>
                 ) : (
-                    <p className="text-muted-foreground">Вы еще не завершили ни одного урока. <Link href="/lessons" className="text-primary hover:underline">Начните сейчас!</Link></p>
+                    <p className="text-muted-foreground">Вы еще не завершили ни одного урока. <Link href="/lessons" className="text-primary hover:underline">Перейти к урокам</Link></p>
                 )}
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl flex items-center"><Activity className="mr-2 h-6 w-6 text-primary" />Статистика по упражнениям</CardTitle>
+              <CardTitle className="text-xl flex items-center"><Activity className="mr-2 h-6 w-6 text-blue-500" />Статистика по упражнениям</CardTitle>
               <CardDescription>Отслеживайте ваш прогресс в выполнении отдельных упражнений.</CardDescription>
             </CardHeader>
             <CardContent>
@@ -144,9 +145,9 @@ export default function UserProgressPage() {
                         <TableCell className="text-center">{attempt.attemptsCount}</TableCell>
                         <TableCell className="text-center">
                           {attempt.mastered ? (
-                            <Award className="h-5 w-5 text-accent inline" />
+                            <Award className="h-5 w-5 text-green-500 inline" />
                           ) : (
-                            <TrendingUp className="h-5 w-5 text-muted-foreground inline" />
+                            <TrendingUp className="h-5 w-5 text-yellow-500 inline" />
                           )}
                         </TableCell>
                       </TableRow>
@@ -154,7 +155,7 @@ export default function UserProgressPage() {
                   </TableBody>
                 </Table>
               ) : (
-                <p className="text-muted-foreground">Вы еще не приступали к упражнениям или ваша статистика по ним не зафиксирована.</p>
+                <p className="text-muted-foreground">Вы еще не приступали к упражнениям или ваша статистика по ним не зафиксирована. <Link href="/lessons" className="text-primary hover:underline">Начать урок!</Link></p>
               )}
             </CardContent>
           </Card>
@@ -169,3 +170,4 @@ export default function UserProgressPage() {
     </div>
   );
 }
+
