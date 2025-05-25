@@ -230,45 +230,17 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a1-akkusativ',
     ],
     questions: [
+      testA1ArtikelGenus.questions[0], // Какой определенный артикль у слова "Buch"?
+      testA1PronomenSeinHaben.questions[1], // Вставьте правильную форму глагола "haben": Wir ___ viele Bücher.
+      testA1Pluralbildung.questions[2], // Как будет "ребенок" (das Kind) во множественном числе?
+      testA1Akkusativ.questions[1], // Вставьте правильную форму: Ich sehe ___ (eine Katze).
       {
-        id: 'a1-gm1-q1',
+        id: 'a1-gm1-q5-alphabet',
         type: 'multiple_choice',
-        question: 'Какой определенный артикль у слова "Tisch" (м.р., Nominativ)?',
-        options: ['der', 'die', 'das'],
-        correctAnswer: 'der',
-        explanation: 'Слово "Tisch" мужского рода, поэтому "der Tisch".'
-      },
-      {
-        id: 'a1-gm1-q2',
-        type: 'fill_in_the_blank',
-        question: 'Вставьте правильную форму "sein": Ich ___ müde.',
-        sentenceParts: ['Ich ', ' müde.'],
-        correctAnswer: 'bin',
-        explanation: 'Для "ich" форма глагола "sein" - "bin".'
-      },
-      {
-        id: 'a1-gm1-q3',
-        type: 'multiple_choice',
-        question: 'Как будет "ребенок" (das Kind) во множественном числе?',
-        options: ['die Kinde', 'die Kinden', 'die Kinder', 'die Kinds'],
-        correctAnswer: 'die Kinder',
-        explanation: 'Существительное "das Kind" среднего рода, множественное число "die Kinder".',
-      },
-      {
-        id: 'a1-gm1-q4',
-        type: 'fill_in_the_blank',
-        question: 'Вставьте правильную форму: Ich sehe ___ (ein Apfel, м.р., Akkusativ).',
-        sentenceParts: ['Ich sehe ', '.'],
-        correctAnswer: 'einen Apfel',
-        explanation: 'Слово "Apfel" мужского рода. В Akkusativ неопределенный артикль "ein" меняется на "einen".',
-      },
-      {
-        id: 'a1-gm1-q5',
-        type: 'multiple_choice',
-        question: 'Как по-немецки сказать "Добрый день!"?',
-        options: ['Guten Morgen!', 'Guten Abend!', 'Guten Tag!', 'Hallo!'],
-        correctAnswer: 'Guten Tag!',
-        explanation: '"Guten Tag!" означает "Добрый день!".',
+        question: 'Как по-немецки сказать "Спасибо"?',
+        options: ['Bitte', 'Hallo', 'Danke', 'Tschüss'],
+        correctAnswer: 'Danke',
+        explanation: '"Danke" означает "Спасибо".',
       }
     ],
   },
@@ -285,46 +257,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a1-imperativ',
     ],
     questions: [
-      {
-        id: 'a1-gm2-q1',
-        type: 'multiple_choice',
-        question: 'Выберите правильное отрицание: "Ich habe ___ Zeit."',
-        options: ['nicht', 'kein', 'keine', 'keinen'],
-        correctAnswer: 'keine',
-        explanation: 'Существительное "Zeit" (ж.р.) отрицается с "keine".',
-      },
-      {
-        id: 'a1-gm2-q2',
-        type: 'multiple_choice',
-        question: 'На каком месте стоит спрягаемый глагол в вопросе без вопросительного слова?',
-        options: ['На первом', 'На втором', 'В конце'],
-        correctAnswer: 'На первом',
-        explanation: 'В общем вопросе (Ja/Nein-Frage) спрягаемый глагол стоит на первом месте.',
-      },
-      {
-        id: 'a1-gm2-q3',
-        type: 'fill_in_the_blank',
-        question: 'Вставьте модальный глагол: "Ich ___ Deutsch sprechen." (умею)',
-        sentenceParts: ['Ich ', ' Deutsch sprechen.'],
-        correctAnswer: 'kann',
-        explanation: '"können" (уметь) для "ich" - "kann".',
-      },
-      {
-        id: 'a1-gm2-q4',
-        type: 'multiple_choice',
-        question: 'Какая форма правильная: "Das ist ___ (её) Fahrrad (ср.р., Nominativ)?"',
-        options: ['ihr', 'ihre', 'ihren'],
-        correctAnswer: 'ihr',
-        explanation: 'Притяжательное местоимение "ihr" (её) для среднего рода в Nominativ - "ihr".',
-      },
-      {
-        id: 'a1-gm2-q5',
-        type: 'fill_in_the_blank',
-        question: 'Образуйте Imperativ для "du": "___ (lesen) das Buch!"',
-        sentenceParts: ['', ' das Buch!'],
-        correctAnswer: 'Lies',
-        explanation: 'Глагол "lesen" (e→ie) в Imperativ для "du" - "Lies!".',
-      }
+      testA1Negation.questions[0], // Выберите правильное отрицание: Das ist ___ Tisch.
+      testA1SatzbauGrundlagen.questions[2], // Как начинается общий вопрос (Ja/Nein-Frage)?
+      testA1Modalverben.questions[0], // Вставьте правильную форму "können": Ich ___ gut schwimmen.
+      testA1Possessivpronomen.questions[0], // Выберите правильную форму: Das ist ___ (мой) Ball
+      testA1Imperativ.questions[0] // Какая форма Imperativ для "du" от глагола "machen"?
     ]
   },
   {
@@ -340,46 +277,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a2-modalverben',
     ],
     questions: [
-      {
-        id: 'a2-gm1-q1',
-        type: 'fill_in_the_blank',
-        question: 'Вставьте отрицательный артикль в Akkusativ: "Er kauft ___ Auto (ср.р.)."',
-        sentenceParts: ['Er kauft ', ' Auto.'],
-        correctAnswer: 'kein',
-        explanation: '"Auto" среднего рода. "kein" в Akkusativ для среднего рода не меняется.',
-      },
-      {
-        id: 'a2-gm1-q2',
-        type: 'multiple_choice',
-        question: 'Какая форма глагола "fahren" (ехать) верна для "er"?',
-        options: ['er fahrt', 'er fährt', 'er fahret'],
-        correctAnswer: 'er fährt',
-        explanation: 'Глагол "fahren" (a→ä) для "er" - "fährt".',
-      },
-       {
-        id: 'a2-gm1-q3',
-        type: 'fill_in_the_blank',
-        question: 'Напишите множественное число: das Museum → die ___',
-        sentenceParts: ['das Museum → die ', ''],
-        correctAnswer: 'Museen',
-        explanation: 'Множественное число от "das Museum" - "die Museen".',
-      },
-      {
-        id: 'a2-gm1-q4',
-        type: 'multiple_choice',
-        question: 'Выберите правильный вспомогательный глагол для Perfekt: "Ich ___ gestern ins Kino ___." (gehen)',
-        options: ['habe ... gegangen', 'bin ... gegangen', 'habe ... gegeht'],
-        correctAnswer: 'bin ... gegangen',
-        explanation: '"gehen" образует Perfekt с "sein". Partizip II - "gegangen".',
-      },
-      {
-        id: 'a2-gm1-q5',
-        type: 'fill_in_the_blank',
-        question: 'Вставьте правильную форму "dürfen": "Du ___ hier nicht parken."',
-        sentenceParts: ['Du ', ' hier nicht parken.'],
-        correctAnswer: 'darfst',
-        explanation: '"dürfen" для "du" - "darfst".',
-      }
+      testA2Artikel.questions[0], // Выберите правильный определенный артикль для слова "Hund" (м.р.) в Akkusativ
+      testA2VerbenPraesens.questions[1], // Вставьте правильную форму глагола "lesen" (читать): Du ___ ein Buch.
+      testA2Pluralbildung.questions[0], // Какое множественное число у слова "der Mann"?
+      testA2Perfekt.questions[0], // Выберите правильный вспомогательный глагол для Perfekt: Ich ___ gestern ins Kino ___. (gehen)
+      testA2Modalverben.questions[1] // Какая форма глагола "sollen" подходит для "er/sie/es"?
     ]
   },
   {
@@ -395,46 +297,30 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'b1-verben-mit-praepositionen',
     ],
     questions: [
-      {
-        id: 'b1-gm1-q1',
-        type: 'multiple_choice',
-        question: 'Выберите правильный союз: "Ich gehe nicht ins Kino, ___ ich keine Zeit habe."',
-        options: ['obwohl', 'damit', 'weil', 'wenn'],
-        correctAnswer: 'weil',
-        explanation: '"weil" (потому что) используется для указания причины.',
-      },
-      {
-        id: 'b1-gm1-q2',
-        type: 'fill_in_the_blank',
-        question: 'Вставьте правильное относительное местоимение: "Die Frau, mit ___ ich gesprochen habe, ist sehr nett."',
-        sentenceParts: ['Die Frau, mit ', ' ich gesprochen habe, ist sehr nett.'],
-        correctAnswer: 'der',
-        explanation: 'Предлог "mit" требует Dativ. "Die Frau" (ж.р.) в Dativ - "der".',
-      },
-      {
-        id: 'b1-gm1-q3',
-        type: 'multiple_choice',
-        question: 'Какая форма Präteritum глагола "sehen" для "ich"?',
-        options: ['sehte', 'sah', 'gesehen', 'sieht'],
-        correctAnswer: 'sah',
-        explanation: 'Präteritum от "sehen" - "sah".',
-      },
-      {
-        id: 'b1-gm1-q4',
-        type: 'fill_in_the_blank',
-        question: 'Вставьте окончание прилагательного: "Ich habe ein___ neu___ Fahrrad (ср.р., Akk.) gekauft."',
-        sentenceParts: ['Ich habe ein', ' neu', ' Fahrrad gekauft.'],
-        correctAnswer: ' neues',
-        explanation: 'После "ein" перед ср.р. в Akkusativ прилагательное получает "-es".',
-      },
-      {
-        id: 'b1-gm1-q5',
-        type: 'multiple_choice',
-        question: 'Выберите правильный предлог: "Ich denke oft ___ dich."',
-        options: ['an', 'auf', 'über', 'mit'],
-        correctAnswer: 'an',
-        explanation: 'Глагол "denken an + Akkusativ" (думать о).',
-      }
+      testB1Nebensaetze.questions[0], // Выберите правильный союз: "Ich kann heute nicht kommen, ___ ich krank bin."
+      testB1Relativsaetze.questions[0], // Выберите правильное относительное местоимение: "Das ist der Mann, ___ Auto ich kaufen möchte."
+      testB1Praeteritum.questions[0], // Какая форма Präteritum глагола "machen" для "er"?
+      testB1Adjektivdeklination.questions[0], // Выберите правильное окончание: Das ist der schnell___ Zug.
+      testB1VerbenMitPraepositionen.questions[0] // Выберите правильный предлог: "Ich interessiere mich ___ Politik."
+    ]
+  },
+  {
+    id: 'b2-grammar-module-1-test',
+    level: 'B2',
+    topic: 'B2 - Грамматический Модуль 1 (Тест)',
+    description: 'Проверка знаний по темам: Konjunktiv II (углубленно), Nomen-Verb-Verbindungen, Passiv (углубленно), Subjektive Bedeutung der Modalverben.',
+    coveredLessonIds: [
+      'b2-konjunktiv2',
+      'b2-nomen-verb',
+      'b2-passiv',
+      'b2-subjektive-modalverben',
+    ],
+    questions: [
+        testB2Konjunktiv2.questions[0], // Выберите правильную форму Konjunktiv II для "Ich habe mehr Zeit":
+        testB2NomenVerb.questions[0], // Какой глагол используется в устойчивом сочетании "___ eine wichtige Rolle spielen"?
+        testB2Passiv.questions[0], // Преобразуйте предложение в Perfekt Passiv: "Man hat das Haus schnell gebaut."
+        testB2SubjektiveModalverben.questions[0], // Какой модальный глагол выражает наивысшую степень уверенности в предположении?
+        testB2Konjunktiv2.questions[3], // Какая форма Konjunktiv II глагола "können" для "wir"?
     ]
   }
 ];
@@ -445,5 +331,3 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
-
-
