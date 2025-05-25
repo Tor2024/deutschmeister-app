@@ -1,6 +1,9 @@
 
 import type { Lesson } from '@/types';
 
+// A1 Lessons
+import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessungen';
+
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
@@ -55,6 +58,9 @@ import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalst
 
 
 export const MOCK_LESSONS: Lesson[] = [
+  // A1
+  lessonA1AlphabetBegruessungen,
+
   // A2
   lessonA2Artikel,
   lessonA2VerbenPraesens,
