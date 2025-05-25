@@ -13,6 +13,8 @@ import { lessonA1Modalverben } from './lessons/a1-modalverben';
 import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
 import { lessonA1Imperativ } from './lessons/a1-imperativ';
 import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akkusativ';
+import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
+
 
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
@@ -80,6 +82,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1Possessivpronomen,
   lessonA1Imperativ,
   lessonA1PraepositionenAkkusativ,
+  lessonA1PraepositionenDativ,
 
   // A2
   lessonA2Artikel,
