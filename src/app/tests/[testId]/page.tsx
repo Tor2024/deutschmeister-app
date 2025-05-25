@@ -14,7 +14,7 @@ import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-cho
 import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-exercise';
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle, FileText, Percent, RefreshCw, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { CheckCircle, FileText, Percent, RefreshCw, ThumbsUp, ThumbsDown, HelpCircle, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function TestTakingPage() {
@@ -108,16 +108,27 @@ export default function TestTakingPage() {
   }
 
   if (showResults && score !== null) {
+    let scoreColorClass = '';
+    if (score >= 80) {
+      scoreColorClass = 'text-green-600 dark:text-green-400';
+    } else if (score >= 50) {
+      scoreColorClass = 'text-yellow-600 dark:text-yellow-400';
+    } else {
+      scoreColorClass = 'text-red-600 dark:text-red-400';
+    }
+
     return (
       <div className="container mx-auto py-8 px-4">
         <Card className="shadow-lg text-center">
           <CardHeader>
-            <CardTitle className="text-3xl font-bold text-primary">Результаты теста</CardTitle>
+            <CardTitle className="text-3xl font-bold text-primary flex items-center justify-center">
+              <Award className="mr-3 h-8 w-8" /> Результаты теста
+            </CardTitle>
             <CardDescription className="text-lg">{test.topic} - Уровень {test.level}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 py-8">
             <div className="flex flex-col items-center justify-center">
-              <p className="text-6xl font-bold text-primary">{score}%</p>
+              <p className={cn("text-6xl font-bold", scoreColorClass)}>{score}%</p>
               <Percent className="h-12 w-12 ml-2 text-muted-foreground" />
             </div>
             <p className="text-xl text-muted-foreground">
@@ -132,7 +143,7 @@ export default function TestTakingPage() {
                 <ThumbsUp className="mr-2 h-7 w-7 text-yellow-500" /> Неплохо, но можно лучше!
               </p>
             ) : (
-              <p className="text-2xl text-destructive font-semibold flex items-center justify-center">
+              <p className="text-2xl text-red-600 dark:text-red-400 font-semibold flex items-center justify-center">
                 <ThumbsDown className="mr-2 h-7 w-7" /> Попробуйте еще раз!
               </p>
             )}
@@ -172,8 +183,11 @@ export default function TestTakingPage() {
         {test.questions.map((exercise, index) => (
           <Card key={exercise.id} className="shadow-md">
             <CardHeader>
-              <CardTitle className="text-xl">Вопрос {index + 1}</CardTitle>
-              <CardDescription>{exercise.question}</CardDescription>
+              <CardTitle className="text-xl flex items-center">
+                <HelpCircle className="mr-2 h-6 w-6 text-primary/80" />
+                Вопрос {index + 1}
+              </CardTitle>
+              <CardDescription className="pt-2 text-base">{exercise.question}</CardDescription>
             </CardHeader>
             <CardContent>
               {exercise.type === 'multiple_choice' && (
@@ -206,9 +220,11 @@ export default function TestTakingPage() {
 
       <CardFooter className="mt-8 flex justify-end gap-4 p-0 pt-6 border-t">
         <Button onClick={handleSubmitTest} size="lg" disabled={Object.keys(userAnswers).length < test.questions.length}>
+          <CheckCircle className="mr-2 h-5 w-5" />
           Завершить тест
         </Button>
       </CardFooter>
     </div>
   );
 }
+
