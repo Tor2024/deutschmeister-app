@@ -9,10 +9,10 @@ export const testA1LexikKleidung: Test = {
     {
       id: 'a1-lexik-kleidung-test-q1',
       type: 'multiple_choice',
-      question: 'Как по-немецки "брюки"?',
-      options: ['das Hemd', 'der Rock', 'die Hose', 'die Jacke'],
-      correctAnswer: 'die Hose',
-      explanation: '"Die Hose" означает "брюки".',
+      question: 'Как по-немецки "юбка"?',
+      options: ['die Hose', 'das Kleid', 'der Rock', 'das Hemd'],
+      correctAnswer: 'der Rock',
+      explanation: '"Der Rock" означает "юбка".',
     },
     {
       id: 'a1-lexik-kleidung-test-q2',

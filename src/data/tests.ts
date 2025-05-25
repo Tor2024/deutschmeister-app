@@ -1,5 +1,5 @@
 
-import type { Test, ModularTest } from '@/types'; // Added ModularTest
+import type { Test, ModularTest } from '@/types';
 import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
 import { testA1Pluralbildung } from './tests/a1-pluralbildung-test';
@@ -18,8 +18,8 @@ import { testA1LexikEssenTrinken } from './tests/a1-lexik-essen-trinken-test';
 import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test';
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
-import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
 import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
+import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test'; // Added A1 Lexik Test
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -128,7 +128,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikZahlenFarben,
   testA1LexikWochentageMonateJahreszeiten,
   testA1LexikUhrzeitTagesablauf,
-  testA1LexikKleidung,
+  testA1LexikKleidung, // Added A1 Lexik Test
 
 
   // A2 Grammar Tests
@@ -371,4 +371,3 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
-
