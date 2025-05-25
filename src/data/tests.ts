@@ -44,10 +44,6 @@ import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 import { testA2LexikArbeitBeruf } from './tests/a2-lexik-arbeit-beruf-test';
 import { testA2LexikReisenVerkehr } from './tests/a2-lexik-reisen-verkehr-test';
 import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerper-test';
-import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
-import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
-import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
-import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
 
 
 // B1 Tests
@@ -149,10 +145,6 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikArbeitBeruf,
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
-  testA2LexikKleidung,
-  testA2LexikEinkaufen,
-  testA2LexikInDerStadt,
-  testA2LexikFesteTraditionen,
 
   // B1 Tests
   testB1Nebensaetze,
