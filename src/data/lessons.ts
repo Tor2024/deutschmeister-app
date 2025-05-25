@@ -24,6 +24,7 @@ import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
 import { lessonB1Adjektivdeklination } from './lessons/b1-adjektivdeklination';
 import { lessonB1VerbenMitPraepositionen } from './lessons/b1-verben-mit-praepositionen';
 import { lessonB1Plusquamperfekt } from './lessons/b1-plusquamperfekt';
+import { lessonB1Futur1 } from './lessons/b1-futur1';
 
 // B2 Lessons
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -63,6 +64,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Adjektivdeklination,
   lessonB1VerbenMitPraepositionen,
   lessonB1Plusquamperfekt,
+  lessonB1Futur1,
 
   // B2
   lessonB2Konjunktiv2,
