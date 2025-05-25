@@ -27,6 +27,7 @@ import { testA1LexikSchuleArbeitEinfach } from './tests/a1-lexik-schule-arbeit-e
 import { testA1LexikWetter } from './tests/a1-lexik-wetter-test';
 import { testA1LexikPersoenlicheInfos } from './tests/a1-lexik-persoenliche-infos-test';
 import { testA1LexikGefuehleZustaende } from './tests/a1-lexik-gefuehle-zustaende-test';
+import { testA1WFragen } from './tests/a1-w-fragen-test'; // Added test for W-Fragen
 
 
 // A2 Tests
@@ -159,6 +160,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikWetter,
   testA1LexikPersoenlicheInfos,
   testA1LexikGefuehleZustaende,
+  testA1WFragen,
 
   // A2 Thematic Tests
   testA2Artikel,
@@ -260,27 +262,28 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     level: 'A1',
     topic: 'A1 - Грамматический Модуль 1 (Тест)',
     testType: 'modular',
-    description: 'Проверка знаний по темам: Алфавит и приветствия, Личные местоимения и sein/haben, Präsens слабых и сильных глаголов, Артикли и род, Множественное число (основы).',
+    description: 'Проверка знаний по темам: Алфавит и приветствия, Личные местоимения и sein/haben, Präsens слабых и сильных глаголов, Артикли и род, Множественное число (основы), W-Fragen.',
     coveredLessonIds: [
       'a1-alphabet-begruessungen',
       'a1-personalpronomen-sein-haben',
       'a1-grammatik-praesens-verben',
       'a1-artikel-genus',
       'a1-pluralbildung',
+      'a1-w-fragen',
     ],
     questions: [
       testA1ArtikelGenus.questions[0],
       testA1PersonalpronomenSeinHaben.questions[1],
       testA1GrammatikPraesensVerben.questions[0],
       testA1Pluralbildung.questions[2],
+      testA1WFragen.questions[0],
       {
-        id: 'a1-gm1-q5-alphabet',
+        id: 'a1-gm1-q5-alphabet', // q6 in this case due to WFragen
         type: 'multiple_choice',
         question: 'Как по-немецки сказать "Спасибо"?',
         options: ['Bitte', 'Hallo', 'Danke', 'Tschüss'],
         correctAnswer: 'Danke',
         explanation: '"Danke" означает "Спасибо".',
-        type: 'multiple_choice',
       }
     ],
   },
