@@ -38,6 +38,7 @@ import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
 import { testB1Relativsaetze } from './tests/b1-relativsaetze-test';
 import { testB1Praeteritum } from './tests/b1-praeteritum-test';
+import { testB1Adjektivdeklination } from './tests/b1-adjektivdeklination-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -83,6 +84,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Nebensaetze,
   testB1Relativsaetze,
   testB1Praeteritum,
+  testB1Adjektivdeklination,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
