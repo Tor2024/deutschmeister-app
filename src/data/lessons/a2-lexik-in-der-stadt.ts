@@ -52,6 +52,34 @@ export const lessonA2LexikInDerStadt: Lesson = {
     { german: 'nah(e)', russian: 'близко', example: 'Die U-Bahn-Station ist ganz nah.' },
     { german: 'fragen nach (+Dativ)', russian: 'спрашивать о (дороге)', example: 'Ich frage nach dem Weg.' },
   ],
+  readingText: `
+Max ist neu in der Stadt und sucht den Supermarkt. Er fragt eine Frau auf der Straße: "Entschuldigung, wie komme ich zum nächsten Supermarkt?"
+Die Frau antwortet: "Das ist ganz einfach. Gehen Sie diese Straße geradeaus bis zur großen Kreuzung. An der Kreuzung sehen Sie eine Ampel. Dort biegen Sie rechts ab. Dann gehen Sie noch etwa 100 Meter geradeaus. Der Supermarkt ist dann auf der linken Seite, direkt neben der Post."
+Max bedankt sich: "Vielen Dank für Ihre Hilfe!" Die Frau lächelt und sagt: "Gern geschehen!"
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a2-lexik-in-der-stadt-rq1',
+      question: 'Что ищет Макс?',
+      options: ['Банк', 'Музей', 'Супермаркет', 'Аптеку'],
+      correctAnswer: 'Супермаркет',
+      explanation: 'В тексте сказано: "Max ist neu in der Stadt und sucht den Supermarkt."'
+    },
+    {
+      id: 'a2-lexik-in-der-stadt-rq2',
+      question: 'Куда Макс должен повернуть на перекрестке с светофором?',
+      options: ['Налево', 'Направо', 'Прямо', 'Назад'],
+      correctAnswer: 'Направо',
+      explanation: 'Женщина говорит: "Dort biegen Sie rechts ab."'
+    },
+    {
+      id: 'a2-lexik-in-der-stadt-rq3',
+      question: 'Где находится супермаркет после поворота?',
+      options: ['Справа, рядом с банком', 'Слева, рядом с почтой', 'Справа, напротив парка', 'Слева, за углом'],
+      correctAnswer: 'Слева, рядом с почтой',
+      explanation: 'Женщина объясняет: "Der Supermarkt ist dann auf der linken Seite, direkt neben der Post."'
+    }
+  ],
   exercises: [
     {
       id: 'a2-lexik-stadt-ex1',
