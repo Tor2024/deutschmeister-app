@@ -10,6 +10,7 @@ import { lessonA1GrammatikPraesensVerben } from './lessons/a1-grammatik-praesens
 import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
 import { lessonA1Negation } from './lessons/a1-negation';
 import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
+import { lessonA1WFragen } from './lessons/a1-w-fragen';
 import { lessonA1Modalverben } from './lessons/a1-modalverben';
 import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
 import { lessonA1Imperativ } from './lessons/a1-imperativ';
@@ -17,8 +18,6 @@ import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akk
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1PraepositionenDativWechsel } from './lessons/a1-praepositionen-dativ-wechsel';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
-import { lessonA1WFragen } from './lessons/a1-w-fragen';
-
 // A1 Lexik
 import { lessonA1LexikPersoenlicheInfos } from './lessons/a1-lexik-persoenliche-infos';
 import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
@@ -27,9 +26,9 @@ import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
 import { lessonA1LexikEssenTrinken } from './lessons/a1-lexik-essen-trinken';
 import { lessonA1LexikHobbysFreizeit } from './lessons/a1-lexik-hobbys-freizeit';
 import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf';
+import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
 import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbeit-einfach';
 import { lessonA1LexikWetter } from './lessons/a1-lexik-wetter';
-import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
 import { lessonA1LexikGefuehleZustaende } from './lessons/a1-lexik-gefuehle-zustaende';
 import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung';
 import { lessonA1LexikOrdinalzahlenDatum } from './lessons/a1-lexik-ordinalzahlen-datum';
@@ -37,10 +36,13 @@ import { lessonA1LexikOrdinalzahlenDatum } from './lessons/a1-lexik-ordinalzahle
 // A2 Grammar
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
-import { lessonA2GrammatikPraeteritumSeinHabenModal } from './lessons/a2-grammatik-praeteritum-sein-haben-modal';
 import { lessonA2Pluralbildung } from './lessons/a2-pluralbildung';
+import { lessonA2TrennbareUntrennbareVerben } from './lessons/a2-trennbare-untrennbare-verben';
 import { lessonA2Perfekt } from './lessons/a2-perfekt';
+import { lessonA2GrammatikPraeteritumSeinHabenModal } from './lessons/a2-grammatik-praeteritum-sein-haben-modal';
 import { lessonA2Modalverben } from './lessons/a2-modalverben';
+import { lessonA2ModalverbenPerfekt } from './lessons/a2-modalverben-perfekt';
+import { lessonA2VerbLassen } from './lessons/a2-verb-lassen';
 import { lessonA2Praepositionen } from './lessons/a2-praepositionen';
 import { lessonA2Possessivpronomen } from './lessons/a2-possessivpronomen';
 import { lessonA2PersonalpronomenAkkDat } from './lessons/a2-personalpronomen-akk-dat';
@@ -48,8 +50,8 @@ import { lessonA2Adjektivsteigerung } from './lessons/a2-adjektivsteigerung';
 import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2Imperativ } from './lessons/a2-imperativ';
 import { lessonA2Satzbau } from './lessons/a2-satzbau';
-import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
+import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2Negation } from './lessons/a2-negation';
 import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
@@ -85,7 +87,7 @@ import { lessonB1NDeklination } from './lessons/b1-n-deklination';
 import { lessonB1Indefinitpronomen } from './lessons/b1-indefinitpronomen';
 import { lessonB1InfinitivMitZu } from './lessons/b1-infinitiv-mit-zu';
 import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
-import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze'; // Ensured this import is correct
+import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 // B1 Lexik
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
@@ -134,7 +136,6 @@ import { lessonC2LexikGlobaleProbleme } from './lessons/c2-lexik-globale-problem
 import { lessonC2LexikMedienkritikDigitaleGesellschaft } from './lessons/c2-lexik-medienkritik-digitale-gesellschaft';
 import { lessonC2LexikSozialeTrends } from './lessons/c2-lexik-soziale-trends';
 
-
 export const MOCK_LESSONS: Lesson[] = [
   // A1 Level - Ordered
   lessonA1AlphabetBegruessungen,
@@ -142,8 +143,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikPersoenlicheInfos,
   lessonA1ArtikelGenus,
   lessonA1Pluralbildung,
-  lessonA1LexikZahlenFarben,
   lessonA1GrammatikPraesensVerben,
+  lessonA1LexikZahlenFarben,
   lessonA1LexikFamilie,
   lessonA1Akkusativ,
   lessonA1Possessivpronomen,
@@ -160,22 +161,26 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
   lessonA1PraepositionenDativWechsel,
-  lessonA1TrennbarVerben,
   lessonA1LexikSchuleArbeitEinfach,
+  lessonA1TrennbarVerben,
   lessonA1LexikWetter,
   lessonA1LexikGefuehleZustaende,
+  lessonA1LexikHausWohnung,
   lessonA1LexikOrdinalzahlenDatum,
 
   // A2 Level - Ordered
   lessonA2Artikel,
   lessonA2VerbenPraesens,
   lessonA2Pluralbildung,
-  lessonA2GrammatikPraeteritumSeinHabenModal,
-  lessonA2Perfekt,
-  lessonA2Modalverben,
+  lessonA2TrennbareUntrennbareVerben,
   lessonA2LexikArbeitBeruf,
-  lessonA2Praepositionen,
+  lessonA2Perfekt,
+  lessonA2GrammatikPraeteritumSeinHabenModal,
+  lessonA2Modalverben,
+  lessonA2ModalverbenPerfekt,
+  lessonA2VerbLassen,
   lessonA2LexikReisenVerkehr,
+  lessonA2Praepositionen,
   lessonA2Possessivpronomen,
   lessonA2PersonalpronomenAkkDat,
   lessonA2LexikGesundheitKoerper,
@@ -184,23 +189,23 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikKleidung,
   lessonA2Imperativ,
   lessonA2Satzbau,
-  lessonA2LexikEinkaufen,
   lessonA2NebenordnendeKonjunktionen,
   lessonA2NebensaetzeEinfach,
-  lessonA2LexikInDerStadt,
+  lessonA2LexikEinkaufen,
   lessonA2Negation,
   lessonA2ReflexiveVerben,
-  lessonA2LexikFesteTraditionen,
+  lessonA2LexikInDerStadt,
   lessonA2TemporalsaetzeAlsWenn,
-  lessonA2LexikLebensstilGewohnheiten,
   lessonA2Demonstrativpronomen,
-  lessonA2LexikErnaehrungRezepte,
+  lessonA2LexikFesteTraditionen,
   lessonA2OrdinalzahlenDatum,
+  lessonA2LexikLebensstilGewohnheiten,
+  lessonA2LexikErnaehrungRezepte,
   lessonA2LexikElektronikTechnik,
-  lessonA2LexikSchuleKurse,
   lessonA2LexikBriefeEmails,
   lessonA2LexikKonflikteLoesungen,
   lessonA2LexikBank,
+  lessonA2LexikSchuleKurse,
 
   // B1 Level - Ordered
   lessonB1Praeteritum,
@@ -209,59 +214,58 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Futur1,
   lessonB1LexikBildungStudium,
   lessonB1Adjektivdeklination,
+  lessonB1VerbenMitPraepositionen,
+  lessonB1LexikArbeitKarriere,
+  lessonB1Konjunktiv2Einfuehrung,
+  lessonB1PassivEinfuehrung,
+  lessonB1LexikMedienKommunikation,
   lessonB1Genitiv,
   lessonB1NDeklination,
-  lessonB1LexikArbeitKarriere,
-  lessonB1VerbenMitPraepositionen,
-  lessonB1Indefinitpronomen,
-  lessonB1LexikMedienKommunikation,
-  lessonB1InfinitivMitZu,
-  lessonB1Konjunktiv2Einfuehrung,
   lessonB1LexikUmweltWetter,
-  lessonB1PassivEinfuehrung,
-  lessonB1Konsekutivsaetze,
-  lessonB1Nebensaetze, // Ensured it is used here
+  lessonB1Indefinitpronomen,
+  lessonB1InfinitivMitZu,
   lessonB1LexikKulturFreizeit,
+  lessonB1Konsekutivsaetze,
+  lessonB1Nebensaetze,
   lessonB1Relativsaetze,
   lessonB1LexikBeziehungen,
 
   // B2 Level - Ordered
   lessonB2Konjunktiv2,
-  lessonB2Passiv,
   lessonB2LexikUmweltNachhaltigkeit,
-  lessonB2SubjektiveModalverben,
   lessonB2NomenVerb,
+  lessonB2Passiv,
   lessonB2LexikKulturKunst,
   lessonB2PassivErsatzformen,
-  lessonB2KomplexeSatzverbindungen,
+  lessonB2SubjektiveModalverben,
   lessonB2LexikWissenschaftTechnologie,
+  lessonB2KomplexeSatzverbindungen,
   lessonB2NominalisierungVerbalisierung,
-  lessonB2Futur2,
   lessonB2LexikMedienKommunikation,
+  lessonB2Futur2,
   lessonB2Wortbildung,
   lessonB2LexikPolitik,
   lessonB2LexikWirtschaftKonsum,
 
   // C1 Level - Ordered
   lessonC1IndirekteRede,
-  lessonC1KonjunktivVertiefung,
   lessonC1LexikPolitikGesellschaft,
   lessonC1Partizipialkonstruktionen,
-  lessonC1PartizipialkonstruktionenAdverbial,
+  lessonC1KonjunktivVertiefung,
   lessonC1LexikWissenschaftForschung,
+  lessonC1PartizipialkonstruktionenAdverbial,
   lessonC1AdverbialsaetzeVertiefung,
   lessonC1LexikWirtschaftGlobalermarkt,
   lessonC1LexikInterkulturelleKommunikation,
 
   // C2 Level - Ordered
   lessonC2Stilmittel,
-  lessonC2NominalstilVerbalstil,
   lessonC2LexikGlobaleProbleme,
+  lessonC2NominalstilVerbalstil,
   lessonC2Modalpartikeln,
   lessonC2LexikMedienkritikDigitaleGesellschaft,
   lessonC2LexikSozialeTrends,
 ];
-
 
 // Helper function to get the count of lessons per level
 export const getLessonsCountByLevel = (): Record<string, number> => {
@@ -276,3 +280,5 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+
+    
