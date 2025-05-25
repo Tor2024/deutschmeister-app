@@ -22,6 +22,7 @@ import { lessonA2Negation } from './lessons/a2-negation';
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
+import { lessonB1Adjektivdeklination } from './lessons/b1-adjektivdeklination';
 
 // B2 Lessons
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -58,6 +59,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Nebensaetze,
   lessonB1Relativsaetze,
   lessonB1Praeteritum,
+  lessonB1Adjektivdeklination,
 
   // B2
   lessonB2Konjunktiv2,
