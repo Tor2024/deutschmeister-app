@@ -94,6 +94,11 @@ export const MOCK_LESSONS: Lesson[] = [
       { german: 'das Buch', russian: 'книга', example: 'Ich lese das Buch.' },
       { german: 'sehen', russian: 'видеть', example: 'Ich sehe einen Vogel.' },
       { german: 'haben', russian: 'иметь', example: 'Wir haben keine Zeit.' },
+      { german: 'Nominativ', russian: 'Именительный падеж (кто? что?)' },
+      { german: 'Akkusativ', russian: 'Винительный падеж (кого? что?)' },
+      { german: 'bestimmter Artikel', russian: 'определенный артикль' },
+      { german: 'unbestimmter Artikel', russian: 'неопределенный артикль' },
+      { german: 'Negativartikel', russian: 'отрицательный артикль' },
     ],
     exercises: [
       {
@@ -151,11 +156,11 @@ export const MOCK_LESSONS: Lesson[] = [
       {
         id: 'a2-artikel-adv-ex7',
         type: 'translation',
-        question: 'Переведите на немецкий: "У меня есть собака. Собака большая."',
-        prompt: 'У меня есть собака. Собака большая.',
+        question: 'Переведите на немецкий: "У меня нет машины (средний род)."',
+        prompt: 'У меня нет машины (средний род).',
         languageDirection: 'to_german',
-        correctAnswer: 'Ich habe einen Hund. Der Hund ist groß.',
-        explanation: 'Первое упоминание "собака" (Hund, m.) - неопределенный артикль в Akkusativ "einen". Второе упоминание - определенный артикль в Nominativ "der".',
+        correctAnswer: 'Ich habe kein Auto.',
+        explanation: '"Auto" среднего рода. "Haben" требует Akkusativ. Отрицательный артикль "kein" для среднего рода в Akkusativ не меняется.',
       },
     ],
   },
@@ -176,37 +181,38 @@ export const MOCK_LESSONS: Lesson[] = [
 -   ihr: lern**t** (вы учите)
 -   sie/Sie: lern**en** (они/Вы учите)
 
-Другие примеры: machen (делать), spielen (играть), wohnen (жить).
+Другие примеры: machen (делать), spielen (играть), wohnen (жить), kaufen (покупать), arbeiten (работать).
 
 **2. Сильные (нерегулярные) глаголы (Starke / Unregelmäßige Verben)**
 У этих глаголов при спряжении в Präsens происходит изменение корневой гласной во 2-м и 3-м лице единственного числа (du, er/sie/es). Окончания при этом в основном такие же, как у слабых глаголов (кроме случаев, когда основа заканчивается на -t/-d, см. ниже).
 Основные модели изменения для уровня A2:
-*   **e → i**: geben (давать) -> du g**i**bst, er g**i**bt. Примеры: nehmen (брать), sprechen (говорить), treffen (встречать).
-*   **e → ie**: lesen (читать) -> du l**ie**st, er l**ie**st. Примеры: sehen (видеть), empfehlen (рекомендовать).
-*   **a → ä**: fahren (ехать) -> du f**ä**hrst, er f**ä**hrt. Примеры: schlafen (спать), tragen (носить), waschen (мыть).
+*   **e → i**: geben (давать) -> du g**i**bst, er g**i**bt. Примеры: nehmen (брать - du nimmst, er nimmt), sprechen (говорить - du sprichst, er spricht), treffen (встречать - du triffst, er trifft), helfen (помогать - du hilfst, er hilft).
+*   **e → ie**: lesen (читать) -> du l**ie**st, er l**ie**st. Примеры: sehen (видеть - du siehst, er sieht), empfehlen (рекомендовать - du empfiehlst, er empfiehlt).
+*   **a → ä**: fahren (ехать) -> du f**ä**hrst, er f**ä**hrt. Примеры: schlafen (спать - du schläfst, er schläft), tragen (носить - du trägst, er trägt), waschen (мыть - du wäschst, er wäscht), laufen (бежать - du läufst, er läuft).
 
 Пример: **fahren** (ехать), основа: **fahr-**
 -   ich: fahre
 -   du: f**ä**hrst
 -   er/sie/es: f**ä**hrt
 -   wir: fahren
--   ihr: fahrt
+-   ihr: fahrt (без умлаута!)
 -   sie/Sie: fahren
 
 **3. Особые случаи спряжения:**
-*   **Глаголы, основа которых заканчивается на -d, -t, -m, -n (если перед -m/-n нет -l- или -r-)**:
+*   **Глаголы, основа которых заканчивается на -d, -t, -m, -n (если перед -m/-n нет -l- или -r- и это не сильный глагол с изменением только корневой гласной)**:
     Перед окончаниями **-st** (du) и **-t** (er/sie/es, ihr) добавляется гласная **-e-** для удобства произношения.
     Пример: **arbeiten** (работать), основа: **arbeit-**
     -   du: arbeit**e**st
     -   er/sie/es: arbeit**e**t
     -   ihr: arbeit**e**t
-    Другие примеры: finden (находить), atmen (дышать), öffnen (открывать).
+    Другие примеры: finden (находить) -> du findest, er findet, ihr findet; atmen (дышать); öffnen (открывать).
+    Исключение: kommen (du kommst, er kommt), lernen (du lernst, er lernt).
 
 *   **Глаголы, основа которых заканчивается на -s, -ss, -ß, -z, -x**:
     Во 2-м лице единственного числа (du) окончание будет **-t** вместо **-st** (так как 's' уже есть в основе).
     Пример: **heißen** (называться), основа: **heiß-**
     -   du: heiß**t** (а не heißst)
-    Другие примеры: tanzen (танцевать) -> du tanzt, sitzen (сидеть) -> du sitzt.
+    Другие примеры: tanzen (танцевать) -> du tanzt; sitzen (сидеть) -> du sitzt; reisen (путешествовать) -> du reist.
 
 **4. Глаголы "sein" (быть) и "haben" (иметь)**
 Эти важнейшие глаголы имеют полностью особое спряжение, которое нужно запомнить:
@@ -226,7 +232,11 @@ export const MOCK_LESSONS: Lesson[] = [
     -   sie/Sie haben
 
 **5. Модальные глаголы (Modalverben)**
-Модальные глаголы (können, müssen, dürfen, sollen, wollen, mögen) также имеют особенности спряжения в Präsens, особенно в единственном числе. Их мы рассмотрим подробнее в отдельном уроке.
+Модальные глаголы (können, müssen, dürfen, sollen, wollen, mögen) также имеют особенности спряжения в Präsens: 1-е и 3-е лицо единственного числа совпадают и часто не имеют окончания. Корневая гласная часто меняется. Подробнее в отдельном уроке.
+Пример: **können** (мочь)
+-   ich: kann
+-   du: kannst
+-   er/sie/es: kann
 
 Помните, что практика – ключ к успеху в спряжении глаголов!`,
     vocabulary: [
@@ -239,7 +249,12 @@ export const MOCK_LESSONS: Lesson[] = [
       { german: 'haben', russian: 'иметь', example: 'Ich habe eine Frage.' },
       { german: 'wohnen', russian: 'жить, проживать', example: 'Wo wohnst du?' },
       { german: 'spielen', russian: 'играть', example: 'Die Kinder spielen im Garten.' },
-      { german: 'heißen', russian: 'называться', example: 'Wie heißt du?' }
+      { german: 'heißen', russian: 'называться', example: 'Wie heißt du?' },
+      { german: 'geben', russian: 'давать', example: 'Er gibt mir ein Geschenk.'},
+      { german: 'nehmen', russian: 'брать', example: 'Ich nehme den Bus.'},
+      { german: 'schlafen', russian: 'спать', example: 'Das Baby schläft.'},
+      { german: 'finden', russian: 'находить', example: 'Ich finde meinen Schlüssel nicht.'},
+      { german: 'tanzen', russian: 'танцевать', example: 'Sie tanzen gern.'}
     ],
     exercises: [
       {
@@ -312,42 +327,43 @@ export const MOCK_LESSONS: Lesson[] = [
 
 **1. Окончание -e:**
    - Многие односложные существительные мужского рода (часто с умлаутом корневой гласной a, o, u → ä, ö, ü).
-     Примеры: der Tag → die Tag**e** (день), der Sohn → die S**ö**hn**e** (сын), der Stuhl → die St**ü**hl**e** (стул).
+     Примеры: der Tag → die Tag**e** (день), der Sohn → die S**ö**hn**e** (сын), der Stuhl → die St**ü**hl**e** (стул), der Gast → die G**ä**st**e** (гость).
    - Некоторые существительные среднего рода (иногда с умлаутом).
-     Примеры: das Jahr → die Jahr**e** (год), das Heft → die Heft**e** (тетрадь).
+     Примеры: das Jahr → die Jahr**e** (год), das Heft → die Heft**e** (тетрадь), das Bein → die Bein**e** (нога).
    - Некоторые существительные женского рода (часто с умлаутом).
-     Примеры: die Hand → die H**ä**nd**e** (рука), die Nacht → die N**ä**cht**e** (ночь).
+     Примеры: die Hand → die H**ä**nd**e** (рука), die Nacht → die N**ä**cht**e** (ночь), die Stadt → die St**ä**dt**e** (город).
 
 **2. Окончание -(e)n:**
-   - Большинство существительных женского рода.
-     Примеры: die Frau → die Frau**en** (женщина), die Tür → die Tür**en** (дверь), die Zeitung → die Zeitung**en** (газета).
-   - Существительные мужского рода так называемого "слабого склонения" (n-Deklination).
-     Примеры: der Junge → die Junge**n** (мальчик), der Kunde → die Kunde**n** (клиент), der Name → die Name**n** (имя).
-   - Некоторые существительные среднего рода, особенно заимствованные.
-     Примеры: das Auge → die Auge**n** (глаз), das Bett → die Bett**en** (кровать), das Interesse → die Interesse**n** (интерес).
+   - Большинство существительных женского рода (особенно многосложные, оканчивающиеся на -e, -ei, -heit, -keit, -schaft, -ung, -ion, -tät).
+     Примеры: die Frau → die Frau**en** (женщина), die Tür → die Tür**en** (дверь), die Zeitung → die Zeitung**en** (газета), die Frage → die Frage**n** (вопрос).
+   - Существительные мужского рода так называемого "слабого склонения" (n-Deklination). Эти существительные получают -(e)n во всех падежах кроме Nominativ Singular. Во множественном числе они также имеют -(e)n.
+     Примеры: der Junge → die Junge**n** (мальчик), der Kunde → die Kunde**n** (клиент), der Name → die Name**n** (имя), der Mensch → die Mensch**en** (человек).
+   - Некоторые существительные среднего рода, особенно заимствованные или оканчивающиеся на -e.
+     Примеры: das Auge → die Auge**n** (глаз), das Bett → die Bett**en** (кровать), das Interesse → die Interesse**n** (интерес), das Ende → die Ende**n** (конец).
 
 **3. Окончание -er:**
-   - Многие односложные существительные среднего рода (почти всегда с умлаутом, если он возможен).
-     Примеры: das Kind → die Kind**er** (ребенок), das Buch → die B**ü**ch**er** (книга), das Haus → die H**ä**us**er** (дом).
+   - Многие односложные существительные среднего рода (почти всегда с умлаутом, если он возможен у корневой гласной a, o, u).
+     Примеры: das Kind → die Kind**er** (ребенок), das Buch → die B**ü**ch**er** (книга), das Haus → die H**ä**us**er** (дом), das Land → die L**ä**nd**er** (страна).
    - Некоторые существительные мужского рода (также часто с умлаутом).
-     Примеры: der Mann → die M**ä**nn**er** (мужчина), der Wald → die W**ä**ld**er** (лес).
+     Примеры: der Mann → die M**ä**nn**er** (мужчина), der Wald → die W**ä**ld**er** (лес), der Geist → die Geist**er** (дух).
 
 **4. Окончание -s:**
-   - Многие заимствованные слова, особенно из английского и французского языков.
-     Примеры: das Auto → die Auto**s** (автомобиль), das Hotel → die Hotel**s** (отель), das Hobby → die Hobby**s** (хобби).
+   - Многие заимствованные слова, особенно из английского и французского языков, оканчивающиеся на гласные (кроме -e), или на некоторые согласные.
+     Примеры: das Auto → die Auto**s** (автомобиль), das Hotel → die Hotel**s** (отель), das Hobby → die Hobby**s** (хобби), das Team → die Team**s** (команда), der Job → die Job**s** (работа).
    - Сокращения и аббревиатуры.
-     Примеры: der PKW → die PKW**s** (легковой автомобиль).
-   - Некоторые существительные, оканчивающиеся на гласную (кроме -e).
-     Примеры: die Oma → die Oma**s** (бабушка).
+     Примеры: der PKW → die PKW**s** (легковой автомобиль), die WG → die WG**s** (коммунальная квартира).
+   - Некоторые существительные, оканчивающиеся на гласную (кроме -e), например, имена собственные или родства.
+     Примеры: die Oma → die Oma**s** (бабушка), der Opa → die Opa**s** (дедушка).
 
 **5. Без окончания (с умлаутом или без):**
-   - Существительные мужского и среднего рода, оканчивающиеся на **-er, -el, -en** (часто с умлаутом корневой гласной, если это возможно у мужского рода).
-     Примеры: der Lehrer → die Lehrer (учитель), der Apfel → die **Ä**pfel (яблоко), das Mädchen → die Mädchen (девочка), das Zimmer → die Zimmer (комната).
+   - Существительные мужского и среднего рода, оканчивающиеся на **-er, -el, -en** (часто с умлаутом корневой гласной, если это возможно у мужского рода, средний род обычно без умлаута).
+     Примеры: der Lehrer → die Lehrer (учитель), der Apfel → die **Ä**pfel (яблоко), das Mädchen → die Mädchen (девочка), das Zimmer → die Zimmer (комната), der Computer → die Computer, der Vogel → die V**ö**gel (птица), das Fenster → die Fenster.
    - Некоторые другие существительные.
 
 **Важные моменты:**
 -   Неопределенный артикль (ein/eine) во множественном числе отсутствует. Вместо него может использоваться слово "viele" (многие), "einige" (некоторые) или числительное.
--   Принадлежность к определенному роду не всегда однозначно указывает на тип образования множественного числа, поэтому форму множественного числа лучше запоминать вместе с существительным.
+-   Принадлежность к определенному роду не всегда однозначно указывает на тип образования множественного числа, поэтому форму множественного числа лучше запоминать вместе с существительным и его артиклем.
+-   Обращайте внимание на словари: там всегда указывается форма множественного числа.
 
 Запоминание форм множественного числа требует практики и внимания к деталям.`,
     vocabulary: [
@@ -356,11 +372,16 @@ export const MOCK_LESSONS: Lesson[] = [
       { german: 'das Kind, die Kinder', russian: 'ребенок, дети', example: 'Die Kinder spielen im Park.' },
       { german: 'das Auto, die Autos', russian: 'автомобиль, автомобили', example: 'Auf der Straße stehen viele Autos.' },
       { german: 'der Apfel, die Äpfel', russian: 'яблоко, яблоки', example: 'Ich kaufe drei Äpfel.' },
-      { german: 'der Lehrer, die Lehrer', russian: 'учитель, учителя', example: 'Die Lehrer sind sehr nett.' },
+      { german: 'der Lehrer, die Lehrer', russian: 'учитель, учителя (м.р.)', example: 'Die Lehrer sind sehr nett.' },
       { german: 'das Buch, die Bücher', russian: 'книга, книги', example: 'In der Bibliothek gibt es viele Bücher.' },
       { german: 'die Stadt, die Städte', russian: 'город, города', example: 'Wir besuchen verschiedene Städte.' },
       { german: 'der Junge, die Jungen', russian: 'мальчик, мальчики', example: 'Die Jungen spielen Fußball.' },
       { german: 'das Mädchen, die Mädchen', russian: 'девочка, девочки', example: 'Die Mädchen singen Lieder.' },
+      { german: 'die Hand, die Hände', russian: 'рука (кисть), руки'},
+      { german: 'der Stuhl, die Stühle', russian: 'стул, стулья'},
+      { german: 'die Tür, die Türen', russian: 'дверь, двери'},
+      { german: 'das Zimmer, die Zimmer', russian: 'комната, комнаты'},
+      { german: 'das Hobby, die Hobbys', russian: 'хобби, хобби (мн.ч.)'}
     ],
     exercises: [
       {
@@ -375,9 +396,9 @@ export const MOCK_LESSONS: Lesson[] = [
         id: 'a2-plural-adv-ex2',
         type: 'fill_in_the_blank',
         question: 'Вставьте правильную форму мн.ч.: Zwei ___ (Katze, f) spielen im Garten.',
-        sentenceParts: ['Zwei ', ' (Katze, f) spielen im Garten.'],
+        sentenceParts: ['Zwei ', ' spielen im Garten.'], // Placeholder for Katze, f
         correctAnswer: 'Katzen',
-        explanation: 'Множественное число от "die Katze" (ж.р.) - "die Katzen" (окончание -n).',
+        explanation: 'Множественное число от "die Katze" (ж.р.) - "die Katzen" (окончаanie -n).',
       },
       {
         id: 'a2-plural-adv-ex3',
@@ -386,7 +407,7 @@ export const MOCK_LESSONS: Lesson[] = [
         prompt: 'Эти яблоки красные.',
         languageDirection: 'to_german',
         correctAnswer: 'Diese Äpfel sind rot.',
-        explanation: '"Das Apfel" (м.р.) во множественном числе "die Äpfel" (умлаут без окончания).',
+        explanation: '"Der Apfel" (м.р.) во множественном числе "die Äpfel" (умлаут, без изменения окончания -el).',
       },
       {
         id: 'a2-plural-adv-ex4',
@@ -400,7 +421,7 @@ export const MOCK_LESSONS: Lesson[] = [
         id: 'a2-plural-adv-ex5',
         type: 'fill_in_the_blank',
         question: 'Напишите множественное число слова "das Foto": Viele ___ hängen an der Wand.',
-        sentenceParts: ['Viele ', ' (Foto, n) hängen an der Wand.'],
+        sentenceParts: ['Viele ', ' hängen an der Wand.'], // Placeholder for Foto, n
         correctAnswer: 'Fotos',
         explanation: 'Заимствованное слово "das Foto" (ср.р.) образует множественное число с окончанием -s: die Fotos.',
       },
@@ -410,7 +431,16 @@ export const MOCK_LESSONS: Lesson[] = [
         question: 'Выберите правильное множественное число для "der Bruder" (брат):',
         options: ['die Brudern', 'die Brüder', 'die Bruder', 'die Bruders'],
         correctAnswer: 'die Brüder',
-        explanation: 'Слово "der Bruder" (м.р.) образует множественное число с умлаутом без окончания: die Brüder (как и der Apfel - die Äpfel, der Vater - die Väter).',
+        explanation: 'Слово "der Bruder" (м.р., оканчивается на -er) образует множественное число с умлаутом без дополнительного окончания: die Brüder.',
+      },
+      {
+        id: 'a2-plural-adv-ex7',
+        type: 'translation',
+        question: 'Переведите на немецкий: "В комнате три окна."',
+        prompt: 'В комнате три окна.',
+        languageDirection: 'to_german',
+        correctAnswer: 'Im Zimmer sind drei Fenster.',
+        explanation: '"Das Fenster" (ср.р., оканчивается на -er) не меняет форму во множественном числе: die Fenster.',
       },
     ],
   },
@@ -418,26 +448,170 @@ export const MOCK_LESSONS: Lesson[] = [
     id: 'b1-nebensaetze',
     level: 'B1',
     topic: 'Придаточные предложения (Nebensätze)',
-    theory: 'Придаточные предложения в немецком языке обычно вводятся союзами (weil, dass, ob, wenn и др.) и имеют измененный порядок слов: спрягаемый глагол ставится в конец предложения. Например: "Ich lerne Deutsch, weil ich in Deutschland arbeiten möchte." (Я учу немецкий, потому что хочу работать в Германии.)',
+    theory: `Придаточные предложения (Nebensätze) – это зависимые предложения, которые не могут существовать самостоятельно и всегда относятся к главному предложению (Hauptsatz). Они выполняют роль различных членов предложения или уточняют его.
+
+**Основное правило порядка слов:** В придаточных предложениях спрягаемый глагол (тот, который изменяется по лицам и числам) всегда стоит **в самом конце**. Если в предложении есть отделяемая приставка, она соединяется с глаголом в конце. Если есть модальный глагол и инфинитив, то модальный глагол стоит в конце, а инфинитив перед ним.
+
+Придаточные предложения отделяются от главного запятой.
+
+**Типы придаточных предложений и союзы (Subjunktionen):**
+
+**1. Kausalsätze (Придаточные причины) – Warum? Weshalb? (Почему? Отчего?)**
+   - **weil** (потому что, так как – причина часто неизвестна собеседнику):
+     *Ich lerne Deutsch, **weil** ich in Deutschland arbeiten möchte.* (Я учу немецкий, потому что хочу работать в Германии.)
+   - **da** (так как, поскольку – причина обычно уже известна собеседнику или очевидна):
+     ***Da** das Wetter schlecht ist, bleiben wir zu Hause.* (Так как погода плохая, мы остаемся дома.)
+
+**2. Finalsätze (Придаточные цели) – Wozu? Mit welcher Absicht? (Для чего? С какой целью?)**
+   - **damit** (чтобы – когда подлежащие в главном и придаточном предложениях разные):
+     *Ich gebe dir Geld, **damit** du dir ein Buch kaufen kannst.* (Я даю тебе деньги, чтобы ты мог купить себе книгу.)
+   - **um...zu + Infinitiv** (чтобы – когда подлежащие в главном и придаточном предложениях совпадают. \`um\` стоит перед доп. членами, \`zu\` перед инфинитивом):
+     *Ich lerne Deutsch, **um** in Deutschland arbeiten **zu** können.* (Я учу немецкий, чтобы мочь работать в Германии.)
+
+**3. Konzessivsätze (Придаточные уступки) – Trotz welchen Umstands? (Несмотря на какое обстоятельство?)**
+   - **obwohl / obgleich / obschon** (хотя, несмотря на то что):
+     ***Obwohl** es regnet, gehen wir spazieren.* (Хотя идет дождь, мы идем гулять.)
+     *Er kam zur Party, **obgleich** er sehr müde war.* (Он пришел на вечеринку, хотя был очень уставшим.)
+
+**4. Konditionalsätze (Придаточные условия) – Unter welcher Bedingung? (При каком условии?)**
+   - **wenn** (если, когда – для реальных условий в настоящем, будущем или повторяющихся действий в прошлом):
+     ***Wenn** du Zeit hast, können wir uns treffen.* (Если у тебя будет время, мы можем встретиться.)
+   - **falls** (в случае если, если – менее вероятное условие):
+     ***Falls** es morgen schneit, fahren wir nicht Ski.* (Если завтра пойдет снег, мы не поедем кататься на лыжах.)
+
+**5. Temporalsätze (Придаточные времени) – Wann? Wie lange? Seit wann? Bis wann? (Когда? Как долго? С каких пор? До каких пор?)**
+   - **als** (когда – для однократного действия в прошлом):
+     ***Als** ich ein Kind war, spielte ich oft im Garten.* (Когда я был ребенком, я часто играл в саду.)
+   - **wenn** (когда – для многократных действий в прошлом, настоящем и будущем):
+     *Immer **wenn** er lachte, freute ich mich.* (Всегда, когда он смеялся, я радовался.)
+     ***Wenn** ich nach Hause komme, koche ich etwas.* (Когда я прихожу домой, я готовлю что-нибудь.)
+   - **während** (в то время как, пока):
+     ***Während** ich koche, hört mein Mann Musik.* (Пока я готовлю, мой муж слушает музыку.)
+   - **bevor / ehe** (прежде чем, до того как):
+     ***Bevor** du gehst, räume dein Zimmer auf.* (Прежде чем ты уйдешь, убери свою комнату.)
+   - **nachdem** (после того как – действие в придаточном предшествует действию в главном; часто с Plusquamperfekt в придаточном и Präteritum/Perfekt в главном):
+     ***Nachdem** ich gegessen hatte, ging ich spazieren.* (После того как я поел, я пошел гулять.)
+   - **seit / seitdem** (с тех пор как):
+     ***Seit** ich in Berlin wohne, habe ich viele Freunde gefunden.* (С тех пор как я живу в Берлине, я нашел много друзей.)
+   - **bis** (до тех пор пока, пока не):
+     *Warte hier, **bis** ich zurückkomme.* (Жди здесь, пока я не вернусь.)
+   - **solange** (пока, в течение того времени как):
+     ***Solange** du hier bist, kannst du mir helfen.* (Пока ты здесь, ты можешь мне помочь.)
+
+
+**6. Modalsätze (Придаточные образа действия) – Wie? Auf welche Weise? (Как? Каким образом?)**
+   - **indem** (тем что, таким образом что):
+     *Er half mir, **indem** er mir Ratschläge gab.* (Он помог мне тем, что дал советы.)
+   - **ohne...zu + Infinitiv** (не + деепричастие; без того чтобы):
+     *Er ging weg, **ohne** ein Wort **zu** sagen.* (Он ушел, не сказав ни слова.)
+   - **(an)statt...zu + Infinitiv** (вместо того чтобы):
+     ***Anstatt** fernzusehen, sollte er lieber lernen.* (Вместо того чтобы смотреть телевизор, ему следовало бы лучше учиться.)
+
+**7. Dass-Sätze (Изъяснительные придаточные)**
+   - **dass** (что, чтобы): часто используются после глаголов говорения, мышления, чувств (wissen, sagen, denken, glauben, hoffen, meinen, fühlen, sehen, hören), а также после безличных выражений (es ist wichtig/gut/schade/klar, dass...).
+     *Ich weiß, **dass** du Recht hast.* (Я знаю, что ты прав.)
+     *Es ist wichtig, **dass** du pünktlich kommst.* (Важно, чтобы ты пришел вовремя.)
+
+**8. Indirekte Fragesätze (Косвенные вопросы)**
+   - **ob** (ли – для общих вопросов без вопросительного слова, т.е. на которые можно ответить да/нет):
+     *Er fragt, **ob** du morgen Zeit hast.* (Он спрашивает, есть ли у тебя завтра время.)
+     *Ich möchte wissen, **ob** der Film schon begonnen hat.* (Я хочу знать, начался ли уже фильм.)
+   - **Вопросительные слова (W-Fragen): wer, was, wann, wo, warum, wie, welcher, etc.** (кто, что, когда, где, почему, как, какой и т.д.):
+     *Sie möchte wissen, **wann** der Zug ankommt.* (Она хотела бы знать, когда прибывает поезд.)
+     *Ich verstehe nicht, **warum** er das gesagt hat.* (Я не понимаю, почему он это сказал.)
+
+Понимание и правильное использование придаточных предложений значительно обогащает речь и является ключевым навыком для уровня B1 и выше.`,
     audio: 'https://storage.googleapis.com/stg_public_misc/audio/placeholder_nebensaetze_b1.mp3',
-    transcript: 'Weil, dass, ob, wenn. Ich weiß nicht, ob er kommt. Wenn das Wetter gut ist, gehen wir spazieren.',
+    transcript: 'Weil, dass, ob, wenn. Ich weiß nicht, ob er kommt. Wenn das Wetter gut ist, gehen wir spazieren. Nachdem ich gegessen hatte, fühlte ich mich besser.',
+    vocabulary: [
+      { german: 'weil', russian: 'потому что, так как (причина)', example: 'Ich bleibe zu Hause, weil es regnet.' },
+      { german: 'dass', russian: 'что, чтобы (изъяснительное)', example: 'Ich hoffe, dass du bald kommst.' },
+      { german: 'ob', russian: 'ли (косвенный вопрос)', example: 'Ich frage mich, ob das richtig ist.' },
+      { german: 'wenn', russian: 'если, когда (условие, повторяющееся/будущее время)', example: 'Wenn ich Zeit habe, besuche ich dich.' },
+      { german: 'als', russian: 'когда (однократное в прошлом)', example: 'Als ich jung war, lebte ich auf dem Land.' },
+      { german: 'obwohl', russian: 'хотя, несмотря на то что', example: 'Obwohl er müde war, arbeitete er weiter.' },
+      { german: 'damit', russian: 'чтобы (цель, разные подлежащие)', example: 'Lerne gut, damit du die Prüfung bestehst.' },
+      { german: 'um...zu', russian: 'чтобы (цель, одно подлежащее)', example: 'Ich spare Geld, um ein Auto zu kaufen.' },
+      { german: 'während', russian: 'в то время как, пока', example: 'Während sie liest, kocht er.' },
+      { german: 'nachdem', russian: 'после того как', example: 'Nachdem er gegessen hatte, ging er schlafen.' },
+      { german: 'bevor', russian: 'прежде чем', example: 'Bevor du sprichst, denke nach.' },
+      { german: 'seitdem/seit', russian: 'с тех пор как', example: 'Seitdem er hier wohnt, ist er glücklicher.' },
+      { german: 'bis', russian: 'до тех пор пока', example: 'Warte, bis ich fertig bin.' },
+      { german: 'falls', russian: 'в случае если, если (менее вероятно)', example: 'Falls du ihn siehst, grüß ihn von mir.'},
+      { german: 'indem', russian: 'тем что, таким образом что', example: 'Man lernt eine Sprache, indem man viel spricht.' },
+      { german: 'solange', russian: 'пока, в течение того времени как', example: 'Solange es nicht regnet, können wir draußen bleiben.' },
+    ],
     exercises: [
       {
-        id: 'b1-nebensaetze-ex1',
-        type: 'fill_in_the_blank',
-        question: 'Дополните предложение: Er sagt, dass er müde ___.',
-        sentenceParts: ['Er sagt, dass er müde ', '.'],
-        correctAnswer: 'ist',
-        explanation: 'В придаточном предложении, вводимом союзом "dass", глагол "sein" (в форме "ist" для "er") ставится в конец.',
+        id: 'b1-nebensaetze-adv-ex1',
+        type: 'multiple_choice',
+        question: 'Выберите правильный союз: Ich gehe nicht ins Kino, ___ ich keine Zeit habe.',
+        options: ['obwohl', 'damit', 'weil', 'wenn'],
+        correctAnswer: 'weil',
+        explanation: '"weil" (потому что) используется для указания причины.',
       },
       {
-        id: 'b1-nebensaetze-ex2',
+        id: 'b1-nebensaetze-adv-ex2',
+        type: 'fill_in_the_blank',
+        question: 'Поставьте глагол в правильную форму: Er sagt, dass er dich morgen ___ (besuchen).',
+        sentenceParts: ['Er sagt, dass er dich morgen ', '.'],
+        correctAnswer: 'besucht',
+        explanation: 'В придаточном предложении с "dass" спрягаемый глагол "besucht" ставится в конец.',
+      },
+      {
+        id: 'b1-nebensaetze-adv-ex3',
         type: 'translation',
-        question: 'Переведите на немецкий: "Я не знаю, придет ли он."',
-        prompt: 'Я не знаю, придет ли он.',
+        question: 'Переведите на немецкий: "Я не знаю, придёт ли он сегодня."',
+        prompt: 'Я не знаю, придёт ли он сегодня.',
         languageDirection: 'to_german',
-        correctAnswer: 'Ich weiß nicht, ob er kommt.',
-        explanation: 'Союз "ли" переводится как "ob". Глагол "kommt" ставится в конец придаточного предложения.',
+        correctAnswer: 'Ich weiß nicht, ob er heute kommt.',
+        explanation: 'Косвенный вопрос вводится союзом "ob", глагол "kommt" в конце.',
+      },
+      {
+        id: 'b1-nebensaetze-adv-ex4',
+        type: 'multiple_choice',
+        question: 'Какой союз используется для выражения цели, если подлежащие в главном и придаточном предложениях РАЗНЫЕ?',
+        options: ['um...zu', 'damit', 'weil', 'obwohl'],
+        correctAnswer: 'damit',
+        explanation: '"damit" используется для цели, когда субъекты действия в главном и придаточном предложениях различаются.',
+      },
+      {
+        id: 'b1-nebensaetze-adv-ex5',
+        type: 'fill_in_the_blank',
+        question: 'Дополните предложение правильным союзом и поставьте глагол в конец: ___ sie fleißig gelernt hatte, bestand sie die Prüfung. (после того как)',
+        sentenceParts: ['', ' sie fleißig gelernt hatte, bestand sie die Prüfung.'],
+        correctAnswer: 'Nachdem',
+        explanation: '"Nachdem" (после того как) указывает на предшествующее действие. Глагол "hatte gelernt" уже стоит в конце (Plusquamperfekt).',
+      },
+      {
+        id: 'b1-nebensaetze-adv-ex6',
+        type: 'translation',
+        question: 'Переведите на немецкий: "Хотя фильм был длинный, он был интересный."',
+        prompt: 'Хотя фильм был длинный, он был интересный.',
+        languageDirection: 'to_german',
+        correctAnswer: 'Obwohl der Film lang war, war er interessant.',
+        explanation: '"Obwohl" (хотя) вводит уступительное придаточное. Глагол "war" в конце придаточного.',
+      },
+      {
+        id: 'b1-nebensaetze-adv-ex7',
+        type: 'multiple_choice',
+        question: 'Какой порядок слов в придаточном предложении, вводимом союзом "wenn"?',
+        options: [
+          'Подлежащее - сказуемое - остальные члены.',
+          'Сказуемое - подлежащее - остальные члены.',
+          'Спрягаемый глагол в конце предложения.',
+          'Спрягаемый глагол в начале предложения.'
+        ],
+        correctAnswer: 'Спрягаемый глагол в конце предложения.',
+        explanation: 'В большинстве придаточных предложений немецкого языка, вводимых союзом, спрягаемый глагол ставится в самый конец.',
+      },
+      {
+        id: 'b1-nebensaetze-adv-ex8',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте подходящий союз: Ich lerne viel, ___ ich die Prüfung bestehen kann. (цель, разные подлежащие)',
+        sentenceParts: ['Ich lerne viel, ', ' ich die Prüfung bestehen kann.'],
+        correctAnswer: 'damit',
+        explanation: 'Для выражения цели с разными подлежащими (ich/ich) используется союз "damit". Глагол "kann" в конце.',
       },
     ],
   },
@@ -790,6 +964,3 @@ Das auf dem Tisch liegende Buch. (Книга, лежащая на столе.)
     ],
   },
 ];
-
-    
-    
