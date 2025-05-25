@@ -30,6 +30,7 @@ import { lessonB1Konjunktiv2Einfuehrung } from './lessons/b1-konjunktiv2-einfueh
 import { lessonB1PassivEinfuehrung } from './lessons/b1-passiv-einfuehrung';
 import { lessonB1Genitiv } from './lessons/b1-genitiv';
 import { lessonB1NDeklination } from './lessons/b1-n-deklination';
+import { lessonB1Indefinitpronomen } from './lessons/b1-indefinitpronomen';
 
 
 // B2 Lessons
@@ -75,6 +76,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1PassivEinfuehrung,
   lessonB1Genitiv,
   lessonB1NDeklination,
+  lessonB1Indefinitpronomen,
 
   // B2
   lessonB2Konjunktiv2,
