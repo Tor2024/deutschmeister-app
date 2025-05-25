@@ -9,21 +9,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle, MessageSquareText } from 'lucide-react'; // Added MessageSquareText
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle, MessageSquareText } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
 import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-exercise';
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
-import { generateAudioExercises, type GenerateAudioExercisesInput, type GenerateAudioExercisesOutput, type GeneratedExercise as AIGeneratedExercise } from '@/ai/flows/ai-audio-integration';
+import { generateAudioExercises, type GenerateAudioExercisesInput, type GenerateAudioExercisesOutput } from '@/ai/flows/ai-audio-integration';
 import { evaluateWritingExercise, type EvaluateWritingInput, type EvaluateWritingOutput } from '@/ai/flows/evaluate-writing-exercise';
-import { evaluateTranslation, type EvaluateTranslationInput, type EvaluateTranslationOutput } from '@/ai/flows/evaluate-translation-flow'; // Added new flow
+import { evaluateTranslation, type EvaluateTranslationInput, type EvaluateTranslationOutput } from '@/ai/flows/evaluate-translation-flow';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
-
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Helper to get a lesson, simulating data fetching
 const getLessonById = (id: string): Lesson | undefined => {
@@ -112,7 +112,7 @@ export default function LessonPage() {
             console.warn("Unknown AI exercise type:", (aiEx as any).type);
             return {
               id: baseId,
-              type: 'multiple_choice',
+              type: 'multiple_choice', // Fallback to multiple choice
               question: (aiEx as any).question || "AI Generated Question - Unknown Type",
               options: (aiEx as any).options || ["Option A", "Option B"],
               correctAnswer: (aiEx as any).correctAnswer || "Option A",
@@ -159,12 +159,12 @@ export default function LessonPage() {
 
   const handleWritingAnswerChange = (exerciseId: string, answer: string) => {
     setUserWritingAnswers(prev => ({...prev, [exerciseId]: answer}));
-    setAiWritingFeedback(prev => { // Clear previous AI feedback for this exercise
+    setAiWritingFeedback(prev => { 
       const newFeedback = {...prev};
       delete newFeedback[exerciseId];
       return newFeedback;
     });
-     setExerciseFeedback(prev => { // Clear general feedback as well
+     setExerciseFeedback(prev => {
       const newFeedback = { ...prev };
       delete newFeedback[exerciseId];
       return newFeedback;
@@ -201,7 +201,7 @@ export default function LessonPage() {
           setAiWritingFeedback(prev => ({ ...prev, [exercise.id]: aiResult }));
           setExerciseFeedback(prev => ({
             ...prev,
-            [exercise.id]: { correct: null, explanation: aiResult.overallAssessment } // Using null for 'correct' for AI evaluated tasks
+            [exercise.id]: { correct: null, explanation: aiResult.overallAssessment } 
           }));
           toast({ title: "Оценка ИИ получена", description: aiResult.overallAssessment, variant: "default" });
 
@@ -251,7 +251,7 @@ export default function LessonPage() {
           const input: EvaluateTranslationInput = {
             userTranslation: userAnswer,
             originalSentence: translationExercise.prompt,
-            sourceLanguage: translationExercise.languageDirection === 'to_german' ? "Russian" : "German", // Assuming Russian for non-German source
+            sourceLanguage: translationExercise.languageDirection === 'to_german' ? "Russian" : "German", 
             targetLanguage: translationExercise.languageDirection === 'to_german' ? "German" : "Russian",
             modelAnswer: translationExercise.correctAnswer,
             languageLevel: lesson.level
@@ -294,8 +294,6 @@ export default function LessonPage() {
         return;
     }
 
-
-    // For other exercise types (multiple_choice, fill_in_the_blank)
     const userAnswer = userAnswers[exercise.id];
     if (userAnswer === undefined || (typeof userAnswer === 'string' && userAnswer.trim() === '')) {
       toast({ title: "Внимание", description: "Пожалуйста, дайте ответ.", variant: "destructive" });
@@ -305,13 +303,12 @@ export default function LessonPage() {
     let isCorrect = false;
     switch (exercise.type) {
         case 'multiple_choice':
-        case 'listening_comprehension': // Assuming similar structure
+        case 'listening_comprehension':
             isCorrect = userAnswer === (exercise as MultipleChoiceExercise).correctAnswer;
             break;
         case 'fill_in_the_blank':
             isCorrect = userAnswer.toLowerCase().trim() === (exercise as FillInTheBlankExercise).correctAnswer.toLowerCase().trim();
             break;
-        // Translation is handled above with AI
         default:
             break;
     }
@@ -358,7 +355,7 @@ export default function LessonPage() {
   const handleCompleteLesson = () => {
     if (lesson) {
       const allStandardExercisesAttemptedOrMastered = lesson.exercises
-        .filter(ex => ex.type !== 'writing_prompt') // Writing prompts don't block completion
+        .filter(ex => ex.type !== 'writing_prompt')
         .every(ex => userAnswers[ex.id] !== undefined || progress.exerciseAttempts[ex.id]?.mastered);
 
       const standardExercisesExist = lesson.exercises.filter(ex => ex.type !== 'writing_prompt').length > 0;
@@ -393,287 +390,298 @@ export default function LessonPage() {
           </div>
           <CardDescription className="text-lg">{lesson.topic} - Уровень {lesson.level}</CardDescription>
         </CardHeader>
-        <CardContent>
-          <p className="text-md whitespace-pre-line leading-relaxed">{lesson.theory}</p>
-        </CardContent>
+        {lesson.audio && lesson.transcript && (
+          <CardContent className="pt-6">
+            <Card className="shadow-md">
+              <CardHeader>
+                <CardTitle className="text-xl flex items-center"><Volume2 className="mr-2 h-6 w-6 text-primary" /> Аудиоматериал</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <AudioPlayer src={lesson.audio} transcript={lesson.transcript} />
+                <Button onClick={handleGenerateAiExercises} disabled={isGeneratingAiExercises} className="mt-4">
+                  <Lightbulb className="mr-2 h-4 w-4" />
+                  {isGeneratingAiExercises ? "Генерация..." : "Сгенерировать упражнения по аудио (ИИ)"}
+                </Button>
+              </CardContent>
+            </Card>
+          </CardContent>
+        )}
       </Card>
 
-      {lesson.vocabulary && lesson.vocabulary.length > 0 && (
-        <Card className="mb-6 shadow-md">
-          <CardHeader>
-            <CardTitle className="text-2xl flex items-center"><BookOpenCheck className="mr-2 h-6 w-6 text-primary" />Словарь урока</CardTitle>
-            <CardDescription>Ключевые слова и фразы для этого урока.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[30%]">Немецкое слово</TableHead>
-                  <TableHead className="w-[30%]">Перевод</TableHead>
-                  <TableHead>Пример</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {lesson.vocabulary.map((item, index) => (
-                  <TableRow key={index}>
-                    <TableCell className="font-medium">{item.german}</TableCell>
-                    <TableCell>{item.russian}</TableCell>
-                    <TableCell className="italic text-muted-foreground">{item.example || '–'}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-      )}
+      <Tabs defaultValue="theory" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 mb-6">
+          <TabsTrigger value="theory">Теория</TabsTrigger>
+          {lesson.vocabulary && lesson.vocabulary.length > 0 && <TabsTrigger value="vocabulary">Словарь</TabsTrigger>}
+          {lesson.readingText && <TabsTrigger value="reading">Чтение</TabsTrigger>}
+          {allExercises.length > 0 && <TabsTrigger value="exercises">Упражнения</TabsTrigger>}
+        </TabsList>
 
-      {lesson.audio && lesson.transcript && (
-        <Card className="mb-6 shadow-md">
-          <CardHeader>
-            <CardTitle className="text-xl flex items-center"><Volume2 className="mr-2 h-6 w-6 text-primary" /> Аудиоматериал</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <AudioPlayer src={lesson.audio} transcript={lesson.transcript} />
-            <Button onClick={handleGenerateAiExercises} disabled={isGeneratingAiExercises} className="mt-4">
-              <Lightbulb className="mr-2 h-4 w-4" />
-              {isGeneratingAiExercises ? "Генерация..." : "Сгенерировать упражнения по аудио (ИИ)"}
-            </Button>
-          </CardContent>
-        </Card>
-      )}
+        <TabsContent value="theory">
+          <Card className="mb-6 shadow-md">
+            <CardHeader>
+              <CardTitle className="text-2xl">Теоретический материал</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-md whitespace-pre-line leading-relaxed">{lesson.theory}</p>
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-      {lesson.readingText && lesson.readingComprehensionExercises && (
-        <Card className="mb-6 shadow-md">
-          <CardHeader>
-            <CardTitle className="text-2xl flex items-center"><FileText className="mr-2 h-6 w-6 text-primary" />Текст для чтения</CardTitle>
-            <CardDescription>Прочитайте текст и ответьте на вопросы ниже.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-invert max-w-none bg-muted/30 p-4 rounded-md shadow">
-              <p className="whitespace-pre-line leading-relaxed">{lesson.readingText}</p>
-            </div>
+        {lesson.vocabulary && lesson.vocabulary.length > 0 && (
+          <TabsContent value="vocabulary">
+            <Card className="mb-6 shadow-md">
+              <CardHeader>
+                <CardTitle className="text-2xl flex items-center"><BookOpenCheck className="mr-2 h-6 w-6 text-primary" />Словарь урока</CardTitle>
+                <CardDescription>Ключевые слова и фразы для этого урока.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[30%]">Немецкое слово</TableHead>
+                      <TableHead className="w-[30%]">Перевод</TableHead>
+                      <TableHead>Пример</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {lesson.vocabulary.map((item, index) => (
+                      <TableRow key={index}>
+                        <TableCell className="font-medium">{item.german}</TableCell>
+                        <TableCell>{item.russian}</TableCell>
+                        <TableCell className="italic text-muted-foreground">{item.example || '–'}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        )}
 
-            <div className="mt-6 space-y-6">
-              {lesson.readingComprehensionExercises.map((exercise, index) => {
-                 const feedback = readingExerciseFeedback[exercise.id];
-                 const isAttemptedAndCorrect = feedback?.correct;
-                 const isAttemptedAndIncorrect = feedback?.correct === false;
-                return (
-                  <Card
-                    key={exercise.id}
-                    className={cn(
-                      "p-6 rounded-lg",
-                      isAttemptedAndCorrect ? "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600" :
-                      isAttemptedAndIncorrect ? "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600" :
-                      "border-border"
-                    )}
-                  >
-                    <p className="font-semibold text-lg mb-3">Вопрос {index + 1} к тексту: {exercise.question}</p>
-                    <MultipleChoiceExerciseComponent
-                      exercise={{ ...exercise, type: 'multiple_choice' }}
-                      onAnswerChange={(answer) => handleReadingAnswerChange(exercise.id, answer)}
-                      userAnswer={userReadingAnswers[exercise.id]}
-                      disabled={!!feedback}
-                    />
-                    <Button
-                      onClick={() => handleSubmitReadingExercise(exercise)}
-                      disabled={!!feedback || isSubmittingReading || !userReadingAnswers[exercise.id]}
-                      className="mt-4"
-                    >
-                      Проверить ответ
-                    </Button>
-                    {feedback && (
-                      <div className={cn(
-                        "mt-4 p-3 rounded-md text-sm",
-                        feedback.correct ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300"
-                      )}>
-                        {feedback.correct ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <XCircle className="inline mr-2 h-5 w-5" />}
-                        {feedback.explanation || (feedback.correct ? "Верно!" : "Неверно.")}
-                      </div>
-                    )}
-                    {index < lesson.readingComprehensionExercises.length - 1 && <Separator className="my-6" />}
-                  </Card>
-                )
-              })}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {allExercises.length > 0 && (
-        <Card className="shadow-lg">
-          <CardHeader>
-            <CardTitle className="text-2xl font-semibold">Основные упражнения урока</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-8">
-            {allExercises.map((exercise, index) => {
-              const isMastered = progress.exerciseAttempts[exercise.id]?.mastered;
-              const feedback = exerciseFeedback[exercise.id];
-              const currentAiWritingEval = aiWritingFeedback[exercise.id];
-              const isAiWritingEvaluating = isEvaluatingAi[exercise.id];
-              const currentAiTranslationEval = aiTranslationFeedback[exercise.id];
-              const isAiTranslationEvaluating = isEvaluatingTranslationAi[exercise.id];
-
-
-              let cardBorderColor = "border-border";
-              if (exercise.type === 'writing_prompt') {
-                if (currentAiWritingEval?.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
-                else if (feedback && feedback.correct === null) cardBorderColor = "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
-              } else if (exercise.type === 'translation' && currentAiTranslationEval) {
-                 if (currentAiTranslationEval.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
-                 else if (currentAiTranslationEval.isSemanticallyAcceptable) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
-                 else cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600"; // for 'not quite right' but not an error
-              } else if (isMastered) {
-                cardBorderColor = "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500";
-              } else if (feedback) {
-                if (feedback.correct === true) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
-                else if (feedback.correct === false) cardBorderColor = "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600";
-              }
-
-
-              return (
-                <Card
-                  key={exercise.id}
-                  className={cn("p-6 rounded-lg", cardBorderColor)}
-                >
-                  <p className="font-semibold text-lg mb-3">
-                    {isMastered && exercise.type !== 'writing_prompt' && <Award className="inline mr-2 h-5 w-5 text-green-600 dark:text-green-400" />}
-                    {exercise.type === 'writing_prompt' && <VenetianMask className="inline mr-2 h-5 w-5 text-primary" />}
-                    {exercise.type === 'translation' && <MessageSquareText className="inline mr-2 h-5 w-5 text-blue-500" />}
-                    Упражнение {index + 1}: {exercise.question}
-                  </p>
-
-                  {exercise.type === 'multiple_choice' && (
-                    <MultipleChoiceExerciseComponent
-                      exercise={exercise as MultipleChoiceExercise}
-                      onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
-                      userAnswer={userAnswers[exercise.id]}
-                      disabled={isMastered || !!feedback}
-                    />
-                  )}
-                  {exercise.type === 'fill_in_the_blank' && (
-                     <FillInTheBlankExerciseComponent
-                      exercise={exercise as FillInTheBlankExercise}
-                      onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
-                      userAnswer={userAnswers[exercise.id]}
-                      disabled={isMastered || !!feedback}
-                    />
-                  )}
-                  {exercise.type === 'translation' && (
-                    <TranslationExerciseComponent
-                      exercise={exercise as TranslationExercise}
-                      onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
-                      userAnswer={userAnswers[exercise.id]}
-                      disabled={isMastered || !!feedback || isAiTranslationEvaluating || (!!currentAiTranslationEval && !currentAiTranslationEval.error)}
-                    />
-                  )}
-                  {exercise.type === 'writing_prompt' && (
-                    <div className="space-y-2">
-                      {(exercise as WritingPromptExercise).suggestedLength && (
-                        <p className="text-sm text-muted-foreground">
-                          Рекомендуемая длина: {(exercise as WritingPromptExercise).suggestedLength}
-                        </p>
-                      )}
-                      <Textarea
-                        value={userWritingAnswers[exercise.id] || ''}
-                        onChange={(e) => handleWritingAnswerChange(exercise.id, e.target.value)}
-                        placeholder="Ваш ответ..."
-                        className="min-h-[100px]"
-                        disabled={isAiWritingEvaluating || (!!feedback && !currentAiWritingEval?.error) }
-                      />
-                    </div>
-                  )}
-                   {/* TODO: Listening comprehension component */}
-
-                  {exercise.type !== 'writing_prompt' && exercise.type !== 'translation' && (
-                    <Button
-                      onClick={() => handleSubmitExercise(exercise)}
-                      disabled={isMastered || !!feedback || isSubmitting || !userAnswers[exercise.id]}
-                      className="mt-4"
-                    >
-                      {isMastered ? <><Award className="mr-2 h-4 w-4"/>Освоено</> : "Проверить ответ"}
-                    </Button>
-                  )}
-                   {exercise.type === 'translation' && (
-                     <Button
-                      onClick={() => handleSubmitExercise(exercise)}
-                      disabled={isMastered || isAiTranslationEvaluating || !userAnswers[exercise.id] || (!!currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable) }
-                      className="mt-4"
-                    >
-                      {isAiTranslationEvaluating ? "Оценка перевода..." : (currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable ? "Перевод принят" : "Отправить на проверку ИИ")}
-                    </Button>
-                  )}
-                  {exercise.type === 'writing_prompt' && (
-                     <Button
-                      onClick={() => handleSubmitExercise(exercise)}
-                      disabled={isAiWritingEvaluating || !userWritingAnswers[exercise.id] || (!!feedback && !currentAiWritingEval?.error) }
-                      className="mt-4"
-                    >
-                      {isAiWritingEvaluating ? "Оценка ИИ..." : (currentAiWritingEval && !currentAiWritingEval.error ? "Оценено ИИ" : "Отправить на проверку ИИ")}
-                    </Button>
-                  )}
-
-                  {feedback && !isMastered && (
-                    <div className={cn(
-                        "mt-4 p-3 rounded-md text-sm",
-                        exercise.type === 'writing_prompt'
-                          ? (currentAiWritingEval?.error
-                              ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" // AI Writing Error
-                              : "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300" // AI Writing Success or Pending
-                            )
-                          : exercise.type === 'translation'
-                            ? (currentAiTranslationEval?.error
-                                ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" // AI Translation Error
-                                : (feedback.correct === true
-                                  ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" // Correct AI Translation
-                                  : "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" // AI Translation needs improvement
-                                  )
-                              )
-                            : (feedback.correct === true
-                                ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" // Correct standard exercise
-                                : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300" // Incorrect standard exercise
-                              )
-                      )}
-                    >
-                      { exercise.type === 'writing_prompt'
-                        ? (currentAiWritingEval?.error
-                            ? <AlertTriangle className="inline mr-2 h-5 w-5" />
-                            : (isAiWritingEvaluating ? <Info className="inline mr-2 h-5 w-5 animate-pulse" /> : <Info className="inline mr-2 h-5 w-5" />)
-                          )
-                        : exercise.type === 'translation'
-                          ? (currentAiTranslationEval?.error
-                              ? <AlertTriangle className="inline mr-2 h-5 w-5" />
-                              : (isAiTranslationEvaluating
-                                  ? <Info className="inline mr-2 h-5 w-5 animate-pulse" />
-                                  : (feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <Info className="inline mr-2 h-5 w-5" />)
-                                )
-                            )
-                          : (feedback.correct === true
-                              ? <CheckCircle className="inline mr-2 h-5 w-5" />
-                              : <XCircle className="inline mr-2 h-5 w-5" />
-                            )
-                      }
-                      {feedback.explanation ||
-                       (exercise.type !== 'writing_prompt' && exercise.type !== 'translation' && (feedback.correct === true ? "Верно!" : "Неверно.")) ||
-                       "Статус ответа"}
-                    </div>
-                  )}
-
-                  {currentAiWritingEval && exercise.type === 'writing_prompt' && (
-                    <Card className="mt-4 p-4 border-dashed">
-                      <CardHeader className="p-2">
-                        <CardTitle className="text-lg flex items-center">
-                          <Brain className="mr-2 h-5 w-5 text-blue-500" /> Оценка ИИ
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3 p-2">
-                        {currentAiWritingEval.error && (
-                            <div className="text-destructive text-sm">
-                                <p><strong>Ошибка при оценке ИИ:</strong> {currentAiWritingEval.feedbackExplanation || currentAiWritingEval.error}</p>
-                            </div>
+        {lesson.readingText && lesson.readingComprehensionExercises && (
+          <TabsContent value="reading">
+            <Card className="mb-6 shadow-md">
+              <CardHeader>
+                <CardTitle className="text-2xl flex items-center"><FileText className="mr-2 h-6 w-6 text-primary" />Текст для чтения</CardTitle>
+                <CardDescription>Прочитайте текст и ответьте на вопросы ниже.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-invert max-w-none bg-muted/30 p-4 rounded-md shadow">
+                  <p className="whitespace-pre-line leading-relaxed">{lesson.readingText}</p>
+                </div>
+                <div className="mt-6 space-y-6">
+                  {lesson.readingComprehensionExercises.map((exercise, index) => {
+                    const feedback = readingExerciseFeedback[exercise.id];
+                    const isAttemptedAndCorrect = feedback?.correct;
+                    const isAttemptedAndIncorrect = feedback?.correct === false;
+                    return (
+                      <Card
+                        key={exercise.id}
+                        className={cn(
+                          "p-6 rounded-lg",
+                          isAttemptedAndCorrect ? "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600" :
+                          isAttemptedAndIncorrect ? "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600" :
+                          "border-border"
                         )}
-                        {!currentAiWritingEval.error && (
-                            <>
+                      >
+                        <p className="font-semibold text-lg mb-3">Вопрос {index + 1} к тексту: {exercise.question}</p>
+                        <MultipleChoiceExerciseComponent
+                          exercise={{ ...exercise, type: 'multiple_choice' }}
+                          onAnswerChange={(answer) => handleReadingAnswerChange(exercise.id, answer)}
+                          userAnswer={userReadingAnswers[exercise.id]}
+                          disabled={!!feedback}
+                        />
+                        <Button
+                          onClick={() => handleSubmitReadingExercise(exercise)}
+                          disabled={!!feedback || isSubmittingReading || !userReadingAnswers[exercise.id]}
+                          className="mt-4"
+                        >
+                          Проверить ответ
+                        </Button>
+                        {feedback && (
+                          <div className={cn(
+                            "mt-4 p-3 rounded-md text-sm",
+                            feedback.correct ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300"
+                          )}>
+                            {feedback.correct ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <XCircle className="inline mr-2 h-5 w-5" />}
+                            {feedback.explanation || (feedback.correct ? "Верно!" : "Неверно.")}
+                          </div>
+                        )}
+                        {index < lesson.readingComprehensionExercises.length - 1 && <Separator className="my-6" />}
+                      </Card>
+                    )
+                  })}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        )}
+        
+        {allExercises.length > 0 && (
+          <TabsContent value="exercises">
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl font-semibold">Упражнения урока</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-8">
+                {allExercises.map((exercise, index) => {
+                  const isMastered = progress.exerciseAttempts[exercise.id]?.mastered;
+                  const feedback = exerciseFeedback[exercise.id];
+                  const currentAiWritingEval = aiWritingFeedback[exercise.id];
+                  const isAiWritingEvaluating = isEvaluatingAi[exercise.id];
+                  const currentAiTranslationEval = aiTranslationFeedback[exercise.id];
+                  const isAiTranslationEvaluating = isEvaluatingTranslationAi[exercise.id];
+
+                  let cardBorderColor = "border-border";
+                  if (exercise.type === 'writing_prompt') {
+                    if (currentAiWritingEval?.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
+                    else if (feedback && feedback.correct === null) cardBorderColor = "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
+                  } else if (exercise.type === 'translation' && currentAiTranslationEval) {
+                    if (currentAiTranslationEval.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
+                    else if (currentAiTranslationEval.isSemanticallyAcceptable) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
+                    else cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
+                  } else if (isMastered) {
+                    cardBorderColor = "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500";
+                  } else if (feedback) {
+                    if (feedback.correct === true) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
+                    else if (feedback.correct === false) cardBorderColor = "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600";
+                  }
+
+                  return (
+                    <Card
+                      key={exercise.id}
+                      className={cn("p-6 rounded-lg", cardBorderColor)}
+                    >
+                      <p className="font-semibold text-lg mb-3">
+                        {isMastered && exercise.type !== 'writing_prompt' && <Award className="inline mr-2 h-5 w-5 text-green-600 dark:text-green-400" />}
+                        {exercise.type === 'writing_prompt' && <VenetianMask className="inline mr-2 h-5 w-5 text-primary" />}
+                        {exercise.type === 'translation' && <MessageSquareText className="inline mr-2 h-5 w-5 text-blue-500" />}
+                        Упражнение {index + 1}: {exercise.question}
+                      </p>
+
+                      {exercise.type === 'multiple_choice' && (
+                        <MultipleChoiceExerciseComponent
+                          exercise={exercise as MultipleChoiceExercise}
+                          onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
+                          userAnswer={userAnswers[exercise.id]}
+                          disabled={isMastered || !!feedback}
+                        />
+                      )}
+                      {exercise.type === 'fill_in_the_blank' && (
+                        <FillInTheBlankExerciseComponent
+                          exercise={exercise as FillInTheBlankExercise}
+                          onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
+                          userAnswer={userAnswers[exercise.id]}
+                          disabled={isMastered || !!feedback}
+                        />
+                      )}
+                      {exercise.type === 'translation' && (
+                        <TranslationExerciseComponent
+                          exercise={exercise as TranslationExercise}
+                          onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
+                          userAnswer={userAnswers[exercise.id]}
+                          disabled={isMastered || !!feedback || isAiTranslationEvaluating || (!!currentAiTranslationEval && !currentAiTranslationEval.error)}
+                        />
+                      )}
+                      {exercise.type === 'writing_prompt' && (
+                        <div className="space-y-2">
+                          {(exercise as WritingPromptExercise).suggestedLength && (
+                            <p className="text-sm text-muted-foreground">
+                              Рекомендуемая длина: {(exercise as WritingPromptExercise).suggestedLength}
+                            </p>
+                          )}
+                          <Textarea
+                            value={userWritingAnswers[exercise.id] || ''}
+                            onChange={(e) => handleWritingAnswerChange(exercise.id, e.target.value)}
+                            placeholder="Ваш ответ..."
+                            className="min-h-[100px]"
+                            disabled={isAiWritingEvaluating || (!!feedback && !currentAiWritingEval?.error) }
+                          />
+                        </div>
+                      )}
+
+                      {exercise.type !== 'writing_prompt' && exercise.type !== 'translation' && (
+                        <Button
+                          onClick={() => handleSubmitExercise(exercise)}
+                          disabled={isMastered || !!feedback || isSubmitting || !userAnswers[exercise.id]}
+                          className="mt-4"
+                        >
+                          {isMastered ? <><Award className="mr-2 h-4 w-4"/>Освоено</> : "Проверить ответ"}
+                        </Button>
+                      )}
+                      {exercise.type === 'translation' && (
+                        <Button
+                          onClick={() => handleSubmitExercise(exercise)}
+                          disabled={isMastered || isAiTranslationEvaluating || !userAnswers[exercise.id] || (!!currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable) }
+                          className="mt-4"
+                        >
+                          {isAiTranslationEvaluating ? "Оценка перевода..." : (currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable ? "Перевод принят" : "Отправить на проверку ИИ")}
+                        </Button>
+                      )}
+                      {exercise.type === 'writing_prompt' && (
+                        <Button
+                          onClick={() => handleSubmitExercise(exercise)}
+                          disabled={isAiWritingEvaluating || !userWritingAnswers[exercise.id] || (!!feedback && !currentAiWritingEval?.error) }
+                          className="mt-4"
+                        >
+                          {isAiWritingEvaluating ? "Оценка ИИ..." : (currentAiWritingEval && !currentAiWritingEval.error ? "Оценено ИИ" : "Отправить на проверку ИИ")}
+                        </Button>
+                      )}
+
+                      {feedback && !isMastered && (
+                        <div className={cn(
+                            "mt-4 p-3 rounded-md text-sm",
+                            exercise.type === 'writing_prompt'
+                              ? (currentAiWritingEval?.error
+                                  ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300"
+                                  : "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300"
+                                )
+                              : exercise.type === 'translation'
+                                ? (currentAiTranslationEval?.error
+                                    ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300"
+                                    : (feedback.correct === true
+                                      ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300"
+                                      : "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300"
+                                      )
+                                  )
+                                : (feedback.correct === true
+                                    ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300"
+                                    : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300"
+                                  )
+                          )}
+                        >
+                          { exercise.type === 'writing_prompt'
+                            ? (currentAiWritingEval?.error
+                                ? <AlertTriangle className="inline mr-2 h-5 w-5" />
+                                : (isAiWritingEvaluating ? <Info className="inline mr-2 h-5 w-5 animate-pulse" /> : <Info className="inline mr-2 h-5 w-5" />)
+                              )
+                            : exercise.type === 'translation'
+                              ? (currentAiTranslationEval?.error
+                                  ? <AlertTriangle className="inline mr-2 h-5 w-5" />
+                                  : (isAiTranslationEvaluating
+                                      ? <Info className="inline mr-2 h-5 w-5 animate-pulse" />
+                                      : (feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <Info className="inline mr-2 h-5 w-5" />)
+                                    )
+                                )
+                              : (feedback.correct === true
+                                  ? <CheckCircle className="inline mr-2 h-5 w-5" />
+                                  : <XCircle className="inline mr-2 h-5 w-5" />
+                                )
+                          }
+                          {feedback.explanation ||
+                          (exercise.type !== 'writing_prompt' && exercise.type !== 'translation' && (feedback.correct === true ? "Верно!" : "Неверно.")) ||
+                          "Статус ответа"}
+                        </div>
+                      )}
+
+                      {currentAiWritingEval && exercise.type === 'writing_prompt' && !currentAiWritingEval.error && (
+                        <Card className="mt-4 p-4 border-dashed">
+                          <CardHeader className="p-2">
+                            <CardTitle className="text-lg flex items-center">
+                              <Brain className="mr-2 h-5 w-5 text-blue-500" /> Оценка ИИ
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-3 p-2">
                                 <div>
                                     <h4 className="font-semibold text-sm">Общая оценка:</h4>
                                     <p className="text-sm text-muted-foreground">{currentAiWritingEval.overallAssessment}</p>
@@ -686,27 +694,31 @@ export default function LessonPage() {
                                     <h4 className="font-semibold text-sm">Объяснение ошибок и рекомендации:</h4>
                                     <p className="text-sm text-muted-foreground whitespace-pre-line">{currentAiWritingEval.feedbackExplanation}</p>
                                 </div>
-                            </>
-                        )}
-                      </CardContent>
-                    </Card>
-                  )}
+                          </CardContent>
+                        </Card>
+                      )}
+                      {currentAiWritingEval && exercise.type === 'writing_prompt' && currentAiWritingEval.error && (
+                         <Card className="mt-4 p-4 border-dashed border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20">
+                            <CardHeader className="p-2">
+                                <CardTitle className="text-lg flex items-center text-yellow-700 dark:text-yellow-300">
+                                <AlertTriangle className="mr-2 h-5 w-5" /> Ошибка оценки ИИ
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-2">
+                                <p className="text-sm text-yellow-700 dark:text-yellow-400">{currentAiWritingEval.feedbackExplanation || currentAiWritingEval.error}</p>
+                            </CardContent>
+                         </Card>
+                      )}
 
-                  {currentAiTranslationEval && exercise.type === 'translation' && (
-                    <Card className="mt-4 p-4 border-dashed">
-                      <CardHeader className="p-2">
-                        <CardTitle className="text-lg flex items-center">
-                          <Brain className="mr-2 h-5 w-5 text-blue-500" /> Оценка перевода ИИ
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3 p-2">
-                        {currentAiTranslationEval.error && (
-                            <div className="text-destructive text-sm">
-                                <p><strong>Ошибка при оценке перевода:</strong> {currentAiTranslationEval.feedback || currentAiTranslationEval.error}</p>
-                            </div>
-                        )}
-                        {!currentAiTranslationEval.error && (
-                            <>
+
+                      {currentAiTranslationEval && exercise.type === 'translation' && !currentAiTranslationEval.error && (
+                        <Card className="mt-4 p-4 border-dashed">
+                          <CardHeader className="p-2">
+                            <CardTitle className="text-lg flex items-center">
+                              <Brain className="mr-2 h-5 w-5 text-blue-500" /> Оценка перевода ИИ
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent className="space-y-3 p-2">
                                 <div>
                                     <h4 className="font-semibold text-sm">Оценка перевода:</h4>
                                     <p className="text-sm text-muted-foreground">{currentAiTranslationEval.feedback}</p>
@@ -715,19 +727,31 @@ export default function LessonPage() {
                                     <h4 className="font-semibold text-sm">Предложенный вариант:</h4>
                                     <p className="text-sm bg-green-50 dark:bg-green-900/20 p-2 rounded-md whitespace-pre-line">{currentAiTranslationEval.suggestedTranslation}</p>
                                 </div>
-                            </>
-                        )}
-                      </CardContent>
-                    </Card>
-                  )}
+                          </CardContent>
+                        </Card>
+                      )}
+                       {currentAiTranslationEval && exercise.type === 'translation' && currentAiTranslationEval.error && (
+                         <Card className="mt-4 p-4 border-dashed border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20">
+                            <CardHeader className="p-2">
+                                <CardTitle className="text-lg flex items-center text-yellow-700 dark:text-yellow-300">
+                                <AlertTriangle className="mr-2 h-5 w-5" /> Ошибка оценки перевода ИИ
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-2">
+                                <p className="text-sm text-yellow-700 dark:text-yellow-400">{currentAiTranslationEval.feedback || currentAiTranslationEval.error}</p>
+                            </CardContent>
+                         </Card>
+                      )}
 
-                  {index < allExercises.length - 1 && <Separator className="my-8" />}
-                </Card>
-              );
-            })}
-          </CardContent>
-        </Card>
-      )}
+                      {index < allExercises.length - 1 && <Separator className="my-8" />}
+                    </Card>
+                  );
+                })}
+              </CardContent>
+            </Card>
+          </TabsContent>
+        )}
+      </Tabs>
 
       <CardFooter className="mt-8 flex flex-col sm:flex-row justify-end gap-4 p-0 pt-6 border-t">
          <Button variant="outline" asChild>
@@ -740,3 +764,4 @@ export default function LessonPage() {
     </div>
   );
 }
+
