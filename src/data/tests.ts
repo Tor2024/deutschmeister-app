@@ -10,6 +10,7 @@ import { testA1SatzbauGrundlagen } from './tests/a1-satzbau-grundlagen-test';
 import { testA1Possessivpronomen } from './tests/a1-possessivpronomen-test';
 import { testA1Imperativ } from './tests/a1-imperativ-test';
 import { testA1PraepositionenAkkusativ } from './tests/a1-praepositionen-akkusativ-test';
+import { testA1PraepositionenDativ } from './tests/a1-praepositionen-dativ-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -25,6 +26,7 @@ export const MOCK_TESTS: Test[] = [
   testA1Possessivpronomen,
   testA1Imperativ,
   testA1PraepositionenAkkusativ,
+  testA1PraepositionenDativ,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
