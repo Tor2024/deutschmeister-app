@@ -65,7 +65,7 @@ import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
 import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test';
 import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunikation-test';
-import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test'; // New B1 Lexik test
+import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test'; 
 
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -95,6 +95,7 @@ import { testC2NominalstilVerbalstil } from './tests/c2-nominalstil-verbalstil-t
 import { testC2Modalpartikeln } from './tests/c2-modalpartikeln-test';
 import { testC2LexikGlobaleProbleme } from './tests/c2-lexik-globale-probleme-test';
 import { testC2LexikMedienkritikDigitaleGesellschaft } from './tests/c2-lexik-medienkritik-digitale-gesellschaft-test';
+import { testC2LexikSozialeTrends } from './tests/c2-lexik-soziale-trends-test';
 
 
 export const MOCK_TESTS: Test[] = [
@@ -163,7 +164,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
   testB1LexikMedienKommunikation,
-  testB1LexikUmweltWetter, // New B1 Lexik test
+  testB1LexikUmweltWetter, 
 
   // B2 Tests
   testB2Konjunktiv2,
@@ -193,11 +194,10 @@ export const MOCK_TESTS: Test[] = [
   testC2Modalpartikeln,
   testC2LexikGlobaleProbleme,
   testC2LexikMedienkritikDigitaleGesellschaft,
+  testC2LexikSozialeTrends,
 ];
 
 // Helper function to get a test by its ID
 export const getTestById = (id: string): Test | undefined => {
   return MOCK_TESTS.find(test => test.id === id);
 };
-
-    

@@ -75,7 +75,7 @@ import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
 import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere';
 import { lessonB1LexikMedienKommunikation } from './lessons/b1-lexik-medien-kommunikation';
-import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter'; // New B1 Lexik lesson
+import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter'; 
 
 // B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -111,6 +111,7 @@ import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
 // C2 Lexik
 import { lessonC2LexikGlobaleProbleme } from './lessons/c2-lexik-globale-probleme';
 import { lessonC2LexikMedienkritikDigitaleGesellschaft } from './lessons/c2-lexik-medienkritik-digitale-gesellschaft';
+import { lessonC2LexikSozialeTrends } from './lessons/c2-lexik-soziale-trends';
 
 
 export const MOCK_LESSONS: Lesson[] = [
@@ -183,7 +184,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikBildungStudium,
   lessonB1LexikArbeitKarriere,
   lessonB1LexikMedienKommunikation,
-  lessonB1LexikUmweltWetter, // New B1 Lexik lesson
+  lessonB1LexikUmweltWetter, 
 
   // B2 Grammar
   lessonB2Konjunktiv2,
@@ -216,6 +217,7 @@ export const MOCK_LESSONS: Lesson[] = [
   // C2 Lexik
   lessonC2LexikGlobaleProbleme,
   lessonC2LexikMedienkritikDigitaleGesellschaft,
+  lessonC2LexikSozialeTrends,
 ];
 
 // Helper function to get the count of lessons per level
@@ -231,5 +233,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
-    
