@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonA2LexikKleidung: Lesson = {
   id: 'a2-lexik-kleidung',
@@ -40,6 +40,35 @@ export const lessonA2LexikKleidung: Lesson = {
     { german: 'klein', russian: 'маленький (о размере)', example: 'Das Kleid ist zu klein.' },
     { german: 'lang', russian: 'длинный', example: 'Der Rock ist sehr lang.' },
     { german: 'kurz', russian: 'короткий', example: 'Er trägt kurze Hosen.' },
+  ],
+  readingText: `
+Anna geht heute einkaufen. Sie braucht eine neue Jacke für den Winter. Im Kaufhaus gibt es viele Jacken.
+Zuerst sieht sie eine rote Jacke. Sie ist sehr schön, aber ein bisschen zu teuer. Dann findet Anna eine blaue Jacke. Diese Jacke ist warm und der Preis ist auch gut.
+Anna probiert die blaue Jacke an. Sie passt perfekt! Anna kauft die blaue Jacke und auch eine neue Mütze. Die Mütze ist gelb und passt gut zur blauen Jacke.
+Jetzt ist Anna bereit für den Winter.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a2-lexik-kleidung-rq1',
+      question: 'Что Анна хотела купить в первую очередь?',
+      options: ['Новую шапку', 'Новую куртку', 'Новые ботинки', 'Новый свитер'],
+      correctAnswer: 'Новую куртку',
+      explanation: 'В тексте сказано: "Sie braucht eine neue Jacke für den Winter." (Ей нужна новая куртка на зиму.)',
+    },
+    {
+      id: 'a2-lexik-kleidung-rq2',
+      question: 'Почему Анна не купила красную куртку?',
+      options: ['Она была слишком маленькая', 'Она была некрасивая', 'Она была слишком дорогая', 'Ей не понравился цвет'],
+      correctAnswer: 'Она была слишком дорогая',
+      explanation: 'В тексте сказано: "Sie ist sehr schön, aber ein bisschen zu teuer." (Она очень красивая, но немного слишком дорогая.)',
+    },
+    {
+      id: 'a2-lexik-kleidung-rq3',
+      question: 'Какого цвета шапку купила Анна?',
+      options: ['Красного', 'Синего', 'Желтого', 'Зеленого'],
+      correctAnswer: 'Желтого',
+      explanation: 'В тексте сказано: "Die Mütze ist gelb..." (Шапка желтая...).',
+    }
   ],
   exercises: [
     {
