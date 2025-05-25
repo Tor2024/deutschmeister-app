@@ -33,6 +33,7 @@ import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-k
 import { lessonA2Negation } from './lessons/a2-negation';
 import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
 import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
+import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
 
 
 // B1 Lessons
@@ -104,6 +105,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Negation,
   lessonA2ReflexiveVerben,
   lessonA2Adjektivdeklination,
+  lessonA2TemporalsaetzeAlsWenn,
 
   // B1
   lessonB1Nebensaetze,
@@ -153,4 +155,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
