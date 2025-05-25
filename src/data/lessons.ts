@@ -77,6 +77,7 @@ import { lessonC1AdverbialsaetzeVertiefung } from './lessons/c1-adverbialsaetze-
 // C2 Lessons
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
 import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalstil';
+import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
 
 
 export const MOCK_LESSONS: Lesson[] = [
@@ -153,6 +154,7 @@ export const MOCK_LESSONS: Lesson[] = [
   // C2
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
+  lessonC2Modalpartikeln,
 ];
 
 // Helper function to get the count of lessons per level
