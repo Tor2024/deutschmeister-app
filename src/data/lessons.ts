@@ -6,7 +6,8 @@ import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
 import { lessonA2Pluralbildung } from './lessons/a2-pluralbildung';
 import { lessonA2Perfekt } from './lessons/a2-perfekt';
 import { lessonA2Modalverben } from './lessons/a2-modalverben';
-import { lessonA2Praepositionen } from './lessons/a2-praepositionen'; // Новый импорт
+import { lessonA2Praepositionen } from './lessons/a2-praepositionen';
+import { lessonA2Possessivpronomen } from './lessons/a2-possessivpronomen'; // Новый импорт
 
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
@@ -29,7 +30,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Pluralbildung,
   lessonA2Perfekt,
   lessonA2Modalverben,
-  lessonA2Praepositionen, // Добавлен в массив
+  lessonA2Praepositionen,
+  lessonA2Possessivpronomen, // Добавлен в массив
 
   lessonB1Nebensaetze,
   lessonB1Relativsaetze,
