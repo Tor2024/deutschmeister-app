@@ -19,6 +19,7 @@ import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
 import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
+import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test'; // New A1 Lexik Test
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -121,6 +122,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikZahlenFarben,
   testA1LexikWochentageMonateJahreszeiten,
   testA1LexikKleidung,
+  testA1LexikUhrzeitTagesablauf, // New A1 Lexik Test
 
   // A2 Tests
   testA2Artikel,
