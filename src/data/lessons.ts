@@ -26,6 +26,7 @@ import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wo
 import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
 import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf';
 import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbeit-einfach';
+import { lessonA1LexikWetter } from './lessons/a1-lexik-wetter';
 
 
 // A2 Grammar
@@ -99,6 +100,7 @@ import { lessonB2LexikUmweltNachhaltigkeit } from './lessons/b2-lexik-umwelt-nac
 import { lessonB2LexikKulturKunst } from './lessons/b2-lexik-kultur-kunst';
 import { lessonB2LexikWissenschaftTechnologie } from './lessons/b2-lexik-wissenschaft-technologie';
 import { lessonB2LexikMedienKommunikation } from './lessons/b2-lexik-medien-kommunikation';
+import { lessonB2LexikPolitik } from './lessons/b2-lexik-politik';
 
 
 // C1 Grammar
@@ -147,9 +149,10 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikHobbysFreizeit,
   lessonA1LexikZahlenFarben,
   lessonA1LexikWochentageMonateJahreszeiten,
-  lessonA1LexikKleidung,
   lessonA1LexikUhrzeitTagesablauf,
+  lessonA1LexikKleidung,
   lessonA1LexikSchuleArbeitEinfach,
+  lessonA1LexikWetter,
 
   // A2 Grammar
   lessonA2Artikel,
@@ -219,6 +222,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2LexikKulturKunst,
   lessonB2LexikWissenschaftTechnologie,
   lessonB2LexikMedienKommunikation,
+  lessonB2LexikPolitik,
 
   // C1 Grammar
   lessonC1IndirekteRede,

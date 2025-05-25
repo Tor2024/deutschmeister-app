@@ -21,6 +21,7 @@ import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochen
 import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
 import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
 import { testA1LexikSchuleArbeitEinfach } from './tests/a1-lexik-schule-arbeit-einfach-test';
+import { testA1LexikWetter } from './tests/a1-lexik-wetter-test';
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -88,6 +89,7 @@ import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhal
 import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
 import { testB2LexikWissenschaftTechnologie } from './tests/b2-lexik-wissenschaft-technologie-test';
 import { testB2LexikMedienKommunikation } from './tests/b2-lexik-medien-kommunikation-test';
+import { testB2LexikPolitik } from './tests/b2-lexik-politik-test';
 
 
 // C1 Tests
@@ -142,6 +144,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikUhrzeitTagesablauf,
   testA1LexikKleidung,
   testA1LexikSchuleArbeitEinfach,
+  testA1LexikWetter,
 
 
   // A2 Grammar Tests
@@ -211,6 +214,7 @@ export const MOCK_TESTS: Test[] = [
   testB2LexikKulturKunst,
   testB2LexikWissenschaftTechnologie,
   testB2LexikMedienKommunikation,
+  testB2LexikPolitik,
 
   // C1 Grammar Tests
   testC1IndirekteRede,
@@ -286,9 +290,9 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
   testA1LevelTest,
   testA2LevelTest,
   testB1LevelTest,
-  testB2LevelTest, 
+  testB2LevelTest,
   testC1LevelTest,
-  testC2LevelTest, 
+  testC2LevelTest,
   {
     id: 'a2-grammar-module-1-test',
     level: 'A2',
