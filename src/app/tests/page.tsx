@@ -72,9 +72,8 @@ export default function TestsPage() {
               </p>
             </CardContent>
             <CardFooter className="pt-4">
-              {/* Пока ссылка-заглушка, страницу прохождения теста создадим на след. шаге */}
               <Button asChild className="w-full">
-                <Link href={`/tests/coming-soon`}> {/* Замените на /tests/${test.id} когда страница будет готова */}
+                <Link href={`/tests/${test.id}`}>
                   Начать тест
                 </Link>
               </Button>
