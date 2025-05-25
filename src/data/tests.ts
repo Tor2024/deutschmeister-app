@@ -22,6 +22,7 @@ import { testA2Modalverben } from './tests/a2-modalverben-test';
 import { testA2Praepositionen } from './tests/a2-praepositionen-test';
 import { testA2Possessivpronomen } from './tests/a2-possessivpronomen-test';
 import { testA2PersonalpronomenAkkDat } from './tests/a2-personalpronomen-akk-dat-test';
+import { testA2Adjektivsteigerung } from './tests/a2-adjektivsteigerung-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -51,6 +52,7 @@ export const MOCK_TESTS: Test[] = [
   testA2Praepositionen,
   testA2Possessivpronomen,
   testA2PersonalpronomenAkkDat,
+  testA2Adjektivsteigerung,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
