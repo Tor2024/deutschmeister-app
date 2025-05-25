@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
-import { Home, BookOpen, CheckSquare, BarChart3, SpellCheck } from 'lucide-react';
+import { Home, BookOpen, CheckSquare, BarChart3, SpellCheck, Code } from 'lucide-react'; // Added Code icon
 
 export const APP_NAME = 'DeutschMeister';
 
@@ -15,6 +15,7 @@ export const NAV_LINKS: NavLink[] = [
   { href: '/vocabulary', label: 'Словарь', icon: SpellCheck },
   { href: '/tests', label: 'Тесты', icon: CheckSquare },
   { href: '/progress', label: 'Прогресс', icon: BarChart3 },
+  { href: '/developers', label: 'Разработчики', icon: Code }, // Added Developers link
 ];
 
 export const LANGUAGE_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const;
