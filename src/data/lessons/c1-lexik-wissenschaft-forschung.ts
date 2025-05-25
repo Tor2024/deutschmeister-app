@@ -1,14 +1,14 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonC1LexikWissenschaftForschung: Lesson = {
   id: 'c1-lexik-wissenschaft-forschung',
   level: 'C1',
   topic: 'Наука и исследования (Wissenschaft und Forschung)',
   theory: `
-На уровне C1 важно уметь обсуждать научные темы, понимать специализированные тексты и выражать свое мнение по вопросам научных исследований и их влияния на общество.
+На уровне C1 важно уметь свободно и аргументированно обсуждать научные темы, понимать специализированные тексты и выражать свое мнение по вопросам научных исследований и их влияния на общество.
 
-**Ключевые аспекты:**
+**Ключевые аспекты для обсуждения:**
 - Понимание научной методологии.
 - Обсуждение этических вопросов в науке.
 - Анализ результатов исследований и их интерпретация.
@@ -42,6 +42,51 @@ export const lessonC1LexikWissenschaftForschung: Lesson = {
     { german: 'das Ergebnis (-se)', russian: 'результат, итог', example: 'Die Ergebnisse der Studie werden bald präsentiert.' },
     { german: 'die Studie (-n)', russian: 'исследование (научное, часто с опросами или экспериментами)', example: 'Eine neue Studie zeigt die Auswirkungen des Schlafmangels.' },
     { german: 'die Erkenntnis (-se)', russian: 'познание, осознание, научное открытие', example: 'Die neuesten wissenschaftlichen Erkenntnisse.' },
+  ],
+  readingText: `
+Die wissenschaftliche Methode ist ein systematischer Prozess zur Gewinnung neuer Erkenntnisse und zur Überprüfung von Hypothesen. Sie beginnt in der Regel mit einer Beobachtung oder einer Fragestellung, die zu einer vorläufigen Erklärung, der Hypothese, führt. Um diese Hypothese zu testen, werden Experimente konzipiert und durchgeführt, deren Ergebnisse sorgfältig dokumentiert und analysiert werden.
+
+Ein entscheidender Aspekt der wissenschaftlichen Forschung ist die Reproduzierbarkeit. Ergebnisse gelten erst dann als robust, wenn sie von anderen, unabhängigen Forschungsgruppen unter ähnlichen Bedingungen wiederholt werden können. Die Veröffentlichung von Forschungsergebnissen in Fachzeitschriften, die einem Peer-Review-Verfahren unterliegen, dient der Qualitätssicherung und dem wissenschaftlichen Diskurs. Dabei bewerten Experten des jeweiligen Fachgebiets die Methodik und die Schlussfolgerungen der Studie.
+
+Allerdings ist auch die Wissenschaft nicht frei von Herausforderungen. Finanzierungsdruck, der Wettbewerb um Publikationen und menschliche Voreingenommenheit können die Objektivität beeinflussen. Daher sind Transparenz, kritische Reflexion und ein offener Umgang mit Fehlern unerlässlich für den wissenschaftlichen Fortschritt und das Vertrauen der Gesellschaft in die Forschung.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'c1-lexik-wissenschaft-forschung-rq1',
+      question: 'Was ist laut Text der erste Schritt in der wissenschaftlichen Methode?',
+      options: [
+        'Die Durchführung von Experimenten.',
+        'Die Veröffentlichung der Ergebnisse.',
+        'Eine Beobachtung oder Fragestellung.',
+        'Das Peer-Review-Verfahren.'
+      ],
+      correctAnswer: 'Eine Beobachtung oder Fragestellung.',
+      explanation: 'Im Text steht: "Sie beginnt in der Regel mit einer Beobachtung oder einer Fragestellung..."'
+    },
+    {
+      id: 'c1-lexik-wissenschaft-forschung-rq2',
+      question: 'Warum ist die Reproduzierbarkeit in der wissenschaftlichen Forschung wichtig?',
+      options: [
+        'Um die Finanzierung für weitere Projekte zu sichern.',
+        'Um die Ergebnisse schneller veröffentlichen zu können.',
+        'Um die Robustheit der Ergebnisse zu bestätigen, wenn sie von unabhängigen Gruppen wiederholt werden können.',
+        'Um die Anzahl der Publikationen zu erhöhen.'
+      ],
+      correctAnswer: 'Um die Robustheit der Ergebnisse zu bestätigen, wenn sie von unabhängigen Gruppen wiederholt werden können.',
+      explanation: 'Der Text sagt: "Ergebnisse gelten erst dann als robust, wenn sie von anderen, unabhängigen Forschungsgruppen unter ähnlichen Bedingungen wiederholt werden können."'
+    },
+    {
+      id: 'c1-lexik-wissenschaft-forschung-rq3',
+      question: 'Welche Faktoren können laut Text die Objektivität in der Wissenschaft beeinflussen?',
+      options: [
+        'Nur der Mangel an qualifizierten Forschern.',
+        'Ausschließlich die Komplexität der untersuchten Phänomene.',
+        'Finanzierungsdruck, Publikationswettbewerb und menschliche Voreingenommenheit.',
+        'Die übermäßige Nutzung von Technologie in Experimenten.'
+      ],
+      correctAnswer: 'Finanzierungsdruck, Publikationswettbewerb und menschliche Voreingenommenheit.',
+      explanation: 'Im Text werden genannt: "Finanzierungsdruck, der Wettbewerb um Publikationen und menschliche Voreingenommenheit können die Objektivität beeinflussen."'
+    }
   ],
   exercises: [
     {
@@ -79,5 +124,3 @@ export const lessonC1LexikWissenschaftForschung: Lesson = {
     },
   ],
 };
-
-    
