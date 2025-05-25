@@ -83,7 +83,7 @@ export const MOCK_LESSONS: Lesson[] = [
     *   Когда предмет единственный в своем роде или конкретизирован: **Die** Sonne scheint. (Солнце светит.) **Der** Hund meines Freundes. (Собака моего друга.)
     *   С названиями рек, гор, морей, стран (с артиклем, например, die Schweiz).
 `,
-    audio: 'https://storage.googleapis.com/stg_public_misc/audio/placeholder_artikel_a2.mp3', 
+    audio: 'https://storage.googleapis.com/stg_public_misc/audio/placeholder_artikel_a2.mp3',
     transcript: 'Der, die, das. Ein, eine, ein. Das ist ein Haus. Das Haus ist groß. Der Mann liest ein Buch. Ich sehe einen Hund. Ich habe keinen Hund.',
     vocabulary: [
       { german: 'der Mann', russian: 'мужчина', example: 'Der Mann ist groß.' },
@@ -138,8 +138,8 @@ export const MOCK_LESSONS: Lesson[] = [
         type: 'multiple_choice',
         question: 'Какое предложение верное?',
         options: [
-          'Ich habe ein Schwester.', 
-          'Ich habe eine Schwester.', 
+          'Ich habe ein Schwester.',
+          'Ich habe eine Schwester.',
           'Ich habe einen Schwester.'
         ],
         correctAnswer: 'Ich habe eine Schwester.',
@@ -447,7 +447,7 @@ export const MOCK_LESSONS: Lesson[] = [
   {
     id: 'b1-nebensaetze',
     level: 'B1',
-    topic: 'Придаточные предложения (Nebensätze)',
+    topic: 'Придаточные предложения (Nebensätze) (углубленно)',
     theory: `Придаточные предложения (Nebensätze) – это зависимые предложения, которые не могут существовать самостоятельно и всегда относятся к главному предложению (Hauptsatz). Они выполняют роль различных членов предложения или уточняют его.
 
 **Основное правило порядка слов:** В придаточных предложениях спрягаемый глагол (тот, который изменяется по лицам и числам) всегда стоит **в самом конце**. Если в предложении есть отделяемая приставка, она соединяется с глаголом в конце. Если есть модальный глагол и инфинитив, то модальный глагол стоит в конце, а инфинитив перед ним.
@@ -618,33 +618,154 @@ export const MOCK_LESSONS: Lesson[] = [
   {
     id: 'b1-relativsaetze',
     level: 'B1',
-    topic: 'Относительные придаточные предложения (Relativsätze)',
-    theory: 'Относительные придаточные предложения уточняют существительное из главного предложения. Они вводятся относительными местоимениями (der, die, das, dem, den, dessen, deren и др.), которые согласуются в роде и числе с существительным, к которому относятся, а падеж определяется их функцией в придаточном предложении. Глагол в относительном предложении стоит в конце. Пример: "Der Mann, der dort steht, ist mein Bruder." (Мужчина, который там стоит, мой брат.)',
+    topic: 'Относительные придаточные предложения (Relativsätze) (углубленно)',
+    theory: `Относительные придаточные предложения (Relativsätze) – это зависимые предложения, которые дают дополнительную информацию о существительном или местоимении в главном предложении. Существительное, к которому относится придаточное предложение, называется **антецедентом** (Bezugswort). Относительные предложения всегда отделяются запятыми.
+
+**Основное правило порядка слов:** Как и в других придаточных предложениях, спрягаемый глагол в относительном предложении стоит **в самом конце**.
+
+**1. Относительные местоимения (Relativpronomen)**
+В качестве относительных местоимений чаще всего используются формы определенного артикля: **der, die, das**.
+-   **Род и число** относительного местоимения определяются антецедентом в главном предложении.
+-   **Падеж** относительного местоимения определяется его функцией (подлежащее, дополнение и т.д.) **внутри самого относительного предложения**.
+
+**Таблица склонения относительных местоимений (der, die, das):**
+
+| Падеж       | Мужской род (Maskulinum) | Женский род (Femininum) | Средний род (Neutrum) | Множественное число (Plural) |
+|-------------|--------------------------|-------------------------|-----------------------|-------------------------------|
+| **Nominativ** (кто? что?) | der                      | die                     | das                   | die                           |
+| **Akkusativ** (кого? что?) | den                      | die                     | das                   | die                           |
+| **Dativ** (кому? чему?)   | dem                      | der                     | dem                   | **denen** + **n** (к сущ.)     |
+| _Genitiv_ (чей? чья? чьё?) | _dessen_                 | _deren_                 | _dessen_              | _deren_                       |
+
+*Примечание: Genitiv (родительный падеж) с \`dessen/deren\` более характерен для уровней выше B1, но полезно знать о его существовании.*
+
+**Примеры:**
+-   Nominativ:
+    *   *Der Mann, **der** dort steht, ist mein Lehrer.* (Мужчина, **который** там стоит, мой учитель.) (der Mann → der steht)
+    *   *Die Frau, **die** Deutsch lernt, ist sehr fleißig.* (Женщина, **которая** учит немецкий, очень прилежная.) (die Frau → die lernt)
+    *   *Das Kind, **das** spielt, lacht.* (Ребенок, **который** играет, смеется.) (das Kind → das spielt)
+    *   *Die Bücher, **die** auf dem Tisch liegen, sind neu.* (Книги, **которые** лежат на столе, новые.) (die Bücher → die liegen)
+
+-   Akkusativ:
+    *   *Der Film, **den** ich gestern gesehen habe, war spannend.* (Фильм, **который** я вчера видел, был увлекательным.) (ich habe den Film gesehen)
+    *   *Die Tasche, **die** du gekauft hast, gefällt mir.* (Сумка, **которую** ты купила, мне нравится.) (du hast die Tasche gekauft)
+    *   *Das Auto, **das** er repariert, ist alt.* (Машина, **которую** он ремонтирует, старая.) (er repariert das Auto)
+    *   *Die Freunde, **die** wir eingeladen haben, kommen bald.* (Друзья, **которых** мы пригласили, скоро придут.) (wir haben die Freunde eingeladen)
+
+-   Dativ:
+    *   *Der Kollege, **dem** ich geholfen habe, war dankbar.* (Коллега, **которому** я помог, был благодарен.) (ich habe dem Kollegen geholfen)
+    *   *Die Studentin, **der** der Professor eine Frage stellt, antwortet gut.* (Студентка, **которой** профессор задает вопрос, отвечает хорошо.) (der Professor stellt der Studentin eine Frage)
+    *   *Das Mädchen, **dem** das Fahrrad gehört, ist meine Schwester.* (Девочка, **которой** принадлежит велосипед, моя сестра.) (das Fahrrad gehört dem Mädchen)
+    *   *Die Leute, **denen** wir das Geschenk gegeben haben, freuten sich sehr.* (Люди, **которым** мы дали подарок, очень обрадовались.) (wir haben den Leuten das Geschenk gegeben). Обратите внимание на **-n** у существительного во мн.ч. в Dativ, если оно его требует (Leute**n**).
+
+**2. Относительные местоимения с предлогами**
+Если в относительном предложении есть глагол, требующий предлога, этот предлог ставится **перед** относительным местоимением. Падеж относительного местоимения определяется этим предлогом.
+-   *Der Stuhl, **auf dem** die Katze sitzt, ist bequem.* (Стул, **на котором** сидит кошка, удобный.) (sitzen auf + Dativ)
+-   *Das Thema, **über das** wir sprechen, ist interessant.* (Тема, **о которой** мы говорим, интересная.) (sprechen über + Akkusativ)
+-   *Die Freunde, **mit denen** ich ins Kino gehe, sind nett.* (Друзья, **с которыми** я иду в кино, милые.) (gehen mit + Dativ)
+
+**3. Относительное местоимение "was"**
+Местоимение **was** (что) используется, когда антецедент:
+-   Неопределенное местоимение, такое как **alles** (всё), **nichts** (ничего), **etwas** (что-то), **vieles** (многое), **weniges** (немногое).
+    *   *Alles, **was** er sagt, ist wahr.* (Всё, **что** он говорит, правда.)
+    *   *Das ist etwas, **was** ich nicht verstehe.* (Это что-то, **чего** я не понимаю.)
+-   Существительное, образованное от прилагательного в превосходной степени и употребленное в среднем роде (Superlativ).
+    *   *Das Schönste, **was** ich je gesehen habe, war dieser Sonnenuntergang.* (Самое красивое, **что** я когда-либо видел, был этот закат.)
+-   Целое предыдущее предложение.
+    *   *Er hat die Prüfung bestanden, **was** uns alle sehr gefreut hat.* (Он сдал экзамен, **что** нас всех очень обрадовало.)
+
+**4. Относительные наречия "wo", "wohin", "woher"**
+Когда антецедент обозначает место, вместо предлога + относительное местоимение можно использовать относительные наречия:
+-   **wo** (где – для указания места):
+    *   *Die Stadt, **wo** ich geboren wurde, ist sehr klein.* (Город, **где** я родился, очень маленький.)
+    *   Можно также: *Die Stadt, **in der** ich geboren wurde, ...*
+-   **wohin** (куда – для указания направления движения к месту):
+    *   *Das Land, **wohin** er reisen möchte, ist Italien.* (Страна, **куда** он хочет поехать, – Италия.)
+    *   Можно также: *Das Land, **in das** er reisen möchte, ...*
+-   **woher** (откуда – для указания направления движения от места):
+    *   *Der Ort, **woher** sie kommt, liegt in den Bergen.* (Место, **откуда** она родом, находится в горах.)
+    *   Можно также: *Der Ort, **aus dem** sie kommt, ...*
+
+Понимание и правильное использование относительных предложений делает речь более связной, точной и естественной.`,
+    vocabulary: [
+      { german: 'der, die, das (Relativpronomen)', russian: 'который, которая, которое (относ. местоимения)', example: 'Der Mann, der lacht.' },
+      { german: 'welcher, welche, welches', russian: 'который, которая, которое (альтернатива der/die/das, реже)', example: 'Das Buch, welches ich las.' },
+      { german: 'Nominativ', russian: 'Именительный падеж (кто? что?)' },
+      { german: 'Akkusativ', russian: 'Винительный падеж (кого? что?)' },
+      { german: 'Dativ', russian: 'Дательный падеж (кому? чему?)' },
+      { german: 'dessen', russian: 'чей, которого (Genitiv м.р., ср.р.)', example: 'Der Autor, dessen Buch ich liebe.' },
+      { german: 'deren', russian: 'чья, которой, которых (Genitiv ж.р., мн.ч.)', example: 'Die Frau, deren Auto neu ist.' },
+      { german: 'das Bezugswort', russian: 'антецедент (слово, к которому относится местоимение)' },
+      { german: 'der Satz, die Sätze', russian: 'предложение, предложения' },
+      { german: 'der Hauptsatz', russian: 'главное предложение' },
+      { german: 'der Nebensatz', russian: 'придаточное предложение' },
+      { german: 'die Präposition, die Präpositionen', russian: 'предлог, предлоги', example: 'Der Tisch, auf dem das Buch liegt.' },
+      { german: 'was (Relativpronomen)', russian: 'что (относ. местоимение после alles, nichts и т.д.)', example: 'Alles, was du sagst, ist wichtig.' },
+      { german: 'wo (Relativadverb)', russian: 'где (относительное наречие места)', example: 'Die Stadt, wo ich wohne.' },
+      { german: 'stehen (steht, stand, hat gestanden)', russian: 'стоять' },
+      { german: 'sehen (sieht, sah, hat gesehen)', russian: 'видеть' },
+      { german: 'helfen (hilft, half, hat geholfen) + Dativ', russian: 'помогать (кому-л.)' },
+      { german: 'sprechen (spricht, sprach, hat gesprochen) über + Akkusativ', russian: 'говорить (о чём-л.)' },
+      { german: 'gehören (gehört, gehörte, hat gehört) + Dativ', russian: 'принадлежать (кому-л.)' },
+    ],
     exercises: [
       {
-        id: 'b1-relativ-ex1',
+        id: 'b1-relativ-adv-ex1',
         type: 'multiple_choice',
-        question: 'Выберите правильное относительное местоимение: Das ist das Haus, ___ ich gebaut habe.',
-        options: ['der', 'die', 'das', 'dem'],
-        correctAnswer: 'das',
-        explanation: 'Относительное местоимение "das" относится к "das Haus" (средний род, винительный падеж в придаточном предложении, так как "ich habe das Haus gebaut").',
+        question: 'Выберите правильное относительное местоимение: Das ist der Kuchen, ___ meine Mutter gebacken hat.',
+        options: ['der', 'die', 'das', 'den'],
+        correctAnswer: 'den',
+        explanation: 'Антецедент "der Kuchen" (м.р.). В придаточном предложении "meine Mutter hat den Kuchen gebacken", поэтому "Kuchen" стоит в Akkusativ. Относительное местоимение для м.р. Akkusativ - "den".',
       },
       {
-        id: 'b1-relativ-ex2',
+        id: 'b1-relativ-adv-ex2',
         type: 'fill_in_the_blank',
-        question: 'Объедините предложения, используя относительное придаточное: Die Frau ist nett. Ich habe der Frau geholfen.',
-        sentenceParts: ['Die Frau, ', ', ist nett.'],
-        correctAnswer: 'der ich geholfen habe',
-        explanation: 'Относительное местоимение "der" относится к "die Frau" и стоит в дательном падеже.',
+        question: 'Дополните предложение относительным местоимением: Die Kinder, mit ___ wir gespielt haben, sind sehr lustig.',
+        sentenceParts: ['Die Kinder, mit ', ' wir gespielt haben, sind sehr lustig.'],
+        correctAnswer: 'denen',
+        explanation: 'Антецедент "Die Kinder" (мн.ч.). Предлог "mit" требует Dativ. Относительное местоимение для мн.ч. Dativ - "denen".',
       },
       {
-        id: 'b1-relativ-ex3',
+        id: 'b1-relativ-adv-ex3',
         type: 'translation',
-        question: 'Переведите на немецкий: "Книга, которую я читаю, очень интересная."',
-        prompt: 'Книга, которую я читаю, очень интересная.',
+        question: 'Переведите на немецкий: "Вот книга, о которой я тебе рассказывал."',
+        prompt: 'Вот книга, о которой я тебе рассказывал.',
         languageDirection: 'to_german',
-        correctAnswer: 'Das Buch, das ich lese, ist sehr interessant.',
-        explanation: '"Das Buch" (средний род), "которую" (винительный падеж в придаточном) -> "das". Глагол "lese" в конце придаточного.',
+        correctAnswer: 'Hier ist das Buch, von dem ich dir erzählt habe.',
+        explanation: 'Антецедент "das Buch" (ср.р.). "Erzählen von + Dativ". Относительное местоимение для ср.р. Dativ с предлогом "von" - "von dem". Глагол "habe erzählt" в конце.',
+      },
+      {
+        id: 'b1-relativ-adv-ex4',
+        type: 'multiple_choice',
+        question: 'Какое относительное местоимение используется после "alles"?',
+        options: ['der', 'die', 'das', 'was'],
+        correctAnswer: 'was',
+        explanation: 'После неопределенных местоимений, таких как "alles", "nichts", "etwas", используется относительное местоимение "was".',
+      },
+      {
+        id: 'b1-relativ-adv-ex5',
+        type: 'fill_in_the_blank',
+        question: 'Объедините два предложения в одно с относительным придаточным: Das ist der Mann. Der Mann wohnt nebenan.',
+        sentenceParts: ['Das ist der Mann, ', ' nebenan wohnt.'],
+        correctAnswer: 'der',
+        explanation: 'Антецедент "der Mann" (м.р.). В придаточном предложении "der Mann" является подлежащим (Nominativ). Относительное местоимение для м.р. Nominativ - "der".',
+      },
+      {
+        id: 'b1-relativ-adv-ex6',
+        type: 'multiple_choice',
+        question: 'Выберите правильный вариант для места: Das ist die Stadt, ___ ich studiere.',
+        options: ['in der', 'wo', 'in die', 'auf der'],
+        correctAnswer: 'in der',
+        explanation: 'Антецедент "die Stadt" (ж.р.). "Studiere in der Stadt" (Dativ). Можно использовать "in der" или "wo". "Wo" указывает на место.',
+      },
+      {
+        id: 'b1-relativ-adv-ex7',
+        type: 'translation',
+        question: 'Переведите на немецкий: "Учительница, которой я подарил цветы, была очень рада."',
+        prompt: 'Учительница, которой я подарил цветы, была очень рада.',
+        languageDirection: 'to_german',
+        correctAnswer: 'Die Lehrerin, der ich Blumen geschenkt habe, war sehr froh.',
+        explanation: 'Антецедент "Die Lehrerin" (ж.р.). "Ich habe der Lehrerin Blumen geschenkt" (Dativ). Относительное местоимение для ж.р. Dativ - "der".',
       },
     ],
   },
@@ -771,8 +892,8 @@ haben: ich hatte, du hattest, er/sie/es hatte, wir hatten, ihr hattet, sie/Sie h
         type: 'multiple_choice',
         question: 'Преобразуйте предложение в Präsens Passiv: "Der Mechaniker repariert das Auto."',
         options: [
-          'Das Auto repariert den Mechaniker.', 
-          'Das Auto wird repariert.', 
+          'Das Auto repariert den Mechaniker.',
+          'Das Auto wird repariert.',
           'Das Auto ist repariert worden.'
         ],
         correctAnswer: 'Das Auto wird repariert.',
@@ -853,8 +974,8 @@ Das auf dem Tisch liegende Buch. (Книга, лежащая на столе.)
         type: 'multiple_choice',
         question: 'Какое предложение содержит правильный причастный оборот с Partizip I?',
         options: [
-          'Das Kind, das spielt, ist laut.', 
-          'Das spielende Kind ist laut.', 
+          'Das Kind, das spielt, ist laut.',
+          'Das spielende Kind ist laut.',
           'Das gespielte Kind ist laut.'
         ],
         correctAnswer: 'Das spielende Kind ist laut.',
@@ -936,8 +1057,8 @@ Das auf dem Tisch liegende Buch. (Книга, лежащая на столе.)
         type: 'multiple_choice',
         question: 'Какое из предложений написано в номинальном стиле?',
         options: [
-          'Weil das Wetter schlecht war, blieben wir zu Hause.', 
-          'Wegen des schlechten Wetters blieben wir zu Hause.', 
+          'Weil das Wetter schlecht war, blieben wir zu Hause.',
+          'Wegen des schlechten Wetters blieben wir zu Hause.',
           'Wir blieben zu Hause, da das Wetter schlecht war.'
         ],
         correctAnswer: 'Wegen des schlechten Wetters blieben wir zu Hause.',
@@ -964,3 +1085,4 @@ Das auf dem Tisch liegende Buch. (Книга, лежащая на столе.)
     ],
   },
 ];
+
