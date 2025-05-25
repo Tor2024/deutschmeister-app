@@ -63,6 +63,7 @@ import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
 import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
+import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test';
 
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -152,6 +153,7 @@ export const MOCK_TESTS: Test[] = [
   testB1InfinitivMitZu,
   testB1Konsekutivsaetze,
   testB1LexikBildungStudium,
+  testB1LexikArbeitKarriere,
 
   // B2 Tests
   testB2Konjunktiv2,

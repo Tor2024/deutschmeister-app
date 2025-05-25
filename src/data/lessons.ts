@@ -73,6 +73,7 @@ import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 
 // B1 Lexik
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
+import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere';
 
 // B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -165,6 +166,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Konsekutivsaetze,
   // B1 Lexik
   lessonB1LexikBildungStudium,
+  lessonB1LexikArbeitKarriere,
 
   // B2 Grammar
   lessonB2Konjunktiv2,
