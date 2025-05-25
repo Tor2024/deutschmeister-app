@@ -10,6 +10,7 @@ import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
 import { lessonA1Negation } from './lessons/a1-negation';
 import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
 import { lessonA1Modalverben } from './lessons/a1-modalverben';
+import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
 
 
 // A2 Lessons
@@ -26,7 +27,7 @@ import { lessonA2Imperativ } from './lessons/a2-imperativ';
 import { lessonA2Satzbau } from './lessons/a2-satzbau';
 import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
-import { lessonA2Negation as lessonA2NegationDetailed } from './lessons/a2-negation';
+import { lessonA2Negation } from './lessons/a2-negation';
 
 
 // B1 Lessons
@@ -75,6 +76,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1Negation,
   lessonA1SatzbauGrundlagen,
   lessonA1Modalverben,
+  lessonA1Possessivpronomen,
 
   // A2
   lessonA2Artikel,
@@ -90,7 +92,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Satzbau,
   lessonA2NebensaetzeEinfach,
   lessonA2NebenordnendeKonjunktionen,
-  lessonA2NegationDetailed,
+  lessonA2Negation,
 
   // B1
   lessonB1Nebensaetze,
