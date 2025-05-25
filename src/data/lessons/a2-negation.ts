@@ -6,7 +6,7 @@ export const lessonA2Negation: Lesson = {
   id: 'a2-negation',
   level: 'A2',
   topic: 'Отрицание (nicht и kein)',
-  theory: \`В немецком языке существует два основных способа выражения отрицания: с помощью слова **kein** и с помощью частицы **nicht**.
+  theory: `В немецком языке существует два основных способа выражения отрицания: с помощью слова **kein** и с помощью частицы **nicht**.
 
 **1. Отрицание с \`kein\`**
 
@@ -75,7 +75,7 @@ export const lessonA2Negation: Lesson = {
     *   *Meine Schlüssel sind **nirgends**.* (Моих ключей нигде нет.)
 
 Различение и правильное использование \`kein\` и \`nicht\` очень важно для корректной немецкой речи. \`Kein\` связано с отрицанием существительного как такового, а \`nicht\` – с отрицанием действия, качества или конкретного объекта.
-\`,
+`,
   vocabulary: [
     { german: 'nicht', russian: 'не (отрицательная частица)', example: 'Ich verstehe das nicht.' },
     { german: 'kein, keine, kein', russian: 'не, никакой (отрицательный артикль)', example: 'Ich habe keine Zeit.' },
