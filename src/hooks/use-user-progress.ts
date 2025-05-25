@@ -1,7 +1,8 @@
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import type { UserProgress, LanguageLevel, ExerciseAttempt } from '@/types';
+import type { UserProgress, LanguageLevel, ExerciseAttempt, FlashcardAttempt } from '@/types';
 
 const PROGRESS_KEY = 'deutschMeisterProgress';
 
@@ -12,6 +13,7 @@ const getDefaultProgress = (): UserProgress => ({
   exerciseAttempts: {},
   learningGoals: 'Общее улучшение знаний немецкого языка.',
   lastActivity: null,
+  flashcardProgress: {}, // Initialize flashcard progress
 });
 
 export function useUserProgress() {
@@ -22,7 +24,12 @@ export function useUserProgress() {
     try {
       const storedProgress = localStorage.getItem(PROGRESS_KEY);
       if (storedProgress) {
-        setProgress(JSON.parse(storedProgress));
+        const parsedProgress = JSON.parse(storedProgress);
+        // Ensure flashcardProgress exists in loaded data
+        if (!parsedProgress.flashcardProgress) {
+          parsedProgress.flashcardProgress = {};
+        }
+        setProgress(parsedProgress);
       } else {
         // Initialize with default if nothing is stored
         localStorage.setItem(PROGRESS_KEY, JSON.stringify(getDefaultProgress()));
@@ -81,7 +88,8 @@ export function useUserProgress() {
       mastered: false, // Recalculate mastery
     };
 
-    if (newAttempt.correctStreak >= 3 && newAttempt.lastScore >= 90) { // Assuming 90% is per attempt score
+    // Simple mastery: 3 correct in a row, or 2 correct with last being 100%
+    if (newAttempt.correctStreak >= 2 && newAttempt.lastScore === 100) { 
       newAttempt.mastered = true;
     }
     
@@ -96,6 +104,21 @@ export function useUserProgress() {
   const setLearningGoals = useCallback((goals: string) => {
     updateProgress({ learningGoals: goals });
   }, [updateProgress]);
+
+  const recordFlashcardWordMastery = useCallback((lessonId: string, germanWord: string, mastered: boolean) => {
+    updateProgress({
+      flashcardProgress: {
+        ...(progress.flashcardProgress || {}),
+        [lessonId]: {
+          ...((progress.flashcardProgress || {})[lessonId] || {}),
+          [germanWord]: {
+            mastered,
+            lastReviewed: new Date().toISOString(),
+          },
+        },
+      },
+    });
+  }, [progress.flashcardProgress, updateProgress]);
 
   const clearProgress = useCallback(() => {
     const freshProgress = getDefaultProgress();
@@ -117,5 +140,6 @@ export function useUserProgress() {
     recordExerciseAttempt,
     setLearningGoals,
     clearProgress,
+    recordFlashcardWordMastery, // Export the new function
   };
 }

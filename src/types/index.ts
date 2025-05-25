@@ -78,13 +78,13 @@ export interface Test {
   level: LanguageLevel;
   topic: string;
   questions: Exercise[];
-  testType?: 'thematic' | 'modular' | 'level'; // Added to distinguish test types
+  testType?: 'thematic' | 'modular' | 'level';
+  associatedLessonId?: string;
 }
 
 export interface ModularTest extends Test {
   coveredLessonIds: string[];
-  description?: string; // Optional description for the module
-  // testType is inherited from Test and can be 'modular' or 'level'
+  description?: string;
 }
 
 
@@ -95,6 +95,12 @@ export interface ExerciseAttempt {
   mastered: boolean;
 }
 
+export interface FlashcardAttempt {
+  mastered: boolean;
+  lastReviewed?: string;
+  // consecutiveCorrect?: number; // For future use with SRS
+}
+
 export interface UserProgress {
   currentLevel: LanguageLevel | null;
   completedLessons: string[];
@@ -102,6 +108,7 @@ export interface UserProgress {
   exerciseAttempts: Record<string, ExerciseAttempt>;
   learningGoals: string;
   lastActivity: string | null;
+  flashcardProgress?: Record<string, Record<string, FlashcardAttempt>>; // lessonId -> germanWord -> attempt
 }
 
 export interface AudioMaterial {
