@@ -32,6 +32,7 @@ import { testA2ReflexiveVerben } from './tests/a2-reflexive-verben-test';
 import { testA2Adjektivdeklination } from './tests/a2-adjektivdeklination-test';
 import { testA2TemporalsaetzeAlsWenn } from './tests/a2-temporalsaetze-als-wenn-test';
 import { testA2Demonstrativpronomen } from './tests/a2-demonstrativpronomen-test';
+import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -71,6 +72,7 @@ export const MOCK_TESTS: Test[] = [
   testA2Adjektivdeklination,
   testA2TemporalsaetzeAlsWenn,
   testA2Demonstrativpronomen,
+  testA2OrdinalzahlenDatum,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
