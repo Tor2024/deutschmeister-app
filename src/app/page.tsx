@@ -1,11 +1,11 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Progress as ProgressBar } from "@/components/ui/progress"; // Alias to avoid conflict with window.Progress
+import { Progress as ProgressBar } from "@/components/ui/progress";
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { generateAdaptiveLesson, type AdaptiveLessonInput, type AdaptiveLessonOutput } from '@/ai/flows/adaptive-learning-path';
 import { LANGUAGE_LEVELS, type LanguageLevel } from '@/lib/constants';
@@ -13,6 +13,8 @@ import { Lightbulb, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MOCK_LESSONS } from '@/data/lessons';
+import { useToast } from '@/hooks/use-toast';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function DashboardPage() {
   const { progress, isLoading, setCurrentLevel, setLearningGoals } = useUserProgress();
@@ -20,34 +22,20 @@ export default function DashboardPage() {
   const [suggestedLessonId, setSuggestedLessonId] = useState<string | null>(null);
   const [isGeneratingLesson, setIsGeneratingLesson] = useState(false);
   const [currentGoalsInput, setCurrentGoalsInput] = useState(progress.learningGoals || '');
+  const { toast } = useToast();
 
   useEffect(() => {
     setCurrentGoalsInput(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
   }, [progress.learningGoals]);
 
-  const handleLevelSelect = (level: LanguageLevel) => {
-    setCurrentLevel(level);
-  };
-  
-  const handleGoalsInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCurrentGoalsInput(event.target.value);
-  };
-
-  const handleSaveGoals = () => {
-    setLearningGoals(currentGoalsInput);
-    // Add a toast notification for success if desired
-    // toast({ title: "Цели сохранены!", description: "Ваши учебные цели обновлены." });
-  };
-
-  const fetchAndSetSuggestedLesson = async () => {
+  const fetchAndSetSuggestedLesson = useCallback(async () => {
     if (!progress.currentLevel) {
-      // Consider using toast for user feedback
-      alert("Пожалуйста, сначала выберите ваш текущий уровень.");
+      toast({ title: "Ошибка", description: "Пожалуйста, сначала выберите ваш текущий уровень.", variant: "destructive" });
       return;
     }
     setIsGeneratingLesson(true);
-    setSuggestedLesson(null); // Reset previous suggestion
-    setSuggestedLessonId(null); // Reset previous lesson ID
+    setSuggestedLesson(null); 
+    setSuggestedLessonId(null); 
     try {
       const adaptiveInput: AdaptiveLessonInput = {
         currentLevel: progress.currentLevel,
@@ -63,13 +51,56 @@ export default function DashboardPage() {
       if (suggestion && suggestion.lessonTopic) {
         const matchedLesson = MOCK_LESSONS.find(l => l.topic.trim().toLowerCase() === suggestion.lessonTopic.trim().toLowerCase());
         setSuggestedLessonId(matchedLesson ? matchedLesson.id : null);
+        if(matchedLesson) {
+            toast({ title: "Рекомендация ИИ", description: `Предложен урок: ${suggestion.lessonTopic}` });
+        } else {
+            toast({ title: "Рекомендация ИИ", description: `ИИ предложил тему "${suggestion.lessonTopic}", но точного соответствия в уроках не найдено.` });
+        }
       }
     } catch (error) {
       console.error("Failed to generate adaptive lesson:", error);
-      // Consider using toast
-      // toast({ title: "Ошибка", description: "Не удалось сгенерировать урок.", variant: "destructive" });
+      toast({ title: "Ошибка генерации урока", description: "Не удалось сгенерировать рекомендуемый урок. Попробуйте позже.", variant: "destructive" });
     } finally {
       setIsGeneratingLesson(false);
+    }
+  }, [progress.currentLevel, progress.completedLessons, progress.testResults, progress.learningGoals, toast]);
+
+  useEffect(() => {
+    const shouldAutoFetchSuggestion = () => {
+      if (!isLoading && progress.currentLevel && !isGeneratingLesson && !suggestedLesson) {
+        // Fetch if user has made some progress or customized goals beyond the default
+        return progress.completedLessons.length > 0 || 
+               Object.keys(progress.testResults).length > 0 ||
+               (progress.learningGoals && progress.learningGoals !== "Общее улучшение знаний немецкого языка.");
+      }
+      return false;
+    };
+
+    if (shouldAutoFetchSuggestion()) {
+      // console.log("Auto-fetching suggested lesson based on progress/goals.");
+      // fetchAndSetSuggestedLesson(); // Temporarily disable auto-fetch on load to avoid too many calls during development. User can click.
+    }
+  }, [isLoading, progress, fetchAndSetSuggestedLesson, isGeneratingLesson, suggestedLesson]);
+
+
+  const handleLevelSelect = (level: LanguageLevel) => {
+    setCurrentLevel(level);
+    // Reset suggestion when level changes, user might want a new one.
+    setSuggestedLesson(null);
+    setSuggestedLessonId(null);
+  };
+  
+  const handleGoalsInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCurrentGoalsInput(event.target.value);
+  };
+
+  const handleSaveGoals = () => {
+    setLearningGoals(currentGoalsInput);
+    toast({ title: "Цели сохранены!", description: "Ваши учебные цели обновлены." });
+    // Optionally, re-fetch suggestion if level is set
+    if (progress.currentLevel) {
+      // console.log("Re-fetching suggested lesson after goals saved.");
+      // fetchAndSetSuggestedLesson(); // Temporarily disable auto-fetch on goals save to avoid too many calls. User can click.
     }
   };
 
@@ -123,7 +154,7 @@ export default function DashboardPage() {
               
               <Button onClick={fetchAndSetSuggestedLesson} disabled={isGeneratingLesson || !progress.currentLevel} className="mt-4">
                 <Lightbulb className="mr-2 h-5 w-5" />
-                {isGeneratingLesson ? "Генерация урока..." : "Предложить следующий урок"}
+                {isGeneratingLesson ? "Подбираем урок..." : "Предложить следующий урок"}
               </Button>
             </div>
           )}
@@ -134,17 +165,17 @@ export default function DashboardPage() {
         <Card className="mb-8 bg-primary/10 border-primary shadow-md">
           <CardHeader>
             <CardTitle className="text-2xl text-primary flex items-center">
-              <Lightbulb className="mr-3 h-7 w-7" /> Рекомендуемый урок</CardTitle>
+              <Lightbulb className="mr-3 h-7 w-7" /> Рекомендуемый урок от ИИ</CardTitle>
           </CardHeader>
           <CardContent>
             <h3 className="text-xl font-semibold mb-2">{suggestedLesson.lessonTopic}</h3>
             <p className="text-md text-muted-foreground mb-4">{suggestedLesson.reason}</p>
             {suggestedLessonId ? (
               <Button asChild>
-                <Link href={`/lessons/${suggestedLessonId}`}>Начать урок</Link>
+                <Link href={`/lessons/${suggestedLessonId}`}>Начать урок: {suggestedLesson.lessonTopic}</Link>
               </Button>
             ) : (
-              <p className="text-sm text-destructive">К сожалению, урок с таким точным названием не найден. Попробуйте поискать похожие темы в общем <Link href="/lessons" className="underline hover:text-primary/80">списке уроков</Link>.</p>
+              <p className="text-sm text-destructive">К сожалению, урок с таким точным названием не найден в нашей базе. Попробуйте поискать похожие темы в общем <Link href="/lessons" className="underline hover:text-primary/80">списке уроков</Link>.</p>
             )}
           </CardContent>
         </Card>
@@ -186,10 +217,13 @@ export default function DashboardPage() {
       <Card className="mt-8 shadow-lg">
         <CardHeader>
           <CardTitle className="text-xl">Настройте свои цели обучения</CardTitle>
-          <CardDescription>Расскажите нам, на чем вы хотели бы сосредоточиться, чтобы мы могли лучше адаптировать уроки. Ваши текущие цели: <span className="font-medium">{progress.learningGoals || "не заданы"}</span></CardDescription>
+          <CardDescription>
+            Расскажите нам, на чем вы хотели бы сосредоточиться, чтобы мы могли лучше адаптировать уроки.
+            Текущие цели: <span className="font-medium text-primary">{progress.learningGoals || "не заданы"}</span>
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <textarea
+          <Textarea
             className="w-full p-2 border rounded-md min-h-[100px] text-sm bg-background"
             value={currentGoalsInput}
             onChange={handleGoalsInputChange}
@@ -203,3 +237,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+
