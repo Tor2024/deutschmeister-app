@@ -15,7 +15,8 @@ import { lessonA1Imperativ } from './lessons/a1-imperativ';
 import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akkusativ';
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
-import { lessonA1LexikFamilie } from './lessons/a1-lexik-familie'; // New lexical lesson for A1
+import { lessonA1LexikFamilie } from './lessons/a1-lexik-familie';
+import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung'; // New lexical lesson for A1
 
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
@@ -96,7 +97,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
   lessonA1TrennbarVerben,
-  lessonA1LexikFamilie, // New lexical lesson
+  lessonA1LexikFamilie,
+  lessonA1LexikHausWohnung,
 
   // A2
   lessonA2Artikel,
