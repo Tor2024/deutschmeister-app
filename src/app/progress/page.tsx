@@ -12,6 +12,7 @@ import { BarChart, CheckCircle, ListChecks, TrendingUp, Zap, Activity, Award } f
 import Image from "next/image";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
+import { ScrollArea } from '@/components/ui/scroll-area'; // Import ScrollArea
 
 export default function UserProgressPage() {
   const { progress, isLoading, clearProgress } = useUserProgress();
@@ -37,24 +38,36 @@ export default function UserProgressPage() {
 
   const getExerciseDetails = (exerciseId: string): { lessonTopic: string; exerciseQuestion: string } => {
     for (const lesson of MOCK_LESSONS) {
-      const exercise = lesson.exercises.find(ex => ex.id === exerciseId) ||
-                       (lesson.aiGeneratedExercises && lesson.aiGeneratedExercises.find(ex => ex.id === exerciseId));
-      if (exercise) {
+      const standardExercise = lesson.exercises.find(ex => ex.id === exerciseId);
+      if (standardExercise) {
         return {
           lessonTopic: lesson.topic,
-          exerciseQuestion: exercise.question,
+          exerciseQuestion: standardExercise.question,
         };
       }
+      if (lesson.aiGeneratedExercises) {
+        const aiExercise = lesson.aiGeneratedExercises.find(ex => ex.id === exerciseId);
+        if (aiExercise) {
+          return {
+            lessonTopic: lesson.topic,
+            exerciseQuestion: aiExercise.question,
+          };
+        }
+      }
     }
+    // Fallback if exerciseId not found in standard or AI exercises by direct ID match
+    // (This part was simplified, might need a more robust lookup for AI exercises if IDs are very dynamic)
     if (exerciseId.startsWith('ai-ex-')) {
         const parts = exerciseId.split('-');
-        if (parts.length > 3) {
-            const lessonIdFromAIEx = parts[2];
+        // Example: ai-ex-a2-artikel-1718193433462-0
+        // We assume lessonId is the third part (index 2)
+        if (parts.length > 2) { 
+            const lessonIdFromAIEx = parts[2]; 
             const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdFromAIEx);
             if (aiLesson) {
               return {
                 lessonTopic: aiLesson.topic,
-                exerciseQuestion: "Упражнение от ИИ"
+                exerciseQuestion: "Упражнение от ИИ" 
               }
             }
         }
@@ -132,32 +145,34 @@ export default function UserProgressPage() {
             </CardHeader>
             <CardContent>
               {exerciseAttemptsArray.length > 0 ? (
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Урок</TableHead>
-                      <TableHead>Вопрос (начало)</TableHead>
-                      <TableHead className="text-center">Попыток</TableHead>
-                      <TableHead className="text-center">Освоено</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {exerciseAttemptsArray.map((attempt) => (
-                      <TableRow key={attempt.id}>
-                        <TableCell className="font-medium">{attempt.lessonTopic}</TableCell>
-                        <TableCell>{attempt.exerciseQuestion.substring(0, 70)}{attempt.exerciseQuestion.length > 70 ? '...' : ''}</TableCell>
-                        <TableCell className="text-center">{attempt.attemptsCount}</TableCell>
-                        <TableCell className="text-center">
-                          {attempt.mastered ? (
-                            <Award className="h-5 w-5 text-green-500 inline" />
-                          ) : (
-                            <TrendingUp className="h-5 w-5 text-yellow-500 inline" />
-                          )}
-                        </TableCell>
+                <ScrollArea className="h-[400px] w-full rounded-md border"> {/* Added ScrollArea with height, removed p-1 to prevent double padding */}
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-[200px]">Урок</TableHead> {/* Added width for better layout */}
+                        <TableHead>Вопрос (начало)</TableHead>
+                        <TableHead className="text-center w-[100px]">Попыток</TableHead> {/* Added width */}
+                        <TableHead className="text-center w-[100px]">Освоено</TableHead> {/* Added width */}
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                    </TableHeader>
+                    <TableBody>
+                      {exerciseAttemptsArray.map((attempt) => (
+                        <TableRow key={attempt.id}>
+                          <TableCell className="font-medium">{attempt.lessonTopic}</TableCell>
+                          <TableCell>{attempt.exerciseQuestion.substring(0, 70)}{attempt.exerciseQuestion.length > 70 ? '...' : ''}</TableCell>
+                          <TableCell className="text-center">{attempt.attemptsCount}</TableCell>
+                          <TableCell className="text-center">
+                            {attempt.mastered ? (
+                              <Award className="h-5 w-5 text-green-500 inline" />
+                            ) : (
+                              <TrendingUp className="h-5 w-5 text-yellow-500 inline" />
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </ScrollArea>
               ) : (
                 <p className="text-muted-foreground">Вы еще не приступали к упражнениям или ваша статистика по ним не зафиксирована. <Link href="/lessons" className="text-primary hover:underline">Начать урок!</Link></p>
               )}
@@ -174,3 +189,5 @@ export default function UserProgressPage() {
     </div>
   );
 }
+
+    
