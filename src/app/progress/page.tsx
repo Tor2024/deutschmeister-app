@@ -12,7 +12,7 @@ import { BarChart, CheckCircle, ListChecks, TrendingUp, Zap, Activity, Award } f
 import Image from "next/image";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { ScrollArea } from '@/components/ui/scroll-area'; // Import ScrollArea
+import { cn } from '@/lib/utils'; // Import cn for conditional classes
 
 export default function UserProgressPage() {
   const { progress, isLoading, clearProgress } = useUserProgress();
@@ -36,13 +36,14 @@ export default function UserProgressPage() {
     }
   };
 
-  const getExerciseDetails = (exerciseId: string): { lessonTopic: string; exerciseQuestion: string } => {
+  const getExerciseDetails = (exerciseId: string): { lessonTopic: string; exerciseQuestion: string, lessonId: string | null } => {
     for (const lesson of MOCK_LESSONS) {
       const standardExercise = lesson.exercises.find(ex => ex.id === exerciseId);
       if (standardExercise) {
         return {
           lessonTopic: lesson.topic,
           exerciseQuestion: standardExercise.question,
+          lessonId: lesson.id
         };
       }
       if (lesson.aiGeneratedExercises) {
@@ -51,27 +52,31 @@ export default function UserProgressPage() {
           return {
             lessonTopic: lesson.topic,
             exerciseQuestion: aiExercise.question,
+            lessonId: lesson.id
           };
         }
       }
     }
-    // Fallback if exerciseId not found in standard or AI exercises by direct ID match
+     // Fallback if exerciseId not found in standard or AI exercises by direct ID match
     if (exerciseId.startsWith('ai-ex-')) {
-        const parts = exerciseId.split('-');
-        if (parts.length >= 4) { // e.g. ai-ex-lessonIdPart1-lessonIdPart2-timestamp-index
-            // Reconstruct lessonId by joining parts between "ai-ex-" and the last two numeric parts
-            const lessonIdParts = parts.slice(2, parts.length - 2);
-            const lessonIdCandidate = lessonIdParts.join('-');
-            const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdCandidate);
-            if (aiLesson) {
-              return {
-                lessonTopic: aiLesson.topic,
-                exerciseQuestion: "Упражнение от ИИ (детали в уроке)"
-              }
+      // Example ID: ai-ex-a2-artikel-1678886400000-0
+      // We need to extract the lessonId part, which could be 'a2-artikel' or 'a1-lexik-familie'
+      const parts = exerciseId.split('-');
+      if (parts.length >= 5) { // "ai", "ex", lessonId_part1, ..., lessonId_partN, timestamp, index
+          // Reconstruct lessonId by joining parts between "ai-ex-" and the last two numeric parts (timestamp and index)
+          const lessonIdCandidateParts = parts.slice(2, parts.length - 2);
+          const lessonIdCandidate = lessonIdCandidateParts.join('-');
+          const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdCandidate);
+          if (aiLesson) {
+            return {
+              lessonTopic: aiLesson.topic,
+              exerciseQuestion: "Упражнение от ИИ",
+              lessonId: aiLesson.id
             }
-        }
+          }
+      }
     }
-    return { lessonTopic: "Неизвестный урок", exerciseQuestion: "ID: " + exerciseId };
+    return { lessonTopic: "Неизвестный урок", exerciseQuestion: "ID: " + exerciseId, lessonId: null };
   };
 
   const exerciseAttemptsArray = Object.entries(progress.exerciseAttempts).map(([id, data]) => ({
@@ -144,34 +149,40 @@ export default function UserProgressPage() {
             </CardHeader>
             <CardContent>
               {exerciseAttemptsArray.length > 0 ? (
-                <ScrollArea className="h-[400px] w-full rounded-md border">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead className="w-[200px]">Урок</TableHead>
-                        <TableHead>Вопрос (начало)</TableHead>
-                        <TableHead className="text-center w-[100px]">Попыток</TableHead>
-                        <TableHead className="text-center w-[100px]">Освоено</TableHead>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[30%] sm:w-[25%]">Урок</TableHead>
+                      <TableHead className="w-[40%] sm:w-[45%]">Вопрос (начало)</TableHead>
+                      <TableHead className="text-center w-[15%] sm:w-[15%]">Попыток</TableHead>
+                      <TableHead className="text-center w-[15%] sm:w-[15%]">Освоено</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {exerciseAttemptsArray.map((attempt) => (
+                      <TableRow key={attempt.id}>
+                        <TableCell className="font-medium">
+                           {attempt.lessonId ? (
+                            <Link href={`/lessons/${attempt.lessonId}`} className="text-primary hover:underline">
+                              {attempt.lessonTopic}
+                            </Link>
+                          ) : (
+                            attempt.lessonTopic
+                          )}
+                        </TableCell>
+                        <TableCell>{attempt.exerciseQuestion.substring(0, 70)}{attempt.exerciseQuestion.length > 70 ? '...' : ''}</TableCell>
+                        <TableCell className="text-center">{attempt.attemptsCount}</TableCell>
+                        <TableCell className="text-center">
+                          {attempt.mastered ? (
+                            <Award className="h-5 w-5 text-green-500 dark:text-green-400 inline" />
+                          ) : (
+                            <TrendingUp className="h-5 w-5 text-yellow-500 dark:text-yellow-400 inline" />
+                          )}
+                        </TableCell>
                       </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {exerciseAttemptsArray.map((attempt) => (
-                        <TableRow key={attempt.id}>
-                          <TableCell className="font-medium">{attempt.lessonTopic}</TableCell>
-                          <TableCell>{attempt.exerciseQuestion.substring(0, 70)}{attempt.exerciseQuestion.length > 70 ? '...' : ''}</TableCell>
-                          <TableCell className="text-center">{attempt.attemptsCount}</TableCell>
-                          <TableCell className="text-center">
-                            {attempt.mastered ? (
-                              <Award className="h-5 w-5 text-green-500 dark:text-green-400 inline" />
-                            ) : (
-                              <TrendingUp className="h-5 w-5 text-yellow-500 dark:text-yellow-400 inline" />
-                            )}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </ScrollArea>
+                    ))}
+                  </TableBody>
+                </Table>
               ) : (
                 <p className="text-muted-foreground">Вы еще не приступали к упражнениям или ваша статистика по ним не зафиксирована. <Link href="/lessons" className="text-primary hover:underline">Начать урок!</Link></p>
               )}
