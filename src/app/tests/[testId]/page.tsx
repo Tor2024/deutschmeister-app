@@ -14,7 +14,8 @@ import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-cho
 import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-exercise';
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
 import { Separator } from '@/components/ui/separator';
-import { CheckCircle, FileText, Percent, RefreshCw } from 'lucide-react';
+import { CheckCircle, FileText, Percent, RefreshCw, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function TestTakingPage() {
   const params = useParams();
@@ -80,7 +81,7 @@ export default function TestTakingPage() {
       title: `Тест "${test.topic}" завершен!`,
       description: `Ваш результат: ${calculatedScore}%.`,
       variant: calculatedScore >= 80 ? "default" : "destructive",
-      className: calculatedScore >= 80 ? "bg-green-500 text-white" : ""
+      className: calculatedScore >= 80 ? "bg-green-100 dark:bg-green-800/30 dark:border-green-500 text-green-700 dark:text-green-300" : "bg-red-100 dark:bg-red-800/30 dark:border-red-500 text-red-700 dark:text-red-300"
     });
   };
 
@@ -109,35 +110,39 @@ export default function TestTakingPage() {
   if (showResults && score !== null) {
     return (
       <div className="container mx-auto py-8 px-4">
-        <Card className="shadow-lg">
+        <Card className="shadow-lg text-center">
           <CardHeader>
-            <CardTitle className="text-3xl font-bold text-primary">Результаты теста: {test.topic}</CardTitle>
-            <CardDescription>Уровень: {test.level}</CardDescription>
+            <CardTitle className="text-3xl font-bold text-primary">Результаты теста</CardTitle>
+            <CardDescription className="text-lg">{test.topic} - Уровень {test.level}</CardDescription>
           </CardHeader>
-          <CardContent className="text-center space-y-4">
-            <p className="text-5xl font-bold">
-              {score}%
-              <Percent className="inline-block h-10 w-10 ml-2 text-muted-foreground" />
-            </p>
-            <p className="text-lg text-muted-foreground">
+          <CardContent className="space-y-6 py-8">
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-6xl font-bold text-primary">{score}%</p>
+              <Percent className="h-12 w-12 ml-2 text-muted-foreground" />
+            </div>
+            <p className="text-xl text-muted-foreground">
               Вы ответили правильно на {Math.round(score / 100 * test.questions.length)} из {test.questions.length} вопросов.
             </p>
             {score >= 80 ? (
-              <p className="text-green-600 font-semibold flex items-center justify-center">
-                <CheckCircle className="mr-2 h-6 w-6" /> Отличный результат!
+              <p className="text-2xl text-green-600 font-semibold flex items-center justify-center">
+                <ThumbsUp className="mr-2 h-7 w-7" /> Отличный результат!
+              </p>
+            ) : score >=50 ? (
+              <p className="text-2xl text-yellow-600 font-semibold flex items-center justify-center">
+                <ThumbsUp className="mr-2 h-7 w-7 text-yellow-500" /> Неплохо, но можно лучше!
               </p>
             ) : (
-              <p className="text-destructive font-semibold">
-                Попробуйте еще раз, чтобы улучшить результат!
+              <p className="text-2xl text-destructive font-semibold flex items-center justify-center">
+                <ThumbsDown className="mr-2 h-7 w-7" /> Попробуйте еще раз!
               </p>
             )}
           </CardContent>
-          <CardFooter className="flex flex-col sm:flex-row justify-center gap-4 pt-6">
-            <Button onClick={handleRetakeTest} variant="outline">
-              <RefreshCw className="mr-2 h-4 w-4" />
+          <CardFooter className="flex flex-col sm:flex-row justify-center gap-4 pt-6 border-t">
+            <Button onClick={handleRetakeTest} variant="outline" size="lg">
+              <RefreshCw className="mr-2 h-5 w-5" />
               Пройти еще раз
             </Button>
-            <Button asChild>
+            <Button asChild size="lg">
               <Link href="/tests">К списку тестов</Link>
             </Button>
           </CardFooter>
