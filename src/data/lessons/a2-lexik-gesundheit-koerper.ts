@@ -143,7 +143,11 @@ Heute Morgen ist Paul wieder gesund. Er kann zur Schule gehen. Seine Mutter sagt
       correctAnswer: 'in der Apotheke',
       explanation: 'Лекарства (Medikamente) покупают в аптеке (in der Apotheke).',
     },
+    {
+      id: 'a2-lexik-gesundheit-koerper-wp1',
+      type: 'writing_prompt',
+      question: 'Was machst du, wenn du dich nicht gut fühlst? Schreibe 2-3 Sätze. (Что ты делаешь, когда плохо себя чувствуешь? Напиши 2-3 предложения.)',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
-
-    
