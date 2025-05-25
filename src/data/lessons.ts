@@ -3,6 +3,7 @@ import type { Lesson } from '@/types';
 
 // A1 Lessons
 import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessungen';
+import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
 
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
@@ -60,6 +61,7 @@ import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalst
 export const MOCK_LESSONS: Lesson[] = [
   // A1
   lessonA1AlphabetBegruessungen,
+  lessonA1PersonalpronomenSeinHaben,
 
   // A2
   lessonA2Artikel,
