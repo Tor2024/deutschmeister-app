@@ -58,6 +58,7 @@ import { testB2PassivErsatzformen } from './tests/b2-passiv-ersatzformen-test';
 import { testB2SubjektiveModalverben } from './tests/b2-subjektive-modalverben-test';
 import { testB2KomplexeSatzverbindungen } from './tests/b2-komplexe-satzverbindungen-test';
 import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-verbalisierung-test';
+import { testB2Futur2 } from './tests/b2-futur2-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -122,6 +123,7 @@ export const MOCK_TESTS: Test[] = [
   testB2SubjektiveModalverben,
   testB2KomplexeSatzverbindungen,
   testB2NominalisierungVerbalisierung,
+  testB2Futur2,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
