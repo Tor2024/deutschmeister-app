@@ -6,7 +6,7 @@ export const lessonB1Plusquamperfekt: Lesson = {
   id: 'b1-plusquamperfekt',
   level: 'B1',
   topic: 'Предпрошедшее время (Plusquamperfekt)',
-  theory: \`Plusquamperfekt (предпрошедшее время, или "давнопрошедшее время") используется в немецком языке для описания действия, которое произошло и завершилось **до** другого действия или момента в прошлом. Это время помогает установить последовательность событий в прошлом. Часто оно используется в сочетании с Präteritum или Perfekt, которые описывают последующее действие.
+  theory: `Plusquamperfekt (предпрошедшее время, или "давнопрошедшее время") используется в немецком языке для описания действия, которое произошло и завершилось **до** другого действия или момента в прошлом. Это время помогает установить последовательность событий в прошлом. Часто оно используется в сочетании с Präteritum или Perfekt, которые описывают последующее действие.
 
 **1. Образование Plusquamperfekt:**
 Plusquamperfekt образуется с помощью вспомогательного глагола **haben** или **sein** в их формах **Präteritum** (\`hatte\` или \`war\`) и **Partizip II** (причастия II) смыслового глагола.
@@ -51,7 +51,7 @@ Plusquamperfekt подчеркивает, что одно действие в п
 *   *Er konnte das Auto nicht kaufen (Präteritum), weil er sein Geld **verloren hatte** (Plusquamperfekt).* (Он не мог купить машину, потому что он потерял свои деньги.)
 *   *Nachdem wir das Museum **besichtigt hatten** (Plusquamperfekt), gingen wir essen (Präteritum).* (После того как мы осмотрели музей, мы пошли есть.)
 
-Запоминание форм Präteritum для \`haben\` и \`sein\` и правил выбора вспомогательного глагола являются ключевыми для правильного использования Plusquamperfekt.\`,
+Запоминание форм Präteritum для \`haben\` и \`sein\` и правил выбора вспомогательного глагола являются ключевыми для правильного использования Plusquamperfekt.`,
   vocabulary: [
     { german: 'das Plusquamperfekt', russian: 'предпрошедшее время', example: 'Das Plusquamperfekt drückt die Vorvergangenheit aus.' },
     { german: 'die Vorvergangenheit', russian: 'предшествование в прошлом' },
