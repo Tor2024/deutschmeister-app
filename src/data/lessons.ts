@@ -23,6 +23,7 @@ import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
 import { lessonB1Adjektivdeklination } from './lessons/b1-adjektivdeklination';
+import { lessonB1VerbenMitPraepositionen } from './lessons/b1-verben-mit-praepositionen';
 
 // B2 Lessons
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -60,6 +61,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Relativsaetze,
   lessonB1Praeteritum,
   lessonB1Adjektivdeklination,
+  lessonB1VerbenMitPraepositionen,
 
   // B2
   lessonB2Konjunktiv2,
@@ -74,3 +76,5 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
 ];
+
+    
