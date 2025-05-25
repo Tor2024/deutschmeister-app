@@ -6,18 +6,19 @@ import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessung
 import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
 import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
 import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
-import { lessonA1GrammatikPraesensVerben } from './lessons/a1-grammatik-praesens-verben';
 import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
 import { lessonA1Negation } from './lessons/a1-negation';
 import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
-import { lessonA1WFragen } from './lessons/a1-w-fragen';
 import { lessonA1Modalverben } from './lessons/a1-modalverben';
 import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
 import { lessonA1Imperativ } from './lessons/a1-imperativ';
 import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akkusativ';
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
-import { lessonA1PraepositionenDativWechsel } from './lessons/a1-praepositionen-dativ-wechsel';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
+import { lessonA1GrammatikPraesensVerben } from './lessons/a1-grammatik-praesens-verben';
+import { lessonA1PraepositionenDativWechsel } from './lessons/a1-praepositionen-dativ-wechsel';
+import { lessonA1WFragen } from './lessons/a1-w-fragen';
+
 // A1 Lexik
 import { lessonA1LexikPersoenlicheInfos } from './lessons/a1-lexik-persoenliche-infos';
 import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
@@ -37,26 +38,27 @@ import { lessonA1LexikOrdinalzahlenDatum } from './lessons/a1-lexik-ordinalzahle
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
 import { lessonA2Pluralbildung } from './lessons/a2-pluralbildung';
-import { lessonA2TrennbareUntrennbareVerben } from './lessons/a2-trennbare-untrennbare-verben';
-import { lessonA2GrammatikPraeteritumSeinHabenModal } from './lessons/a2-grammatik-praeteritum-sein-haben-modal';
 import { lessonA2Perfekt } from './lessons/a2-perfekt';
 import { lessonA2Modalverben } from './lessons/a2-modalverben';
-import { lessonA2ModalverbenPerfekt } from './lessons/a2-modalverben-perfekt';
-import { lessonA2VerbLassen } from './lessons/a2-verb-lassen';
+import { lessonA2ModalverbenPerfekt } from './lessons/a2-modalverben-perfekt'; // Added
 import { lessonA2Praepositionen } from './lessons/a2-praepositionen';
 import { lessonA2Possessivpronomen } from './lessons/a2-possessivpronomen';
 import { lessonA2PersonalpronomenAkkDat } from './lessons/a2-personalpronomen-akk-dat';
 import { lessonA2Adjektivsteigerung } from './lessons/a2-adjektivsteigerung';
-import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2Imperativ } from './lessons/a2-imperativ';
 import { lessonA2Satzbau } from './lessons/a2-satzbau';
-import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
 import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
+import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
 import { lessonA2Negation } from './lessons/a2-negation';
 import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
+import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
 import { lessonA2Demonstrativpronomen } from './lessons/a2-demonstrativpronomen';
 import { lessonA2OrdinalzahlenDatum } from './lessons/a2-ordinalzahlen-datum';
+import { lessonA2GrammatikPraeteritumSeinHabenModal } from './lessons/a2-grammatik-praeteritum-sein-haben-modal';
+import { lessonA2TrennbareUntrennbareVerben } from './lessons/a2-trennbare-untrennbare-verben'; // Added
+import { lessonA2VerbLassen } from './lessons/a2-verb-lassen'; // Added
+
 // A2 Lexik
 import { lessonA2LexikArbeitBeruf } from './lessons/a2-lexik-arbeit-beruf';
 import { lessonA2LexikReisenVerkehr } from './lessons/a2-lexik-reisen-verkehr';
@@ -89,7 +91,7 @@ import { lessonB1InfinitivMitZu } from './lessons/b1-infinitiv-mit-zu';
 import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
-import { lessonB1KonditionalsaetzeTyp1 } from './lessons/b1-konditionalsaetze-typ1'; // Added
+import { lessonB1KonditionalsaetzeTyp1 } from './lessons/b1-konditionalsaetze-typ1';
 // B1 Lexik
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
 import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere';
@@ -129,6 +131,7 @@ import { lessonC1LexikWissenschaftForschung } from './lessons/c1-lexik-wissensch
 import { lessonC1LexikWirtschaftGlobalermarkt } from './lessons/c1-lexik-wirtschaft-globalermarkt';
 import { lessonC1LexikInterkulturelleKommunikation } from './lessons/c1-lexik-interkulturelle-kommunikation';
 
+
 // C2 Lessons
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
 import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalstil';
@@ -159,7 +162,6 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikHobbysFreizeit,
   lessonA1Imperativ,
   lessonA1LexikUhrzeitTagesablauf,
-  lessonA1LexikOrdinalzahlenDatum, // Added
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
   lessonA1PraepositionenDativWechsel,
@@ -169,6 +171,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1LexikGefuehleZustaende,
   lessonA1LexikHausWohnung,
+  lessonA1LexikOrdinalzahlenDatum,
+
 
   // A2 Ordered
   lessonA2Artikel,
@@ -209,6 +213,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikBank,
   lessonA2LexikSchuleKurse,
 
+
   // B1 Ordered
   lessonB1Praeteritum,
   lessonB1PerfektReview,
@@ -216,18 +221,17 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Nebensaetze,
   lessonB1Relativsaetze,
   lessonB1Konjunktiv2Einfuehrung,
-  lessonB1Modalverben, // Assuming this is a more general B1 Modal verbs if needed, or use B1Konj2 for their KII
+  // lessonB1Modalverben, // This was the undefined one, removed
   lessonB1PassivEinfuehrung,
   lessonB1Genitiv,
   lessonB1NDeklination,
   lessonB1Indefinitpronomen,
-  lessonB1KonditionalsaetzeTyp1, // Added
+  lessonB1KonditionalsaetzeTyp1,
   lessonB1InfinitivMitZu,
   lessonB1Konsekutivsaetze,
   lessonB1Futur1,
   lessonB1Adjektivdeklination,
   lessonB1VerbenMitPraepositionen,
-  // B1 Lexik (Ordered among grammar)
   lessonB1LexikBildungStudium,
   lessonB1LexikArbeitKarriere,
   lessonB1LexikMedienKommunikation,
@@ -245,7 +249,6 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2NominalisierungVerbalisierung,
   lessonB2KomplexeSatzverbindungen,
   lessonB2Wortbildung,
-  // B2 Lexik (Ordered among grammar)
   lessonB2LexikUmweltNachhaltigkeit,
   lessonB2LexikKulturKunst,
   lessonB2LexikWissenschaftTechnologie,
@@ -254,12 +257,11 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2LexikWirtschaftKonsum,
 
   // C1 Ordered
-  lessonC1KonjunktivVertiefung, // Includes Konj I and II
-  lessonC1IndirekteRede, // Uses Konj I
-  lessonC1Partizipialkonstruktionen, // Attribute
-  lessonC1PartizipialkonstruktionenAdverbial, // Adverbial uses
+  lessonC1KonjunktivVertiefung,
+  lessonC1IndirekteRede,
+  lessonC1Partizipialkonstruktionen,
+  lessonC1PartizipialkonstruktionenAdverbial,
   lessonC1AdverbialsaetzeVertiefung,
-  // C1 Lexik
   lessonC1LexikPolitikGesellschaft,
   lessonC1LexikWissenschaftForschung,
   lessonC1LexikWirtschaftGlobalermarkt,
@@ -269,7 +271,6 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
   lessonC2Modalpartikeln,
-  // C2 Lexik
   lessonC2LexikGlobaleProbleme,
   lessonC2LexikMedienkritikDigitaleGesellschaft,
   lessonC2LexikSozialeTrends,
@@ -288,4 +289,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
