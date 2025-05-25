@@ -89,6 +89,7 @@ import { lessonB2Wortbildung } from './lessons/b2-wortbildung';
 
 // B2 Lexik
 import { lessonB2LexikUmweltNachhaltigkeit } from './lessons/b2-lexik-umwelt-nachhaltigkeit';
+import { lessonB2LexikKulturKunst } from './lessons/b2-lexik-kultur-kunst';
 
 // C1 Grammar
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
@@ -185,6 +186,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2Wortbildung,
   // B2 Lexik
   lessonB2LexikUmweltNachhaltigkeit,
+  lessonB2LexikKulturKunst,
 
   // C1 Grammar
   lessonC1IndirekteRede,
@@ -212,4 +214,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-

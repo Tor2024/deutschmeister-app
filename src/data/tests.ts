@@ -77,6 +77,7 @@ import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-
 import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
+import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
 
 // C1 Tests
 import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
@@ -169,6 +170,7 @@ export const MOCK_TESTS: Test[] = [
   testB2Futur2,
   testB2Wortbildung,
   testB2LexikUmweltNachhaltigkeit,
+  testB2LexikKulturKunst,
 
   // C1 Tests
   testC1IndirekteRede,
@@ -187,4 +189,3 @@ export const MOCK_TESTS: Test[] = [
 export const getTestById = (id: string): Test | undefined => {
   return MOCK_TESTS.find(test => test.id === id);
 };
-
