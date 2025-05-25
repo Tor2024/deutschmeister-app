@@ -6,7 +6,7 @@ export const lessonA1Imperativ: Lesson = {
   id: 'a1-imperativ',
   level: 'A1',
   topic: 'Повелительное наклонение (Imperativ)',
-  theory: \`
+  theory: `
 Повелительное наклонение (Imperativ) используется для выражения команд, просьб, советов или инструкций. В немецком языке существуют формы Imperativ для \`du\` (ты), \`ihr\` (вы, неформально мн.ч.) и \`Sie\` (Вы, вежливо).
 
 **1. Образование Imperativ:**
@@ -51,7 +51,7 @@ export const lessonA1Imperativ: Lesson = {
    - Sie: **Seien Sie** vorsichtig! (Будьте осторожны!)
 
 Помните, что в Imperativ для \`du\` и \`ihr\` личное местоимение опускается.
-\`,
+`,
   vocabulary: [
     { german: 'machen (mach!, macht!, machen Sie!)', russian: 'делать (делай!, делайте!, делайте!)' },
     { german: 'kommen (komm!, kommt!, kommen Sie!)', russian: 'приходить (приходи!, приходите!, приходите!)' },
