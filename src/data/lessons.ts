@@ -24,7 +24,7 @@ import { lessonA1LexikHobbysFreizeit } from './lessons/a1-lexik-hobbys-freizeit'
 import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
 import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
 import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
-import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf'; // New A1 Lexik
+import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf';
 
 
 // A2 Grammar
@@ -55,7 +55,7 @@ import { lessonA2LexikGesundheitKoerper } from './lessons/a2-lexik-gesundheit-ko
 import { lessonA2LexikKleidung } from './lessons/a2-lexik-kleidung';
 import { lessonA2LexikEinkaufen } from './lessons/a2-lexik-einkaufen';
 import { lessonA2LexikInDerStadt } from './lessons/a2-lexik-in-der-stadt';
-
+import { lessonA2LexikFesteTraditionen } from './lessons/a2-lexik-feste-traditionen'; // New A2 Lexik
 
 // B1 Grammar
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
@@ -141,7 +141,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikZahlenFarben,
   lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1LexikKleidung,
-  lessonA1LexikUhrzeitTagesablauf, // New A1 Lexik
+  lessonA1LexikUhrzeitTagesablauf,
 
   // A2 Grammar
   lessonA2Artikel,
@@ -170,6 +170,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikKleidung,
   lessonA2LexikEinkaufen,
   lessonA2LexikInDerStadt,
+  lessonA2LexikFesteTraditionen, // New A2 Lexik
 
   // B1 Grammar
   lessonB1Nebensaetze,
