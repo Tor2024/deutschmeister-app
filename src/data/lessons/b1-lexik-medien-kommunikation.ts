@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonB1LexikMedienKommunikation: Lesson = {
   id: 'b1-lexik-medien-kommunikation',
@@ -72,6 +72,51 @@ export const lessonB1LexikMedienKommunikation: Lesson = {
     { german: 'diskutieren (über + A)', russian: 'дискутировать, обсуждать (что-л.)', example: 'Wir haben lange über Politik diskutiert.' },
     { german: 'die Werbung (-en)', russian: 'реклама', example: 'Ich mag keine Werbung im Fernsehen.' },
     { german: 'die Sendung (-en)', russian: 'передача (ТВ, радио)', example: 'Meine Lieblingssendung kommt am Freitag.' },
+  ],
+  readingText: `
+Die Medienlandschaft hat sich in den letzten Jahrzehnten stark verändert. Früher waren Zeitungen, Radio und Fernsehen die Hauptinformationsquellen. Heute spielt das Internet eine dominierende Rolle. Viele Menschen lesen Nachrichten online auf Webseiten von Zeitungen oder Nachrichtenportalen. Auch soziale Netzwerke sind zu wichtigen Plattformen für den Informationsaustausch und die Meinungsbildung geworden.
+
+Diese Entwicklung hat sowohl Vor- als auch Nachteile. Einerseits ist der Zugang zu Informationen schneller und einfacher geworden. Man kann sich jederzeit und überall über aktuelle Ereignisse informieren. Andererseits ist es oft schwierig, die Glaubwürdigkeit von Informationen im Internet zu überprüfen. Fake News und Desinformation können sich sehr schnell verbreiten und die öffentliche Meinung manipulieren.
+
+Deshalb ist Medienkompetenz heute wichtiger denn je. Das bedeutet, dass man lernen muss, Informationen kritisch zu hinterfragen, Quellen zu überprüfen und verschiedene Perspektiven zu berücksichtigen. Eine informierte und kritische Auseinandersetzung mit Medieninhalten ist entscheidend für eine funktionierende Demokratie.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'b1-lexik-medien-kommunikation-rq1',
+      question: 'Welche Rolle spielt das Internet heute laut Text bei der Informationsbeschaffung?',
+      options: [
+        'Eine untergeordnete Rolle.',
+        'Keine Rolle, da Zeitungen wichtiger sind.',
+        'Eine dominierende Rolle.',
+        'Nur eine Rolle für junge Leute.'
+      ],
+      correctAnswer: 'Eine dominierende Rolle.',
+      explanation: 'Im Text steht: "Heute spielt das Internet eine dominierende Rolle."'
+    },
+    {
+      id: 'b1-lexik-medien-kommunikation-rq2',
+      question: 'Was ist laut Text ein Nachteil der Informationsverbreitung im Internet?',
+      options: [
+        'Der Zugang zu Informationen ist zu langsam.',
+        'Informationen sind nur für bestimmte Nutzergruppen zugänglich.',
+        'Es ist oft schwierig, die Glaubwürdigkeit von Informationen zu überprüfen.',
+        'Es gibt zu wenige Informationsquellen online.'
+      ],
+      correctAnswer: 'Es ist oft schwierig, die Glaubwürdigkeit von Informationen zu überprüfen.',
+      explanation: 'Im Text wird erwähnt: "Andererseits ist es oft schwierig, die Glaubwürdigkeit von Informationen im Internet zu überprüfen."'
+    },
+    {
+      id: 'b1-lexik-medien-kommunikation-rq3',
+      question: 'Was versteht man unter Medienkompetenz im Kontext des Textes?',
+      options: [
+        'Die Fähigkeit, schnell im Internet zu surfen.',
+        'Das Wissen, wie man soziale Netzwerke benutzt.',
+        'Die Fähigkeit, Informationen kritisch zu hinterfragen und Quellen zu überprüfen.',
+        'Das Abonnieren vieler verschiedener Zeitungen.'
+      ],
+      correctAnswer: 'Die Fähigkeit, Informationen kritisch zu hinterfragen und Quellen zu überprüfen.',
+      explanation: 'Medienkompetenz wird im Text als die Fähigkeit beschrieben, "...Informationen kritisch zu hinterfragen, Quellen zu überprüfen und verschiedene Perspektiven zu berücksichtigen."'
+    }
   ],
   exercises: [
     {
