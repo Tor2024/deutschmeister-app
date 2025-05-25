@@ -86,6 +86,8 @@ import { testC1KonjunktivVertiefung } from './tests/c1-konjunktiv-vertiefung-tes
 import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipialkonstruktionen-adverbial-test';
 import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
 import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
+import { testC1LexikWissenschaftForschung } from './tests/c1-lexik-wissenschaft-forschung-test';
+
 
 // C2 Tests
 import { testC2Stilmittel } from './tests/c2-stilmittel-test';
@@ -180,6 +182,7 @@ export const MOCK_TESTS: Test[] = [
   testC1PartizipialkonstruktionenAdverbial,
   testC1AdverbialsaetzeVertiefung,
   testC1LexikPolitikGesellschaft,
+  testC1LexikWissenschaftForschung,
 
   // C2 Tests
   testC2Stilmittel,
@@ -191,3 +194,5 @@ export const MOCK_TESTS: Test[] = [
 export const getTestById = (id: string): Test | undefined => {
   return MOCK_TESTS.find(test => test.id === id);
 };
+
+    

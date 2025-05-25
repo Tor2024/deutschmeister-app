@@ -39,7 +39,7 @@ import { lessonA2Imperativ } from './lessons/a2-imperativ';
 import { lessonA2Satzbau } from './lessons/a2-satzbau';
 import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
-// import { lessonA2Negation } from './lessons/a2-negation'; // already declared in A1 imports
+import { lessonA2Negation } from './lessons/a2-negation';
 import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
 import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
@@ -100,6 +100,8 @@ import { lessonC1AdverbialsaetzeVertiefung } from './lessons/c1-adverbialsaetze-
 
 // C1 Lexik
 import { lessonC1LexikPolitikGesellschaft } from './lessons/c1-lexik-politik-gesellschaft';
+import { lessonC1LexikWissenschaftForschung } from './lessons/c1-lexik-wissenschaft-forschung';
+
 
 // C2 Grammar
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
@@ -143,7 +145,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Satzbau,
   lessonA2NebensaetzeEinfach,
   lessonA2NebenordnendeKonjunktionen,
-  // lessonA2Negation, // Re-uses A1 lesson or should be a distinct A2 version
+  lessonA2Negation,
   lessonA2ReflexiveVerben,
   lessonA2Adjektivdeklination,
   lessonA2TemporalsaetzeAlsWenn,
@@ -199,6 +201,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC1AdverbialsaetzeVertiefung,
   // C1 Lexik
   lessonC1LexikPolitikGesellschaft,
+  lessonC1LexikWissenschaftForschung,
+
 
   // C2 Grammar
   lessonC2Stilmittel,
@@ -219,3 +223,5 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+
+    
