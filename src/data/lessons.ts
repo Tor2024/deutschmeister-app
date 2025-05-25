@@ -5,6 +5,7 @@ import type { Lesson } from '@/types';
 import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessungen';
 import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
 import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
+import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
 
 
 // A2 Lessons
@@ -65,6 +66,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1AlphabetBegruessungen,
   lessonA1PersonalpronomenSeinHaben,
   lessonA1ArtikelGenus,
+  lessonA1Pluralbildung,
 
   // A2
   lessonA2Artikel,
