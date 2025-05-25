@@ -19,7 +19,7 @@ import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
 import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
-import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test'; // Added A1 Lexik Test
+import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -85,6 +85,7 @@ import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
 import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
+import { testB2LexikWissenschaftTechnologie } from './tests/b2-lexik-wissenschaft-technologie-test';
 
 
 // C1 Tests
@@ -128,7 +129,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikZahlenFarben,
   testA1LexikWochentageMonateJahreszeiten,
   testA1LexikUhrzeitTagesablauf,
-  testA1LexikKleidung, // Added A1 Lexik Test
+  testA1LexikKleidung,
 
 
   // A2 Grammar Tests
@@ -196,6 +197,7 @@ export const MOCK_TESTS: Test[] = [
   // B2 Lexik Tests
   testB2LexikUmweltNachhaltigkeit,
   testB2LexikKulturKunst,
+  testB2LexikWissenschaftTechnologie,
 
   // C1 Grammar Tests
   testC1IndirekteRede,
@@ -269,7 +271,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'a2-grammar-module-1-test',
     level: 'A2',
     topic: 'A2 - Грамматический Модуль 1 (Тест)',
-    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt, Модальные глаголы.',
+    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt и Модальные глаголы.',
     coveredLessonIds: [
       'a2-artikel',
       'a2-verben-praesens',
@@ -289,7 +291,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     id: 'b1-grammar-module-1-test',
     level: 'B1',
     topic: 'B1 - Грамматический Модуль 1 (Тест)',
-    description: 'Проверка знаний по темам: Придаточные предложения, Относительные предложения, Präteritum, Склонение прилагательных, Глаголы с предлогами.',
+    description: 'Проверка знаний по темам: Придаточные предложения, Относительные предложения, Präteritum, Склонение прилагательных и Глаголы с предлогами.',
     coveredLessonIds: [
       'b1-nebensaetze',
       'b1-relativsaetze',
