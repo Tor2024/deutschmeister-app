@@ -53,6 +53,7 @@ import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
 import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
 import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
+import { testA2LexikLebensstilGewohnheiten } from './tests/a2-lexik-lebensstil-gewohnheiten-test';
 
 
 // B1 Tests
@@ -180,6 +181,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikEinkaufen,
   testA2LexikInDerStadt,
   testA2LexikFesteTraditionen,
+  testA2LexikLebensstilGewohnheiten,
 
   // B1 Grammar Tests
   testB1Nebensaetze,
