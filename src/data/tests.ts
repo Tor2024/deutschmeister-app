@@ -1,3 +1,4 @@
+
 import type { Test, ModularTest } from '@/types'; // Added ModularTest
 import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
@@ -106,7 +107,7 @@ import { testC2LexikSozialeTrends } from './tests/c2-lexik-soziale-trends-test';
 
 
 export const MOCK_TESTS: Test[] = [
-  // A1 Tests
+  // A1 Grammar Tests
   testA1ArtikelGenus,
   testA1PronomenSeinHaben,
   testA1Pluralbildung,
@@ -119,6 +120,7 @@ export const MOCK_TESTS: Test[] = [
   testA1PraepositionenAkkusativ,
   testA1PraepositionenDativ,
   testA1TrennbarVerben,
+  // A1 Lexik Tests
   testA1LexikFamilie,
   testA1LexikHausWohnung,
   testA1LexikEssenTrinken,
@@ -128,7 +130,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikKleidung,
   testA1LexikUhrzeitTagesablauf,
 
-  // A2 Tests
+  // A2 Grammar Tests
   testA2Artikel,
   testA2VerbenPraesens,
   testA2Pluralbildung,
@@ -148,6 +150,7 @@ export const MOCK_TESTS: Test[] = [
   testA2TemporalsaetzeAlsWenn,
   testA2Demonstrativpronomen,
   testA2OrdinalzahlenDatum,
+  // A2 Lexik Tests
   testA2LexikArbeitBeruf,
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
@@ -156,7 +159,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikInDerStadt,
   testA2LexikFesteTraditionen,
 
-  // B1 Tests
+  // B1 Grammar Tests
   testB1Nebensaetze,
   testB1Relativsaetze,
   testB1Praeteritum,
@@ -171,6 +174,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Indefinitpronomen,
   testB1InfinitivMitZu,
   testB1Konsekutivsaetze,
+  // B1 Lexik Tests
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
   testB1LexikMedienKommunikation,
@@ -178,7 +182,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikKulturFreizeit,
   testB1LexikBeziehungen,
 
-  // B2 Tests
+  // B2 Grammar Tests
   testB2Konjunktiv2,
   testB2NomenVerb,
   testB2Passiv,
@@ -188,22 +192,25 @@ export const MOCK_TESTS: Test[] = [
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
   testB2Wortbildung,
+  // B2 Lexik Tests
   testB2LexikUmweltNachhaltigkeit,
   testB2LexikKulturKunst,
 
-  // C1 Tests
+  // C1 Grammar Tests
   testC1IndirekteRede,
   testC1Partizipialkonstruktionen,
   testC1KonjunktivVertiefung,
   testC1PartizipialkonstruktionenAdverbial,
   testC1AdverbialsaetzeVertiefung,
+  // C1 Lexik Tests
   testC1LexikPolitikGesellschaft,
   testC1LexikWissenschaftForschung,
 
-  // C2 Tests
+  // C2 Grammar Tests
   testC2Stilmittel,
   testC2NominalstilVerbalstil,
   testC2Modalpartikeln,
+  // C2 Lexik Tests
   testC2LexikGlobaleProbleme,
   testC2LexikMedienkritikDigitaleGesellschaft,
   testC2LexikSozialeTrends,
@@ -245,7 +252,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
         question: 'Как будет "ребенок" (das Kind) во множественном числе?',
         options: ['die Kinde', 'die Kinden', 'die Kinder', 'die Kinds'],
         correctAnswer: 'die Kinder',
-        explanation: 'Существительные среднего рода часто образуют множественное число с окончанием -er: die Kinder.',
+        explanation: 'Существительное "das Kind" среднего рода, множественное число "die Kinder".',
       },
       {
         id: 'a1-gm1-q4',
@@ -265,6 +272,171 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       }
     ],
   },
+  {
+    id: 'a1-grammar-module-2-test',
+    level: 'A1',
+    topic: 'A1 - Грамматический Модуль 2 (Тест)',
+    description: 'Проверка знаний по темам: Отрицание (nicht/kein), Порядок слов (основы), Модальные глаголы (основы), Притяжательные местоимения (Nom/Akk), Imperativ (основы).',
+    coveredLessonIds: [
+      'a1-negation',
+      'a1-satzbau-grundlagen',
+      'a1-modalverben',
+      'a1-possessivpronomen',
+      'a1-imperativ',
+    ],
+    questions: [
+      {
+        id: 'a1-gm2-q1',
+        type: 'multiple_choice',
+        question: 'Выберите правильное отрицание: "Ich habe ___ Zeit."',
+        options: ['nicht', 'kein', 'keine', 'keinen'],
+        correctAnswer: 'keine',
+        explanation: 'Существительное "Zeit" (ж.р.) отрицается с "keine".',
+      },
+      {
+        id: 'a1-gm2-q2',
+        type: 'multiple_choice',
+        question: 'На каком месте стоит спрягаемый глагол в вопросе без вопросительного слова?',
+        options: ['На первом', 'На втором', 'В конце'],
+        correctAnswer: 'На первом',
+        explanation: 'В общем вопросе (Ja/Nein-Frage) спрягаемый глагол стоит на первом месте.',
+      },
+      {
+        id: 'a1-gm2-q3',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте модальный глагол: "Ich ___ Deutsch sprechen." (умею)',
+        sentenceParts: ['Ich ', ' Deutsch sprechen.'],
+        correctAnswer: 'kann',
+        explanation: '"können" (уметь) для "ich" - "kann".',
+      },
+      {
+        id: 'a1-gm2-q4',
+        type: 'multiple_choice',
+        question: 'Какая форма правильная: "Das ist ___ (её) Fahrrad (ср.р., Nominativ)?"',
+        options: ['ihr', 'ihre', 'ihren'],
+        correctAnswer: 'ihr',
+        explanation: 'Притяжательное местоимение "ihr" (её) для среднего рода в Nominativ - "ihr".',
+      },
+      {
+        id: 'a1-gm2-q5',
+        type: 'fill_in_the_blank',
+        question: 'Образуйте Imperativ для "du": "___ (lesen) das Buch!"',
+        sentenceParts: ['', ' das Buch!'],
+        correctAnswer: 'Lies',
+        explanation: 'Глагол "lesen" (e→ie) в Imperativ для "du" - "Lies!".',
+      }
+    ]
+  },
+  {
+    id: 'a2-grammar-module-1-test',
+    level: 'A2',
+    topic: 'A2 - Грамматический Модуль 1 (Тест)',
+    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt, Модальные глаголы.',
+    coveredLessonIds: [
+      'a2-artikel',
+      'a2-verben-praesens',
+      'a2-pluralbildung',
+      'a2-perfekt',
+      'a2-modalverben',
+    ],
+    questions: [
+      {
+        id: 'a2-gm1-q1',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте отрицательный артикль в Akkusativ: "Er kauft ___ Auto (ср.р.)."',
+        sentenceParts: ['Er kauft ', ' Auto.'],
+        correctAnswer: 'kein',
+        explanation: '"Auto" среднего рода. "kein" в Akkusativ для среднего рода не меняется.',
+      },
+      {
+        id: 'a2-gm1-q2',
+        type: 'multiple_choice',
+        question: 'Какая форма глагола "fahren" (ехать) верна для "er"?',
+        options: ['er fahrt', 'er fährt', 'er fahret'],
+        correctAnswer: 'er fährt',
+        explanation: 'Глагол "fahren" (a→ä) для "er" - "fährt".',
+      },
+       {
+        id: 'a2-gm1-q3',
+        type: 'fill_in_the_blank',
+        question: 'Напишите множественное число: das Museum → die ___',
+        sentenceParts: ['das Museum → die ', ''],
+        correctAnswer: 'Museen',
+        explanation: 'Множественное число от "das Museum" - "die Museen".',
+      },
+      {
+        id: 'a2-gm1-q4',
+        type: 'multiple_choice',
+        question: 'Выберите правильный вспомогательный глагол для Perfekt: "Ich ___ gestern ins Kino ___." (gehen)',
+        options: ['habe ... gegangen', 'bin ... gegangen', 'habe ... gegeht'],
+        correctAnswer: 'bin ... gegangen',
+        explanation: '"gehen" образует Perfekt с "sein". Partizip II - "gegangen".',
+      },
+      {
+        id: 'a2-gm1-q5',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте правильную форму "dürfen": "Du ___ hier nicht parken."',
+        sentenceParts: ['Du ', ' hier nicht parken.'],
+        correctAnswer: 'darfst',
+        explanation: '"dürfen" для "du" - "darfst".',
+      }
+    ]
+  },
+  {
+    id: 'b1-grammar-module-1-test',
+    level: 'B1',
+    topic: 'B1 - Грамматический Модуль 1 (Тест)',
+    description: 'Проверка знаний по темам: Придаточные предложения, Относительные предложения, Präteritum, Склонение прилагательных, Глаголы с предлогами.',
+    coveredLessonIds: [
+      'b1-nebensaetze',
+      'b1-relativsaetze',
+      'b1-praeteritum',
+      'b1-adjektivdeklination',
+      'b1-verben-mit-praepositionen',
+    ],
+    questions: [
+      {
+        id: 'b1-gm1-q1',
+        type: 'multiple_choice',
+        question: 'Выберите правильный союз: "Ich gehe nicht ins Kino, ___ ich keine Zeit habe."',
+        options: ['obwohl', 'damit', 'weil', 'wenn'],
+        correctAnswer: 'weil',
+        explanation: '"weil" (потому что) используется для указания причины.',
+      },
+      {
+        id: 'b1-gm1-q2',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте правильное относительное местоимение: "Die Frau, mit ___ ich gesprochen habe, ist sehr nett."',
+        sentenceParts: ['Die Frau, mit ', ' ich gesprochen habe, ist sehr nett.'],
+        correctAnswer: 'der',
+        explanation: 'Предлог "mit" требует Dativ. "Die Frau" (ж.р.) в Dativ - "der".',
+      },
+      {
+        id: 'b1-gm1-q3',
+        type: 'multiple_choice',
+        question: 'Какая форма Präteritum глагола "sehen" для "ich"?',
+        options: ['sehte', 'sah', 'gesehen', 'sieht'],
+        correctAnswer: 'sah',
+        explanation: 'Präteritum от "sehen" - "sah".',
+      },
+      {
+        id: 'b1-gm1-q4',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте окончание прилагательного: "Ich habe ein___ neu___ Fahrrad (ср.р., Akk.) gekauft."',
+        sentenceParts: ['Ich habe ein', ' neu', ' Fahrrad gekauft.'],
+        correctAnswer: ' neues',
+        explanation: 'После "ein" перед ср.р. в Akkusativ прилагательное получает "-es".',
+      },
+      {
+        id: 'b1-gm1-q5',
+        type: 'multiple_choice',
+        question: 'Выберите правильный предлог: "Ich denke oft ___ dich."',
+        options: ['an', 'auf', 'über', 'mit'],
+        correctAnswer: 'an',
+        explanation: 'Глагол "denken an + Akkusativ" (думать о).',
+      }
+    ]
+  }
 ];
 
 
@@ -273,3 +445,5 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
+
+
