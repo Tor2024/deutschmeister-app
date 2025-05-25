@@ -17,6 +17,7 @@ import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
 import { lessonA2Negation } from './lessons/a2-negation';
 
+
 // B1 Lessons
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
@@ -28,6 +29,7 @@ import { lessonB1Futur1 } from './lessons/b1-futur1';
 import { lessonB1Konjunktiv2Einfuehrung } from './lessons/b1-konjunktiv2-einfuehrung';
 import { lessonB1PassivEinfuehrung } from './lessons/b1-passiv-einfuehrung';
 import { lessonB1Genitiv } from './lessons/b1-genitiv';
+import { lessonB1NDeklination } from './lessons/b1-n-deklination';
 
 
 // B2 Lessons
@@ -72,6 +74,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Konjunktiv2Einfuehrung,
   lessonB1PassivEinfuehrung,
   lessonB1Genitiv,
+  lessonB1NDeklination,
 
   // B2
   lessonB2Konjunktiv2,
