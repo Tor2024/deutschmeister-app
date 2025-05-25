@@ -135,5 +135,11 @@ Der Winter beginnt im Dezember. Im Winter ist es kalt. Manchmal schneit es. Der 
       correctAnswer: 'мужской (der)',
       explanation: 'Все названия месяцев в немецком языке мужского рода (der Januar, der Februar и т.д.).',
     },
+    {
+      id: 'a1-lexik-wochentage-wp1',
+      type: 'writing_prompt',
+      question: 'Напиши, какой твой любимый день недели или месяц и почему. (2-3 предложения)',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
