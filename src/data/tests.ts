@@ -47,6 +47,7 @@ import { testB1PassivEinfuehrung } from './tests/b1-passiv-einfuehrung-test';
 import { testB1Genitiv } from './tests/b1-genitiv-test';
 import { testB1NDeklination } from './tests/b1-n-deklination-test';
 import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
+import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -100,6 +101,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Genitiv,
   testB1NDeklination,
   testB1Indefinitpronomen,
+  testB1InfinitivMitZu,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
