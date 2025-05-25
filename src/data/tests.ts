@@ -9,3 +9,8 @@ export const MOCK_TESTS: Test[] = [
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
+
+// Helper function to get a test by its ID
+export const getTestById = (id: string): Test | undefined => {
+  return MOCK_TESTS.find(test => test.id === id);
+};
