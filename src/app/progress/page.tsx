@@ -5,9 +5,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Progress as ProgressBar } from "@/components/ui/progress"; // Alias to avoid conflict
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { MOCK_LESSONS } from '@/data/lessons'; // To get total number of lessons for percentage
-import { BarChart, CheckCircle, ListChecks, TrendingUp, Zap } from 'lucide-react';
+import { MOCK_LESSONS } from '@/data/lessons';
+import type { Exercise } from '@/types';
+import { BarChart, CheckCircle, ListChecks, TrendingUp, Zap, Activity, Award } from 'lucide-react';
 import Image from "next/image";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export default function UserProgressPage() {
   const { progress, isLoading, clearProgress } = useUserProgress();
@@ -23,11 +25,43 @@ export default function UserProgressPage() {
   const handleClearProgress = () => {
     if (window.confirm('Вы уверены, что хотите сбросить весь прогресс? Это действие необратимо.')) {
       clearProgress();
-      // Optionally, navigate to home or refresh
-      // window.location.href = '/'; // Or use Next.js router if preferred
       alert("Прогресс сброшен."); // Consider using toast
     }
   };
+
+  const getExerciseDetails = (exerciseId: string): { lessonTopic: string; exerciseQuestion: string } => {
+    for (const lesson of MOCK_LESSONS) {
+      const exercise = lesson.exercises.find(ex => ex.id === exerciseId) ||
+                       (lesson.aiGeneratedExercises && lesson.aiGeneratedExercises.find(ex => ex.id === exerciseId));
+      if (exercise) {
+        return {
+          lessonTopic: lesson.topic,
+          exerciseQuestion: exercise.question,
+        };
+      }
+    }
+    // Attempt to parse lessonId from AI exercise ID format: ai-ex-${lesson.id}-${Date.now()}-${index}
+    if (exerciseId.startsWith('ai-ex-')) {
+        const parts = exerciseId.split('-');
+        if (parts.length > 3) { // ai, ex, lessonId, ...
+            const lessonIdFromAIEx = parts[2]; 
+            const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdFromAIEx);
+            if (aiLesson) {
+              return {
+                lessonTopic: aiLesson.topic,
+                exerciseQuestion: "Упражнение от ИИ" 
+              }
+            }
+        }
+    }
+    return { lessonTopic: "Неизвестный урок", exerciseQuestion: "ID: " + exerciseId };
+  };
+
+  const exerciseAttemptsArray = Object.entries(progress.exerciseAttempts).map(([id, data]) => ({
+    id,
+    ...data,
+    ...getExerciseDetails(id)
+  }));
 
 
   return (
@@ -86,13 +120,44 @@ export default function UserProgressPage() {
             </CardContent>
           </Card>
 
-          {/* Placeholder for Test Results and Exercise Mastery */}
-          <div className="text-center p-6 border border-dashed rounded-lg">
-            <Image src="https://placehold.co/600x300.png" alt="Детальная статистика в разработке" width={600} height={300} className="rounded-md mx-auto mb-4" data-ai-hint="analytics dashboard"/>
-            <p className="text-lg text-muted-foreground">
-              Более детальная статистика по тестам и освоению упражнений появится здесь в ближайшее время.
-            </p>
-          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center"><Activity className="mr-2 h-6 w-6 text-primary" />Статистика по упражнениям</CardTitle>
+              <CardDescription>Отслеживайте ваш прогресс в выполнении отдельных упражнений.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {exerciseAttemptsArray.length > 0 ? (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Урок</TableHead>
+                      <TableHead>Вопрос (начало)</TableHead>
+                      <TableHead className="text-center">Попыток</TableHead>
+                      <TableHead className="text-center">Освоено</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {exerciseAttemptsArray.map((attempt) => (
+                      <TableRow key={attempt.id}>
+                        <TableCell className="font-medium">{attempt.lessonTopic}</TableCell>
+                        <TableCell>{attempt.exerciseQuestion.substring(0, 70)}{attempt.exerciseQuestion.length > 70 ? '...' : ''}</TableCell>
+                        <TableCell className="text-center">{attempt.attemptsCount}</TableCell>
+                        <TableCell className="text-center">
+                          {attempt.mastered ? (
+                            <Award className="h-5 w-5 text-accent inline" />
+                          ) : (
+                            <TrendingUp className="h-5 w-5 text-muted-foreground inline" />
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              ) : (
+                <p className="text-muted-foreground">Вы еще не приступали к упражнениям или ваша статистика по ним не зафиксирована.</p>
+              )}
+            </CardContent>
+          </Card>
 
         </CardContent>
          <CardFooter>
