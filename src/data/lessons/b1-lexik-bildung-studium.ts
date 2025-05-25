@@ -126,5 +126,11 @@ Das deutsche Hochschulsystem ist bekannt für seine starke Forschungsorientierun
       correctAnswer: 'провалить экзамен',
       explanation: '"Durchfallen" (bei einer Prüfung) означает "провалить экзамен".',
     },
+    {
+      id: 'b1-lexik-bildung-studium-wp1',
+      type: 'writing_prompt',
+      question: 'Напишите короткий текст (4-6 предложений) о том, почему вы изучаете немецкий язык и какие у вас цели в учебе.',
+      suggestedLength: '4-6 предложений'
+    }
   ],
 };
