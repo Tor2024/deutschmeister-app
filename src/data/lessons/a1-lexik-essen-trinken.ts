@@ -46,6 +46,29 @@ export const lessonA1LexikEssenTrinken: Lesson = {
     { german: 'lecker', russian: 'вкусный', example: 'Die Pizza ist sehr lecker.' },
     { german: 'möchten', russian: 'хотел бы (вежливая форма wollen)', example: 'Ich möchte bezahlen.' },
   ],
+  readingText: `
+Hallo, mein Name ist Lisa.
+Zum Frühstück esse ich gern Brot mit Marmelade. Ich trinke dazu einen Tee.
+Mein Bruder Paul isst morgens Müsli mit Milch. Er mag keinen Tee, er trinkt lieber Kakao.
+Mittags essen wir oft Nudeln oder Reis mit Gemüse. Paul isst gern Fleisch, aber ich esse lieber Fisch.
+Abends essen wir nicht viel. Manchmal nur einen Joghurt oder Obst.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a1-lexik-essen-trinken-rq1',
+      question: 'Что Лиза обычно ест на завтрак?',
+      options: ['Мюсли с молоком', 'Хлеб с мармеладом', 'Йогурт', 'Макароны с овощами'],
+      correctAnswer: 'Хлеб с мармеладом',
+      explanation: 'В тексте сказано: "Zum Frühstück esse ich gern Brot mit Marmelade."'
+    },
+    {
+      id: 'a1-lexik-essen-trinken-rq2',
+      question: 'Что Пауль пьет на завтрак?',
+      options: ['Чай', 'Кофе', 'Какао', 'Сок'],
+      correctAnswer: 'Какао',
+      explanation: 'В тексте сказано: "Er mag keinen Tee, er trinkt lieber Kakao."'
+    }
+  ],
   exercises: [
     {
       id: 'a1-lexik-essen-trinken-ex1',
