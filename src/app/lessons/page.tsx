@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { MOCK_LESSONS } from '@/data/lessons'; // Assuming mock lessons are available
+import { MOCK_LESSONS } from '@/data/lessons'; 
 import type { Lesson, LanguageLevel } from '@/types';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { LANGUAGE_LEVELS } from '@/lib/constants';
@@ -15,13 +15,22 @@ import { CheckCircle2, BookOpenCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export default function LessonsPage() {
-  const [lessons, setLessons] = useState<Lesson[]>(MOCK_LESSONS);
+  const [lessons] = useState<Lesson[]>(MOCK_LESSONS);
   const [filteredLevel, setFilteredLevel] = useState<LanguageLevel | 'all'>('all');
   const { progress, isLoading } = useUserProgress();
 
-  const lessonsToDisplay = lessons.filter(lesson => 
-    filteredLevel === 'all' || lesson.level === filteredLevel
-  );
+  const lessonsToDisplay = lessons
+    .filter(lesson => filteredLevel === 'all' || lesson.level === filteredLevel)
+    .map(lesson => {
+      const isCompleted = progress.completedLessons.includes(lesson.id);
+      let isFullyMastered = false;
+      if (isCompleted && lesson.exercises && lesson.exercises.length > 0) {
+        isFullyMastered = lesson.exercises.every(
+          ex => progress.exerciseAttempts[ex.id]?.mastered === true
+        );
+      }
+      return { ...lesson, isCompleted, isFullyMastered };
+    });
 
   if (isLoading) {
     return <div className="flex justify-center items-center h-screen"><p>Загрузка уроков...</p></div>;
@@ -56,22 +65,24 @@ export default function LessonsPage() {
         <p className="text-center text-lg text-muted-foreground">Нет уроков для выбранного уровня.</p>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {lessonsToDisplay.map(lesson => {
-            const isCompleted = progress.completedLessons.includes(lesson.id);
-            return (
+          {lessonsToDisplay.map(lesson => (
               <Card 
                 key={lesson.id} 
                 className={cn(
                   "flex flex-col shadow-md hover:shadow-lg transition-shadow",
-                  isCompleted && "border-accent"
+                  lesson.isFullyMastered ? "bg-green-50 border-green-400" : 
+                  lesson.isCompleted ? "border-accent" : "border-border"
                 )}
               >
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <CardTitle className="text-xl mb-1">{lesson.topic}</CardTitle>
                     <Badge 
-                      variant={isCompleted ? "default" : "secondary"} 
-                      className={cn(isCompleted && "bg-accent text-accent-foreground")}
+                      variant={lesson.isFullyMastered ? "default" : lesson.isCompleted ? "default" : "secondary"} 
+                      className={cn(
+                        lesson.isFullyMastered ? "bg-green-500 text-white" : 
+                        lesson.isCompleted && "bg-accent text-accent-foreground"
+                      )}
                     >
                       {lesson.level}
                     </Badge>
@@ -82,19 +93,19 @@ export default function LessonsPage() {
                   <p className="text-sm text-muted-foreground line-clamp-4">{lesson.theory}</p>
                 </CardContent>
                 <CardFooter className="flex justify-between items-center pt-4">
-                  <Button asChild variant="default">
+                  <Button asChild variant={lesson.isFullyMastered ? "default" : "default"} 
+                          className={cn(lesson.isFullyMastered && "bg-green-600 hover:bg-green-700")}>
                     <Link href={`/lessons/${lesson.id}`}>
-                      {isCompleted ? 'Повторить урок' : 'Начать урок'}
+                      {lesson.isFullyMastered ? 'Отлично освоено!' : lesson.isCompleted ? 'Повторить урок' : 'Начать урок'}
                     </Link>
                   </Button>
-                  {isCompleted && <CheckCircle2 className="h-6 w-6 text-accent" />}
+                  {lesson.isCompleted && <CheckCircle2 className={cn("h-6 w-6", lesson.isFullyMastered ? "text-green-600" : "text-accent")} />}
                 </CardFooter>
               </Card>
-            );
-          })}
+            )
+          )}
         </div>
       )}
     </div>
   );
 }
-
