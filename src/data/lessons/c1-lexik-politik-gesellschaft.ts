@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonC1LexikPolitikGesellschaft: Lesson = {
   id: 'c1-lexik-politik-gesellschaft',
@@ -44,6 +44,51 @@ export const lessonC1LexikPolitikGesellschaft: Lesson = {
     { german: 'die Gesetzgebung', russian: 'законодательство', example: 'Die Gesetzgebung wird im Parlament beschlossen.' },
     { german: 'die Reform (-en)', russian: 'реформа', example: 'Eine umfassende Reform des Bildungssystems ist notwendig.' },
     { german: 'die Verantwortung', russian: 'ответственность', example: 'Jeder trägt Verantwortung für die Gesellschaft.' },
+  ],
+  readingText: `
+Die politische Partizipation der Bürger ist ein Grundpfeiler jeder funktionierenden Demokratie. Sie manifestiert sich nicht nur in der Teilnahme an Wahlen, sondern auch im zivilgesellschaftlichen Engagement, in der Mitgliedschaft in politischen Parteien oder Interessengruppen sowie in der öffentlichen Meinungsäußerung. In einer Zeit, in der Desinformation und Populismus zunehmen, gewinnt die Fähigkeit der Bürger, politische Prozesse kritisch zu hinterfragen und sich aktiv an der Gestaltung der Gesellschaft zu beteiligen, noch an Bedeutung.
+
+Die Herausforderungen moderner Gesellschaften sind komplex: Klimawandel, soziale Ungleichheit, digitale Transformation und internationale Konflikte erfordern durchdachte politische Antworten. Hierbei spielen nicht nur nationale Regierungen eine Rolle, sondern auch supranationale Organisationen und die Zivilgesellschaft selbst. Ein informierter Diskurs und die Bereitschaft zum Kompromiss sind unerlässlich, um tragfähige Lösungen zu finden.
+
+Die Rolle der Medien in diesem Kontext ist ambivalent. Einerseits können sie als "vierte Gewalt" zur Aufklärung und Kontrolle beitragen, andererseits besteht die Gefahr der Manipulation und der Verbreitung einseitiger Darstellungen. Medienkompetenz, also die Fähigkeit, Informationen kritisch zu bewerten und Quellen zu überprüfen, ist daher eine Schlüsselqualifikation für mündige Bürger.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'c1-lexik-politik-gesellschaft-rq1',
+      question: 'Was ist laut Text NICHT nur eine Form der politischen Partizipation?',
+      options: [
+        'Teilnahme an Wahlen',
+        'Zivilgesellschaftliches Engagement',
+        'Ausschließliches Verfolgen von Nachrichten in den Medien',
+        'Mitgliedschaft in politischen Parteien'
+      ],
+      correctAnswer: 'Ausschließliches Verfolgen von Nachrichten in den Medien',
+      explanation: 'Der Text nennt Wahlen, zivilgesellschaftliches Engagement, Mitgliedschaft in Parteien und öffentliche Meinungsäußerung als Formen der Partizipation.'
+    },
+    {
+      id: 'c1-lexik-politik-gesellschaft-rq2',
+      question: 'Welche Faktoren sind laut Text für die Lösung komplexer gesellschaftlicher Herausforderungen unerlässlich?',
+      options: [
+        'Schnelle Entscheidungen ohne Kompromisse',
+        'Ein informierter Diskurs und Kompromissbereitschaft',
+        'Die alleinige Verantwortung nationaler Regierungen',
+        'Die Reduzierung der Medienvielfalt'
+      ],
+      correctAnswer: 'Ein informierter Diskurs und Kompromissbereitschaft',
+      explanation: 'Im Text heißt es: "Ein informierter Diskurs und die Bereitschaft zum Kompromiss sind unerlässlich, um tragfähige Lösungen zu finden."'
+    },
+    {
+      id: 'c1-lexik-politik-gesellschaft-rq3',
+      question: 'Wie wird die Rolle der Medien im politischen Kontext im Text beschrieben?',
+      options: [
+        'Ausschließlich positiv als "vierte Gewalt"',
+        'Ausschließlich negativ als Manipulationsinstrument',
+        'Ambivalent, sowohl als Aufklärungsinstanz als auch mit Manipulationsgefahr',
+        'Als unbedeutend für die politische Meinungsbildung'
+      ],
+      correctAnswer: 'Ambivalent, sowohl als Aufklärungsinstanz als auch mit Manipulationsgefahr',
+      explanation: 'Der Text beschreibt die Rolle der Medien als ambivalent: "Einerseits können sie ... zur Aufklärung und Kontrolle beitragen, andererseits besteht die Gefahr der Manipulation..."'
+    }
   ],
   exercises: [
     {
