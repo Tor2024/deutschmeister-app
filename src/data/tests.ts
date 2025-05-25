@@ -127,8 +127,9 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikHobbysFreizeit,
   testA1LexikZahlenFarben,
   testA1LexikWochentageMonateJahreszeiten,
-  testA1LexikKleidung,
   testA1LexikUhrzeitTagesablauf,
+  testA1LexikKleidung,
+
 
   // A2 Grammar Tests
   testA2Artikel,
@@ -230,10 +231,10 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a1-akkusativ',
     ],
     questions: [
-      testA1ArtikelGenus.questions[0], 
-      testA1PronomenSeinHaben.questions[1], 
-      testA1Pluralbildung.questions[2], 
-      testA1Akkusativ.questions[1], 
+      testA1ArtikelGenus.questions[0],
+      testA1PronomenSeinHaben.questions[1],
+      testA1Pluralbildung.questions[2],
+      testA1Akkusativ.questions[1],
       {
         id: 'a1-gm1-q5-alphabet',
         type: 'multiple_choice',
@@ -257,11 +258,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a1-imperativ',
     ],
     questions: [
-      testA1Negation.questions[0], 
-      testA1SatzbauGrundlagen.questions[2], 
-      testA1Modalverben.questions[0], 
-      testA1Possessivpronomen.questions[0], 
-      testA1Imperativ.questions[0] 
+      testA1Negation.questions[0],
+      testA1SatzbauGrundlagen.questions[2],
+      testA1Modalverben.questions[0],
+      testA1Possessivpronomen.questions[0],
+      testA1Imperativ.questions[0]
     ]
   },
   {
@@ -277,11 +278,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a2-modalverben',
     ],
     questions: [
-      testA2Artikel.questions[0], 
-      testA2VerbenPraesens.questions[1], 
-      testA2Pluralbildung.questions[0], 
-      testA2Perfekt.questions[0], 
-      testA2Modalverben.questions[1] 
+      testA2Artikel.questions[0],
+      testA2VerbenPraesens.questions[1],
+      testA2Pluralbildung.questions[0],
+      testA2Perfekt.questions[0],
+      testA2Modalverben.questions[1]
     ]
   },
   {
@@ -297,11 +298,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'b1-verben-mit-praepositionen',
     ],
     questions: [
-      testB1Nebensaetze.questions[0], 
-      testB1Relativsaetze.questions[0], 
-      testB1Praeteritum.questions[0], 
-      testB1Adjektivdeklination.questions[0], 
-      testB1VerbenMitPraepositionen.questions[0] 
+      testB1Nebensaetze.questions[0],
+      testB1Relativsaetze.questions[0],
+      testB1Praeteritum.questions[0],
+      testB1Adjektivdeklination.questions[0],
+      testB1VerbenMitPraepositionen.questions[0]
     ]
   },
   {
@@ -316,11 +317,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'b2-subjektive-modalverben',
     ],
     questions: [
-        testB2Konjunktiv2.questions[0], 
-        testB2NomenVerb.questions[0], 
-        testB2Passiv.questions[0], 
-        testB2SubjektiveModalverben.questions[0], 
-        testB2Konjunktiv2.questions[3], 
+        testB2Konjunktiv2.questions[0],
+        testB2NomenVerb.questions[0],
+        testB2Passiv.questions[0],
+        testB2SubjektiveModalverben.questions[0],
+        testB2Konjunktiv2.questions[3],
     ]
   },
   {
@@ -341,6 +342,25 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
         testC1KonjunktivVertiefung.questions[0],
         testC1PartizipialkonstruktionenAdverbial.questions[0],
         testC1AdverbialsaetzeVertiefung.questions[0],
+    ]
+  },
+  {
+    id: 'c2-grammar-module-1-test',
+    level: 'C2',
+    topic: 'C2 - Грамматический Модуль 1 (Тест)',
+    description: 'Проверка знаний по темам: Стилистические средства и языковые регистры, Номинальный и вербальный стили, Модальные частицы.',
+    coveredLessonIds: [
+      'c2-stilmittel',
+      'c2-nominalstil-verbalstil',
+      'c2-modalpartikeln',
+    ],
+    questions: [
+        testC2Stilmittel.questions[0],
+        testC2Stilmittel.questions[1],
+        testC2NominalstilVerbalstil.questions[0],
+        testC2NominalstilVerbalstil.questions[1],
+        testC2Modalpartikeln.questions[0],
+        testC2Modalpartikeln.questions[1],
     ]
   }
 ];
