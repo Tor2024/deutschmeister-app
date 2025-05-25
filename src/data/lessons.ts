@@ -16,7 +16,6 @@ import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akk
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
 
-
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
@@ -64,6 +63,7 @@ import { lessonB2SubjektiveModalverben } from './lessons/b2-subjektive-modalverb
 import { lessonB2KomplexeSatzverbindungen } from './lessons/b2-komplexe-satzverbindungen';
 import { lessonB2NominalisierungVerbalisierung } from './lessons/b2-nominalisierung-verbalisierung';
 import { lessonB2Futur2 } from './lessons/b2-futur2';
+import { lessonB2Wortbildung } from './lessons/b2-wortbildung';
 
 
 // C1 Lessons
@@ -137,6 +137,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2KomplexeSatzverbindungen,
   lessonB2NominalisierungVerbalisierung,
   lessonB2Futur2,
+  lessonB2Wortbildung,
 
   // C1
   lessonC1IndirekteRede,
@@ -160,4 +161,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
