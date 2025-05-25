@@ -2,7 +2,7 @@
 'use client';
 
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { MOCK_LESSONS } from '@/data/lessons';
 import { MOCK_TESTS } from '@/data/tests';
 import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, WritingPromptExercise, Test as TestType, VocabularyItem, ReadingComprehensionQuestion, FlashcardAttempt } from '@/types';
@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle, MessageSquareText, ChevronRight, BookCopy, Star, Sparkles } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle, MessageSquareText, ChevronRight, BookCopy, Star, Sparkles, ArrowLeftRight, HelpCircleIcon } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -54,6 +54,12 @@ export default function LessonPage() {
   const [aiTranslationFeedback, setAiTranslationFeedback] = useState<Record<string, EvaluateTranslationOutput & { error?: string }>>({});
   const [isEvaluatingTranslationAi, setIsEvaluatingTranslationAi] = useState<Record<string, boolean>>({});
 
+  // Flashcard states
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [isCardFlipped, setIsCardFlipped] = useState(false);
+  const [shuffledVocabulary, setShuffledVocabulary] = useState<VocabularyItem[]>([]);
+
+
   const { progress, completeLesson, recordExerciseAttempt, recordFlashcardWordMastery } = useUserProgress();
   const { toast } = useToast();
 
@@ -68,6 +74,12 @@ export default function LessonPage() {
         if (fetchedLesson.aiGeneratedExercises) {
           setAiExercises(fetchedLesson.aiGeneratedExercises);
         }
+        if (fetchedLesson.vocabulary && fetchedLesson.vocabulary.length > 0) {
+          setShuffledVocabulary([...fetchedLesson.vocabulary].sort(() => Math.random() - 0.5));
+          setCurrentCardIndex(0);
+          setIsCardFlipped(false);
+        }
+
 
         const currentLessonIndex = MOCK_LESSONS.findIndex(l => l.id === lessonId);
         if (currentLessonIndex !== -1 && currentLessonIndex < MOCK_LESSONS.length - 1) {
@@ -82,6 +94,15 @@ export default function LessonPage() {
       setIsLoading(false);
     }
   }, [lessonId]);
+  
+  useEffect(() => {
+    if (lesson?.vocabulary && lesson.vocabulary.length > 0) {
+      setShuffledVocabulary([...lesson.vocabulary].sort(() => Math.random() - 0.5));
+      setCurrentCardIndex(0);
+      setIsCardFlipped(false);
+    }
+  }, [lesson]);
+
 
   const handleGenerateAiExercises = async () => {
     if (!lesson || !lesson.audio || !lesson.transcript) {
@@ -114,7 +135,7 @@ export default function LessonPage() {
               explanation: aiEx.explanation,
             } as FillInTheBlankExercise;
           case 'translation':
-            return { ...aiEx, id: baseId } as TranslationExercise;
+             return { ...aiEx, id: baseId, question: aiEx.prompt } as TranslationExercise;
           default:
             console.warn("Unknown AI exercise type:", (aiEx as any).type);
             return null; 
@@ -192,7 +213,7 @@ export default function LessonPage() {
             const errorMessage = error instanceof Error ? error.message : "Произошла неизвестная ошибка.";
             setAiWritingFeedback(prev => ({ ...prev, [exercise.id]: { correctedAnswer: userAnswer, feedbackExplanation: `Ошибка оценки ИИ: ${errorMessage}`, overallAssessment: "Ошибка", error: errorMessage } }));
             setExerciseFeedback(prev => ({ ...prev, [exercise.id]: { correct: null, explanation: "Ошибка оценки ИИ." } }));
-            toast({ title: "Ошибка оценки ИИ", description: "Не удалось получить оценку от ИИ.", className: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:border-yellow-500" });
+            toast({ title: "Ошибка оценки ИИ", description: "Не удалось получить оценку от ИИ.", className: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:border-yellow-500", variant: "destructive"});
         } finally {
             setIsEvaluatingAi(prev => ({ ...prev, [exercise.id]: false }));
         }
@@ -225,7 +246,7 @@ export default function LessonPage() {
             const errorMessage = error instanceof Error ? error.message : "Произошла неизвестная ошибка.";
             setAiTranslationFeedback(prev => ({ ...prev, [exercise.id]: { isSemanticallyAcceptable: false, feedback: `Ошибка оценки перевода ИИ: ${errorMessage}`, suggestedTranslation: userAnswer, error: errorMessage } }));
             setExerciseFeedback(prev => ({ ...prev, [exercise.id]: { correct: false, explanation: "Ошибка оценки перевода ИИ." } }));
-            toast({ title: "Ошибка оценки перевода ИИ", description: "Не удалось получить оценку от ИИ.", className: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:border-yellow-500" });
+            toast({ title: "Ошибка оценки перевода ИИ", description: "Не удалось получить оценку от ИИ.", className: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:border-yellow-500", variant: "destructive" });
         } finally {
             setIsEvaluatingTranslationAi(prev => ({ ...prev, [exercise.id]: false }));
         }
@@ -293,15 +314,21 @@ export default function LessonPage() {
     }
   };
 
-  const handleToggleFlashcardMastery = (lessonId: string, germanWord: string) => {
+  const handleToggleFlashcardMastery = useCallback((lessonId: string, germanWord: string) => {
     const currentMastery = progress.flashcardProgress?.[lessonId]?.[germanWord]?.mastered || false;
     recordFlashcardWordMastery(lessonId, germanWord, !currentMastery);
     toast({
       title: "Статус слова обновлен",
       description: `Слово "${germanWord}" ${!currentMastery ? "помечено как изученное" : "снята отметка об изучении"}.`,
     });
-  };
+  }, [progress.flashcardProgress, recordFlashcardWordMastery, toast]);
 
+  const handleNextCard = useCallback(() => {
+    setIsCardFlipped(false); // Always flip back to German side
+    setCurrentCardIndex(prevIndex => (prevIndex + 1) % (shuffledVocabulary.length || 1));
+  }, [shuffledVocabulary.length]);
+
+  const currentFlashcard = shuffledVocabulary[currentCardIndex];
 
   if (isLoading) return <div className="flex justify-center items-center h-screen"><p>Загрузка урока...</p></div>;
   if (!lesson) return <div className="text-center py-10">Урок не найден. <Link href="/lessons" className="text-primary hover:underline">Вернуться к списку уроков.</Link></div>;
@@ -310,11 +337,9 @@ export default function LessonPage() {
   const isLessonCompleted = progress.completedLessons.includes(lesson.id);
 
   const tabsList = ["theory"];
-  if (lesson.vocabulary && lesson.vocabulary.length > 0) tabsList.push("vocabulary");
+  if (lesson.vocabulary && lesson.vocabulary.length > 0) tabsList.push("vocabulary", "flashcards");
   if (lesson.readingText) tabsList.push("reading");
   if (allExercises.length > 0) tabsList.push("exercises");
-  if (lesson.vocabulary && lesson.vocabulary.length > 0) tabsList.push("flashcards");
-
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -375,29 +400,44 @@ export default function LessonPage() {
                 <CardTitle className="text-2xl flex items-center">
                   <Sparkles className="mr-2 h-6 w-6 text-primary" /> Изучение слов (Карточки)
                 </CardTitle>
-                <CardDescription>Отмечайте слова, которые вы выучили.</CardDescription>
+                <CardDescription>Проверьте свои знания слов из этого урока. <span className="font-medium">({currentCardIndex + 1}/{shuffledVocabulary.length})</span></CardDescription>
               </CardHeader>
-              <CardContent className="space-y-2">
-                {lesson.vocabulary.map((item, index) => {
-                  const isMastered = progress.flashcardProgress?.[lesson.id]?.[item.german]?.mastered || false;
-                  return (
-                    <Card key={`${lesson.id}-vocab-${index}`} className={cn("p-4 flex justify-between items-center", isMastered ? "bg-green-100 dark:bg-green-900/30" : "bg-card")}>
-                      <div>
-                        <p className="font-semibold text-lg">{item.german}</p>
-                        <p className="text-sm text-muted-foreground">{item.russian}</p>
-                        {item.example && <p className="text-xs italic text-muted-foreground/70 mt-1">Пример: {item.example}</p>}
-                      </div>
-                      <Button
-                        variant={isMastered ? "secondary" : "default"}
-                        onClick={() => handleToggleFlashcardMastery(lesson.id, item.german)}
-                        size="sm"
+              <CardContent className="space-y-4 flex flex-col items-center">
+                {currentFlashcard && (
+                  <Card className={cn("w-full max-w-md p-6 min-h-[200px] flex flex-col justify-center items-center text-center shadow-lg", 
+                                      progress.flashcardProgress?.[lesson.id]?.[currentFlashcard.german]?.mastered ? "bg-green-50 dark:bg-green-900/30 border-green-500" : "bg-card")}>
+                    <p className="text-2xl font-semibold mb-2">{currentFlashcard.german}</p>
+                    {isCardFlipped && (
+                      <>
+                        <p className="text-xl text-muted-foreground mb-1">{currentFlashcard.russian}</p>
+                        {currentFlashcard.example && <p className="text-sm italic text-muted-foreground/80">Пример: {currentFlashcard.example}</p>}
+                      </>
+                    )}
+                  </Card>
+                )}
+                <div className="flex flex-wrap gap-2 justify-center">
+                  <Button onClick={() => setIsCardFlipped(prev => !prev)} variant="outline">
+                    <ArrowLeftRight className="mr-2 h-4 w-4" />
+                    {isCardFlipped ? "Скрыть перевод" : "Показать перевод"}
+                  </Button>
+                  {isCardFlipped && currentFlashcard && (
+                     <Button 
+                        onClick={() => {
+                          handleToggleFlashcardMastery(lesson.id, currentFlashcard.german);
+                          handleNextCard();
+                        }}
+                        variant={progress.flashcardProgress?.[lesson.id]?.[currentFlashcard.german]?.mastered ? "secondary" : "default"}
                       >
-                        {isMastered ? <><XCircle className="mr-2 h-4 w-4" /> Не изучено</> : <><CheckCircle className="mr-2 h-4 w-4" /> Изучено</>}
+                       {progress.flashcardProgress?.[lesson.id]?.[currentFlashcard.german]?.mastered ? <><XCircle className="mr-2 h-4 w-4"/> Не изучено</> :  <><CheckCircle className="mr-2 h-4 w-4"/> Знал(а) это слово</>}
                       </Button>
-                    </Card>
-                  );
-                })}
-                 <p className="text-sm text-muted-foreground pt-4">Примечание: это упрощенная версия для отслеживания. Полноценный интерфейс карточек будет добавлен позже.</p>
+                  )}
+                  <Button onClick={handleNextCard}>
+                    Следующее слово <ChevronRight className="ml-2 h-4 w-4"/>
+                  </Button>
+                </div>
+                 {currentCardIndex === shuffledVocabulary.length -1 && isCardFlipped && (
+                   <p className="text-sm text-muted-foreground pt-4">Вы повторили все слова! Начните заново, чтобы лучше их запомнить.</p>
+                 )}
               </CardContent>
             </Card>
           </TabsContent>
@@ -450,11 +490,13 @@ export default function LessonPage() {
                   let cardBorderColor = "border-border";
                   if (exercise.type === 'writing_prompt') {
                     if (currentAiWritingEval?.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
-                    else if (feedback && feedback.correct === null) cardBorderColor = "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
-                  } else if (exercise.type === 'translation' && (feedback || currentAiTranslationEval)) {
+                    else if (feedback && feedback.correct === null && !isAiWritingEvaluating) cardBorderColor = "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
+                    else if (isAiWritingEvaluating) cardBorderColor = "border-primary";
+                  } else if (exercise.type === 'translation') {
                      if (currentAiTranslationEval?.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
                      else if (feedback?.correct === true) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
-                     else if (feedback?.correct === false) cardBorderColor = "border-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:border-yellow-500"; // Changed from red to yellow
+                     else if (feedback?.correct === false) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-900/30 dark:border-yellow-600"; 
+                     else if (isAiTranslationEvaluating) cardBorderColor = "border-primary";
                   } else if (isMastered) {
                     cardBorderColor = "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500";
                   } else if (feedback) {
@@ -473,7 +515,7 @@ export default function LessonPage() {
 
                       {exercise.type === 'multiple_choice' && (<MultipleChoiceExerciseComponent exercise={exercise as MultipleChoiceExercise} onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)} userAnswer={userAnswers[exercise.id]} disabled={isMastered || !!feedback}/>)}
                       {exercise.type === 'fill_in_the_blank' && (<FillInTheBlankExerciseComponent exercise={exercise as FillInTheBlankExercise} onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)} userAnswer={userAnswers[exercise.id]} disabled={isMastered || !!feedback}/>)}
-                      {exercise.type === 'translation' && (<TranslationExerciseComponent exercise={exercise as TranslationExercise} onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)} userAnswer={userAnswers[exercise.id]} disabled={isMastered || !!feedback || isAiTranslationEvaluating || (!!currentAiTranslationEval && !currentAiTranslationEval.error)} />)}
+                      {exercise.type === 'translation' && (<TranslationExerciseComponent exercise={exercise as TranslationExercise} onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)} userAnswer={userAnswers[exercise.id]} disabled={isMastered || isAiTranslationEvaluating || (!!currentAiTranslationEval && !currentAiTranslationEval.error)} />)}
                       {exercise.type === 'writing_prompt' && (
                         <div className="space-y-2">
                           {(exercise as WritingPromptExercise).suggestedLength && (<p className="text-sm text-muted-foreground">Рекомендуемая длина: {(exercise as WritingPromptExercise).suggestedLength}</p>)}
@@ -488,13 +530,13 @@ export default function LessonPage() {
                       {feedback && !isMastered && (
                         <div className={cn("mt-4 p-3 rounded-md text-sm",
                             exercise.type === 'writing_prompt'
-                              ? (currentAiWritingEval?.error ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" : "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300")
+                              ? (currentAiWritingEval?.error ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" : (isAiWritingEvaluating ? "bg-muted text-muted-foreground" : "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300"))
                               : exercise.type === 'translation'
-                                ? (currentAiTranslationEval?.error ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" : (feedback.correct === true ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300"))
+                                ? (currentAiTranslationEval?.error ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" : (isAiTranslationEvaluating ? "bg-muted text-muted-foreground" : (feedback.correct === true ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300")))
                                 : (feedback.correct === true ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300")
                           )}>
-                          { exercise.type === 'writing_prompt' ? (currentAiWritingEval?.error ? <AlertTriangle className="inline mr-2 h-5 w-5" /> : (isAiWritingEvaluating ? <Info className="inline mr-2 h-5 w-5 animate-pulse" /> : <Info className="inline mr-2 h-5 w-5" />))
-                            : exercise.type === 'translation' ? (currentAiTranslationEval?.error ? <AlertTriangle className="inline mr-2 h-5 w-5" /> : (isAiTranslationEvaluating ? <Info className="inline mr-2 h-5 w-5 animate-pulse" /> : (feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <Info className="inline mr-2 h-5 w-5" />)))
+                          { exercise.type === 'writing_prompt' ? (currentAiWritingEval?.error ? <AlertTriangle className="inline mr-2 h-5 w-5" /> : (isAiWritingEvaluating ? <HelpCircleIcon className="inline mr-2 h-5 w-5 animate-pulse" /> : <Info className="inline mr-2 h-5 w-5" />))
+                            : exercise.type === 'translation' ? (currentAiTranslationEval?.error ? <AlertTriangle className="inline mr-2 h-5 w-5" /> : (isAiTranslationEvaluating ? <HelpCircleIcon className="inline mr-2 h-5 w-5 animate-pulse" /> : (feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <Info className="inline mr-2 h-5 w-5" />)))
                             : (feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <XCircle className="inline mr-2 h-5 w-5" />)
                           }
                           {feedback.explanation || (exercise.type !== 'writing_prompt' && exercise.type !== 'translation' && (feedback.correct === true ? "Верно!" : "Неверно.")) || "Статус ответа"}

@@ -1,3 +1,4 @@
+
 import type { LucideIcon } from 'lucide-react';
 import { Home, BookOpen, CheckSquare, BarChart3, SpellCheck, Code } from 'lucide-react'; // Added Code icon
 
@@ -12,7 +13,7 @@ interface NavLink {
 export const NAV_LINKS: NavLink[] = [
   { href: '/', label: 'Главная', icon: Home },
   { href: '/lessons', label: 'Уроки', icon: BookOpen },
-  { href: '/vocabulary', label: 'Словарь', icon: SpellCheck },
+  { href: '/vocabulary', label: 'Словарь / Карточки', icon: SpellCheck },
   { href: '/tests', label: 'Тесты', icon: CheckSquare },
   { href: '/progress', label: 'Прогресс', icon: BarChart3 },
   { href: '/developers', label: 'Разработчики', icon: Code }, // Added Developers link
