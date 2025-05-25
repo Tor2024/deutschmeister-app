@@ -71,6 +71,7 @@ import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
 import { lessonC1Partizipialkonstruktionen } from './lessons/c1-partizipialkonstruktionen';
 import { lessonC1KonjunktivVertiefung } from './lessons/c1-konjunktiv-vertiefung';
 import { lessonC1PartizipialkonstruktionenAdverbial } from './lessons/c1-partizipialkonstruktionen-adverbial';
+import { lessonC1AdverbialsaetzeVertiefung } from './lessons/c1-adverbialsaetze-vertiefung';
 
 
 // C2 Lessons
@@ -147,6 +148,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC1Partizipialkonstruktionen,
   lessonC1KonjunktivVertiefung,
   lessonC1PartizipialkonstruktionenAdverbial,
+  lessonC1AdverbialsaetzeVertiefung,
 
   // C2
   lessonC2Stilmittel,
@@ -166,4 +168,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
