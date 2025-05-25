@@ -146,7 +146,7 @@ export const MOCK_TESTS: Test[] = [
   testA2TemporalsaetzeAlsWenn,
   testA2Demonstrativpronomen,
   testA2OrdinalzahlenDatum,
-  testA2LexikArbeitBeruf, // New A2 Lexik Test
+  testA2LexikArbeitBeruf,
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
   testA2LexikKleidung,

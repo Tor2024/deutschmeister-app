@@ -9,10 +9,10 @@ export const testA2LexikReisenVerkehr: Test = {
     {
       id: 'a2-lexik-reisen-verkehr-test-q1',
       type: 'multiple_choice',
-      question: 'Как по-немецки "вокзал"?',
-      options: ['der Flughafen', 'die Haltestelle', 'der Bahnhof', 'das Gleis'],
-      correctAnswer: 'der Bahnhof',
-      explanation: '"Der Bahnhof" означает "вокзал".',
+      question: 'Как по-немецки "аэропорт"?',
+      options: ['der Bahnhof', 'die Haltestelle', 'der Flughafen', 'das Gleis'],
+      correctAnswer: 'der Flughafen',
+      explanation: '"Der Flughafen" означает "аэропорт".',
     },
     {
       id: 'a2-lexik-reisen-verkehr-test-q2',
