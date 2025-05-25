@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonC2LexikMedienkritikDigitaleGesellschaft: Lesson = {
   id: 'c2-lexik-medienkritik-digitale-gesellschaft',
@@ -47,6 +47,51 @@ export const lessonC2LexikMedienkritikDigitaleGesellschaft: Lesson = {
     { german: 'die Cyberkriminalität', russian: 'киберпреступность', example: 'Cyberkriminalität ist eine wachsende Bedrohung.' },
     { german: 'der digitale Fußabdruck', russian: 'цифровой след', example: 'Jeder Nutzer hinterlässt einen digitalen Fußabdruck im Internet.' },
   ],
+  readingText: `
+Die Allgegenwart digitaler Medien und die Geschwindigkeit, mit der Informationen – und Desinformationen – verbreitet werden, stellen moderne Gesellschaften vor immense Herausforderungen. Algorithmen, die darauf optimiert sind, Nutzerengagement zu maximieren, können unbeabsichtigt zur Bildung von Filterblasen und Echokammern führen. In diesen isolierten Informationsräumen werden bestehende Überzeugungen verstärkt und der kritische Diskurs mit abweichenden Meinungen erschwert. Die Konsequenz ist eine potenzielle Polarisierung der Gesellschaft und eine Schwächung des demokratischen Prozesses, der auf einem informierten und pluralistischen Meinungsaustausch basiert.
+
+Die Rolle des Journalismus in diesem Kontext ist kritischer denn je. Qualitätsjournalismus, der auf sorgfältiger Recherche, Faktenprüfung und einer ausgewogenen Darstellung verschiedener Perspektiven beruht, dient als Korrektiv gegenüber Falschmeldungen und Propaganda. Dennoch kämpfen viele traditionelle Medienhäuser mit wirtschaftlichen Schwierigkeiten, während neue, oft unregulierte Akteure im digitalen Raum an Einfluss gewinnen.
+
+Die Entwicklung von Medienkompetenz in der Bevölkerung ist daher eine zentrale Aufgabe. Bürger müssen befähigt werden, Quellen kritisch zu bewerten, manipulative Techniken zu erkennen und verantwortungsvoll mit Informationen umzugehen. Dies beinhaltet nicht nur das Erkennen von Fake News, sondern auch das Verständnis für die Funktionsweise von Algorithmen und die Reflexion des eigenen Medienkonsums. Nur so kann die digitale Gesellschaft ihr volles Potenzial für Aufklärung und demokratische Teilhabe entfalten, ohne den Gefahren der Manipulation und Fragmentierung zu erliegen.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'c2-lexik-medienkritik-rq1',
+      question: 'Welches Problem können Algorithmen in sozialen Medien laut Text verursachen?',
+      options: [
+        'Sie verlangsamen den Informationsfluss.',
+        'Sie fördern hauptsächlich den Qualitätsjournalismus.',
+        'Sie können zur Bildung von Filterblasen und Echokammern führen.',
+        'Sie garantieren die absolute Privatsphäre der Nutzer.'
+      ],
+      correctAnswer: 'Sie können zur Bildung von Filterblasen und Echokammern führen.',
+      explanation: 'Im Text steht: "Algorithmen...können unbeabsichtigt zur Bildung von Filterblasen und Echokammern führen."'
+    },
+    {
+      id: 'c2-lexik-medienkritik-rq2',
+      question: 'Was dient laut Text als Korrektiv gegenüber Falschmeldungen und Propaganda?',
+      options: [
+        'Die schnelle Verbreitung von Informationen in sozialen Medien.',
+        'Die wirtschaftliche Stärke neuer digitaler Akteure.',
+        'Qualitätsjournalismus, der auf Recherche und Faktenprüfung basiert.',
+        'Die Reduzierung der Medienvielfalt.'
+      ],
+      correctAnswer: 'Qualitätsjournalismus, der auf Recherche und Faktenprüfung basiert.',
+      explanation: 'Der Text nennt: "Qualitätsjournalismus, der auf sorgfältiger Recherche, Faktenprüfung und einer ausgewogenen Darstellung verschiedener Perspektiven beruht, dient als Korrektiv..."'
+    },
+    {
+      id: 'c2-lexik-medienkritik-rq3',
+      question: 'Was beinhaltet Medienkompetenz NICHT primär, gemäß dem Text?',
+      options: [
+        'Quellen kritisch bewerten zu können.',
+        'Manipulative Techniken zu erkennen.',
+        'Möglichst viele soziale Netzwerke aktiv zu nutzen.',
+        'Den eigenen Medienkonsum zu reflektieren.'
+      ],
+      correctAnswer: 'Möglichst viele soziale Netzwerke aktiv zu nutzen.',
+      explanation: 'Der Text betont das kritische Bewerten, Erkennen von Manipulation und Reflexion des Konsums als Teile der Medienkompetenz, nicht die maximale Nutzung sozialer Netzwerke.'
+    }
+  ],
   exercises: [
     {
       id: 'c2-lexik-medienkritik-test-q1',
@@ -76,12 +121,11 @@ export const lessonC2LexikMedienkritikDigitaleGesellschaft: Lesson = {
       prompt: 'Алгоритмы социальных сетей могут создавать информационные пузыри.',
       languageDirection: 'to_german',
       correctAnswer: 'Die Algorithmen der sozialen Medien können Filterblasen erzeugen.',
-      // Alternative: Algorithmen sozialer Netzwerke können Filterblasen schaffen.
       explanation: '"Алгоритмы" - Algorithmen, "социальные сети" - soziale Medien/Netzwerke, "информационные пузыри" - Filterblasen, "создавать/порождать" - erzeugen/schaffen.',
     },
     {
       id: 'c2-lexik-medienkritik-test-q4',
-      type: 'short_answer', // Этот тип упражнения пока не реализован в UI, но может быть текстом
+      type: 'short_answer', 
       question: 'Nennen Sie zwei mögliche Gefahren, die von unkritischem Medienkonsum ausgehen können. (Назовите две возможные опасности, исходящие от некритического потребления медиа.)',
       correctAnswer: 'Mögliche Antworten: Verbreitung von Fake News, Manipulation der öffentlichen Meinung, Entstehung von Filterblasen, Radikalisierung, Verlust der Privatsphäre etc.',
       explanation: 'Dies erfordert eine freie Antwort, die das Verständnis der Thematik zeigt.'
