@@ -305,33 +305,112 @@ export const MOCK_LESSONS: Lesson[] = [
   {
     id: 'a2-pluralbildung',
     level: 'A2',
-    topic: 'Образование множественного числа существительных (Pluralbildung)',
-    theory: 'В немецком языке существует несколько способов образования множественного числа существительных. Основные окончания: -e (der Tag - die Tage), -er (das Kind - die Kinder, часто с умлаутом), -n/-en (die Frau - die Frauen), -s (das Auto - die Autos). Некоторые существительные получают умлаут без окончания (der Apfel - die Äpfel) или не изменяются (der Lehrer - die Lehrer). Род существительного часто влияет на способ образования множественного числа.',
+    topic: 'Образование множественного числа существительных (углубленно)',
+    theory: `Образование множественного числа в немецком языке – одна из сложных тем, так как существует несколько моделей и много исключений. Определенный артикль для всех существительных во множественном числе всегда **die**.
+
+**Основные модели образования множественного числа:**
+
+**1. Окончание -e:**
+   - Многие односложные существительные мужского рода (часто с умлаутом корневой гласной a, o, u → ä, ö, ü).
+     Примеры: der Tag → die Tag**e** (день), der Sohn → die S**ö**hn**e** (сын), der Stuhl → die St**ü**hl**e** (стул).
+   - Некоторые существительные среднего рода (иногда с умлаутом).
+     Примеры: das Jahr → die Jahr**e** (год), das Heft → die Heft**e** (тетрадь).
+   - Некоторые существительные женского рода (часто с умлаутом).
+     Примеры: die Hand → die H**ä**nd**e** (рука), die Nacht → die N**ä**cht**e** (ночь).
+
+**2. Окончание -(e)n:**
+   - Большинство существительных женского рода.
+     Примеры: die Frau → die Frau**en** (женщина), die Tür → die Tür**en** (дверь), die Zeitung → die Zeitung**en** (газета).
+   - Существительные мужского рода так называемого "слабого склонения" (n-Deklination).
+     Примеры: der Junge → die Junge**n** (мальчик), der Kunde → die Kunde**n** (клиент), der Name → die Name**n** (имя).
+   - Некоторые существительные среднего рода, особенно заимствованные.
+     Примеры: das Auge → die Auge**n** (глаз), das Bett → die Bett**en** (кровать), das Interesse → die Interesse**n** (интерес).
+
+**3. Окончание -er:**
+   - Многие односложные существительные среднего рода (почти всегда с умлаутом, если он возможен).
+     Примеры: das Kind → die Kind**er** (ребенок), das Buch → die B**ü**ch**er** (книга), das Haus → die H**ä**us**er** (дом).
+   - Некоторые существительные мужского рода (также часто с умлаутом).
+     Примеры: der Mann → die M**ä**nn**er** (мужчина), der Wald → die W**ä**ld**er** (лес).
+
+**4. Окончание -s:**
+   - Многие заимствованные слова, особенно из английского и французского языков.
+     Примеры: das Auto → die Auto**s** (автомобиль), das Hotel → die Hotel**s** (отель), das Hobby → die Hobby**s** (хобби).
+   - Сокращения и аббревиатуры.
+     Примеры: der PKW → die PKW**s** (легковой автомобиль).
+   - Некоторые существительные, оканчивающиеся на гласную (кроме -e).
+     Примеры: die Oma → die Oma**s** (бабушка).
+
+**5. Без окончания (с умлаутом или без):**
+   - Существительные мужского и среднего рода, оканчивающиеся на **-er, -el, -en** (часто с умлаутом корневой гласной, если это возможно у мужского рода).
+     Примеры: der Lehrer → die Lehrer (учитель), der Apfel → die **Ä**pfel (яблоко), das Mädchen → die Mädchen (девочка), das Zimmer → die Zimmer (комната).
+   - Некоторые другие существительные.
+
+**Важные моменты:**
+-   Неопределенный артикль (ein/eine) во множественном числе отсутствует. Вместо него может использоваться слово "viele" (многие), "einige" (некоторые) или числительное.
+-   Принадлежность к определенному роду не всегда однозначно указывает на тип образования множественного числа, поэтому форму множественного числа лучше запоминать вместе с существительным.
+
+Запоминание форм множественного числа требует практики и внимания к деталям.`,
+    vocabulary: [
+      { german: 'der Tag, die Tage', russian: 'день, дни', example: 'Ich arbeite fünf Tage die Woche.' },
+      { german: 'die Frau, die Frauen', russian: 'женщина, женщины', example: 'Viele Frauen arbeiten hier.' },
+      { german: 'das Kind, die Kinder', russian: 'ребенок, дети', example: 'Die Kinder spielen im Park.' },
+      { german: 'das Auto, die Autos', russian: 'автомобиль, автомобили', example: 'Auf der Straße stehen viele Autos.' },
+      { german: 'der Apfel, die Äpfel', russian: 'яблоко, яблоки', example: 'Ich kaufe drei Äpfel.' },
+      { german: 'der Lehrer, die Lehrer', russian: 'учитель, учителя', example: 'Die Lehrer sind sehr nett.' },
+      { german: 'das Buch, die Bücher', russian: 'книга, книги', example: 'In der Bibliothek gibt es viele Bücher.' },
+      { german: 'die Stadt, die Städte', russian: 'город, города', example: 'Wir besuchen verschiedene Städte.' },
+      { german: 'der Junge, die Jungen', russian: 'мальчик, мальчики', example: 'Die Jungen spielen Fußball.' },
+      { german: 'das Mädchen, die Mädchen', russian: 'девочка, девочки', example: 'Die Mädchen singen Lieder.' },
+    ],
     exercises: [
       {
-        id: 'a2-plural-ex1',
+        id: 'a2-plural-adv-ex1',
         type: 'multiple_choice',
-        question: 'Какое множественное число у слова "das Buch"?',
-        options: ['die Buch', 'die Büchen', 'die Bücher', 'die Buchs'],
-        correctAnswer: 'die Bücher',
-        explanation: 'Слово "das Buch" образует множественное число с окончанием -er и умлаутом: die Bücher.',
+        question: 'Какое множественное число у слова "das Haus"?',
+        options: ['die Hause', 'die Hausen', 'die Häuser', 'die Hauses'],
+        correctAnswer: 'die Häuser',
+        explanation: 'Слово "das Haus" (ср.р.) образует множественное число с окончанием -er и умлаутом: die Häuser.',
       },
       {
-        id: 'a2-plural-ex2',
+        id: 'a2-plural-adv-ex2',
         type: 'fill_in_the_blank',
-        question: 'Вставьте правильную форму: Zwei ___ (Katze) spielen im Garten.',
-        sentenceParts: ['Zwei ', ' (Katze) spielen im Garten.'],
+        question: 'Вставьте правильную форму мн.ч.: Zwei ___ (Katze, f) spielen im Garten.',
+        sentenceParts: ['Zwei ', ' (Katze, f) spielen im Garten.'],
         correctAnswer: 'Katzen',
-        explanation: 'Множественное число от "die Katze" - "die Katzen".',
+        explanation: 'Множественное число от "die Katze" (ж.р.) - "die Katzen" (окончание -n).',
       },
       {
-        id: 'a2-plural-ex3',
+        id: 'a2-plural-adv-ex3',
         type: 'translation',
-        question: 'Переведите на немецкий: "много детей"',
-        prompt: 'много детей',
+        question: 'Переведите на немецкий: "Эти яблоки красные."',
+        prompt: 'Эти яблоки красные.',
         languageDirection: 'to_german',
-        correctAnswer: 'viele Kinder',
-        explanation: '"Kind" (ребенок) во множественном числе "Kinder". "Много" переводится как "viele".',
+        correctAnswer: 'Diese Äpfel sind rot.',
+        explanation: '"Das Apfel" (м.р.) во множественном числе "die Äpfel" (умлаут без окончания).',
+      },
+      {
+        id: 'a2-plural-adv-ex4',
+        type: 'multiple_choice',
+        question: 'Как будет "стол" (der Tisch) во множественном числе?',
+        options: ['die Tischen', 'die Tische', 'die Tischer', 'die Tischs'],
+        correctAnswer: 'die Tische',
+        explanation: 'Слово "der Tisch" (м.р.) образует множественное число с окончанием -e: die Tische.',
+      },
+      {
+        id: 'a2-plural-adv-ex5',
+        type: 'fill_in_the_blank',
+        question: 'Напишите множественное число слова "das Foto": Viele ___ hängen an der Wand.',
+        sentenceParts: ['Viele ', ' (Foto, n) hängen an der Wand.'],
+        correctAnswer: 'Fotos',
+        explanation: 'Заимствованное слово "das Foto" (ср.р.) образует множественное число с окончанием -s: die Fotos.',
+      },
+      {
+        id: 'a2-plural-adv-ex6',
+        type: 'multiple_choice',
+        question: 'Выберите правильное множественное число для "der Bruder" (брат):',
+        options: ['die Brudern', 'die Brüder', 'die Bruder', 'die Bruders'],
+        correctAnswer: 'die Brüder',
+        explanation: 'Слово "der Bruder" (м.р.) образует множественное число с умлаутом без окончания: die Brüder (как и der Apfel - die Äpfel, der Vater - die Väter).',
       },
     ],
   },
