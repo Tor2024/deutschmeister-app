@@ -4,12 +4,12 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { MOCK_LESSONS } from '@/data/lessons';
-import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, VocabularyItem, ReadingComprehensionQuestion } from '@/types';
+import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, VocabularyItem, ReadingComprehensionQuestion, WritingPromptExercise } from '@/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, MessageSquareText } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -19,6 +19,7 @@ import { generateAudioExercises, type GenerateAudioExercisesInput, type Generate
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 
 
@@ -41,6 +42,8 @@ export default function LessonPage() {
   const [userReadingAnswers, setUserReadingAnswers] = useState<Record<string, string>>({});
   const [readingExerciseFeedback, setReadingExerciseFeedback] = useState<Record<string, { correct: boolean; explanation?: string }>>({});
   const [isSubmittingReading, setIsSubmittingReading] = useState(false);
+
+  const [userWritingAnswers, setUserWritingAnswers] = useState<Record<string, string>>({});
 
 
   const { completeLesson, recordExerciseAttempt, progress } = useUserProgress();
@@ -116,6 +119,11 @@ export default function LessonPage() {
     });
   };
 
+  const handleWritingAnswerChange = (exerciseId: string, answer: string) => {
+    setUserWritingAnswers(prev => ({...prev, [exerciseId]: answer}));
+  };
+
+
   const handleSubmitExercise = (exercise: ExerciseTypeUnion) => {
     const userAnswer = userAnswers[exercise.id];
     if (userAnswer === undefined || userAnswer.trim() === '') {
@@ -135,6 +143,17 @@ export default function LessonPage() {
         case 'translation':
             isCorrect = userAnswer.toLowerCase().trim() === (exercise as TranslationExercise).correctAnswer.toLowerCase().trim();
             break;
+        // Writing prompts are not auto-checked for correctness in this version
+        case 'writing_prompt':
+            isCorrect = true; // Assume "correct" for now as there's no auto-check
+            toast({ title: "Ответ принят", description: "Ваш письменный ответ сохранен (проверка не автоматическая).", variant: "default" });
+            // We don't record writing prompt attempts in the same way as other exercises
+            // and don't provide immediate correctness feedback in the same UI.
+             setExerciseFeedback(prev => ({
+              ...prev,
+              [exercise.id]: { correct: true, explanation: "Письменное задание. Проверка не автоматическая." }
+            }));
+            return; // Skip standard feedback toast for writing prompts
         default:
             break;
     }
@@ -180,8 +199,11 @@ export default function LessonPage() {
   
   const handleCompleteLesson = () => {
     if (lesson) {
-      const allStandardExercisesAttempted = lesson.exercises.every(ex => userAnswers[ex.id] !== undefined);
-      if (!allStandardExercisesAttempted && lesson.exercises.length > 0) {
+      const allStandardExercisesAttempted = lesson.exercises
+        .filter(ex => ex.type !== 'writing_prompt') // Writing prompts don't block completion
+        .every(ex => userAnswers[ex.id] !== undefined);
+      
+      if (!allStandardExercisesAttempted && lesson.exercises.filter(ex => ex.type !== 'writing_prompt').length > 0) {
           toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните все стандартные упражнения урока перед завершением.", variant: "destructive" });
           return;
       }
@@ -343,6 +365,7 @@ export default function LessonPage() {
                 >
                   <p className="font-semibold text-lg mb-3">
                     {isMastered && <Award className="inline mr-2 h-5 w-5 text-green-600 dark:text-green-400" />}
+                    {exercise.type === 'writing_prompt' && <MessageSquareText className="inline mr-2 h-5 w-5 text-primary" />}
                     Упражнение {index + 1}: {exercise.question}
                   </p>
                   
@@ -370,15 +393,43 @@ export default function LessonPage() {
                       disabled={isMastered || !!feedback}
                     />
                   )}
+                  {exercise.type === 'writing_prompt' && (
+                    <div className="space-y-2">
+                      {(exercise as WritingPromptExercise).suggestedLength && (
+                        <p className="text-sm text-muted-foreground">
+                          Рекомендуемая длина: {(exercise as WritingPromptExercise).suggestedLength}
+                        </p>
+                      )}
+                      <Textarea
+                        value={userWritingAnswers[exercise.id] || ''}
+                        onChange={(e) => handleWritingAnswerChange(exercise.id, e.target.value)}
+                        placeholder="Ваш ответ..."
+                        className="min-h-[100px]"
+                        disabled={isMastered || !!feedback}
+                      />
+                    </div>
+                  )}
                    {/* TODO: Listening comprehension component */}
 
-                  <Button 
-                    onClick={() => handleSubmitExercise(exercise)} 
-                    disabled={isMastered || !!feedback || isSubmitting || !userAnswers[exercise.id]} 
-                    className="mt-4"
-                  >
-                    {isMastered ? <><Award className="mr-2 h-4 w-4"/>Освоено</> : "Проверить ответ"}
-                  </Button>
+                  {exercise.type !== 'writing_prompt' && (
+                    <Button 
+                      onClick={() => handleSubmitExercise(exercise)} 
+                      disabled={isMastered || !!feedback || isSubmitting || !userAnswers[exercise.id]} 
+                      className="mt-4"
+                    >
+                      {isMastered ? <><Award className="mr-2 h-4 w-4"/>Освоено</> : "Проверить ответ"}
+                    </Button>
+                  )}
+                  {exercise.type === 'writing_prompt' && !isMastered && !feedback && (
+                     <Button 
+                      onClick={() => handleSubmitExercise(exercise)} 
+                      disabled={isMastered || !!feedback || isSubmitting || !userWritingAnswers[exercise.id]} 
+                      className="mt-4"
+                    >
+                      Отправить ответ (без автопроверки)
+                    </Button>
+                  )}
+
 
                   {feedback && !isMastered && ( // Show immediate feedback only if not mastered
                     <div className={cn(

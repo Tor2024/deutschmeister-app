@@ -20,5 +20,5 @@ export const NAV_LINKS: NavLink[] = [
 export const LANGUAGE_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const;
 export type LanguageLevel = typeof LANGUAGE_LEVELS[number];
 
-export const EXERCISE_TYPES = ['multiple_choice', 'translation', 'fill_in_the_blank', 'listening_comprehension'] as const;
+export const EXERCISE_TYPES = ['multiple_choice', 'translation', 'fill_in_the_blank', 'listening_comprehension', 'writing_prompt'] as const;
 export type ExerciseType = typeof EXERCISE_TYPES[number];

@@ -126,5 +126,11 @@ Wir haben einen Hund. Der Hund heißt Bello. Bello ist groß.
       correctAnswer: 'женат/замужем',
       explanation: '"Verheiratet" означает "женат/замужем".',
     },
+    {
+      id: 'a1-lexik-familie-wp1',
+      type: 'writing_prompt',
+      question: 'Напишите 3-5 предложений о вашей семье. Используйте слова из словарного запаса урока.',
+      suggestedLength: '3-5 предложений'
+    }
   ],
 };
