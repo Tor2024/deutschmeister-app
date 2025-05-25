@@ -75,6 +75,7 @@ import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
 import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere';
 import { lessonB1LexikMedienKommunikation } from './lessons/b1-lexik-medien-kommunikation';
+import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter'; // New B1 Lexik lesson
 
 // B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -182,6 +183,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikBildungStudium,
   lessonB1LexikArbeitKarriere,
   lessonB1LexikMedienKommunikation,
+  lessonB1LexikUmweltWetter, // New B1 Lexik lesson
 
   // B2 Grammar
   lessonB2Konjunktiv2,
@@ -229,3 +231,5 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+
+    
