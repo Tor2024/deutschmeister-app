@@ -15,6 +15,8 @@ import { lessonA2Imperativ } from './lessons/a2-imperativ';
 import { lessonA2Satzbau } from './lessons/a2-satzbau';
 import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
+import { lessonA2Negation } from './lessons/a2-negation';
+
 
 // B1 Lessons
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
@@ -50,6 +52,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Satzbau,
   lessonA2NebensaetzeEinfach,
   lessonA2NebenordnendeKonjunktionen,
+  lessonA2Negation,
 
   // B1
   lessonB1Nebensaetze,
