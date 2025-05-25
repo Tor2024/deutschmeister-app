@@ -4,6 +4,8 @@ import type { Lesson } from '@/types';
 // A1 Lessons
 import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessungen';
 import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
+import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
+
 
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
@@ -62,6 +64,7 @@ export const MOCK_LESSONS: Lesson[] = [
   // A1
   lessonA1AlphabetBegruessungen,
   lessonA1PersonalpronomenSeinHaben,
+  lessonA1ArtikelGenus,
 
   // A2
   lessonA2Artikel,
@@ -104,11 +107,11 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2KomplexeSatzverbindungen,
   lessonB2NominalisierungVerbalisierung,
   lessonB2Futur2,
-  
+
   // C1
   lessonC1IndirekteRede,
   lessonC1Partizipialkonstruktionen,
-  
+
   // C2
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
