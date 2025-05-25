@@ -87,7 +87,9 @@ import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
 import { testB1Relativsaetze } from './tests/b1-relativsaetze-test';
-import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test'; // Added
+import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test';
+import { testB1PartizipienAlsAdjektive } from './tests/b1-partizipien-als-adjektive-test'; // Added
+
 // B1 Lexik Tests
 import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
 import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test';
@@ -215,6 +217,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Plusquamperfekt,
   testB1Futur1,
   testB1Adjektivdeklination,
+  testB1PartizipienAlsAdjektive, // New B1 Grammar Test
   testB1VerbenMitPraepositionen,
   testB1Konjunktiv2Einfuehrung,
   testB1PassivEinfuehrung,
@@ -225,7 +228,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Konsekutivsaetze,
   testB1Nebensaetze,
   testB1Relativsaetze,
-  testB1KonditionalsaetzeTyp1, // Added
+  testB1KonditionalsaetzeTyp1,
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
   testB1LexikMedienKommunikation,
