@@ -55,6 +55,7 @@ import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
 import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
 import { testA2LexikLebensstilGewohnheiten } from './tests/a2-lexik-lebensstil-gewohnheiten-test';
 import { testA2LexikErnaehrungRezepte } from './tests/a2-lexik-ernaehrung-rezepte-test';
+import { testA2LexikElektronikTechnik } from './tests/a2-lexik-elektronik-technik-test';
 
 
 // B1 Tests
@@ -184,6 +185,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikFesteTraditionen,
   testA2LexikLebensstilGewohnheiten,
   testA2LexikErnaehrungRezepte,
+  testA2LexikElektronikTechnik,
 
   // B1 Grammar Tests
   testB1Nebensaetze,
@@ -297,11 +299,6 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     ]
   },
   testA1LevelTest,
-  testA2LevelTest,
-  testB1LevelTest,
-  testB2LevelTest,
-  testC1LevelTest,
-  testC2LevelTest,
   {
     id: 'a2-grammar-module-1-test',
     level: 'A2',
@@ -323,6 +320,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       testA2Modalverben.questions[0]
     ]
   },
+  testA2LevelTest,
   {
     id: 'b1-grammar-module-1-test',
     level: 'B1',
@@ -344,6 +342,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       testB1VerbenMitPraepositionen.questions[0]
     ]
   },
+  testB1LevelTest,
   {
     id: 'b2-grammar-module-1-test',
     level: 'B2',
@@ -364,6 +363,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
         testB2Konjunktiv2.questions[3],
     ]
   },
+  testB2LevelTest,
   {
     id: 'c1-grammar-module-1-test',
     level: 'C1',
@@ -385,6 +385,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
         testC1AdverbialsaetzeVertiefung.questions[0],
     ]
   },
+  testC1LevelTest,
   {
     id: 'c2-grammar-module-1-test',
     level: 'C2',
@@ -404,7 +405,8 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
         testC2Modalpartikeln.questions[0],
         testC2Modalpartikeln.questions[1],
     ]
-  }
+  },
+  testC2LevelTest,
 ];
 
 

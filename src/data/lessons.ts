@@ -62,6 +62,7 @@ import { lessonA2LexikInDerStadt } from './lessons/a2-lexik-in-der-stadt';
 import { lessonA2LexikFesteTraditionen } from './lessons/a2-lexik-feste-traditionen';
 import { lessonA2LexikLebensstilGewohnheiten } from './lessons/a2-lexik-lebensstil-gewohnheiten';
 import { lessonA2LexikErnaehrungRezepte } from './lessons/a2-lexik-ernaehrung-rezepte';
+import { lessonA2LexikElektronikTechnik } from './lessons/a2-lexik-elektronik-technik';
 
 
 // B1 Grammar
@@ -191,6 +192,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikFesteTraditionen,
   lessonA2LexikLebensstilGewohnheiten,
   lessonA2LexikErnaehrungRezepte,
+  lessonA2LexikElektronikTechnik,
 
   // B1 Grammar
   lessonB1Nebensaetze,
