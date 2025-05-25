@@ -16,6 +16,7 @@ import { testA1TrennbarVerben } from './tests/a1-trennbar-verben-test';
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
 import { testA2VerbenPraesens } from './tests/a2-verben-praesens-test';
+import { testA2Pluralbildung } from './tests/a2-pluralbildung-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -39,6 +40,7 @@ export const MOCK_TESTS: Test[] = [
   // A2 Tests
   testA2Artikel,
   testA2VerbenPraesens,
+  testA2Pluralbildung,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
