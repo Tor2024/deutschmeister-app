@@ -66,9 +66,10 @@ import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
 import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstruktionen-test';
 import { testC1KonjunktivVertiefung } from './tests/c1-konjunktiv-vertiefung-test';
 import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipialkonstruktionen-adverbial-test';
+import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
 
-// Импортируйте другие тесты здесь по мере их создания
-// import { testSomeOtherTopic } from './tests/some-other-topic-test';
+// C2 Tests
+// Import C2 tests here when created
 
 export const MOCK_TESTS: Test[] = [
   // A1 Tests
@@ -138,8 +139,10 @@ export const MOCK_TESTS: Test[] = [
   testC1Partizipialkonstruktionen,
   testC1KonjunktivVertiefung,
   testC1PartizipialkonstruktionenAdverbial,
-  // Добавляйте другие тесты сюда
-  // testSomeOtherTopic,
+  testC1AdverbialsaetzeVertiefung,
+
+  // C2 Tests
+  // Add C2 tests here
 ];
 
 // Helper function to get a test by its ID
