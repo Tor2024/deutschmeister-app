@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonA1LexikFamilie: Lesson = {
   id: 'a1-lexik-familie',
@@ -61,6 +61,36 @@ export const lessonA1LexikFamilie: Lesson = {
     { german: 'die Freundin (Freundinnen)', russian: 'подруга', example: 'Ich treffe meine Freundin.' },
     { german: 'verheiratet', russian: 'женат, замужем', example: 'Bist du verheiratet?' },
     { german: 'ledig', russian: 'холост, незамужем', example: 'Er ist noch ledig.' },
+  ],
+  readingText: `
+Hallo, ich bin Leon. Das ist meine Familie.
+Mein Vater heißt Paul und meine Mutter heißt Maria.
+Ich habe einen Bruder. Er heißt Tim. Tim ist klein.
+Ich habe auch eine Schwester. Sie heißt Lena. Lena ist nett.
+Wir haben einen Hund. Der Hund heißt Bello. Bello ist groß.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a1-lexik-familie-rq1',
+      question: 'Как зовут папу Леона?',
+      options: ['Тим', 'Пауль', 'Белло', 'Леон'],
+      correctAnswer: 'Пауль',
+      explanation: 'В тексте сказано: "Mein Vater heißt Paul..." (Моего папу зовут Пауль).'
+    },
+    {
+      id: 'a1-lexik-familie-rq2',
+      question: 'Какая сестра у Леона?',
+      options: ['Маленькая', 'Большая', 'Добрая/Милая', 'Злая'],
+      correctAnswer: 'Добрая/Милая',
+      explanation: 'В тексте сказано: "Sie heißt Lena. Lena ist nett." (Ее зовут Лена. Лена милая/добрая).'
+    },
+    {
+      id: 'a1-lexik-familie-rq3',
+      question: 'Кто такой Белло?',
+      options: ['Брат', 'Папа', 'Собака', 'Друг'],
+      correctAnswer: 'Собака',
+      explanation: 'В тексте сказано: "Wir haben einen Hund. Der Hund heißt Bello." (У нас есть собака. Собаку зовут Белло).'
+    }
   ],
   exercises: [
     {
