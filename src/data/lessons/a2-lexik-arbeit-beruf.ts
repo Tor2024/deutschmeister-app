@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonA2LexikArbeitBeruf: Lesson = {
   id: 'a2-lexik-arbeit-beruf',
@@ -46,6 +46,34 @@ export const lessonA2LexikArbeitBeruf: Lesson = {
     { german: 'verdienen', russian: 'зарабатывать', example: 'Wie viel verdienst du?' },
     { german: 'eine Stelle suchen', russian: 'искать работу/место', example: 'Er sucht eine neue Stelle.' },
     { german: 'arbeitslos', russian: 'безработный', example: 'Leider ist er momentan arbeitslos.' },
+  ],
+  readingText: `
+Mein Freund Markus arbeitet als Programmierer. Er arbeitet in einem großen Büro im Stadtzentrum. Seine Arbeit beginnt um neun Uhr und endet um achtzehn Uhr. Markus mag seine Arbeit sehr, weil er interessante Projekte hat und nette Kollegen.
+Manchmal muss er Überstunden machen, besonders wenn ein Projekt bald fertig sein muss. Das Gehalt ist gut und er hat gute Karriereaussichten.
+In seiner Freizeit lernt Markus Spanisch. Er möchte vielleicht eines Tages in Spanien arbeiten. Um eine gute Stelle zu finden, ist es wichtig, gute Kenntnisse und Fähigkeiten zu haben.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a2-lexik-arbeit-beruf-rq1',
+      question: 'Кем работает Маркус?',
+      options: ['Учителем', 'Программистом', 'Врачом', 'Инженером'],
+      correctAnswer: 'Программистом',
+      explanation: 'В тексте сказано: "Mein Freund Markus arbeitet als Programmierer."'
+    },
+    {
+      id: 'a2-lexik-arbeit-beruf-rq2',
+      question: 'Почему Маркусу нравится его работа?',
+      options: ['Потому что он много зарабатывает', 'Потому что у него короткий рабочий день', 'Потому что у него интересные проекты и хорошие коллеги', 'Потому что он работает из дома'],
+      correctAnswer: 'Потому что у него интересные проекты и хорошие коллеги',
+      explanation: 'В тексте сказано: "Markus mag seine Arbeit sehr, weil er interessante Projekte hat und nette Kollegen."'
+    },
+    {
+      id: 'a2-lexik-arbeit-beruf-rq3',
+      question: 'Что Маркус делает в свободное время?',
+      options: ['Занимается спортом', 'Путешествует', 'Учит испанский язык', 'Ходит в кино'],
+      correctAnswer: 'Учит испанский язык',
+      explanation: 'В тексте сказано: "In seiner Freizeit lernt Markus Spanisch."'
+    }
   ],
   exercises: [
     {
