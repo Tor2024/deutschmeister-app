@@ -122,5 +122,12 @@ Die Rolle internationaler Kooperationen und supranationaler Organisationen bei d
       correctAnswer: 'Mangel an verfügbaren Ressourcen',
       explanation: '"Ressourcenknappheit" bedeutet, dass nicht genügend Ressourcen verfügbar sind.',
     },
+    {
+      id: 'c2-lexik-globale-probleme-wp1',
+      type: 'writing_prompt',
+      question: 'Wählen Sie eine globale Herausforderung (z.B. Klimawandel, Armut, Pandemien) und diskutieren Sie mögliche Lösungsansätze sowie die Rolle internationaler Zusammenarbeit. (ca. 5-7 Sätze)',
+      suggestedLength: '5-7 Sätze',
+      explanation: 'Выберите одну глобальную проблему (например, изменение климата, бедность, пандемии) и обсудите возможные пути ее решения, а также роль международного сотрудничества.'
+    }
   ],
 };
