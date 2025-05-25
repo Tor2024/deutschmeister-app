@@ -104,5 +104,11 @@ Jetzt ist Anna bereit für den Winter.
       correctAnswer: 'ausziehen',
       explanation: '"Ausziehen" означает "снимать (одежду)".',
     },
+    {
+      id: 'a2-lexik-kleidung-wp1',
+      type: 'writing_prompt',
+      question: 'Опишите свою любимую одежду или что вы обычно носите в школу/на работу. (2-3 предложения)',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
