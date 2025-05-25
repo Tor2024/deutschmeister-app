@@ -1,12 +1,12 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonB2LexikUmweltNachhaltigkeit: Lesson = {
   id: 'b2-lexik-umwelt-nachhaltigkeit',
   level: 'B2',
   topic: 'Окружающая среда и устойчивое развитие (Umwelt und Nachhaltigkeit)',
   theory: `
-В этом уроке мы рассмотрим лексику, связанную с проблемами окружающей среды, изменением климата и концепцией устойчивого развития. Эти темы часто обсуждаются в современном обществе и требуют специфического словарного запаса.
+In diesem уроке мы рассмотрим лексику, связанную с проблемами окружающей среды, изменением климата и концепцией устойчивого развития. Эти темы часто обсуждаются в современном обществе и требуют специфического словарного запаса.
 
 **Основные термины и понятия:**
 - **die Umwelt:** окружающая среда
@@ -59,6 +59,41 @@ export const lessonB2LexikUmweltNachhaltigkeit: Lesson = {
     { german: 'vermeiden (vermeidet, vermied, hat vermieden)', russian: 'избегать', example: 'Plastikmüll sollte vermieden werden.' },
     { german: 'reduzieren', russian: 'сокращать, уменьшать', example: 'Wir sollten unseren Wasserverbrauch reduzieren.' },
   ],
+  readingText: `
+Der Klimawandel ist eine der größten Herausforderungen, vor denen die Menschheit heute steht. Die globale Durchschnittstemperatur steigt, was zu extremen Wetterereignissen wie Dürren, Überschwemmungen und Hitzewellen führt. Hauptverursacher ist der Anstieg der Treibhausgase in der Atmosphäre, vor allem durch die Verbrennung fossiler Brennstoffe wie Kohle, Öl und Gas.
+
+Um die schlimmsten Folgen des Klimawandels abzuwenden, ist ein schneller Übergang zu erneuerbaren Energien unerlässlich. Sonnenenergie und Windkraft sind Beispiele für saubere Energiequellen, die keine schädlichen Emissionen verursachen. Gleichzeitig müssen wir unseren Energieverbrauch insgesamt reduzieren und Ressourcen effizienter nutzen. Mülltrennung und Recycling spielen dabei ebenso eine wichtige Rolle wie die Vermeidung von Plastikabfällen und die Förderung nachhaltiger Konsumgewohnheiten.
+
+Jeder Einzelne kann einen Beitrag zum Umweltschutz leisten. Ob durch die Wahl umweltfreundlicher Verkehrsmittel, den Kauf regionaler und saisonaler Produkte oder die Reduzierung des eigenen Fleischkonsums – kleine Veränderungen im Alltag können in der Summe eine große Wirkung haben. Nachhaltigkeit bedeutet, so zu leben und zu wirtschaften, dass auch zukünftige Generationen eine lebenswerte Umwelt vorfinden.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'b2-lexik-umwelt-rq1',
+      question: 'Was ist der Hauptverursacher für den Anstieg der Treibhausgase laut Text?',
+      options: ['Die Abholzung der Wälder', 'Die industrielle Landwirtschaft', 'Die Verbrennung fossiler Brennstoffe', 'Die Nutzung von Atomenergie'],
+      correctAnswer: 'Die Verbrennung fossiler Brennstoffe',
+      explanation: 'Im Text steht: "Hauptverursacher ist der Anstieg der Treibhausgase in der Atmosphäre, vor allem durch die Verbrennung fossiler Brennstoffe..."',
+    },
+    {
+      id: 'b2-lexik-umwelt-rq2',
+      question: 'Welche Maßnahmen werden im Text als wichtig für den Übergang zu einer umweltfreundlicheren Zukunft genannt?',
+      options: ['Nur der Ausbau von Atomkraft', 'Die ausschließliche Nutzung von Erdgas', 'Übergang zu erneuerbaren Energien und effizientere Ressourcennutzung', 'Eine Reduzierung der internationalen Zusammenarbeit'],
+      correctAnswer: 'Übergang zu erneuerbaren Energien und effizientere Ressourcennutzung',
+      explanation: 'Der Text nennt "ein schneller Übergang zu erneuerbaren Energien" und "Ressourcen effizienter nutzen" als wichtige Maßnahmen.',
+    },
+    {
+      id: 'b2-lexik-umwelt-rq3',
+      question: 'Was versteht der Text unter Nachhaltigkeit?',
+      options: [
+        'Die vollständige Vermeidung von Müll.',
+        'Ein Lebensstil, der die Bedürfnisse zukünftiger Generationen berücksichtigt.',
+        'Die ausschließliche Nutzung von Solarenergie.',
+        'Der Schutz aller Tierarten weltweit.'
+      ],
+      correctAnswer: 'Ein Lebensstil, der die Bedürfnisse zukünftiger Generationen berücksichtigt.',
+      explanation: 'Im Text heißt es: "Nachhaltigkeit bedeutet, so zu leben und zu wirtschaften, dass auch zukünftige Generationen eine lebenswerte Umwelt vorfinden."',
+    }
+  ],
   exercises: [
     {
       id: 'b2-lexik-umwelt-ex1',
@@ -95,4 +130,3 @@ export const lessonB2LexikUmweltNachhaltigkeit: Lesson = {
     },
   ],
 };
-
