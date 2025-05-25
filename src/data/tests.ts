@@ -4,7 +4,7 @@ import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
 import { testA1Pluralbildung } from './tests/a1-pluralbildung-test';
 import { testA1Akkusativ } from './tests/a1-akkusativ-test';
-import { testA1ModalverbenA1 } from './tests/a1-modalverben-test';
+import { testA1Modalverben } from './tests/a1-modalverben-test'; // Corrected import name
 import { testA1Negation } from './tests/a1-negation-test';
 import { testA1SatzbauGrundlagen } from './tests/a1-satzbau-grundlagen-test';
 import { testA1Possessivpronomen } from './tests/a1-possessivpronomen-test';
@@ -48,7 +48,7 @@ export const MOCK_TESTS: Test[] = [
   testA1PronomenSeinHaben,
   testA1Pluralbildung,
   testA1Akkusativ,
-  testA1ModalverbenA1,
+  testA1Modalverben, // Corrected usage
   testA1Negation,
   testA1SatzbauGrundlagen,
   testA1Possessivpronomen,
