@@ -69,7 +69,7 @@ import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipial
 import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
 
 // C2 Tests
-// Import C2 tests here when created
+import { testC2Stilmittel } from './tests/c2-stilmittel-test';
 
 export const MOCK_TESTS: Test[] = [
   // A1 Tests
@@ -142,7 +142,7 @@ export const MOCK_TESTS: Test[] = [
   testC1AdverbialsaetzeVertiefung,
 
   // C2 Tests
-  // Add C2 tests here
+  testC2Stilmittel,
 ];
 
 // Helper function to get a test by its ID
