@@ -117,5 +117,11 @@ In seiner Freizeit lernt Markus Spanisch. Er möchte vielleicht eines Tages in S
       correctAnswer: 'Beruf',
       explanation: 'Фраза "Was sind Sie von Beruf?" означает "Кто Вы по профессии?".',
     },
+    {
+      id: 'a2-lexik-arbeit-beruf-wp1',
+      type: 'writing_prompt',
+      question: 'Beschreiben Sie kurz Ihren Traumberuf oder Ihre aktuelle Arbeit. Was machen Sie gern? (Опишите кратко работу своей мечты или вашу текущую работу. Что вам нравится делать?)',
+      suggestedLength: '3-4 Sätze'
+    }
   ],
 };
