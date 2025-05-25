@@ -28,6 +28,7 @@ import { testA2Satzbau } from './tests/a2-satzbau-test';
 import { testA2NebensaetzeEinfach } from './tests/a2-nebensaetze-einfach-test';
 import { testA2NebenordnendeKonjunktionen } from './tests/a2-nebenordnende-konjunktionen-test';
 import { testA2Negation } from './tests/a2-negation-test';
+import { testA2ReflexiveVerben } from './tests/a2-reflexive-verben-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -63,6 +64,7 @@ export const MOCK_TESTS: Test[] = [
   testA2NebensaetzeEinfach,
   testA2NebenordnendeKonjunktionen,
   testA2Negation,
+  testA2ReflexiveVerben,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
