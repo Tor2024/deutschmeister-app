@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonB1LexikArbeitKarriere: Lesson = {
   id: 'b1-lexik-arbeit-karriere',
@@ -46,6 +46,36 @@ export const lessonB1LexikArbeitKarriere: Lesson = {
     { german: 'das Unternehmen (-)', russian: 'предприятие, компания', example: 'Er arbeitet für ein internationales Unternehmen.' },
     { german: 'die Abteilung (-en)', russian: 'отдел', example: 'Sie leitet die Personalabteilung.' },
     { german: 'der Kollege (-n, -n) / die Kollegin (-nen)', russian: 'коллега (м./ж.)', example: 'Meine Kollegen sind sehr hilfsbereit.' },
+  ],
+  readingText: `
+Anna hat ihr Studium der Wirtschaftswissenschaften erfolgreich abgeschlossen und sucht nun ihre erste Stelle. Sie liest täglich viele Stellenanzeigen online und in Fachzeitschriften. Besonders interessiert sie sich für Positionen im Bereich Marketing, da sie während ihres Studiums bereits ein Praktikum in einer Marketingagentur absolviert hat.
+
+Gestern hat sie eine vielversprechende Anzeige von einem internationalen Unternehmen gesehen. Die Anforderungen passen gut zu ihrem Profil: gute Englischkenntnisse, Teamfähigkeit und erste Erfahrungen im Projektmanagement. Anna hat sofort ihre Bewerbungsunterlagen vorbereitet: einen aktuellen Lebenslauf und ein individuelles Anschreiben. Sie hofft, bald zu einem Vorstellungsgespräch eingeladen zu werden.
+
+Für Anna ist es wichtig, nicht nur ein gutes Gehalt zu bekommen, sondern auch in einem Unternehmen zu arbeiten, das Entwicklungsmöglichkeiten bietet und Wert auf eine gute Arbeitsatmosphäre legt. Sie weiß, dass der Berufseinstieg eine Herausforderung sein kann, aber sie ist motiviert und freut sich auf neue Aufgaben.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'b1-lexik-arbeit-karriere-rq1',
+      question: 'В какой области Анна ищет свою первую работу?',
+      options: ['IT-Sektor', 'Personalwesen', 'Marketing', 'Finanzwesen'],
+      correctAnswer: 'Marketing',
+      explanation: 'Im Text steht: "Besonders interessiert sie sich für Positionen im Bereich Marketing..."',
+    },
+    {
+      id: 'b1-lexik-arbeit-karriere-rq2',
+      question: 'Какие документы Анна подготовила для подачи заявления?',
+      options: ['Nur einen Lebenslauf', 'Einen Lebenslauf und ein Anschreiben', 'Ein Anschreiben und ihre Zeugnisse', 'Nur ein Motivationsschreiben'],
+      correctAnswer: 'Einen Lebenslauf und ein Anschreiben',
+      explanation: 'Im Text steht: "...einen aktuellen Lebenslauf und ein individuelles Anschreiben." ',
+    },
+    {
+      id: 'b1-lexik-arbeit-karriere-rq3',
+      question: 'Что для Анны важно при выборе работы, кроме хорошей зарплаты?',
+      options: ['Kurze Arbeitszeiten', 'Die Möglichkeit, von zu Hause zu arbeiten', 'Entwicklungsmöglichkeiten und eine gute Arbeitsatmosphäre', 'Viele Dienstreisen'],
+      correctAnswer: 'Entwicklungsmöglichkeiten und eine gute Arbeitsatmosphäre',
+      explanation: 'Im Text steht: "...nicht nur ein gutes Gehalt zu bekommen, sondern auch in einem Unternehmen zu arbeiten, das Entwicklungsmöglichkeiten bietet und Wert auf eine gute Arbeitsatmosphäre legt."',
+    }
   ],
   exercises: [
     {
