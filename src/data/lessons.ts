@@ -65,6 +65,7 @@ import { lessonA2LexikErnaehrungRezepte } from './lessons/a2-lexik-ernaehrung-re
 import { lessonA2LexikElektronikTechnik } from './lessons/a2-lexik-elektronik-technik';
 import { lessonA2LexikBriefeEmails } from './lessons/a2-lexik-briefe-emails';
 import { lessonA2LexikKonflikteLoesungen } from './lessons/a2-lexik-konflikte-loesungen';
+import { lessonA2LexikBank } from './lessons/a2-lexik-bank';
 
 
 // B1 Grammar
@@ -197,6 +198,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikElektronikTechnik,
   lessonA2LexikBriefeEmails,
   lessonA2LexikKonflikteLoesungen,
+  lessonA2LexikBank,
 
   // B1 Grammar
   lessonB1Nebensaetze,
@@ -273,3 +275,5 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+
+    

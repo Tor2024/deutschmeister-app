@@ -58,6 +58,7 @@ import { testA2LexikErnaehrungRezepte } from './tests/a2-lexik-ernaehrung-rezept
 import { testA2LexikElektronikTechnik } from './tests/a2-lexik-elektronik-technik-test';
 import { testA2LexikBriefeEmails } from './tests/a2-lexik-briefe-emails-test';
 import { testA2LexikKonflikteLoesungen } from './tests/a2-lexik-konflikte-loesungen-test';
+import { testA2LexikBank } from './tests/a2-lexik-bank-test';
 
 
 // B1 Tests
@@ -190,6 +191,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikElektronikTechnik,
   testA2LexikBriefeEmails,
   testA2LexikKonflikteLoesungen,
+  testA2LexikBank,
 
   // B1 Grammar Tests
   testB1Nebensaetze,
@@ -419,3 +421,5 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
+
+    
