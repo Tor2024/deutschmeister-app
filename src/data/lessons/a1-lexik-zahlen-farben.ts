@@ -166,5 +166,11 @@ In meinem Zimmer gibt es viele bunte Dinge. Ich habe zwei rote Kissen auf meinem
       correctAnswer: 'Ich habe zehn weiße Rosen.',
       explanation: '"Десять" - "zehn", "белых роз" - "weiße Rosen" (прилагательное склоняется).',
     },
+    {
+      id: 'a1-lexik-zahlen-farben-wp1',
+      type: 'writing_prompt',
+      question: 'Опиши свою любимую комнату, используя числа для количества предметов и названия цветов. (Например: В моей комнате один большой зеленый стол и два маленьких синих стула). Напиши 2-3 предложения.',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
