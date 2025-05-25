@@ -137,7 +137,11 @@ Sie bezahlt alles an der Kasse und bekommt eine Tüte für ihre Einkäufe. Der M
       correctAnswer: 'Der Verkäufer',
       explanation: 'Продавец (der Verkäufer / die Verkäuferin) обслуживает покупателей.',
     },
+    {
+      id: 'a2-lexik-einkaufen-wp1',
+      type: 'writing_prompt',
+      question: 'Опишите ваш последний поход в магазин. Что вы купили? (2-3 предложения)',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
-
-    
