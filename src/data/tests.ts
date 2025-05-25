@@ -56,6 +56,7 @@ import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-
 import { testA2LexikLebensstilGewohnheiten } from './tests/a2-lexik-lebensstil-gewohnheiten-test';
 import { testA2LexikErnaehrungRezepte } from './tests/a2-lexik-ernaehrung-rezepte-test';
 import { testA2LexikElektronikTechnik } from './tests/a2-lexik-elektronik-technik-test';
+import { testA2LexikBriefeEmails } from './tests/a2-lexik-briefe-emails-test';
 
 
 // B1 Tests
@@ -186,6 +187,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikLebensstilGewohnheiten,
   testA2LexikErnaehrungRezepte,
   testA2LexikElektronikTechnik,
+  testA2LexikBriefeEmails,
 
   // B1 Grammar Tests
   testB1Nebensaetze,
