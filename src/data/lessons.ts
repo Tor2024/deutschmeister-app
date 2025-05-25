@@ -25,6 +25,7 @@ import { lessonB1Adjektivdeklination } from './lessons/b1-adjektivdeklination';
 import { lessonB1VerbenMitPraepositionen } from './lessons/b1-verben-mit-praepositionen';
 import { lessonB1Plusquamperfekt } from './lessons/b1-plusquamperfekt';
 import { lessonB1Futur1 } from './lessons/b1-futur1';
+import { lessonB1Konjunktiv2Einfuehrung } from './lessons/b1-konjunktiv2-einfuehrung';
 
 // B2 Lessons
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -65,6 +66,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1VerbenMitPraepositionen,
   lessonB1Plusquamperfekt,
   lessonB1Futur1,
+  lessonB1Konjunktiv2Einfuehrung,
 
   // B2
   lessonB2Konjunktiv2,
@@ -79,3 +81,5 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
 ];
+
+    
