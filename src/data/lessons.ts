@@ -109,6 +109,8 @@ import { lessonC1AdverbialsaetzeVertiefung } from './lessons/c1-adverbialsaetze-
 // C1 Lexik
 import { lessonC1LexikPolitikGesellschaft } from './lessons/c1-lexik-politik-gesellschaft';
 import { lessonC1LexikWissenschaftForschung } from './lessons/c1-lexik-wissenschaft-forschung';
+import { lessonC1LexikWirtschaftGlobalermarkt } from './lessons/c1-lexik-wirtschaft-globalermarkt';
+
 
 // C2 Grammar
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
@@ -223,6 +225,7 @@ export const MOCK_LESSONS: Lesson[] = [
   // C1 Lexik
   lessonC1LexikPolitikGesellschaft,
   lessonC1LexikWissenschaftForschung,
+  lessonC1LexikWirtschaftGlobalermarkt,
 
   // C2 Grammar
   lessonC2Stilmittel,

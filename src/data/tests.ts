@@ -96,6 +96,7 @@ import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipial
 import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
 import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
 import { testC1LexikWissenschaftForschung } from './tests/c1-lexik-wissenschaft-forschung-test';
+import { testC1LexikWirtschaftGlobalermarkt } from './tests/c1-lexik-wirtschaft-globalermarkt-test';
 
 
 // C2 Tests
@@ -216,6 +217,7 @@ export const MOCK_TESTS: Test[] = [
   // C1 Lexik Tests
   testC1LexikPolitikGesellschaft,
   testC1LexikWissenschaftForschung,
+  testC1LexikWirtschaftGlobalermarkt,
 
   // C2 Grammar Tests
   testC2Stilmittel,
