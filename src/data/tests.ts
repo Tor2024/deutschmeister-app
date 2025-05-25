@@ -31,6 +31,7 @@ import { testA2Negation } from './tests/a2-negation-test';
 import { testA2ReflexiveVerben } from './tests/a2-reflexive-verben-test';
 import { testA2Adjektivdeklination } from './tests/a2-adjektivdeklination-test';
 import { testA2TemporalsaetzeAlsWenn } from './tests/a2-temporalsaetze-als-wenn-test';
+import { testA2Demonstrativpronomen } from './tests/a2-demonstrativpronomen-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -69,6 +70,7 @@ export const MOCK_TESTS: Test[] = [
   testA2ReflexiveVerben,
   testA2Adjektivdeklination,
   testA2TemporalsaetzeAlsWenn,
+  testA2Demonstrativpronomen,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
