@@ -44,6 +44,7 @@ import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-w
 import { lessonA2Demonstrativpronomen } from './lessons/a2-demonstrativpronomen';
 import { lessonA2OrdinalzahlenDatum } from './lessons/a2-ordinalzahlen-datum';
 import { lessonA2LexikArbeitBeruf } from './lessons/a2-lexik-arbeit-beruf';
+import { lessonA2LexikReisenVerkehr } from './lessons/a2-lexik-reisen-verkehr';
 
 
 // B1 Lessons
@@ -131,6 +132,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Demonstrativpronomen,
   lessonA2OrdinalzahlenDatum,
   lessonA2LexikArbeitBeruf,
+  lessonA2LexikReisenVerkehr,
 
   // B1
   lessonB1Nebensaetze,
