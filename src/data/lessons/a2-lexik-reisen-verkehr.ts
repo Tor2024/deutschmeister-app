@@ -103,5 +103,11 @@ Ihr Zug fährt von Gleis 7 ab. Sie haben noch etwas Zeit und trinken einen Kaffe
       correctAnswer: 'пересаживаться',
       explanation: '"Umsteigen" означает "пересаживаться" (на другой вид транспорта).',
     },
+    {
+      id: 'a2-lexik-reisen-verkehr-wp1',
+      type: 'writing_prompt',
+      question: 'Beschreiben Sie eine kurze Reise, die Sie gemacht haben, oder Ihr Lieblingsverkehrsmittel. (Опишите короткую поездку, которую вы совершили, или ваш любимый вид транспорта.)',
+      suggestedLength: '3-4 Sätze'
+    }
   ],
 };
