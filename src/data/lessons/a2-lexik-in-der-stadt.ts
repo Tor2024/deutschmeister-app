@@ -114,5 +114,11 @@ Max bedankt sich: "Vielen Dank für Ihre Hilfe!" Die Frau lächelt und sagt: "Ge
       correctAnswer: 'der Bahnhof',
       explanation: '"Der Bahnhof" означает "вокзал".',
     },
+    {
+      id: 'a2-lexik-in-der-stadt-wp1',
+      type: 'writing_prompt',
+      question: 'Beschreiben Sie Ihren Lieblingsort in Ihrer Stadt oder wie man von Ihrem Haus zu einem wichtigen Ort (z.B. Schule, Arbeit, Supermarkt) kommt. (Опишите ваше любимое место в городе или как добраться от вашего дома до важного места. 2-3 предложения)',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
