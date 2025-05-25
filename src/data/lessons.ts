@@ -1,7 +1,7 @@
 
 import type { Lesson } from '@/types';
 
-// A1 Lessons
+// A1 Grammar
 import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessungen';
 import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
 import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
@@ -15,6 +15,8 @@ import { lessonA1Imperativ } from './lessons/a1-imperativ';
 import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akkusativ';
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
+
+// A1 Lexik
 import { lessonA1LexikFamilie } from './lessons/a1-lexik-familie';
 import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung';
 import { lessonA1LexikEssenTrinken } from './lessons/a1-lexik-essen-trinken';
@@ -23,7 +25,7 @@ import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
 import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
 
 
-// A2 Lessons
+// A2 Grammar
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
 import { lessonA2Pluralbildung } from './lessons/a2-pluralbildung';
@@ -43,11 +45,14 @@ import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
 import { lessonA2Demonstrativpronomen } from './lessons/a2-demonstrativpronomen';
 import { lessonA2OrdinalzahlenDatum } from './lessons/a2-ordinalzahlen-datum';
+
+// A2 Lexik
 import { lessonA2LexikArbeitBeruf } from './lessons/a2-lexik-arbeit-beruf';
 import { lessonA2LexikReisenVerkehr } from './lessons/a2-lexik-reisen-verkehr';
+import { lessonA2LexikGesundheitKoerper } from './lessons/a2-lexik-gesundheit-koerper';
 
 
-// B1 Lessons
+// B1 Grammar
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
@@ -63,7 +68,7 @@ import { lessonB1Indefinitpronomen } from './lessons/b1-indefinitpronomen';
 import { lessonB1InfinitivMitZu } from './lessons/b1-infinitiv-mit-zu';
 import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 
-// B2 Lessons
+// B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
 import { lessonB2NomenVerb } from './lessons/b2-nomen-verb';
 import { lessonB2Passiv } from './lessons/b2-passiv';
@@ -74,23 +79,20 @@ import { lessonB2NominalisierungVerbalisierung } from './lessons/b2-nominalisier
 import { lessonB2Futur2 } from './lessons/b2-futur2';
 import { lessonB2Wortbildung } from './lessons/b2-wortbildung';
 
-
-// C1 Lessons
+// C1 Grammar
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
 import { lessonC1Partizipialkonstruktionen } from './lessons/c1-partizipialkonstruktionen';
 import { lessonC1KonjunktivVertiefung } from './lessons/c1-konjunktiv-vertiefung';
 import { lessonC1PartizipialkonstruktionenAdverbial } from './lessons/c1-partizipialkonstruktionen-adverbial';
 import { lessonC1AdverbialsaetzeVertiefung } from './lessons/c1-adverbialsaetze-vertiefung';
 
-
-// C2 Lessons
+// C2 Grammar
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
 import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalstil';
 import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
 
-
 export const MOCK_LESSONS: Lesson[] = [
-  // A1
+  // A1 Grammar
   lessonA1AlphabetBegruessungen,
   lessonA1PersonalpronomenSeinHaben,
   lessonA1ArtikelGenus,
@@ -104,6 +106,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
   lessonA1TrennbarVerben,
+  // A1 Lexik
   lessonA1LexikFamilie,
   lessonA1LexikHausWohnung,
   lessonA1LexikEssenTrinken,
@@ -111,7 +114,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikZahlenFarben,
   lessonA1LexikWochentageMonateJahreszeiten,
 
-  // A2
+  // A2 Grammar
   lessonA2Artikel,
   lessonA2VerbenPraesens,
   lessonA2Pluralbildung,
@@ -131,10 +134,12 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2TemporalsaetzeAlsWenn,
   lessonA2Demonstrativpronomen,
   lessonA2OrdinalzahlenDatum,
+  // A2 Lexik
   lessonA2LexikArbeitBeruf,
   lessonA2LexikReisenVerkehr,
+  lessonA2LexikGesundheitKoerper,
 
-  // B1
+  // B1 Grammar
   lessonB1Nebensaetze,
   lessonB1Relativsaetze,
   lessonB1Praeteritum,
@@ -150,7 +155,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1InfinitivMitZu,
   lessonB1Konsekutivsaetze,
 
-  // B2
+  // B2 Grammar
   lessonB2Konjunktiv2,
   lessonB2NomenVerb,
   lessonB2Passiv,
@@ -161,14 +166,14 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2Futur2,
   lessonB2Wortbildung,
 
-  // C1
+  // C1 Grammar
   lessonC1IndirekteRede,
   lessonC1Partizipialkonstruktionen,
   lessonC1KonjunktivVertiefung,
   lessonC1PartizipialkonstruktionenAdverbial,
   lessonC1AdverbialsaetzeVertiefung,
 
-  // C2
+  // C2 Grammar
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
   lessonC2Modalpartikeln,

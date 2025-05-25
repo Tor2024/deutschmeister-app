@@ -19,7 +19,6 @@ import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
 
-
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
 import { testA2VerbenPraesens } from './tests/a2-verben-praesens-test';
@@ -42,6 +41,8 @@ import { testA2Demonstrativpronomen } from './tests/a2-demonstrativpronomen-test
 import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 import { testA2LexikArbeitBeruf } from './tests/a2-lexik-arbeit-beruf-test';
 import { testA2LexikReisenVerkehr } from './tests/a2-lexik-reisen-verkehr-test';
+import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerper-test';
+
 
 // B1 Tests
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
@@ -126,6 +127,7 @@ export const MOCK_TESTS: Test[] = [
   testA2OrdinalzahlenDatum,
   testA2LexikArbeitBeruf,
   testA2LexikReisenVerkehr,
+  testA2LexikGesundheitKoerper,
 
   // B1 Tests
   testB1Nebensaetze,
