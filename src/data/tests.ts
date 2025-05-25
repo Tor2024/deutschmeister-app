@@ -6,6 +6,7 @@ import { testA1Pluralbildung } from './tests/a1-pluralbildung-test';
 import { testA1Akkusativ } from './tests/a1-akkusativ-test';
 import { testA1Modalverben } from './tests/a1-modalverben-test';
 import { testA1Negation } from './tests/a1-negation-test';
+import { testA1SatzbauGrundlagen } from './tests/a1-satzbau-grundlagen-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -17,6 +18,7 @@ export const MOCK_TESTS: Test[] = [
   testA1Akkusativ,
   testA1Modalverben,
   testA1Negation,
+  testA1SatzbauGrundlagen,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
