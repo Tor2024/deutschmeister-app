@@ -27,6 +27,7 @@ import { lessonB1Plusquamperfekt } from './lessons/b1-plusquamperfekt';
 import { lessonB1Futur1 } from './lessons/b1-futur1';
 import { lessonB1Konjunktiv2Einfuehrung } from './lessons/b1-konjunktiv2-einfuehrung';
 import { lessonB1PassivEinfuehrung } from './lessons/b1-passiv-einfuehrung';
+import { lessonB1Genitiv } from './lessons/b1-genitiv';
 
 
 // B2 Lessons
@@ -70,6 +71,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Futur1,
   lessonB1Konjunktiv2Einfuehrung,
   lessonB1PassivEinfuehrung,
+  lessonB1Genitiv,
 
   // B2
   lessonB2Konjunktiv2,
