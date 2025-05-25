@@ -44,6 +44,7 @@ import { testB1Plusquamperfekt } from './tests/b1-plusquamperfekt-test';
 import { testB1Futur1 } from './tests/b1-futur1-test';
 import { testB1Konjunktiv2Einfuehrung } from './tests/b1-konjunktiv2-einfuehrung-test';
 import { testB1PassivEinfuehrung } from './tests/b1-passiv-einfuehrung-test';
+import { testB1Genitiv } from './tests/b1-genitiv-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -95,6 +96,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Futur1,
   testB1Konjunktiv2Einfuehrung,
   testB1PassivEinfuehrung,
+  testB1Genitiv,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
