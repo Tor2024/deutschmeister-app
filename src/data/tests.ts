@@ -54,6 +54,7 @@ import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
 import { testB2NomenVerb } from './tests/b2-nomen-verb-test';
 import { testB2Passiv } from './tests/b2-passiv-test';
+import { testB2PassivErsatzformen } from './tests/b2-passiv-ersatzformen-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -115,6 +116,7 @@ export const MOCK_TESTS: Test[] = [
   testB2Konjunktiv2,
   testB2NomenVerb,
   testB2Passiv,
+  testB2PassivErsatzformen,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
