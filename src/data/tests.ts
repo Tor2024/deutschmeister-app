@@ -57,6 +57,7 @@ import { testA2LexikLebensstilGewohnheiten } from './tests/a2-lexik-lebensstil-g
 import { testA2LexikErnaehrungRezepte } from './tests/a2-lexik-ernaehrung-rezepte-test';
 import { testA2LexikElektronikTechnik } from './tests/a2-lexik-elektronik-technik-test';
 import { testA2LexikBriefeEmails } from './tests/a2-lexik-briefe-emails-test';
+import { testA2LexikKonflikteLoesungen } from './tests/a2-lexik-konflikte-loesungen-test';
 
 
 // B1 Tests
@@ -188,6 +189,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikErnaehrungRezepte,
   testA2LexikElektronikTechnik,
   testA2LexikBriefeEmails,
+  testA2LexikKonflikteLoesungen,
 
   // B1 Grammar Tests
   testB1Nebensaetze,
