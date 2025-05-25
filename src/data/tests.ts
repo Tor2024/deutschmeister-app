@@ -85,6 +85,7 @@ import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstrukt
 import { testC1KonjunktivVertiefung } from './tests/c1-konjunktiv-vertiefung-test';
 import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipialkonstruktionen-adverbial-test';
 import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
+import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
 
 // C2 Tests
 import { testC2Stilmittel } from './tests/c2-stilmittel-test';
@@ -178,6 +179,7 @@ export const MOCK_TESTS: Test[] = [
   testC1KonjunktivVertiefung,
   testC1PartizipialkonstruktionenAdverbial,
   testC1AdverbialsaetzeVertiefung,
+  testC1LexikPolitikGesellschaft,
 
   // C2 Tests
   testC2Stilmittel,
