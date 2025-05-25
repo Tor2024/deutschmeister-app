@@ -1,15 +1,16 @@
 
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { MOCK_LESSONS } from '@/data/lessons';
-import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, VocabularyItem, ReadingComprehensionQuestion, WritingPromptExercise } from '@/types';
+import { MOCK_TESTS } from '@/data/tests';
+import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, VocabularyItem, ReadingComprehensionQuestion, WritingPromptExercise, Test as TestType } from '@/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle, MessageSquareText } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle, MessageSquareText, ChevronRight, BookCopy } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -32,6 +33,7 @@ const getLessonById = (id: string): Lesson | undefined => {
 
 export default function LessonPage() {
   const params = useParams();
+  const router = useRouter();
   const lessonId = typeof params.lessonId === 'string' ? params.lessonId : '';
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -53,18 +55,33 @@ export default function LessonPage() {
   const [isEvaluatingTranslationAi, setIsEvaluatingTranslationAi] = useState<Record<string, boolean>>({});
 
 
-  const { completeLesson, recordExerciseAttempt, progress } = useUserProgress();
+  const { progress, completeLesson, recordExerciseAttempt } = useUserProgress();
   const { toast } = useToast();
+
+  const [nextLesson, setNextLesson] = useState<Lesson | null | undefined>(undefined);
+  const [thematicTest, setThematicTest] = useState<TestType | null | undefined>(undefined);
 
   useEffect(() => {
     if (lessonId) {
       const fetchedLesson = getLessonById(lessonId);
       if (fetchedLesson) {
         setLesson(fetchedLesson);
-         // Initialize AI exercises from lesson data if they exist (e.g. pre-generated)
         if (fetchedLesson.aiGeneratedExercises) {
           setAiExercises(fetchedLesson.aiGeneratedExercises);
         }
+
+        // Find next lesson
+        const currentLessonIndex = MOCK_LESSONS.findIndex(l => l.id === lessonId);
+        if (currentLessonIndex !== -1 && currentLessonIndex < MOCK_LESSONS.length - 1) {
+          setNextLesson(MOCK_LESSONS[currentLessonIndex + 1]);
+        } else {
+          setNextLesson(null);
+        }
+
+        // Find thematic test
+        const foundTest = MOCK_TESTS.find(t => t.associatedLessonId === lessonId && t.testType === 'thematic');
+        setThematicTest(foundTest);
+
       }
       setIsLoading(false);
     }
@@ -94,7 +111,7 @@ export default function LessonPage() {
             } as MultipleChoiceExercise;
           case 'fill_in_the_blank':
             const parts = aiEx.questionTextWithPlaceholder.split('[BLANK]');
-            const sentenceParts = parts.length === 2 ? parts : [aiEx.questionTextWithPlaceholder, '']; // Ensure two parts
+            const sentenceParts = parts.length === 2 ? parts : [aiEx.questionTextWithPlaceholder, '']; 
             return {
               id: baseId,
               type: 'fill_in_the_blank',
@@ -112,7 +129,7 @@ export default function LessonPage() {
             console.warn("Unknown AI exercise type:", (aiEx as any).type);
             return {
               id: baseId,
-              type: 'multiple_choice', // Fallback to multiple choice
+              type: 'multiple_choice', 
               question: (aiEx as any).question || "AI Generated Question - Unknown Type",
               options: (aiEx as any).options || ["Option A", "Option B"],
               correctAnswer: (aiEx as any).correctAnswer || "Option A",
@@ -143,7 +160,7 @@ export default function LessonPage() {
     setUserAnswers(prev => ({ ...prev, [exerciseId]: answer }));
     setExerciseFeedback(prev => {
       const newFeedback = { ...prev };
-      delete newFeedback[exerciseId]; // Reset feedback when answer changes
+      delete newFeedback[exerciseId]; 
       return newFeedback;
     });
   };
@@ -354,21 +371,29 @@ export default function LessonPage() {
 
   const handleCompleteLesson = () => {
     if (lesson) {
-      const allStandardExercisesAttemptedOrMastered = lesson.exercises
+      const allExercisesCount = lesson.exercises.filter(ex => ex.type !== 'writing_prompt').length;
+      const masteredExercisesCount = lesson.exercises
         .filter(ex => ex.type !== 'writing_prompt')
-        .every(ex => userAnswers[ex.id] !== undefined || progress.exerciseAttempts[ex.id]?.mastered);
+        .filter(ex => progress.exerciseAttempts[ex.id]?.mastered).length;
 
-      const standardExercisesExist = lesson.exercises.filter(ex => ex.type !== 'writing_prompt').length > 0;
-
-      if (standardExercisesExist && !allStandardExercisesAttemptedOrMastered) {
-          toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните или освойте все стандартные упражнения урока перед завершением.", variant: "destructive" });
-          return;
+      if (allExercisesCount > 0 && masteredExercisesCount < allExercisesCount) {
+         const allAttempted = lesson.exercises
+          .filter(ex => ex.type !== 'writing_prompt')
+          .every(ex => userAnswers[ex.id] !== undefined || progress.exerciseAttempts[ex.id]?.mastered);
+        if (!allAttempted) {
+            toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните все стандартные упражнения урока перед завершением.", variant: "destructive" });
+            return;
+        }
       }
-      completeLesson(lesson.id);
-      toast({ title: "Урок завершен!", description: `"${lesson.topic}" добавлен в ваш прогресс.` });
+      
+      if (!progress.completedLessons.includes(lesson.id)) {
+        completeLesson(lesson.id);
+        toast({ title: "Урок завершен!", description: `"${lesson.topic}" добавлен в ваш прогресс.` });
+      } else {
+        toast({ title: "Урок уже завершен", description: `"${lesson.topic}" уже был отмечен как пройденный.`, variant: 'default' });
+      }
     }
   };
-
 
   if (isLoading) {
     return <div className="flex justify-center items-center h-screen"><p>Загрузка урока...</p></div>;
@@ -379,6 +404,7 @@ export default function LessonPage() {
   }
 
   const allExercises = [...lesson.exercises, ...aiExercises];
+  const isLessonCompleted = progress.completedLessons.includes(lesson.id);
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -536,10 +562,10 @@ export default function LessonPage() {
                   if (exercise.type === 'writing_prompt') {
                     if (currentAiWritingEval?.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
                     else if (feedback && feedback.correct === null) cardBorderColor = "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
-                  } else if (exercise.type === 'translation' && currentAiTranslationEval) {
-                    if (currentAiTranslationEval.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
-                    else if (currentAiTranslationEval.isSemanticallyAcceptable) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
-                    else cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
+                  } else if (exercise.type === 'translation' && (feedback || currentAiTranslationEval)) {
+                     if (currentAiTranslationEval?.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
+                     else if (feedback?.correct === true) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
+                     else if (feedback?.correct === false) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
                   } else if (isMastered) {
                     cardBorderColor = "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500";
                   } else if (feedback) {
@@ -615,7 +641,7 @@ export default function LessonPage() {
                           disabled={isMastered || isAiTranslationEvaluating || !userAnswers[exercise.id] || (!!currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable) }
                           className="mt-4"
                         >
-                          {isAiTranslationEvaluating ? "Оценка перевода..." : (currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable ? "Перевод принят" : "Отправить на проверку ИИ")}
+                          {isAiTranslationEvaluating ? "Оценка перевода..." : ((currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable) ? "Перевод принят" : "Отправить на проверку ИИ")}
                         </Button>
                       )}
                       {exercise.type === 'writing_prompt' && (
@@ -753,12 +779,34 @@ export default function LessonPage() {
         )}
       </Tabs>
 
-      <CardFooter className="mt-8 flex flex-col sm:flex-row justify-end gap-4 p-0 pt-6 border-t">
-         <Button variant="outline" asChild>
-            <Link href="/lessons">К списку уроков</Link>
+      <CardFooter className="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4 p-0 pt-6 border-t">
+        <div className="flex flex-col sm:flex-row gap-2">
+          <Button variant="outline" asChild>
+              <Link href="/lessons">К списку уроков</Link>
           </Button>
-        <Button onClick={handleCompleteLesson} size="lg">
-          Завершить урок
+          {thematicTest && (
+            <Button variant="outline" asChild>
+              <Link href={`/tests/${thematicTest.id}`}>
+                <BookCopy className="mr-2 h-4 w-4" />
+                К тесту по теме
+              </Link>
+            </Button>
+          )}
+          {nextLesson && (
+             <Button variant="outline" asChild>
+                <Link href={`/lessons/${nextLesson.id}`}>
+                  Следующий урок <ChevronRight className="ml-2 h-4 w-4" />
+                </Link>
+            </Button>
+          )}
+        </div>
+        <Button 
+          onClick={handleCompleteLesson} 
+          disabled={isLessonCompleted}
+          size="lg"
+          className={cn(isLessonCompleted && "bg-green-600 hover:bg-green-700")}
+        >
+          {isLessonCompleted ? "Урок завершен" : "Завершить урок"}
         </Button>
       </CardFooter>
     </div>
