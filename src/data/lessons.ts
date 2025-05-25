@@ -6,6 +6,7 @@ import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessung
 import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
 import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
 import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
+import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
 
 
 // A2 Lessons
@@ -67,6 +68,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1PersonalpronomenSeinHaben,
   lessonA1ArtikelGenus,
   lessonA1Pluralbildung,
+  lessonA1Akkusativ,
 
   // A2
   lessonA2Artikel,
