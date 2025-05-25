@@ -63,6 +63,7 @@ import { testB2Wortbildung } from './tests/b2-wortbildung-test';
 
 // C1 Tests
 import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
+import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstruktionen-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -132,6 +133,7 @@ export const MOCK_TESTS: Test[] = [
 
   // C1 Tests
   testC1IndirekteRede,
+  testC1Partizipialkonstruktionen,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
