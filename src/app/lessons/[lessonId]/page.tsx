@@ -15,7 +15,7 @@ import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
 import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-exercise';
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
-import { generateAudioExercises, type GenerateAudioExercisesInput, type GenerateAudioExercisesOutput } from '@/ai/flows/ai-audio-integration';
+import { generateAudioExercises, type GenerateAudioExercisesInput, type GenerateAudioExercisesOutput, type GeneratedExercise as AIGeneratedExercise } from '@/ai/flows/ai-audio-integration';
 import { evaluateWritingExercise, type EvaluateWritingInput, type EvaluateWritingOutput } from '@/ai/flows/evaluate-writing-exercise';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
@@ -57,6 +57,10 @@ export default function LessonPage() {
       const fetchedLesson = getLessonById(lessonId);
       if (fetchedLesson) {
         setLesson(fetchedLesson);
+         // Initialize AI exercises from lesson data if they exist (e.g. pre-generated)
+        if (fetchedLesson.aiGeneratedExercises) {
+          setAiExercises(fetchedLesson.aiGeneratedExercises);
+        }
       }
       setIsLoading(false);
     }
@@ -76,21 +80,42 @@ export default function LessonPage() {
       };
       const result: GenerateAudioExercisesOutput = await generateAudioExercises(input);
       
-      const parsedAiExercises: ExerciseTypeUnion[] = result.exercises.map((exStr, index) => {
-        const questionParts = exStr.split('?');
-        const questionText = questionParts.length > 1 ? questionParts[0] + '?' : exStr;
-        
-        const options = ["Вариант A", "Вариант B", "Вариант C", "Вариант D"];
-        const correctAnswer = options[Math.floor(Math.random() * options.length)];
-        
-        return {
-          id: `ai-ex-${lesson.id}-${Date.now()}-${index}`,
-          type: 'multiple_choice', 
-          question: questionText,
-          options: options,
-          correctAnswer: correctAnswer,
-          explanation: "Это упражнение сгенерировано ИИ. Правильный ответ и варианты являются заглушками."
-        } as MultipleChoiceExercise;
+      const parsedAiExercises: ExerciseTypeUnion[] = result.exercises.map((aiEx, index) => {
+        const baseId = `ai-ex-${lesson.id}-${Date.now()}-${index}`;
+        switch (aiEx.type) {
+          case 'multiple_choice':
+            return {
+              ...aiEx,
+              id: baseId,
+            } as MultipleChoiceExercise;
+          case 'fill_in_the_blank':
+            const parts = aiEx.questionTextWithPlaceholder.split('[BLANK]');
+            const sentenceParts = parts.length === 2 ? parts : [aiEx.questionTextWithPlaceholder, ''];
+            return {
+              id: baseId,
+              type: 'fill_in_the_blank',
+              question: aiEx.questionTextWithPlaceholder.replace('[BLANK]', '___'), // Or keep original for display
+              sentenceParts: sentenceParts,
+              correctAnswer: aiEx.correctAnswer,
+              explanation: aiEx.explanation,
+            } as FillInTheBlankExercise;
+          case 'translation':
+            return {
+              ...aiEx,
+              id: baseId,
+            } as TranslationExercise;
+          default:
+            // This case should ideally not be reached if AI adheres to the schema
+            console.warn("Unknown AI exercise type:", (aiEx as any).type);
+            return {
+              id: baseId,
+              type: 'multiple_choice',
+              question: (aiEx as any).question || "AI Generated Question - Unknown Type",
+              options: ["Option A", "Option B"],
+              correctAnswer: "Option A",
+              explanation: "AI generated exercise of an unknown or unsupported type."
+            } as MultipleChoiceExercise;
+        }
       });
       
       setAiExercises(prevAiExercises => [...prevAiExercises, ...parsedAiExercises]);
@@ -101,7 +126,7 @@ export default function LessonPage() {
       } else if (exercisesCount >= 2 && exercisesCount <= 4) {
         exercisesWord = 'упражнения';
       }
-      toast({ title: "Успех", description: `${exercisesCount} дополнительных ${exercisesWord} сгенерировано!` });
+      toast({ title: "Успех", description: `${exercisesCount} ${exercisesCount > 0 ? 'дополнительных ' : ''}${exercisesWord} сгенерировано ИИ!` });
     } catch (error) {
       console.error("Failed to generate AI exercises:", error);
       toast({ title: "Ошибка генерации ИИ упражнений", description: "Не удалось сгенерировать упражнения. Пожалуйста, попробуйте позже.", variant: "destructive" });
@@ -131,7 +156,6 @@ export default function LessonPage() {
 
   const handleWritingAnswerChange = (exerciseId: string, answer: string) => {
     setUserWritingAnswers(prev => ({...prev, [exerciseId]: answer}));
-    // Clear previous AI feedback when user changes answer
     setAiWritingFeedback(prev => {
       const newFeedback = {...prev};
       delete newFeedback[exerciseId];
@@ -184,7 +208,7 @@ export default function LessonPage() {
             setAiWritingFeedback(prev => ({
               ...prev,
               [exercise.id]: {
-                correctedAnswer: userAnswer, // Show original answer on error
+                correctedAnswer: userAnswer, 
                 feedbackExplanation: `Ошибка оценки ИИ: ${errorMessage}`,
                 overallAssessment: "Ошибка",
                 error: errorMessage 
@@ -198,7 +222,6 @@ export default function LessonPage() {
         } finally {
             setIsEvaluatingAi(prev => ({ ...prev, [exercise.id]: false }));
         }
-        // Не вызываем recordExerciseAttempt для письменных заданий, так как нет автоматической проверки правильности/неправильности
         return;
     }
 
@@ -426,7 +449,7 @@ export default function LessonPage() {
               } else if (feedback) {
                 if (feedback.correct === true) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
                 else if (feedback.correct === false) cardBorderColor = "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600";
-                else if (feedback.correct === null && exercise.type === 'writing_prompt') { // AI evaluated or error
+                else if (feedback.correct === null && exercise.type === 'writing_prompt') { 
                     cardBorderColor = currentAiFeedback?.error ? "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600" 
                                                           : "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
                 }
@@ -498,7 +521,7 @@ export default function LessonPage() {
                   {exercise.type === 'writing_prompt' && (
                      <Button 
                       onClick={() => handleSubmitExercise(exercise)} 
-                      disabled={isMastered || isAiEvaluating || !userWritingAnswers[exercise.id] || (!!feedback && !currentAiFeedback?.error) } // Disable if already submitted and no error
+                      disabled={isMastered || isAiEvaluating || !userWritingAnswers[exercise.id] || (!!feedback && !currentAiFeedback?.error) } 
                       className="mt-4"
                     >
                       {isAiEvaluating ? "Оценка ИИ..." : (currentAiFeedback && !currentAiFeedback.error ? "Оценено ИИ" : "Отправить на проверку ИИ")}
@@ -515,6 +538,7 @@ export default function LessonPage() {
                     )}>
                       {feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : 
                        feedback.correct === false ? <XCircle className="inline mr-2 h-5 w-5" /> :
+                       (exercise.type === 'writing_prompt' && isAiEvaluating) ? <Info className="inline mr-2 h-5 w-5 animate-pulse" /> : // Pulsing Info icon during AI evaluation
                        <Info className="inline mr-2 h-5 w-5" />
                       }
                       {feedback.explanation || 
@@ -576,3 +600,4 @@ export default function LessonPage() {
     </div>
   );
 }
+
