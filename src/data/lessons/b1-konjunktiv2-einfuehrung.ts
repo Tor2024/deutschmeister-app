@@ -78,7 +78,7 @@ export const lessonB1Konjunktiv2Einfuehrung: Lesson = {
 В предложениях с Konjunktiv II (\`würde\`, \`wäre\`, \`hätte\`, модальные глаголы) спрягаемый глагол (т.е. сама форма Konjunktiv II) стоит на обычном втором месте в главном предложении или на первом в вопросе. Инфинитив при использовании \`würde\` идет в конец.
 
 Понимание и использование этих форм значительно расширит ваши возможности вежливого и гипотетического общения.
-\`,
+`,
   vocabulary: [
     { german: 'wäre (ich wäre, du wärest/wärst, er wäre)', russian: 'был бы (Konj. II от sein)', example: 'Es wäre schön, wenn...' },
     { german: 'hätte (ich hätte, du hättest, er hätte)', russian: 'имел бы (Konj. II от haben)', example: 'Ich hätte gern mehr Freizeit.' },
@@ -136,4 +136,3 @@ export const lessonB1Konjunktiv2Einfuehrung: Lesson = {
     },
   ],
 };
-
