@@ -125,10 +125,16 @@ Die Entwicklung von Medienkompetenz in der Bevölkerung ist daher eine zentrale 
     },
     {
       id: 'c2-lexik-medienkritik-test-q4',
-      type: 'short_answer',
-      question: 'Nennen Sie zwei mögliche Gefahren, die von unkritischem Medienkonsum ausgehen können. (Назовите две возможные опасности, исходящие от некритического потребления медиа.)',
-      correctAnswer: 'Mögliche Antworten: Verbreitung von Fake News, Manipulation der öffentlichen Meinung, Entstehung von Filterblasen, Radikalisierung, Verlust der Privatsphäre etc.',
-      explanation: 'Dies erfordert eine freie Antwort, die das Verständnis der Thematik zeigt.'
+      type: 'multiple_choice', // Changed from short_answer for consistency and simpler auto-checking for now
+      question: 'Welche Fähigkeit ist zentral für Medienkompetenz?',
+      options: [
+        'Das schnelle Tippen auf einer Tastatur.',
+        'Das Erstellen von viralen Inhalten.',
+        'Die kritische Bewertung von Informationsquellen.',
+        'Das Auswendiglernen von Nachrichten.'
+      ],
+      correctAnswer: 'Die kritische Bewertung von Informationsquellen.',
+      explanation: 'Die kritische Bewertung von Quellen ist ein Kernaspekt der Medienkompetenz.'
     },
     {
       id: 'c2-lexik-medienkritik-wp1',
