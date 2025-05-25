@@ -41,6 +41,34 @@ export const lessonA2LexikReisenVerkehr: Lesson = {
     { german: 'abfahren (fährt ab)', russian: 'отправляться, отъезжать', example: 'Der Bus fährt um 10:30 Uhr ab.' },
     { german: 'die Verspätung (-en)', russian: 'опоздание', example: 'Der Zug hat 10 Minuten Verspätung.' },
   ],
+  readingText: `
+Anna und Paul planen eine Reise nach Berlin. Sie möchten mit dem Zug fahren, weil das bequem ist. Am Freitagmorgen gehen sie zum Bahnhof.
+Am Schalter kaufen sie zwei Fahrkarten. "Einfach oder hin und zurück?", fragt die Verkäuferin. "Hin und zurück, bitte", antwortet Anna. Die Fahrkarten kosten zusammen 80 Euro.
+Ihr Zug fährt von Gleis 7 ab. Sie haben noch etwas Zeit und trinken einen Kaffee im Bahnhofscafé. Um 10:15 Uhr steigen sie in den Zug ein. Die Reise dauert vier Stunden. Sie freuen sich schon auf Berlin!
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a2-lexik-reisen-verkehr-rq1',
+      question: 'Куда Анна и Пауль планируют поехать?',
+      options: ['Гамбург', 'Мюнхен', 'Берлин', 'Франкфурт'],
+      correctAnswer: 'Берлин',
+      explanation: 'В тексте сказано: "Anna und Paul planen eine Reise nach Berlin."'
+    },
+    {
+      id: 'a2-lexik-reisen-verkehr-rq2',
+      question: 'Почему они выбрали поезд?',
+      options: ['Потому что это дешево', 'Потому что это быстро', 'Потому что это удобно', 'Потому что у них нет машины'],
+      correctAnswer: 'Потому что это удобно',
+      explanation: 'В тексте сказано: "Sie möchten mit dem Zug fahren, weil das bequem ist."'
+    },
+    {
+      id: 'a2-lexik-reisen-verkehr-rq3',
+      question: 'Что они делают перед посадкой в поезд?',
+      options: ['Покупают сувениры', 'Идут в музей', 'Пьют кофе в кафе на вокзале', 'Читают газету'],
+      correctAnswer: 'Пьют кофе в кафе на вокзале',
+      explanation: 'В тексте сказано: "Sie haben noch etwas Zeit und trinken einen Kaffee im Bahnhofscafé."'
+    }
+  ],
   exercises: [
     {
       id: 'a2-lexik-reisen-verkehr-ex1',
