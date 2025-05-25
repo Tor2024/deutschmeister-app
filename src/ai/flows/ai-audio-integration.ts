@@ -92,7 +92,9 @@ const prompt = ai.definePrompt({
       - Include a brief 'explanation'.
   3.  Translation exercises (German to Russian, or if the transcript is very simple, Russian to German, using simple phrases from the transcript). (type: 'translation')
       - Include a 'prompt' field with the text to translate.
-      - Include a 'languageDirection' field ('to_german' or 'from_german'). For German audio, 'from_german' is preferred for translation into Russian.
+      - Include a 'languageDirection' field ('to_german' or 'from_german'). 
+      - If 'languageDirection' is 'from_german', the 'correctAnswer' and 'explanation' MUST be in Russian.
+      - If 'languageDirection' is 'to_german', the 'correctAnswer' and 'explanation' should be in German.
       - Include a 'correctAnswer' field with the correct translation.
       - Include a brief 'explanation'.
 
@@ -102,7 +104,7 @@ const prompt = ai.definePrompt({
   Ensure all fields in the output schema are populated correctly for each exercise.
   For multiple_choice, the correctAnswer MUST be one of the strings present in the options array.
   For fill_in_the_blank, ensure the [BLANK] placeholder is clearly in the questionTextWithPlaceholder.
-  For translation, if translating from German, the prompt should be a German phrase from the transcript and the correctAnswer its Russian translation.
+  For translation, if translating from German ('from_german'), the prompt should be a German phrase from the transcript and the correctAnswer and explanation must be its Russian translation and explanation in Russian.
   `,
 });
 
