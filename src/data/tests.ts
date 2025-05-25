@@ -4,7 +4,7 @@ import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
 import { testA1Pluralbildung } from './tests/a1-pluralbildung-test';
 import { testA1Akkusativ } from './tests/a1-akkusativ-test';
-import { testA1Modalverben as testA1ModalverbenA1 } from './tests/a1-modalverben-test'; // Renamed to avoid conflict
+import { testA1Modalverben as testA1ModalverbenA1 } from './tests/a1-modalverben-test';
 import { testA1Negation } from './tests/a1-negation-test';
 import { testA1SatzbauGrundlagen } from './tests/a1-satzbau-grundlagen-test';
 import { testA1Possessivpronomen } from './tests/a1-possessivpronomen-test';
@@ -29,6 +29,7 @@ import { testA2NebensaetzeEinfach } from './tests/a2-nebensaetze-einfach-test';
 import { testA2NebenordnendeKonjunktionen } from './tests/a2-nebenordnende-konjunktionen-test';
 import { testA2Negation } from './tests/a2-negation-test';
 import { testA2ReflexiveVerben } from './tests/a2-reflexive-verben-test';
+import { testA2Adjektivdeklination } from './tests/a2-adjektivdeklination-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -65,6 +66,7 @@ export const MOCK_TESTS: Test[] = [
   testA2NebenordnendeKonjunktionen,
   testA2Negation,
   testA2ReflexiveVerben,
+  testA2Adjektivdeklination,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
