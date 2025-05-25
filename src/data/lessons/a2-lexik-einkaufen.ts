@@ -74,6 +74,35 @@ export const lessonA2LexikEinkaufen: Lesson = {
     { german: 'bar bezahlen', russian: 'платить наличными', example: 'Man kann hier nur bar bezahlen.' },
     { german: 'mit Karte bezahlen', russian: 'платить картой', example: 'Ich bezahle lieber mit Karte.' },
   ],
+  readingText: `
+Frau Müller geht heute auf den Markt. Sie braucht frisches Gemüse für das Abendessen.
+Zuerst kauft sie Tomaten und Gurken. Die Tomaten sind rot und saftig. Ein Kilo Tomaten kostet zwei Euro.
+Dann sieht Frau Müller schöne Äpfel. "Was kosten die Äpfel?", fragt sie den Verkäufer. "Ein Kilo Äpfel kostet drei Euro", antwortet er. Frau Müller kauft auch ein Kilo Äpfel.
+Sie bezahlt alles an der Kasse und bekommt eine Tüte für ihre Einkäufe. Der Markt ist heute sehr voll, aber Frau Müller ist zufrieden mit ihren Einkäufen.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a2-lexik-einkaufen-rq1',
+      question: 'Куда идет фрау Мюллер сегодня?',
+      options: ['В супермаркет', 'В булочную', 'На рынок', 'В мясную лавку'],
+      correctAnswer: 'На рынок',
+      explanation: 'В тексте сказано: "Frau Müller geht heute auf den Markt."'
+    },
+    {
+      id: 'a2-lexik-einkaufen-rq2',
+      question: 'Что фрау Мюллер покупает сначала?',
+      options: ['Яблоки и груши', 'Хлеб и молоко', 'Томаты и огурцы', 'Мясо и колбасу'],
+      correctAnswer: 'Томаты и огурцы',
+      explanation: 'В тексте сказано: "Zuerst kauft sie Tomaten und Gurken."'
+    },
+    {
+      id: 'a2-lexik-einkaufen-rq3',
+      question: 'Сколько стоит килограмм яблок?',
+      options: ['Один евро', 'Два евро', 'Три евро', 'Четыре евро'],
+      correctAnswer: 'Три евро',
+      explanation: 'Продавец отвечает: "Ein Kilo Äpfel kostet drei Euro".'
+    }
+  ],
   exercises: [
     {
       id: 'a2-lexik-einkaufen-ex1',
@@ -110,3 +139,5 @@ export const lessonA2LexikEinkaufen: Lesson = {
     },
   ],
 };
+
+    
