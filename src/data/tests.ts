@@ -22,6 +22,8 @@ import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
 import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
 import { testA1LexikSchuleArbeitEinfach } from './tests/a1-lexik-schule-arbeit-einfach-test';
 import { testA1LexikWetter } from './tests/a1-lexik-wetter-test';
+import { testA1LexikPersoenlicheInfos } from './tests/a1-lexik-persoenliche-infos-test';
+
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -145,6 +147,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikKleidung,
   testA1LexikSchuleArbeitEinfach,
   testA1LexikWetter,
+  testA1LexikPersoenlicheInfos,
 
 
   // A2 Grammar Tests

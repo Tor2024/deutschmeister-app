@@ -27,6 +27,7 @@ import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
 import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf';
 import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbeit-einfach';
 import { lessonA1LexikWetter } from './lessons/a1-lexik-wetter';
+import { lessonA1LexikPersoenlicheInfos } from './lessons/a1-lexik-persoenliche-infos';
 
 
 // A2 Grammar
@@ -153,6 +154,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikKleidung,
   lessonA1LexikSchuleArbeitEinfach,
   lessonA1LexikWetter,
+  lessonA1LexikPersoenlicheInfos,
 
   // A2 Grammar
   lessonA2Artikel,
