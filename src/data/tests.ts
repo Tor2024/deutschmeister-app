@@ -70,6 +70,7 @@ import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test
 import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunikation-test';
 import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 import { testB1LexikKulturFreizeit } from './tests/b1-lexik-kultur-freizeit-test';
+import { testB1LexikBeziehungen } from './tests/b1-lexik-beziehungen-test';
 
 
 // B2 Tests
@@ -82,6 +83,8 @@ import { testB2KomplexeSatzverbindungen } from './tests/b2-komplexe-satzverbindu
 import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-verbalisierung-test';
 import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
+import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
+import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
 
 
 // C1 Tests
@@ -90,13 +93,17 @@ import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstrukt
 import { testC1KonjunktivVertiefung } from './tests/c1-konjunktiv-vertiefung-test';
 import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipialkonstruktionen-adverbial-test';
 import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
+import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
+import { testC1LexikWissenschaftForschung } from './tests/c1-lexik-wissenschaft-forschung-test';
 
 
 // C2 Tests
 import { testC2Stilmittel } from './tests/c2-stilmittel-test';
 import { testC2NominalstilVerbalstil } from './tests/c2-nominalstil-verbalstil-test';
 import { testC2Modalpartikeln } from './tests/c2-modalpartikeln-test';
-
+import { testC2LexikGlobaleProbleme } from './tests/c2-lexik-globale-probleme-test';
+import { testC2LexikMedienkritikDigitaleGesellschaft } from './tests/c2-lexik-medienkritik-digitale-gesellschaft-test';
+import { testC2LexikSozialeTrends } from './tests/c2-lexik-soziale-trends-test';
 
 
 export const MOCK_TESTS: Test[] = [
@@ -170,6 +177,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikMedienKommunikation,
   testB1LexikUmweltWetter,
   testB1LexikKulturFreizeit,
+  testB1LexikBeziehungen,
 
   // B2 Tests
   testB2Konjunktiv2,
@@ -181,6 +189,8 @@ export const MOCK_TESTS: Test[] = [
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
   testB2Wortbildung,
+  testB2LexikUmweltNachhaltigkeit,
+  testB2LexikKulturKunst,
 
   // C1 Tests
   testC1IndirekteRede,
@@ -188,11 +198,16 @@ export const MOCK_TESTS: Test[] = [
   testC1KonjunktivVertiefung,
   testC1PartizipialkonstruktionenAdverbial,
   testC1AdverbialsaetzeVertiefung,
+  testC1LexikPolitikGesellschaft,
+  testC1LexikWissenschaftForschung,
 
   // C2 Tests
   testC2Stilmittel,
   testC2NominalstilVerbalstil,
   testC2Modalpartikeln,
+  testC2LexikGlobaleProbleme,
+  testC2LexikMedienkritikDigitaleGesellschaft,
+  testC2LexikSozialeTrends,
 ];
 
 // Helper function to get a test by its ID
