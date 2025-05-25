@@ -57,6 +57,7 @@ import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 import { testA2VerbLassen } from './tests/a2-verb-lassen-test';
 import { testA2TrennbareUntrennbareVerben } from './tests/a2-trennbare-untrennbare-verben-test';
 import { testA2GrammatikPraeteritumSeinHabenModal } from './tests/a2-grammatik-praeteritum-sein-haben-modal-test';
+import { testB2PartizipialkonstruktionenEinfuehrung } from './tests/b2-partizipialkonstruktionen-einfuehrung-test'; // Added
 
 // A2 Lexik Tests
 import { testA2LexikArbeitBeruf } from './tests/a2-lexik-arbeit-beruf-test';
@@ -80,6 +81,7 @@ import { testB1PerfektReview } from './tests/b1-perfekt-review-test';
 import { testB1Plusquamperfekt } from './tests/b1-plusquamperfekt-test';
 import { testB1Futur1 } from './tests/b1-futur1-test';
 import { testB1Adjektivdeklination } from './tests/b1-adjektivdeklination-test';
+import { testB1PartizipienAlsAdjektive } from './tests/b1-partizipien-als-adjektive-test';
 import { testB1VerbenMitPraepositionen } from './tests/b1-verben-mit-praepositionen-test';
 import { testB1Konjunktiv2Einfuehrung } from './tests/b1-konjunktiv2-einfuehrung-test';
 import { testB1PassivEinfuehrung } from './tests/b1-passiv-einfuehrung-test';
@@ -87,12 +89,11 @@ import { testB1Genitiv } from './tests/b1-genitiv-test';
 import { testB1NDeklination } from './tests/b1-n-deklination-test';
 import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
 import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
+import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test';
+import { testB1IndirekteRedeEinfuehrung } from './tests/b1-indirekte-rede-einfuehrung-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
 import { testB1Relativsaetze } from './tests/b1-relativsaetze-test';
-import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test';
-import { testB1PartizipienAlsAdjektive } from './tests/b1-partizipien-als-adjektive-test';
-import { testB1IndirekteRedeEinfuehrung } from './tests/b1-indirekte-rede-einfuehrung-test';
 
 // B1 Lexik Tests
 import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
@@ -112,6 +113,7 @@ import { testB2KomplexeSatzverbindungen } from './tests/b2-komplexe-satzverbindu
 import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-verbalisierung-test';
 import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
+import { testB2IndirekteRede } from './tests/b2-indirekte-rede-test';
 // B2 Lexik Tests
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
 import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
@@ -249,6 +251,8 @@ export const MOCK_TESTS: Test[] = [
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
   testB2Wortbildung,
+  testB2IndirekteRede,
+  testB2PartizipialkonstruktionenEinfuehrung, // Added
   testB2LexikUmweltNachhaltigkeit,
   testB2LexikKulturKunst,
   testB2LexikWissenschaftTechnologie,
@@ -345,13 +349,14 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     level: 'A2',
     topic: 'A2 - Грамматический Модуль 1 (Тест)',
     testType: 'modular',
-    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt, Модальные глаголы.',
+    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt, Модальные глаголы, Предлоги.',
     coveredLessonIds: [
       'a2-artikel',
       'a2-verben-praesens',
       'a2-pluralbildung',
       'a2-perfekt',
       'a2-modalverben',
+      'a2-praepositionen',
     ],
     questions: [
       testA2Artikel.questions[0],
@@ -362,7 +367,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       testA2Praepositionen.questions[2],
     ]
   },
-  {
+   {
     id: 'b1-grammar-module-1-test',
     level: 'B1',
     topic: 'B1 - Грамматический Модуль 1 (Тест)',
@@ -388,19 +393,20 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     level: 'B2',
     topic: 'B2 - Грамматический Модуль 1 (Тест)',
     testType: 'modular',
-    description: 'Проверка знаний по темам: Konjunktiv II (углубленно), Nomen-Verb-Verbindungen, Passiv (углубленно), Subjektive Bedeutung der Modalverben.',
+    description: 'Проверка знаний по темам: Konjunktiv II (углубленно), Nomen-Verb-Verbindungen, Passiv (углубленно), Subjektive Bedeutung der Modalverben, Причастные конструкции (введение).',
     coveredLessonIds: [
       'b2-konjunktiv2',
       'b2-nomen-verb',
       'b2-passiv',
       'b2-subjektive-modalverben',
+      'b2-partizipialkonstruktionen-einfuehrung',
     ],
     questions: [
         testB2Konjunktiv2.questions[0],
         testB2NomenVerb.questions[0],
         testB2Passiv.questions[0],
         testB2SubjektiveModalverben.questions[0],
-        testB2Konjunktiv2.questions[3],
+        testB2PartizipialkonstruktionenEinfuehrung.questions[0],
     ]
   },
   {

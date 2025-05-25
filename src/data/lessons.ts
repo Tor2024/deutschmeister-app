@@ -6,6 +6,8 @@ import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessung
 import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
 import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
 import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
+import { lessonA1GrammatikPraesensVerben } from './lessons/a1-grammatik-praesens-verben'; // Added
+import { lessonA1WFragen } from './lessons/a1-w-fragen'; // Added
 import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
 import { lessonA1Negation } from './lessons/a1-negation';
 import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
@@ -15,8 +17,6 @@ import { lessonA1Imperativ } from './lessons/a1-imperativ';
 import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akkusativ';
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
-import { lessonA1GrammatikPraesensVerben } from './lessons/a1-grammatik-praesens-verben';
-import { lessonA1WFragen } from './lessons/a1-w-fragen';
 import { lessonA1PraepositionenDativWechsel } from './lessons/a1-praepositionen-dativ-wechsel';
 
 
@@ -33,15 +33,16 @@ import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbe
 import { lessonA1LexikWetter } from './lessons/a1-lexik-wetter';
 import { lessonA1LexikGefuehleZustaende } from './lessons/a1-lexik-gefuehle-zustaende';
 import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung';
-import { lessonA1LexikOrdinalzahlenDatum } from './lessons/a1-lexik-ordinalzahlen-datum';
+import { lessonA1LexikOrdinalzahlenDatum } from './lessons/a1-lexik-ordinalzahlen-datum'; // Added
 
 // A2 Grammar
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
 import { lessonA2Pluralbildung } from './lessons/a2-pluralbildung';
+import { lessonA2GrammatikPraeteritumSeinHabenModal } from './lessons/a2-grammatik-praeteritum-sein-haben-modal'; // Added
 import { lessonA2Perfekt } from './lessons/a2-perfekt';
 import { lessonA2Modalverben } from './lessons/a2-modalverben';
-import { lessonA2ModalverbenPerfekt } from './lessons/a2-modalverben-perfekt';
+import { lessonA2ModalverbenPerfekt } from './lessons/a2-modalverben-perfekt'; // Added
 import { lessonA2Praepositionen } from './lessons/a2-praepositionen';
 import { lessonA2Possessivpronomen } from './lessons/a2-possessivpronomen';
 import { lessonA2PersonalpronomenAkkDat } from './lessons/a2-personalpronomen-akk-dat';
@@ -56,9 +57,8 @@ import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
 import { lessonA2Demonstrativpronomen } from './lessons/a2-demonstrativpronomen';
 import { lessonA2OrdinalzahlenDatum } from './lessons/a2-ordinalzahlen-datum';
-import { lessonA2VerbLassen } from './lessons/a2-verb-lassen';
-import { lessonA2TrennbareUntrennbareVerben } from './lessons/a2-trennbare-untrennbare-verben';
-import { lessonA2GrammatikPraeteritumSeinHabenModal } from './lessons/a2-grammatik-praeteritum-sein-haben-modal';
+import { lessonA2VerbLassen } from './lessons/a2-verb-lassen'; // Added
+import { lessonA2TrennbareUntrennbareVerben } from './lessons/a2-trennbare-untrennbare-verben'; // Added
 
 
 // A2 Lexik
@@ -77,7 +77,7 @@ import { lessonA2LexikKonflikteLoesungen } from './lessons/a2-lexik-konflikte-lo
 import { lessonA2LexikBank } from './lessons/a2-lexik-bank';
 import { lessonA2LexikSchuleKurse } from './lessons/a2-lexik-schule-kurse';
 
-// B1 Grammar
+// B1 Lessons
 import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
 import { lessonB1PerfektReview } from './lessons/b1-perfekt-review';
 import { lessonB1Plusquamperfekt } from './lessons/b1-plusquamperfekt';
@@ -93,10 +93,9 @@ import { lessonB1InfinitivMitZu } from './lessons/b1-infinitiv-mit-zu';
 import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
 import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
-import { lessonB1KonditionalsaetzeTyp1 } from './lessons/b1-konditionalsaetze-typ1';
-import { lessonB1PartizipienAlsAdjektive } from './lessons/b1-partizipien-als-adjektive';
-import { lessonB1IndirekteRedeEinfuehrung } from './lessons/b1-indirekte-rede-einfuehrung';
-
+import { lessonB1KonditionalsaetzeTyp1 } from './lessons/b1-konditionalsaetze-typ1'; // Added
+import { lessonB1PartizipienAlsAdjektive } from './lessons/b1-partizipien-als-adjektive'; // Added
+import { lessonB1IndirekteRedeEinfuehrung } from './lessons/b1-indirekte-rede-einfuehrung'; // Added
 
 // B1 Lexik
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
@@ -106,7 +105,7 @@ import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter';
 import { lessonB1LexikKulturFreizeit } from './lessons/b1-lexik-kultur-freizeit';
 import { lessonB1LexikBeziehungen } from './lessons/b1-lexik-beziehungen';
 
-// B2 Grammar
+// B2 Lessons
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
 import { lessonB2NomenVerb } from './lessons/b2-nomen-verb';
 import { lessonB2Passiv } from './lessons/b2-passiv';
@@ -116,6 +115,8 @@ import { lessonB2KomplexeSatzverbindungen } from './lessons/b2-komplexe-satzverb
 import { lessonB2NominalisierungVerbalisierung } from './lessons/b2-nominalisierung-verbalisierung';
 import { lessonB2Futur2 } from './lessons/b2-futur2';
 import { lessonB2Wortbildung } from './lessons/b2-wortbildung';
+import { lessonB2IndirekteRede } from './lessons/b2-indirekte-rede'; // Added
+import { lessonB2PartizipialkonstruktionenEinfuehrung } from './lessons/b2-partizipialkonstruktionen-einfuehrung'; // Added
 
 // B2 Lexik
 import { lessonB2LexikUmweltNachhaltigkeit } from './lessons/b2-lexik-umwelt-nachhaltigkeit';
@@ -126,7 +127,7 @@ import { lessonB2LexikPolitik } from './lessons/b2-lexik-politik';
 import { lessonB2LexikWirtschaftKonsum } from './lessons/b2-lexik-wirtschaft-konsum';
 
 
-// C1 Grammar
+// C1 Lessons
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
 import { lessonC1Partizipialkonstruktionen } from './lessons/c1-partizipialkonstruktionen';
 import { lessonC1KonjunktivVertiefung } from './lessons/c1-konjunktiv-vertiefung';
@@ -139,7 +140,8 @@ import { lessonC1LexikWissenschaftForschung } from './lessons/c1-lexik-wissensch
 import { lessonC1LexikWirtschaftGlobalermarkt } from './lessons/c1-lexik-wirtschaft-globalermarkt';
 import { lessonC1LexikInterkulturelleKommunikation } from './lessons/c1-lexik-interkulturelle-kommunikation';
 
-// C2 Grammar
+
+// C2 Lessons
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
 import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalstil';
 import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
@@ -149,66 +151,63 @@ import { lessonC2LexikGlobaleProbleme } from './lessons/c2-lexik-globale-problem
 import { lessonC2LexikMedienkritikDigitaleGesellschaft } from './lessons/c2-lexik-medienkritik-digitale-gesellschaft';
 import { lessonC2LexikSozialeTrends } from './lessons/c2-lexik-soziale-trends';
 
+
 export const MOCK_LESSONS: Lesson[] = [
-  // --- A1 ---
-  // Основы и Грамматика
+  // A1
   lessonA1AlphabetBegruessungen,
   lessonA1PersonalpronomenSeinHaben,
+  lessonA1LexikPersoenlicheInfos,
   lessonA1ArtikelGenus,
   lessonA1Pluralbildung,
+  lessonA1LexikZahlenFarben,
+  lessonA1LexikFamilie,
   lessonA1GrammatikPraesensVerben,
   lessonA1WFragen,
   lessonA1Akkusativ,
+  lessonA1Possessivpronomen,
+  lessonA1LexikKleidung,
   lessonA1Negation,
+  lessonA1LexikEssenTrinken,
   lessonA1SatzbauGrundlagen,
   lessonA1Modalverben,
-  lessonA1Possessivpronomen,
+  lessonA1LexikHobbysFreizeit,
   lessonA1Imperativ,
+  lessonA1LexikUhrzeitTagesablauf,
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
   lessonA1PraepositionenDativWechsel,
-  lessonA1TrennbarVerben,
-  // A1 Лексика (чередуется с грамматикой, где возможно)
-  lessonA1LexikPersoenlicheInfos, // После sein/haben и W-Fragen
-  lessonA1LexikZahlenFarben,       // После артиклей и множественного числа
-  lessonA1LexikFamilie,
-  lessonA1LexikKleidung,           // После Akkusativ и Possessivpronomen
-  lessonA1LexikEssenTrinken,
-  lessonA1LexikHobbysFreizeit,     // После Modalverben
-  lessonA1LexikUhrzeitTagesablauf, // После Imperativ
-  lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1LexikSchuleArbeitEinfach,
+  lessonA1TrennbarVerben,
   lessonA1LexikWetter,
+  lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1LexikGefuehleZustaende,
   lessonA1LexikHausWohnung,
   lessonA1LexikOrdinalzahlenDatum,
 
-  // --- A2 ---
-  // Грамматика
+  // A2
   lessonA2Artikel,
   lessonA2VerbenPraesens,
+  lessonA2GrammatikPraeteritumSeinHabenModal,
   lessonA2Pluralbildung,
-  lessonA2GrammatikPraeteritumSeinHabenModal, // Präteritum sein/haben/modal
-  lessonA2Perfekt,
-  lessonA2Modalverben, // Präsens Modalverben (углубленно)
-  lessonA2ModalverbenPerfekt, // Perfekt модальных глаголов
-  lessonA2VerbLassen,
-  lessonA2TrennbareUntrennbareVerben,
-  lessonA2Praepositionen, // Включает Dativ и Akkusativ предлоги
-  lessonA2PersonalpronomenAkkDat, // Местоимения в Akkusativ и Dativ
-  lessonA2Possessivpronomen, // Притяжательные во всех падежах (A2)
+  lessonA2Adjektivdeklination,
   lessonA2Adjektivsteigerung,
-  lessonA2Adjektivdeklination, // Основы склонения прилагательных
-  lessonA2Imperativ, // Углубленно
-  lessonA2Satzbau, // Включает базовые придаточные
-  lessonA2NebenordnendeKonjunktionen,
-  lessonA2NebensaetzeEinfach, // dass, weil, wenn, ob
-  lessonA2Negation, // Углубленно
-  lessonA2ReflexiveVerben,
-  lessonA2TemporalsaetzeAlsWenn, // als/wenn
   lessonA2Demonstrativpronomen,
-  lessonA2OrdinalzahlenDatum, // Даты и порядковые числительные (углубленно)
-  // A2 Лексика
+  lessonA2OrdinalzahlenDatum,
+  lessonA2TemporalsaetzeAlsWenn,
+  lessonA2Satzbau,
+  lessonA2Perfekt,
+  lessonA2Modalverben,
+  lessonA2ModalverbenPerfekt,
+  lessonA2TrennbareUntrennbareVerben,
+  lessonA2VerbLassen,
+  lessonA2ReflexiveVerben,
+  lessonA2Praepositionen,
+  lessonA2PersonalpronomenAkkDat,
+  lessonA2Possessivpronomen,
+  lessonA2NebenordnendeKonjunktionen,
+  lessonA2NebensaetzeEinfach,
+  lessonA2Negation,
+  // A2 Lexik (interspersed)
   lessonA2LexikArbeitBeruf,
   lessonA2LexikReisenVerkehr,
   lessonA2LexikGesundheitKoerper,
@@ -224,28 +223,27 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikBank,
   lessonA2LexikSchuleKurse,
 
-  // --- B1 ---
-  // Грамматика
-  lessonB1Praeteritum, // Präteritum для большинства глаголов
-  lessonB1PerfektReview, // Perfekt vs. Präteritum
+
+  // B1
+  lessonB1Praeteritum,
+  lessonB1PerfektReview,
   lessonB1Plusquamperfekt,
   lessonB1Futur1,
-  lessonB1Adjektivdeklination, // Склонение прилагательных (все падежи)
-  lessonB1PartizipienAlsAdjektive, // Причастия как прилагательные
+  lessonB1Adjektivdeklination,
+  lessonB1Genitiv,
+  lessonB1NDeklination,
+  lessonB1Indefinitpronomen,
+  lessonB1PassivEinfuehrung,
   lessonB1VerbenMitPraepositionen,
-  lessonB1KonditionalsaetzeTyp1, // Условные предложения тип I
-  lessonB1Konjunktiv2Einfuehrung, // Konjunktiv II (введение, вежливые формы)
-  lessonB1PassivEinfuehrung, // Passiv (Präsens, Präteritum)
-  lessonB1Genitiv, // Genitiv
-  lessonB1NDeklination, // n-Deklination
-  lessonB1Indefinitpronomen, // Неопределенные местоимения (man, jemand, etc.)
-  lessonB1InfinitivMitZu, // Инфинитивные конструкции с zu
-  lessonB1Konsekutivsaetze, // Придаточные следствия (so...dass)
-  lessonB1Nebensaetze, // Углубление по придаточным (obwohl, damit, während)
-  lessonB1Relativsaetze, // Относительные предложения
-  lessonB1IndirekteRedeEinfuehrung, // Косвенная речь (введение)
-
-  // B1 Лексика
+  lessonB1InfinitivMitZu,
+  lessonB1Konjunktiv2Einfuehrung,
+  lessonB1KonditionalsaetzeTyp1,
+  lessonB1PartizipienAlsAdjektive,
+  lessonB1IndirekteRedeEinfuehrung,
+  lessonB1Konsekutivsaetze,
+  lessonB1Nebensaetze,
+  lessonB1Relativsaetze,
+  // B1 Lexik (interspersed)
   lessonB1LexikBildungStudium,
   lessonB1LexikArbeitKarriere,
   lessonB1LexikMedienKommunikation,
@@ -253,18 +251,19 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikKulturFreizeit,
   lessonB1LexikBeziehungen,
 
-  // --- B2 ---
-  // Грамматика
-  lessonB2Konjunktiv2, // Konjunktiv II (углубленно, нереальные условия)
-  lessonB2Passiv, // Passiv (все времена, с модальными глаголами)
+  // B2
+  lessonB2Konjunktiv2,
+  lessonB2Passiv,
   lessonB2PassivErsatzformen,
   lessonB2SubjektiveModalverben,
-  lessonB2NomenVerb, // Nomen-Verb-Verbindungen
-  lessonB2KomplexeSatzverbindungen, // je...desto, sowohl...als auch
-  lessonB2NominalisierungVerbalisierung,
   lessonB2Futur2,
+  lessonB2NominalisierungVerbalisierung,
+  lessonB2NomenVerb,
   lessonB2Wortbildung,
-  // B2 Лексика
+  lessonB2KomplexeSatzverbindungen,
+  lessonB2IndirekteRede,
+  lessonB2PartizipialkonstruktionenEinfuehrung,
+  // B2 Lexik (interspersed)
   lessonB2LexikUmweltNachhaltigkeit,
   lessonB2LexikKulturKunst,
   lessonB2LexikWissenschaftTechnologie,
@@ -272,25 +271,23 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2LexikPolitik,
   lessonB2LexikWirtschaftKonsum,
 
-  // --- C1 ---
-  // Грамматика
-  lessonC1IndirekteRede, // Косвенная речь (Konjunktiv I & II)
-  lessonC1Partizipialkonstruktionen, // Причастные обороты (атрибуты)
-  lessonC1KonjunktivVertiefung, // Konjunktiv I & II (углубленно, нереальность в прошлом)
-  lessonC1PartizipialkonstruktionenAdverbial, // Причастные обороты (обстоятельства)
-  lessonC1AdverbialsaetzeVertiefung, // Обстоятельственные придаточные (углубленно)
-  // C1 Лексика
+  // C1
+  lessonC1KonjunktivVertiefung,
+  lessonC1IndirekteRede,
+  lessonC1Partizipialkonstruktionen,
+  lessonC1PartizipialkonstruktionenAdverbial,
+  lessonC1AdverbialsaetzeVertiefung,
+  // C1 Lexik (interspersed)
   lessonC1LexikPolitikGesellschaft,
   lessonC1LexikWissenschaftForschung,
   lessonC1LexikWirtschaftGlobalermarkt,
   lessonC1LexikInterkulturelleKommunikation,
 
-  // --- C2 ---
-  // Грамматика
+  // C2
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
   lessonC2Modalpartikeln,
-  // C2 Лексика
+  // C2 Lexik (interspersed)
   lessonC2LexikGlobaleProbleme,
   lessonC2LexikMedienkritikDigitaleGesellschaft,
   lessonC2LexikSozialeTrends,
@@ -309,3 +306,4 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+
