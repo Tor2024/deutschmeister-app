@@ -1,38 +1,41 @@
 
 import type { Lesson } from '@/types';
 
-// A1 Lessons
+// A1 Grammar
 import { lessonA1AlphabetBegruessungen } from './lessons/a1-alphabet-begruessungen';
 import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen-sein-haben';
-import { lessonA1LexikPersoenlicheInfos } from './lessons/a1-lexik-persoenliche-infos';
 import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
 import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
-import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
-import { lessonA1LexikFamilie } from './lessons/a1-lexik-familie';
-import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
-import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
-import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
-import { lessonA1Negation } from './lessons/a1-negation';
-import { lessonA1LexikEssenTrinken } from './lessons/a1-lexik-essen-trinken';
-import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
 import { lessonA1GrammatikPraesensVerben } from './lessons/a1-grammatik-praesens-verben';
+import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
+import { lessonA1Negation } from './lessons/a1-negation';
+import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
 import { lessonA1Modalverben } from './lessons/a1-modalverben';
-import { lessonA1LexikHobbysFreizeit } from './lessons/a1-lexik-hobbys-freizeit';
+import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
 import { lessonA1Imperativ } from './lessons/a1-imperativ';
-import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf';
 import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akkusativ';
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1PraepositionenDativWechsel } from './lessons/a1-praepositionen-dativ-wechsel';
-import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbeit-einfach';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
+import { lessonA1WFragen } from './lessons/a1-w-fragen';
+
+// A1 Lexik
+import { lessonA1LexikPersoenlicheInfos } from './lessons/a1-lexik-persoenliche-infos';
+import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
+import { lessonA1LexikFamilie } from './lessons/a1-lexik-familie';
+import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
+import { lessonA1LexikEssenTrinken } from './lessons/a1-lexik-essen-trinken';
+import { lessonA1LexikHobbysFreizeit } from './lessons/a1-lexik-hobbys-freizeit';
+import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf';
+import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbeit-einfach';
 import { lessonA1LexikWetter } from './lessons/a1-lexik-wetter';
 import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
 import { lessonA1LexikGefuehleZustaende } from './lessons/a1-lexik-gefuehle-zustaende';
-import { lessonA1WFragen } from './lessons/a1-w-fragen';
+import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung';
 import { lessonA1LexikOrdinalzahlenDatum } from './lessons/a1-lexik-ordinalzahlen-datum';
 
 
-// A2 Lessons
+// A2 Grammar
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
 import { lessonA2GrammatikPraeteritumSeinHabenModal } from './lessons/a2-grammatik-praeteritum-sein-haben-modal';
@@ -67,15 +70,14 @@ import { lessonA2LexikElektronikTechnik } from './lessons/a2-lexik-elektronik-te
 import { lessonA2LexikBriefeEmails } from './lessons/a2-lexik-briefe-emails';
 import { lessonA2LexikKonflikteLoesungen } from './lessons/a2-lexik-konflikte-loesungen';
 import { lessonA2LexikBank } from './lessons/a2-lexik-bank';
+import { lessonA2LexikSchuleKurse } from './lessons/a2-lexik-schule-kurse';
 
 
-// B1 Lessons
+// B1 Grammar
 import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
 import { lessonB1PerfektReview } from './lessons/b1-perfekt-review';
 import { lessonB1Plusquamperfekt } from './lessons/b1-plusquamperfekt';
 import { lessonB1Futur1 } from './lessons/b1-futur1';
-import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
-import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 import { lessonB1Adjektivdeklination } from './lessons/b1-adjektivdeklination';
 import { lessonB1VerbenMitPraepositionen } from './lessons/b1-verben-mit-praepositionen';
 import { lessonB1Konjunktiv2Einfuehrung } from './lessons/b1-konjunktiv2-einfuehrung';
@@ -94,7 +96,7 @@ import { lessonB1LexikKulturFreizeit } from './lessons/b1-lexik-kultur-freizeit'
 import { lessonB1LexikBeziehungen } from './lessons/b1-lexik-beziehungen';
 
 
-// B2 Lessons
+// B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
 import { lessonB2NomenVerb } from './lessons/b2-nomen-verb';
 import { lessonB2Passiv } from './lessons/b2-passiv';
@@ -113,7 +115,7 @@ import { lessonB2LexikPolitik } from './lessons/b2-lexik-politik';
 import { lessonB2LexikWirtschaftKonsum } from './lessons/b2-lexik-wirtschaft-konsum';
 
 
-// C1 Lessons
+// C1 Grammar
 import { lessonC1IndirekteRede } from './lessons/c1-indirekte-rede';
 import { lessonC1Partizipialkonstruktionen } from './lessons/c1-partizipialkonstruktionen';
 import { lessonC1KonjunktivVertiefung } from './lessons/c1-konjunktiv-vertiefung';
@@ -126,7 +128,7 @@ import { lessonC1LexikWirtschaftGlobalermarkt } from './lessons/c1-lexik-wirtsch
 import { lessonC1LexikInterkulturelleKommunikation } from './lessons/c1-lexik-interkulturelle-kommunikation';
 
 
-// C2 Lessons
+// C2 Grammar
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
 import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalstil';
 import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
@@ -145,121 +147,123 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1Pluralbildung,
   lessonA1LexikZahlenFarben,
   lessonA1LexikFamilie,
+  lessonA1GrammatikPraesensVerben,
   lessonA1Akkusativ,
   lessonA1Possessivpronomen,
   lessonA1LexikKleidung,
   lessonA1Negation,
   lessonA1LexikEssenTrinken,
   lessonA1SatzbauGrundlagen,
-  lessonA1GrammatikPraesensVerben,
+  lessonA1WFragen,
   lessonA1Modalverben,
   lessonA1LexikHobbysFreizeit,
   lessonA1Imperativ,
   lessonA1LexikUhrzeitTagesablauf,
+  lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
   lessonA1PraepositionenDativWechsel,
   lessonA1TrennbarVerben,
   lessonA1LexikSchuleArbeitEinfach,
   lessonA1LexikWetter,
-  lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1LexikGefuehleZustaende,
-  lessonA1WFragen,
   lessonA1LexikOrdinalzahlenDatum,
 
   // A2 Level - Ordered
   lessonA2Artikel,
   lessonA2VerbenPraesens,
-  lessonA2LexikArbeitBeruf, // Lexik
-  lessonA2GrammatikPraeteritumSeinHabenModal,
   lessonA2Pluralbildung,
+  lessonA2GrammatikPraeteritumSeinHabenModal,
   lessonA2Perfekt,
-  lessonA2LexikReisenVerkehr, // Lexik
   lessonA2Modalverben,
+  lessonA2LexikArbeitBeruf,
   lessonA2Praepositionen,
-  lessonA2LexikGesundheitKoerper, // Lexik
+  lessonA2LexikReisenVerkehr,
   lessonA2Possessivpronomen,
   lessonA2PersonalpronomenAkkDat,
-  lessonA2LexikKleidung, // Lexik A2
+  lessonA2LexikGesundheitKoerper,
   lessonA2Adjektivsteigerung,
   lessonA2Adjektivdeklination,
-  lessonA2LexikEinkaufen, // Lexik
+  lessonA2LexikKleidung,
   lessonA2Imperativ,
   lessonA2Satzbau,
-  lessonA2NebensaetzeEinfach,
-  lessonA2LexikInDerStadt, // Lexik
+  lessonA2LexikEinkaufen,
   lessonA2NebenordnendeKonjunktionen,
+  lessonA2NebensaetzeEinfach,
+  lessonA2LexikInDerStadt,
   lessonA2Negation,
   lessonA2ReflexiveVerben,
-  lessonA2LexikFesteTraditionen, // Lexik
+  lessonA2LexikFesteTraditionen,
   lessonA2TemporalsaetzeAlsWenn,
-  lessonA2LexikLebensstilGewohnheiten, // Lexik
+  lessonA2LexikLebensstilGewohnheiten,
   lessonA2Demonstrativpronomen,
-  lessonA2LexikErnaehrungRezepte, // Lexik
+  lessonA2LexikErnaehrungRezepte,
   lessonA2OrdinalzahlenDatum,
-  lessonA2LexikElektronikTechnik, // Lexik
-  lessonA2LexikBriefeEmails, // Lexik
-  lessonA2LexikKonflikteLoesungen, // Lexik
-  lessonA2LexikBank, // Lexik
+  lessonA2LexikElektronikTechnik,
+  lessonA2LexikSchuleKurse,
+  lessonA2LexikBriefeEmails,
+  lessonA2LexikKonflikteLoesungen,
+  lessonA2LexikBank,
 
   // B1 Level - Ordered
   lessonB1Praeteritum,
   lessonB1PerfektReview,
-  lessonB1LexikBildungStudium, // Lexik
   lessonB1Plusquamperfekt,
   lessonB1Futur1,
-  lessonB1LexikArbeitKarriere, // Lexik
-  lessonB1Nebensaetze,
-  lessonB1Relativsaetze,
-  lessonB1LexikMedienKommunikation, // Lexik
+  lessonB1LexikBildungStudium,
   lessonB1Adjektivdeklination,
-  lessonB1VerbenMitPraepositionen,
-  lessonB1LexikUmweltWetter, // Lexik
-  lessonB1Konjunktiv2Einfuehrung,
-  lessonB1PassivEinfuehrung,
-  lessonB1LexikKulturFreizeit, // Lexik
   lessonB1Genitiv,
   lessonB1NDeklination,
-  lessonB1LexikBeziehungen, // Lexik
+  lessonB1LexikArbeitKarriere,
+  lessonB1VerbenMitPraepositionen,
   lessonB1Indefinitpronomen,
+  lessonB1LexikMedienKommunikation,
   lessonB1InfinitivMitZu,
+  lessonB1Konjunktiv2Einfuehrung,
+  lessonB1LexikUmweltWetter,
+  lessonB1PassivEinfuehrung,
   lessonB1Konsekutivsaetze,
+  lessonB1Nebensaetze,
+  lessonB1LexikKulturFreizeit,
+  lessonB1Relativsaetze,
+  lessonB1LexikBeziehungen,
 
   // B2 Level - Ordered
   lessonB2Konjunktiv2,
   lessonB2Passiv,
   lessonB2PassivErsatzformen,
-  lessonB2LexikUmweltNachhaltigkeit, // Lexik
+  lessonB2LexikUmweltNachhaltigkeit,
   lessonB2SubjektiveModalverben,
-  lessonB2LexikKulturKunst, // Lexik
   lessonB2NomenVerb,
+  lessonB2LexikKulturKunst,
   lessonB2KomplexeSatzverbindungen,
-  lessonB2LexikWissenschaftTechnologie, // Lexik
   lessonB2NominalisierungVerbalisierung,
+  lessonB2LexikWissenschaftTechnologie,
   lessonB2Futur2,
-  lessonB2LexikMedienKommunikation, // Lexik
   lessonB2Wortbildung,
-  lessonB2LexikPolitik, // Lexik
-  lessonB2LexikWirtschaftKonsum, // Lexik
+  lessonB2LexikMedienKommunikation,
+  lessonB2LexikPolitik,
+  lessonB2LexikWirtschaftKonsum,
+
 
   // C1 Level - Ordered
   lessonC1IndirekteRede,
   lessonC1KonjunktivVertiefung,
-  lessonC1LexikPolitikGesellschaft, // Lexik
+  lessonC1LexikPolitikGesellschaft,
   lessonC1Partizipialkonstruktionen,
   lessonC1PartizipialkonstruktionenAdverbial,
-  lessonC1LexikWissenschaftForschung, // Lexik
+  lessonC1LexikWissenschaftForschung,
   lessonC1AdverbialsaetzeVertiefung,
-  lessonC1LexikWirtschaftGlobalermarkt, // Lexik
-  lessonC1LexikInterkulturelleKommunikation, // Lexik
+  lessonC1LexikWirtschaftGlobalermarkt,
+  lessonC1LexikInterkulturelleKommunikation,
 
   // C2 Level - Ordered
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
-  lessonC2LexikGlobaleProbleme, // Lexik
+  lessonC2LexikGlobaleProbleme,
   lessonC2Modalpartikeln,
-  lessonC2LexikMedienkritikDigitaleGesellschaft, // Lexik
-  lessonC2LexikSozialeTrends, // Lexik
+  lessonC2LexikMedienkritikDigitaleGesellschaft,
+  lessonC2LexikSozialeTrends,
 ];
 
 
@@ -276,5 +280,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
-    

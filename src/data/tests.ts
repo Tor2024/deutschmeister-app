@@ -1,6 +1,6 @@
 
 import type { Test, ModularTest } from '@/types';
-// A1 Tests
+// A1 Grammar Tests
 import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
 import { testA1GrammatikPraesensVerben } from './tests/a1-grammatik-praesens-verben-test';
@@ -32,7 +32,7 @@ import { testA1LexikGefuehleZustaende } from './tests/a1-lexik-gefuehle-zustaend
 import { testA1LexikOrdinalzahlenDatum } from './tests/a1-lexik-ordinalzahlen-datum-test';
 
 
-// A2 Tests
+// A2 Grammar Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
 import { testA2VerbenPraesens } from './tests/a2-verben-praesens-test';
 import { testA2GrammatikPraeteritumSeinHabenModal } from './tests/a2-grammatik-praeteritum-sein-haben-modal-test';
@@ -67,14 +67,13 @@ import { testA2LexikElektronikTechnik } from './tests/a2-lexik-elektronik-techni
 import { testA2LexikBriefeEmails } from './tests/a2-lexik-briefe-emails-test';
 import { testA2LexikKonflikteLoesungen } from './tests/a2-lexik-konflikte-loesungen-test';
 import { testA2LexikBank } from './tests/a2-lexik-bank-test';
+import { testA2LexikSchuleKurse } from './tests/a2-lexik-schule-kurse-test';
 
-// B1 Tests
+// B1 Grammar Tests
 import { testB1Praeteritum } from './tests/b1-praeteritum-test';
 import { testB1PerfektReview } from './tests/b1-perfekt-review-test';
 import { testB1Plusquamperfekt } from './tests/b1-plusquamperfekt-test';
 import { testB1Futur1 } from './tests/b1-futur1-test';
-import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
-import { testB1Relativsaetze } from './tests/b1-relativsaetze-test';
 import { testB1Adjektivdeklination } from './tests/b1-adjektivdeklination-test';
 import { testB1VerbenMitPraepositionen } from './tests/b1-verben-mit-praepositionen-test';
 import { testB1Konjunktiv2Einfuehrung } from './tests/b1-konjunktiv2-einfuehrung-test';
@@ -92,7 +91,7 @@ import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 import { testB1LexikKulturFreizeit } from './tests/b1-lexik-kultur-freizeit-test';
 import { testB1LexikBeziehungen } from './tests/b1-lexik-beziehungen-test';
 
-// B2 Tests
+// B2 Grammar Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
 import { testB2NomenVerb } from './tests/b2-nomen-verb-test';
 import { testB2Passiv } from './tests/b2-passiv-test';
@@ -111,7 +110,7 @@ import { testB2LexikPolitik } from './tests/b2-lexik-politik-test';
 import { testB2LexikWirtschaftKonsum } from './tests/b2-lexik-wirtschaft-konsum-test';
 
 
-// C1 Tests
+// C1 Grammar Tests
 import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
 import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstruktionen-test';
 import { testC1KonjunktivVertiefung } from './tests/c1-konjunktiv-vertiefung-test';
@@ -121,8 +120,10 @@ import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vert
 import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
 import { testC1LexikWissenschaftForschung } from './tests/c1-lexik-wissenschaft-forschung-test';
 import { testC1LexikWirtschaftGlobalermarkt } from './tests/c1-lexik-wirtschaft-globalermarkt-test';
+import { testC1LexikInterkulturelleKommunikation } from './tests/c1-lexik-interkulturelle-kommunikation-test';
 
-// C2 Tests
+
+// C2 Grammar Tests
 import { testC2Stilmittel } from './tests/c2-stilmittel-test';
 import { testC2NominalstilVerbalstil } from './tests/c2-nominalstil-verbalstil-test';
 import { testC2Modalpartikeln } from './tests/c2-modalpartikeln-test';
@@ -208,14 +209,13 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikBriefeEmails,
   testA2LexikKonflikteLoesungen,
   testA2LexikBank,
+  testA2LexikSchuleKurse,
 
   // B1 Thematic Grammar
   testB1Praeteritum,
   testB1PerfektReview,
   testB1Plusquamperfekt,
   testB1Futur1,
-  testB1Nebensaetze,
-  testB1Relativsaetze,
   testB1Adjektivdeklination,
   testB1VerbenMitPraepositionen,
   testB1Konjunktiv2Einfuehrung,
@@ -261,6 +261,7 @@ export const MOCK_TESTS: Test[] = [
   testC1LexikPolitikGesellschaft,
   testC1LexikWissenschaftForschung,
   testC1LexikWirtschaftGlobalermarkt,
+  testC1LexikInterkulturelleKommunikation,
 
   // C2 Thematic Grammar
   testC2Stilmittel,
@@ -427,6 +428,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
         testC2Modalpartikeln.questions[1],
     ]
   },
+  // Level Tests
   testA1LevelTest,
   testA2LevelTest,
   testB1LevelTest,
