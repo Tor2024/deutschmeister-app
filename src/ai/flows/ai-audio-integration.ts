@@ -29,20 +29,20 @@ const BaseAIExerciseSchema = z.object({
 });
 
 const MultipleChoiceAISchema = BaseAIExerciseSchema.extend({
-  type: z.literal('multiple_choice'),
+  type: z.enum(['multiple_choice']).describe("Indicates a multiple-choice question. Must be 'multiple_choice'."),
   question: z.string().describe("The question text."),
   options: z.array(z.string()).min(2).describe("An array of at least two possible answer options."),
   correctAnswer: z.string().describe("The correct answer string, which must be one of the provided options."),
 });
 
 const FillInTheBlankAISchema = BaseAIExerciseSchema.extend({
-  type: z.literal('fill_in_the_blank'),
+  type: z.enum(['fill_in_the_blank']).describe("Indicates a fill-in-the-blank exercise. Must be 'fill_in_the_blank'."),
   questionTextWithPlaceholder: z.string().describe("The sentence or question with a placeholder like '[BLANK]' for the user to fill in. Example: 'Das ist [BLANK] Haus.'"),
   correctAnswer: z.string().describe("The word or phrase that correctly fills the blank."),
 });
 
 const TranslationAISchema = BaseAIExerciseSchema.extend({
-  type: z.literal('translation'),
+  type: z.enum(['translation']).describe("Indicates a translation exercise. Must be 'translation'."),
   prompt: z.string().describe("The sentence or phrase to be translated."),
   languageDirection: z.enum(['to_german', 'from_german']).describe("Direction of translation: 'to_german' (e.g., English to German) or 'from_german' (e.g., German to English)."),
   correctAnswer: z.string().describe("The correct translation."),
@@ -121,3 +121,4 @@ const generateAudioExercisesFlow = ai.defineFlow(
     return output;
   }
 );
+
