@@ -59,6 +59,7 @@ import { testB2SubjektiveModalverben } from './tests/b2-subjektive-modalverben-t
 import { testB2KomplexeSatzverbindungen } from './tests/b2-komplexe-satzverbindungen-test';
 import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-verbalisierung-test';
 import { testB2Futur2 } from './tests/b2-futur2-test';
+import { testB2Wortbildung } from './tests/b2-wortbildung-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -77,7 +78,7 @@ export const MOCK_TESTS: Test[] = [
   testA1PraepositionenAkkusativ,
   testA1PraepositionenDativ,
   testA1TrennbarVerben,
-  
+
   // A2 Tests
   testA2Artikel,
   testA2VerbenPraesens,
@@ -124,6 +125,7 @@ export const MOCK_TESTS: Test[] = [
   testB2KomplexeSatzverbindungen,
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
+  testB2Wortbildung,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
