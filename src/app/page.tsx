@@ -21,16 +21,18 @@ export default function DashboardPage() {
   const [suggestedLesson, setSuggestedLesson] = useState<AdaptiveLessonOutput | null>(null);
   const [suggestedLessonId, setSuggestedLessonId] = useState<string | null>(null);
   const [isGeneratingLesson, setIsGeneratingLesson] = useState(false);
-  const [currentGoalsInput, setCurrentGoalsInput] = useState(progress.learningGoals || '');
+  const [currentGoalsInput, setCurrentGoalsInput] = useState('');
   const { toast } = useToast();
 
   useEffect(() => {
     setCurrentGoalsInput(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
   }, [progress.learningGoals]);
 
-  const fetchAndSetSuggestedLesson = useCallback(async () => {
+  const fetchAndSetSuggestedLesson = useCallback(async (isAutoFetch = false) => {
     if (!progress.currentLevel) {
-      toast({ title: "Ошибка", description: "Пожалуйста, сначала выберите ваш текущий уровень.", variant: "destructive" });
+      if (!isAutoFetch) { // Only show toast if user explicitly clicked
+        toast({ title: "Ошибка", description: "Пожалуйста, сначала выберите ваш текущий уровень.", variant: "destructive" });
+      }
       return;
     }
     setIsGeneratingLesson(true);
@@ -48,18 +50,58 @@ export default function DashboardPage() {
       };
       const suggestion = await generateAdaptiveLesson(adaptiveInput);
       setSuggestedLesson(suggestion);
+
       if (suggestion && suggestion.lessonTopic) {
-        const matchedLesson = MOCK_LESSONS.find(l => l.topic.trim().toLowerCase() === suggestion.lessonTopic.trim().toLowerCase());
-        setSuggestedLessonId(matchedLesson ? matchedLesson.id : null);
-        if(matchedLesson) {
-            toast({ title: "Рекомендация ИИ", description: `Предложен урок: ${suggestion.lessonTopic}` });
-        } else {
-            toast({ title: "Рекомендация ИИ", description: `ИИ предложил тему "${suggestion.lessonTopic}", но точного соответствия в уроках не найдено.` });
+        const suggestedTopicLower = suggestion.lessonTopic.trim().toLowerCase();
+        let matchedLesson = MOCK_LESSONS.find(
+          (l) => l.topic.trim().toLowerCase() === suggestedTopicLower
+        );
+
+        if (!matchedLesson) {
+          // Attempt a less strict match: check if one topic includes the other, or parts of it.
+          // This is still a heuristic.
+          const commonKeywords = ["dativ", "датив", "akkusativ", "аккузатив", "genitiv", "генитив", "präpositionen", "предлоги", "artikel", "артикли", "plural", "множественное", "perfekt", "перфект", "präteritum", "претерит", "modalverben", "модальные", "nebensätze", "придаточные", "relativsätze", "относительные", "konjunktiv", "конъюнктив", "passiv", "пассив"];
+          
+          matchedLesson = MOCK_LESSONS.find((l) => {
+            const lessonTopicLower = l.topic.trim().toLowerCase();
+            if (lessonTopicLower.includes(suggestedTopicLower) || suggestedTopicLower.includes(lessonTopicLower)) {
+              return true;
+            }
+            // Check for common keywords
+            for (const term of commonKeywords) {
+              if (suggestedTopicLower.includes(term) && lessonTopicLower.includes(term)) {
+                 // Prioritize lessons of the user's current level or one level up
+                 if (progress.currentLevel && (l.level === progress.currentLevel || 
+                     (LANGUAGE_LEVELS.indexOf(l.level) === LANGUAGE_LEVELS.indexOf(progress.currentLevel) + 1)) &&
+                     !progress.completedLessons.includes(l.id) // Suggest uncompleted lessons
+                 ) {
+                    return true;
+                 }
+              }
+            }
+            return false;
+          });
         }
+        
+        setSuggestedLessonId(matchedLesson ? matchedLesson.id : null);
+
+        if (!isAutoFetch || matchedLesson) { // Show toast on manual click or if a match is found on auto-fetch
+            toast({ 
+                title: "Рекомендация ИИ", 
+                description: matchedLesson 
+                    ? `Предложен урок: ${suggestion.lessonTopic}` 
+                    : `ИИ предложил тему "${suggestion.lessonTopic}", но точного соответствия в уроках не найдено.`,
+                duration: matchedLesson ? 3000 : 5000
+            });
+        }
+      } else if (!isAutoFetch) {
+        toast({ title: "Ошибка", description: "Не удалось получить рекомендацию от ИИ.", variant: "destructive" });
       }
     } catch (error) {
       console.error("Failed to generate adaptive lesson:", error);
-      toast({ title: "Ошибка генерации урока", description: "Не удалось сгенерировать рекомендуемый урок. Попробуйте позже.", variant: "destructive" });
+      if (!isAutoFetch) {
+        toast({ title: "Ошибка генерации урока", description: "Не удалось сгенерировать рекомендуемый урок. Попробуйте позже.", variant: "destructive" });
+      }
     } finally {
       setIsGeneratingLesson(false);
     }
@@ -69,25 +111,26 @@ export default function DashboardPage() {
     const shouldAutoFetchSuggestion = () => {
       if (!isLoading && progress.currentLevel && !isGeneratingLesson && !suggestedLesson) {
         // Fetch if user has made some progress or customized goals beyond the default
+        // or if they just selected a level and have no suggestion yet.
         return progress.completedLessons.length > 0 || 
                Object.keys(progress.testResults).length > 0 ||
-               (progress.learningGoals && progress.learningGoals !== "Общее улучшение знаний немецкого языка.");
+               (progress.learningGoals && progress.learningGoals !== "Общее улучшение знаний немецкого языка.") ||
+               !suggestedLesson; // Fetch if no suggestion yet for the current level
       }
       return false;
     };
 
     if (shouldAutoFetchSuggestion()) {
-      // console.log("Auto-fetching suggested lesson based on progress/goals.");
-      // fetchAndSetSuggestedLesson(); // Temporarily disable auto-fetch on load to avoid too many calls during development. User can click.
+      // fetchAndSetSuggestedLesson(true); // Auto-fetch (true means less verbose toasts)
     }
   }, [isLoading, progress, fetchAndSetSuggestedLesson, isGeneratingLesson, suggestedLesson]);
 
 
   const handleLevelSelect = (level: LanguageLevel) => {
     setCurrentLevel(level);
-    // Reset suggestion when level changes, user might want a new one.
     setSuggestedLesson(null);
     setSuggestedLessonId(null);
+    // fetchAndSetSuggestedLesson(true); // Fetch suggestion for new level
   };
   
   const handleGoalsInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -96,16 +139,15 @@ export default function DashboardPage() {
 
   const handleSaveGoals = () => {
     setLearningGoals(currentGoalsInput);
-    toast({ title: "Цели сохранены!", description: "Ваши учебные цели обновлены." });
+    toast({ title: "Цели сохранены!", description: "Ваши учебные цели обновлены. ИИ учтет их при следующей рекомендации." });
     // Optionally, re-fetch suggestion if level is set
     if (progress.currentLevel) {
-      // console.log("Re-fetching suggested lesson after goals saved.");
-      // fetchAndSetSuggestedLesson(); // Temporarily disable auto-fetch on goals save to avoid too many calls. User can click.
+      // fetchAndSetSuggestedLesson(true); 
     }
   };
 
   if (isLoading) {
-    return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Zap className="animate-spin h-12 w-12 text-primary" /></div>;
+    return <div className="container mx-auto py-8 px-4 flex justify-center items-center min-h-[calc(100vh-10rem)]"><Zap className="animate-spin h-12 w-12 text-primary" /></div>;
   }
 
   const completedLessonsCount = progress.completedLessons.length;
@@ -143,7 +185,20 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              <p className="text-md">Ваш текущий уровень: <span className="font-semibold text-primary">{progress.currentLevel}</span></p>
+              <p className="text-md">Ваш текущий уровень: <span className="font-semibold text-primary">{progress.currentLevel}</span>. 
+                <Select onValueChange={(value) => handleLevelSelect(value as LanguageLevel)} value={progress.currentLevel}>
+                    <SelectTrigger className="w-auto inline-flex h-7 text-xs ml-2 p-1.5">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                    {LANGUAGE_LEVELS.map(level => (
+                        <SelectItem key={level} value={level} className="text-xs">
+                        {level} (сменить)
+                        </SelectItem>
+                    ))}
+                    </SelectContent>
+                </Select>
+              </p>
               
               <div className="mt-2">
                 <p className="text-sm text-muted-foreground mb-1">
@@ -152,7 +207,7 @@ export default function DashboardPage() {
                 <ProgressBar value={progressPercentage} className="w-full h-2.5" />
               </div>
               
-              <Button onClick={fetchAndSetSuggestedLesson} disabled={isGeneratingLesson || !progress.currentLevel} className="mt-4">
+              <Button onClick={() => fetchAndSetSuggestedLesson(false)} disabled={isGeneratingLesson || !progress.currentLevel} className="mt-4">
                 <Lightbulb className="mr-2 h-5 w-5" />
                 {isGeneratingLesson ? "Подбираем урок..." : "Предложить следующий урок"}
               </Button>
