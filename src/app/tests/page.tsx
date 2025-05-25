@@ -4,15 +4,18 @@
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MOCK_TESTS, MOCK_MODULAR_TESTS } from '@/data/tests'; // Added MOCK_MODULAR_TESTS
-import type { Test, ModularTest, LanguageLevel } from '@/types'; // Added ModularTest type
-import { FileText, CheckSquare, Layers } from 'lucide-react'; // Added Layers icon
+import { MOCK_TESTS, MOCK_MODULAR_TESTS } from '@/data/tests';
+import type { Test, ModularTest, LanguageLevel } from '@/types';
+import { FileText, CheckSquare, Layers, Activity } from 'lucide-react'; // Added Activity icon
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Fragment } from 'react';
 import { Separator } from '@/components/ui/separator';
+import { useUserProgress } from '@/hooks/use-user-progress'; // Import useUserProgress
 
 export default function TestsPage() {
+  const { progress, isLoading } = useUserProgress(); // Get progress
+
   const testsByLevel: Record<LanguageLevel, Test[]> = {
     A1: [], A2: [], B1: [], B2: [], C1: [], C2: [],
   };
@@ -33,10 +36,12 @@ export default function TestsPage() {
     }
   });
 
-
   const allLevels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as LanguageLevel[];
-
   const noTestsAvailable = MOCK_TESTS.length === 0 && MOCK_MODULAR_TESTS.length === 0;
+
+  if (isLoading) {
+    return <div className="container mx-auto py-8 px-4 text-center">Загрузка данных о прогрессе...</div>;
+  }
 
   if (noTestsAvailable) {
     return (
@@ -88,37 +93,51 @@ export default function TestsPage() {
               <Fragment key={`modular-${level}`}>
                 <h3 className="text-xl font-medium text-muted-foreground mt-8 mb-4">Уровень {level}</h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {modularTestsByLevel[level].map(mtest => (
-                    <Card 
-                      key={mtest.id} 
-                      className="flex flex-col shadow-md hover:shadow-lg transition-shadow bg-secondary/20 border-secondary"
-                    >
-                      <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <CardTitle className="text-xl mb-1 flex items-center">
-                            <Layers className="mr-2 h-5 w-5 text-primary/80" />
-                            {mtest.topic}
-                          </CardTitle>
-                          <Badge variant="secondary">{mtest.level}</Badge>
-                        </div>
-                        {mtest.description && (
-                           <CardDescription className="text-sm text-muted-foreground pt-1">{mtest.description}</CardDescription>
-                        )}
-                      </CardHeader>
-                      <CardContent className="flex-grow">
-                         <p className="text-xs text-muted-foreground">
-                          Вопросов: {mtest.questions.length}
-                        </p>
-                      </CardContent>
-                      <CardFooter className="pt-4">
-                        <Button asChild className="w-full">
-                          <Link href={`/tests/${mtest.id}`}>
-                            Начать модульный тест
-                          </Link>
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  ))}
+                  {modularTestsByLevel[level].map(mtest => {
+                    const testScoreData = progress.testResults[mtest.id];
+                    return (
+                      <Card 
+                        key={mtest.id} 
+                        className="flex flex-col shadow-md hover:shadow-lg transition-shadow bg-secondary/20 border-secondary"
+                      >
+                        <CardHeader>
+                          <div className="flex justify-between items-start">
+                            <CardTitle className="text-xl mb-1 flex items-center">
+                              <Layers className="mr-2 h-5 w-5 text-primary/80" />
+                              {mtest.topic}
+                            </CardTitle>
+                            <Badge variant="secondary">{mtest.level}</Badge>
+                          </div>
+                          {mtest.description && (
+                             <CardDescription className="text-sm text-muted-foreground pt-1">{mtest.description}</CardDescription>
+                          )}
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                           <p className="text-xs text-muted-foreground">
+                            Вопросов: {mtest.questions.length}
+                          </p>
+                          {testScoreData && (
+                            <p className={cn(
+                              "text-sm mt-2 font-medium",
+                              testScoreData.score >= 80 ? "text-green-600 dark:text-green-400" : 
+                              testScoreData.score >= 50 ? "text-yellow-600 dark:text-yellow-400" : 
+                              "text-red-600 dark:text-red-400"
+                            )}>
+                              <Activity className="inline-block mr-1 h-4 w-4" />
+                              Последний результат: {testScoreData.score}%
+                            </p>
+                          )}
+                        </CardContent>
+                        <CardFooter className="pt-4">
+                          <Button asChild className="w-full">
+                            <Link href={`/tests/${mtest.id}`}>
+                              Начать модульный тест
+                            </Link>
+                          </Button>
+                        </CardFooter>
+                      </Card>
+                    );
+                  })}
                 </div>
               </Fragment>
             )
@@ -140,37 +159,51 @@ export default function TestsPage() {
               <Fragment key={`topic-${level}`}>
                 <h3 className="text-xl font-medium text-muted-foreground mt-8 mb-4">Уровень {level}</h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {testsByLevel[level].map(test => (
-                    <Card 
-                      key={test.id} 
-                      className="flex flex-col shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <CardTitle className="text-xl mb-1 flex items-center">
-                            <FileText className="mr-2 h-5 w-5 text-primary/80" />
-                            {test.topic}
-                          </CardTitle>
-                          <Badge variant="outline">{test.level}</Badge>
-                        </div>
-                        <CardDescription>
-                          Тест по теме урока.
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="flex-grow">
-                        <p className="text-xs text-muted-foreground">
-                          Вопросов: {test.questions.length}
-                        </p>
-                      </CardContent>
-                      <CardFooter className="pt-4">
-                        <Button asChild className="w-full">
-                          <Link href={`/tests/${test.id}`}>
-                            Начать тест
-                          </Link>
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  ))}
+                  {testsByLevel[level].map(test => {
+                    const testScoreData = progress.testResults[test.id];
+                    return (
+                      <Card 
+                        key={test.id} 
+                        className="flex flex-col shadow-md hover:shadow-lg transition-shadow"
+                      >
+                        <CardHeader>
+                          <div className="flex justify-between items-start">
+                            <CardTitle className="text-xl mb-1 flex items-center">
+                              <FileText className="mr-2 h-5 w-5 text-primary/80" />
+                              {test.topic}
+                            </CardTitle>
+                            <Badge variant="outline">{test.level}</Badge>
+                          </div>
+                          <CardDescription>
+                            Тест по теме урока.
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="flex-grow">
+                          <p className="text-xs text-muted-foreground">
+                            Вопросов: {test.questions.length}
+                          </p>
+                          {testScoreData && (
+                            <p className={cn(
+                              "text-sm mt-2 font-medium",
+                              testScoreData.score >= 80 ? "text-green-600 dark:text-green-400" : 
+                              testScoreData.score >= 50 ? "text-yellow-600 dark:text-yellow-400" : 
+                              "text-red-600 dark:text-red-400"
+                            )}>
+                              <Activity className="inline-block mr-1 h-4 w-4" />
+                              Последний результат: {testScoreData.score}%
+                            </p>
+                          )}
+                        </CardContent>
+                        <CardFooter className="pt-4">
+                          <Button asChild className="w-full">
+                            <Link href={`/tests/${test.id}`}>
+                              Начать тест
+                            </Link>
+                          </Button>
+                        </CardFooter>
+                      </Card>
+                    );
+                  })}
                 </div>
               </Fragment>
             )
