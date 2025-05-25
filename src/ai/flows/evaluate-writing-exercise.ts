@@ -11,14 +11,14 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-export const EvaluateWritingInputSchema = z.object({
+const EvaluateWritingInputSchema = z.object({
   userAnswer: z.string().describe("The student's written answer to the exercise prompt."),
   promptQuestion: z.string().describe('The original question or prompt for the writing exercise.'),
   languageLevel: z.string().describe('The student\'s German language level (e.g., A1, A2, B1, B2, C1, C2). This helps tailor the feedback complexity.'),
 });
 export type EvaluateWritingInput = z.infer<typeof EvaluateWritingInputSchema>;
 
-export const EvaluateWritingOutputSchema = z.object({
+const EvaluateWritingOutputSchema = z.object({
   correctedAnswer: z.string().describe("The AI's suggested correction of the student's answer. If the answer is perfect, return the original answer. Make minimal changes necessary to fix grammatical errors, improve style for the given language level, and ensure the answer addresses the prompt."),
   feedbackExplanation: z.string().describe("A detailed explanation of any errors (grammar, vocabulary, style, relevance to the prompt). Provide specific examples from the student's text and explain the corrections. Offer suggestions for improvement. Be encouraging and constructive. Tailor the complexity of your explanation to the student's language level. If the answer is good, highlight its strengths."),
   overallAssessment: z.string().describe("A very short (1-2 sentence) overall assessment of the answer's quality (e.g., 'Good answer, but a few minor mistakes.', 'This is a good start, but pay attention to verb conjugation.', 'Excellent!')."),
