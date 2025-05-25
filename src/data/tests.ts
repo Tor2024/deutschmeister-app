@@ -4,7 +4,7 @@ import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
 import { testA1Pluralbildung } from './tests/a1-pluralbildung-test';
 import { testA1Akkusativ } from './tests/a1-akkusativ-test';
-import { testA1Modalverben as testA1ModalverbenA1 } from './tests/a1-modalverben-test'; // Renamed import
+import { testA1ModalverbenA1 } from './tests/a1-modalverben-test';
 import { testA1Negation } from './tests/a1-negation-test';
 import { testA1SatzbauGrundlagen } from './tests/a1-satzbau-grundlagen-test';
 import { testA1Possessivpronomen } from './tests/a1-possessivpronomen-test';
@@ -36,6 +36,7 @@ import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 
 // B1 Tests
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
+import { testB1Relativsaetze } from './tests/b1-relativsaetze-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -79,6 +80,7 @@ export const MOCK_TESTS: Test[] = [
 
   // B1 Tests
   testB1Nebensaetze,
+  testB1Relativsaetze,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
