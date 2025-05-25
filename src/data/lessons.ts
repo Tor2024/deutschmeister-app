@@ -16,6 +16,7 @@ import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akk
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
 
+
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
@@ -34,6 +35,7 @@ import { lessonA2Negation } from './lessons/a2-negation';
 import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
 import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
+import { lessonA2Demonstrativpronomen } from './lessons/a2-demonstrativpronomen';
 
 
 // B1 Lessons
@@ -106,6 +108,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2ReflexiveVerben,
   lessonA2Adjektivdeklination,
   lessonA2TemporalsaetzeAlsWenn,
+  lessonA2Demonstrativpronomen,
 
   // B1
   lessonB1Nebensaetze,
