@@ -42,7 +42,7 @@ export type Exercise =
   | TranslationExercise
   | FillInTheBlankExercise
   | ListeningComprehensionExercise
-  | WritingPromptExercise; // Добавлен новый тип
+  | WritingPromptExercise;
 
 export interface VocabularyItem {
   german: string;
@@ -78,6 +78,12 @@ export interface Test {
   topic: string;
   questions: Exercise[];
 }
+
+export interface ModularTest extends Test {
+  coveredLessonIds: string[];
+  description?: string; // Optional description for the module
+}
+
 
 export interface ExerciseAttempt {
   correctStreak: number;

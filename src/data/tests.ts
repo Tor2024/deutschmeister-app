@@ -1,5 +1,4 @@
-
-import type { Test } from '@/types';
+import type { Test, ModularTest } from '@/types'; // Added ModularTest
 import { testA1ArtikelGenus } from './tests/a1-artikel-genus-test';
 import { testA1PronomenSeinHaben } from './tests/a1-pronomen-sein-haben-test';
 import { testA1Pluralbildung } from './tests/a1-pluralbildung-test';
@@ -210,7 +209,67 @@ export const MOCK_TESTS: Test[] = [
   testC2LexikSozialeTrends,
 ];
 
+export const MOCK_MODULAR_TESTS: ModularTest[] = [
+  {
+    id: 'a1-grammar-module-1-test',
+    level: 'A1',
+    topic: 'A1 - Грамматический Модуль 1 (Тест)',
+    description: 'Проверка знаний по темам: Алфавит и приветствия, Личные местоимения и sein/haben, Артикли и род, Множественное число (основы), Akkusativ.',
+    coveredLessonIds: [
+      'a1-alphabet-begruessungen',
+      'a1-personalpronomen-sein-haben',
+      'a1-artikel-genus',
+      'a1-pluralbildung',
+      'a1-akkusativ',
+    ],
+    questions: [
+      {
+        id: 'a1-gm1-q1',
+        type: 'multiple_choice',
+        question: 'Какой определенный артикль у слова "Tisch" (м.р., Nominativ)?',
+        options: ['der', 'die', 'das'],
+        correctAnswer: 'der',
+        explanation: 'Слово "Tisch" мужского рода, поэтому "der Tisch".'
+      },
+      {
+        id: 'a1-gm1-q2',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте правильную форму "sein": Ich ___ müde.',
+        sentenceParts: ['Ich ', ' müde.'],
+        correctAnswer: 'bin',
+        explanation: 'Для "ich" форма глагола "sein" - "bin".'
+      },
+      {
+        id: 'a1-gm1-q3',
+        type: 'multiple_choice',
+        question: 'Как будет "ребенок" (das Kind) во множественном числе?',
+        options: ['die Kinde', 'die Kinden', 'die Kinder', 'die Kinds'],
+        correctAnswer: 'die Kinder',
+        explanation: 'Существительные среднего рода часто образуют множественное число с окончанием -er: die Kinder.',
+      },
+      {
+        id: 'a1-gm1-q4',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте правильную форму: Ich sehe ___ (ein Apfel, м.р., Akkusativ).',
+        sentenceParts: ['Ich sehe ', '.'],
+        correctAnswer: 'einen Apfel',
+        explanation: 'Слово "Apfel" мужского рода. В Akkusativ неопределенный артикль "ein" меняется на "einen".',
+      },
+      {
+        id: 'a1-gm1-q5',
+        type: 'multiple_choice',
+        question: 'Как по-немецки сказать "Добрый день!"?',
+        options: ['Guten Morgen!', 'Guten Abend!', 'Guten Tag!', 'Hallo!'],
+        correctAnswer: 'Guten Tag!',
+        explanation: '"Guten Tag!" означает "Добрый день!".',
+      }
+    ],
+  },
+];
+
+
 // Helper function to get a test by its ID
-export const getTestById = (id: string): Test | undefined => {
-  return MOCK_TESTS.find(test => test.id === id);
+export const getTestById = (id: string): Test | ModularTest | undefined => {
+  const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
+  return allTests.find(test => test.id === id);
 };
