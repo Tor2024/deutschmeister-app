@@ -55,7 +55,7 @@ import { lessonA2LexikGesundheitKoerper } from './lessons/a2-lexik-gesundheit-ko
 import { lessonA2LexikKleidung } from './lessons/a2-lexik-kleidung';
 import { lessonA2LexikEinkaufen } from './lessons/a2-lexik-einkaufen';
 import { lessonA2LexikInDerStadt } from './lessons/a2-lexik-in-der-stadt';
-import { lessonA2LexikFesteTraditionen } from './lessons/a2-lexik-feste-traditionen'; // New A2 Lexik
+import { lessonA2LexikFesteTraditionen } from './lessons/a2-lexik-feste-traditionen';
 
 // B1 Grammar
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
@@ -79,6 +79,7 @@ import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere'
 import { lessonB1LexikMedienKommunikation } from './lessons/b1-lexik-medien-kommunikation';
 import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter';
 import { lessonB1LexikKulturFreizeit } from './lessons/b1-lexik-kultur-freizeit';
+import { lessonB1LexikBeziehungen } from './lessons/b1-lexik-beziehungen'; // Added B1 Lexik
 
 
 // B2 Grammar
@@ -170,7 +171,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikKleidung,
   lessonA2LexikEinkaufen,
   lessonA2LexikInDerStadt,
-  lessonA2LexikFesteTraditionen, // New A2 Lexik
+  lessonA2LexikFesteTraditionen,
 
   // B1 Grammar
   lessonB1Nebensaetze,
@@ -193,6 +194,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikMedienKommunikation,
   lessonB1LexikUmweltWetter,
   lessonB1LexikKulturFreizeit,
+  lessonB1LexikBeziehungen, // Added B1 Lexik
 
   // B2 Grammar
   lessonB2Konjunktiv2,

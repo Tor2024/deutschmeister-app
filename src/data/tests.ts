@@ -19,7 +19,7 @@ import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
 import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
-import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test'; 
+import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -47,7 +47,7 @@ import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerpe
 import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
 import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
-import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test'; // New A2 Lexik Test
+import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
 
 
 // B1 Tests
@@ -70,6 +70,7 @@ import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test
 import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunikation-test';
 import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 import { testB1LexikKulturFreizeit } from './tests/b1-lexik-kultur-freizeit-test';
+import { testB1LexikBeziehungen } from './tests/b1-lexik-beziehungen-test'; // Added B1 Lexik Test
 
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -151,7 +152,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikKleidung,
   testA2LexikEinkaufen,
   testA2LexikInDerStadt,
-  testA2LexikFesteTraditionen, // New A2 Lexik Test
+  testA2LexikFesteTraditionen,
 
   // B1 Tests
   testB1Nebensaetze,
@@ -173,6 +174,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikMedienKommunikation,
   testB1LexikUmweltWetter,
   testB1LexikKulturFreizeit,
+  testB1LexikBeziehungen, // Added B1 Lexik Test
 
   // B2 Tests
   testB2Konjunktiv2,
