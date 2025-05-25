@@ -13,7 +13,8 @@ import { lessonA2PersonalpronomenAkkDat } from './lessons/a2-personalpronomen-ak
 import { lessonA2Adjektivsteigerung } from './lessons/a2-adjektivsteigerung';
 import { lessonA2Imperativ } from './lessons/a2-imperativ';
 import { lessonA2Satzbau } from './lessons/a2-satzbau';
-import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach'; // Новый импорт
+import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
+import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
 
 // B1 Lessons
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
@@ -47,7 +48,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Adjektivsteigerung,
   lessonA2Imperativ,
   lessonA2Satzbau,
-  lessonA2NebensaetzeEinfach, // Добавлен в массив
+  lessonA2NebensaetzeEinfach,
+  lessonA2NebenordnendeKonjunktionen,
 
   // B1
   lessonB1Nebensaetze,
