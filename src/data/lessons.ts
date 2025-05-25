@@ -25,6 +25,7 @@ import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
 import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
 import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
 import { lessonA1LexikUhrzeitTagesablauf } from './lessons/a1-lexik-uhrzeit-tagesablauf';
+import { lessonA1LexikSchuleArbeitEinfach } from './lessons/a1-lexik-schule-arbeit-einfach';
 
 
 // A2 Grammar
@@ -148,6 +149,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikWochentageMonateJahreszeiten,
   lessonA1LexikKleidung,
   lessonA1LexikUhrzeitTagesablauf,
+  lessonA1LexikSchuleArbeitEinfach,
 
   // A2 Grammar
   lessonA2Artikel,
@@ -252,4 +254,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-

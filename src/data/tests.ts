@@ -20,6 +20,7 @@ import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
 import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
 import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
+import { testA1LexikSchuleArbeitEinfach } from './tests/a1-lexik-schule-arbeit-einfach-test';
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -140,6 +141,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikWochentageMonateJahreszeiten,
   testA1LexikUhrzeitTagesablauf,
   testA1LexikKleidung,
+  testA1LexikSchuleArbeitEinfach,
 
 
   // A2 Grammar Tests
@@ -398,4 +400,3 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
-
