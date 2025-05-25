@@ -4,12 +4,12 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { MOCK_LESSONS } from '@/data/lessons';
-import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, VocabularyItem } from '@/types';
+import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, VocabularyItem, ReadingComprehensionQuestion } from '@/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -37,6 +37,11 @@ export default function LessonPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [aiExercises, setAiExercises] = useState<ExerciseTypeUnion[]>([]);
   const [isGeneratingAiExercises, setIsGeneratingAiExercises] = useState(false);
+
+  const [userReadingAnswers, setUserReadingAnswers] = useState<Record<string, string>>({});
+  const [readingExerciseFeedback, setReadingExerciseFeedback] = useState<Record<string, { correct: boolean; explanation?: string }>>({});
+  const [isSubmittingReading, setIsSubmittingReading] = useState(false);
+
 
   const { completeLesson, recordExerciseAttempt, progress } = useUserProgress();
   const { toast } = useToast();
@@ -97,7 +102,16 @@ export default function LessonPage() {
     setUserAnswers(prev => ({ ...prev, [exerciseId]: answer }));
     setExerciseFeedback(prev => {
       const newFeedback = { ...prev };
-      delete newFeedback[exerciseId]; // Clear previous feedback for this exercise on new answer
+      delete newFeedback[exerciseId]; 
+      return newFeedback;
+    });
+  };
+
+  const handleReadingAnswerChange = (exerciseId: string, answer: string) => {
+    setUserReadingAnswers(prev => ({ ...prev, [exerciseId]: answer }));
+    setReadingExerciseFeedback(prev => {
+      const newFeedback = { ...prev };
+      delete newFeedback[exerciseId];
       return newFeedback;
     });
   };
@@ -135,8 +149,33 @@ export default function LessonPage() {
       title: isCorrect ? "Правильно!" : "Неправильно",
       description: isCorrect ? "Отличная работа!" : (exercise.explanation || "Попробуйте еще раз или проверьте теорию."),
       variant: isCorrect ? "default" : "destructive",
-      className: isCorrect ? "bg-accent text-accent-foreground" : "",
+      className: isCorrect ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:border-green-500" : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:border-red-500",
     });
+  };
+
+  const handleSubmitReadingExercise = (exercise: ReadingComprehensionQuestion) => {
+    setIsSubmittingReading(true);
+    const userAnswer = userReadingAnswers[exercise.id];
+    if (userAnswer === undefined || userAnswer.trim() === '') {
+      toast({ title: "Внимание", description: "Пожалуйста, дайте ответ.", variant: "destructive" });
+      setIsSubmittingReading(false);
+      return;
+    }
+
+    const isCorrect = userAnswer === exercise.correctAnswer;
+
+    setReadingExerciseFeedback(prev => ({
+      ...prev,
+      [exercise.id]: { correct: isCorrect, explanation: exercise.explanation }
+    }));
+
+    toast({
+      title: isCorrect ? "Правильно!" : "Неправильно",
+      description: isCorrect ? "Отлично!" : (exercise.explanation || "Попробуйте еще раз."),
+      variant: isCorrect ? "default" : "destructive",
+      className: isCorrect ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:border-green-500" : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:border-red-500",
+    });
+    setIsSubmittingReading(false);
   };
   
   const handleCompleteLesson = () => {
@@ -220,11 +259,69 @@ export default function LessonPage() {
           </CardContent>
         </Card>
       )}
+
+      {lesson.readingText && lesson.readingComprehensionExercises && (
+        <Card className="mb-6 shadow-md">
+          <CardHeader>
+            <CardTitle className="text-2xl flex items-center"><FileText className="mr-2 h-6 w-6 text-primary" />Текст для чтения</CardTitle>
+            <CardDescription>Прочитайте текст и ответьте на вопросы ниже.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl dark:prose-invert max-w-none bg-muted/30 p-4 rounded-md shadow">
+              <p className="whitespace-pre-line leading-relaxed">{lesson.readingText}</p>
+            </div>
+
+            <div className="mt-6 space-y-6">
+              {lesson.readingComprehensionExercises.map((exercise, index) => {
+                 const feedback = readingExerciseFeedback[exercise.id];
+                 const isAttemptedAndCorrect = feedback?.correct;
+                 const isAttemptedAndIncorrect = feedback?.correct === false;
+                return (
+                  <Card 
+                    key={exercise.id}
+                    className={cn(
+                      "p-6 rounded-lg",
+                      isAttemptedAndCorrect ? "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600" :
+                      isAttemptedAndIncorrect ? "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600" :
+                      "border-border"
+                    )}
+                  >
+                    <p className="font-semibold text-lg mb-3">Вопрос {index + 1} к тексту: {exercise.question}</p>
+                    <MultipleChoiceExerciseComponent
+                      exercise={{ ...exercise, type: 'multiple_choice' }} // Adapt to fit MultipleChoiceExerciseProps
+                      onAnswerChange={(answer) => handleReadingAnswerChange(exercise.id, answer)}
+                      userAnswer={userReadingAnswers[exercise.id]}
+                      disabled={!!feedback}
+                    />
+                    <Button
+                      onClick={() => handleSubmitReadingExercise(exercise)}
+                      disabled={!!feedback || isSubmittingReading || !userReadingAnswers[exercise.id]}
+                      className="mt-4"
+                    >
+                      Проверить ответ
+                    </Button>
+                    {feedback && (
+                      <div className={cn(
+                        "mt-4 p-3 rounded-md text-sm",
+                        feedback.correct ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300"
+                      )}>
+                        {feedback.correct ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <XCircle className="inline mr-2 h-5 w-5" />}
+                        {feedback.explanation || (feedback.correct ? "Верно!" : "Неверно.")}
+                      </div>
+                    )}
+                    {index < lesson.readingComprehensionExercises.length - 1 && <Separator className="my-6" />}
+                  </Card>
+                )
+              })}
+            </div>
+          </CardContent>
+        </Card>
+      )}
       
       {allExercises.length > 0 && (
         <Card className="shadow-lg">
           <CardHeader>
-            <CardTitle className="text-2xl font-semibold">Упражнения</CardTitle>
+            <CardTitle className="text-2xl font-semibold">Основные упражнения урока</CardTitle>
           </CardHeader>
           <CardContent className="space-y-8">
             {allExercises.map((exercise, index) => {
