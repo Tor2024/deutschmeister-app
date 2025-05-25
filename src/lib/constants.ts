@@ -1,0 +1,23 @@
+import type { LucideIcon } from 'lucide-react';
+import { Home, BookOpen, CheckSquare, BarChart3 } from 'lucide-react';
+
+export const APP_NAME = 'DeutschMeister';
+
+interface NavLink {
+  href: string;
+  label: string;
+  icon: LucideIcon;
+}
+
+export const NAV_LINKS: NavLink[] = [
+  { href: '/', label: 'Главная', icon: Home },
+  { href: '/lessons', label: 'Уроки', icon: BookOpen },
+  { href: '/tests', label: 'Тесты', icon: CheckSquare },
+  { href: '/progress', label: 'Прогресс', icon: BarChart3 },
+];
+
+export const LANGUAGE_LEVELS = ['A2', 'B1', 'B2', 'C1', 'C2'] as const;
+export type LanguageLevel = typeof LANGUAGE_LEVELS[number];
+
+export const EXERCISE_TYPES = ['multiple_choice', 'translation', 'fill_in_the_blank', 'listening_comprehension'] as const;
+export type ExerciseType = typeof EXERCISE_TYPES[number];

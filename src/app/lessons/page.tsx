@@ -1,0 +1,85 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { MOCK_LESSONS } from '@/data/lessons'; // Assuming mock lessons are available
+import type { Lesson, LanguageLevel } from '@/types';
+import { useUserProgress } from '@/hooks/use-user-progress';
+import { LANGUAGE_LEVELS } from '@/lib/constants';
+import { Badge } from '@/components/ui/badge';
+import { CheckCircle2 } from 'lucide-react';
+
+export default function LessonsPage() {
+  const [lessons, setLessons] = useState<Lesson[]>(MOCK_LESSONS);
+  const [filteredLevel, setFilteredLevel] = useState<LanguageLevel | 'all'>('all');
+  const { progress, isLoading } = useUserProgress();
+
+  const lessonsToDisplay = lessons.filter(lesson => 
+    filteredLevel === 'all' || lesson.level === filteredLevel
+  );
+
+  if (isLoading) {
+    return <div className="flex justify-center items-center h-screen"><p>Загрузка уроков...</p></div>;
+  }
+
+  return (
+    <div className="container mx-auto py-8 px-4">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+        <h1 className="text-3xl font-bold text-primary">Уроки немецкого языка</h1>
+        <div className="w-full md:w-auto">
+          <Select 
+            value={filteredLevel}
+            onValueChange={(value) => setFilteredLevel(value as LanguageLevel | 'all')}
+          >
+            <SelectTrigger className="w-full md:w-[200px] text-base">
+              <SelectValue placeholder="Фильтр по уровню" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all" className="text-base">Все уровни</SelectItem>
+              {LANGUAGE_LEVELS.map(level => (
+                <SelectItem key={level} value={level} className="text-base">{level}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      {lessonsToDisplay.length === 0 ? (
+        <p className="text-center text-lg text-muted-foreground">Нет уроков для выбранного уровня.</p>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {lessonsToDisplay.map(lesson => {
+            const isCompleted = progress.completedLessons.includes(lesson.id);
+            return (
+              <Card key={lesson.id} className="flex flex-col shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <CardTitle className="text-xl mb-1">{lesson.topic}</CardTitle>
+                    <Badge variant={isCompleted ? "default" : "secondary"} className={isCompleted ? "bg-accent text-accent-foreground" : ""}>
+                      {lesson.level}
+                    </Badge>
+                  </div>
+                  <CardDescription>Уровень: {lesson.level}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex-grow">
+                  <p className="text-sm text-muted-foreground line-clamp-3">{lesson.theory}</p>
+                </CardContent>
+                <CardFooter className="flex justify-between items-center">
+                  <Button asChild variant="default">
+                    <Link href={`/lessons/${lesson.id}`}>
+                      {isCompleted ? 'Повторить урок' : 'Начать урок'}
+                    </Link>
+                  </Button>
+                  {isCompleted && <CheckCircle2 className="h-6 w-6 text-accent" />}
+                </CardFooter>
+              </Card>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
