@@ -1,6 +1,7 @@
 
 import type { Lesson } from '@/types';
 
+// --- Урок A2: Модальные глаголы в Perfekt ---
 export const lessonA2ModalverbenPerfekt: Lesson = {
   id: 'a2-modalverben-perfekt',
   level: 'A2',
@@ -40,9 +41,8 @@ export const lessonA2ModalverbenPerfekt: Lesson = {
 - В главном предложении вспомогательный глагол \`haben\` стоит на втором месте. Инфинитив смыслового глагола и инфинитив модального глагола стоят в конце предложения, причем инфинитив модального глагола – последним.
   * *Beispiel: Ich **habe** gestern länger arbeiten **müssen**.*
 - В придаточном предложении вспомогательный глагол \`haben\` идет в самый конец, перед ним – инфинитив смыслового глагола, а перед ним – инфинитив модального.
-  * *Beispiel: ..., weil ich gestern länger arbeiten **müssen habe**.* (Здесь порядок может варьироваться, но для ясности на A2 чаще инфинитив модального + haben). Более корректно и частотно: ..., weil ich gestern habe länger arbeiten müssen. Но для A2 обычно учат, что haben/sein в конце.)
-  * Более употребительный порядок для придаточного: *..., weil ich gestern **habe** länger arbeiten **müssen**.* (Вспомогательный глагол \`haben\` идет перед двойным инфинитивом).
-  * Однако, если строго следовать правилу "спрягаемый глагол в самый конец в придаточном", то: *..., weil ich länger arbeiten **müssen habe**.*
+  * *Beispiel: ..., weil ich gestern länger arbeiten **müssen habe**.* (Для уровня A2 обычно учат, что haben/sein в конце.)
+  * Более употребительный порядок для придаточного (B1+): *..., weil ich gestern **habe** länger arbeiten **müssen**.*
   * **Для уровня A2 достаточно сосредоточиться на главном предложении.**
 
 Запоминание этих двух правил образования Perfekt для модальных глаголов очень важно.
@@ -107,16 +107,10 @@ Am Abend habe ich dann endlich einen Film sehen können, den ich schon lange seh
     },
     {
       id: 'a2-modalperfekt-ex4',
-      type: 'multiple_choice',
-      question: 'Какое предложение в Perfekt с модальным глаголом построено правильно?',
-      options: [
-        'Er hat das Auto reparieren gemusst.',
-        'Er hat das Auto müssen reparieren.',
-        'Er hat das Auto reparieren müssen.'
-      ],
-      correctAnswer: 'Er hat das Auto reparieren müssen.',
-      explanation: 'Правильный порядок: haben + Infinitiv смыслового глагола + Infinitiv модального глагола.',
-    },
+      type: 'writing_prompt',
+      question: 'Напиши 2-3 предложения о том, что ты мог/должен был/хотел сделать вчера, но не сделал, используя Perfekt с модальными глаголами.',
+      suggestedLength: '2-3 предложения',
+    }
   ],
 };
 
