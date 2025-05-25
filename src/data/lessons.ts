@@ -162,33 +162,143 @@ export const MOCK_LESSONS: Lesson[] = [
   {
     id: 'a2-verben-praesens',
     level: 'A2',
-    topic: 'Спряжение глаголов в настоящем времени (Präsens)',
-    theory: 'Большинство немецких глаголов в настоящем времени спрягаются по определенным правилам, добавляя окончания к основе глагола. Например, глагол "lernen" (учить): ich lerne, du lernst, er/sie/es lernt, wir lernen, ihr lernt, sie/Sie lernen. Некоторые сильные глаголы меняют корневую гласную во 2-м и 3-м лице единственного числа (например, e -> i/ie: sprechen - du sprichst, er spricht; lesen - du liest, er liest; a -> ä: fahren - du fährst, er fährt). Глаголы "sein" (быть) и "haben" (иметь) имеют особые формы спряжения.',
+    topic: 'Спряжение глаголов в настоящем времени (Präsens) (углубленно)',
+    theory: `Спряжение глаголов в настоящем времени (Präsens) – одна из фундаментальных тем в немецком языке. Глаголы изменяются по лицам и числам.
+
+**1. Слабые (регулярные) глаголы (Schwache / Regelmäßige Verben)**
+Большинство глаголов относятся к этой группе. Они образуют формы Präsens путем добавления стандартных окончаний к основе глагола.
+Основа глагола получается путем отбрасывания окончания инфинитива (-en или -n).
+Пример: **lernen** (учить), основа: **lern-**
+-   ich: lern**e** (я учу)
+-   du: lern**st** (ты учишь)
+-   er/sie/es: lern**t** (он/она/оно учит)
+-   wir: lern**en** (мы учим)
+-   ihr: lern**t** (вы учите)
+-   sie/Sie: lern**en** (они/Вы учите)
+
+Другие примеры: machen (делать), spielen (играть), wohnen (жить).
+
+**2. Сильные (нерегулярные) глаголы (Starke / Unregelmäßige Verben)**
+У этих глаголов при спряжении в Präsens происходит изменение корневой гласной во 2-м и 3-м лице единственного числа (du, er/sie/es). Окончания при этом в основном такие же, как у слабых глаголов (кроме случаев, когда основа заканчивается на -t/-d, см. ниже).
+Основные модели изменения для уровня A2:
+*   **e → i**: geben (давать) -> du g**i**bst, er g**i**bt. Примеры: nehmen (брать), sprechen (говорить), treffen (встречать).
+*   **e → ie**: lesen (читать) -> du l**ie**st, er l**ie**st. Примеры: sehen (видеть), empfehlen (рекомендовать).
+*   **a → ä**: fahren (ехать) -> du f**ä**hrst, er f**ä**hrt. Примеры: schlafen (спать), tragen (носить), waschen (мыть).
+
+Пример: **fahren** (ехать), основа: **fahr-**
+-   ich: fahre
+-   du: f**ä**hrst
+-   er/sie/es: f**ä**hrt
+-   wir: fahren
+-   ihr: fahrt
+-   sie/Sie: fahren
+
+**3. Особые случаи спряжения:**
+*   **Глаголы, основа которых заканчивается на -d, -t, -m, -n (если перед -m/-n нет -l- или -r-)**:
+    Перед окончаниями **-st** (du) и **-t** (er/sie/es, ihr) добавляется гласная **-e-** для удобства произношения.
+    Пример: **arbeiten** (работать), основа: **arbeit-**
+    -   du: arbeit**e**st
+    -   er/sie/es: arbeit**e**t
+    -   ihr: arbeit**e**t
+    Другие примеры: finden (находить), atmen (дышать), öffnen (открывать).
+
+*   **Глаголы, основа которых заканчивается на -s, -ss, -ß, -z, -x**:
+    Во 2-м лице единственного числа (du) окончание будет **-t** вместо **-st** (так как 's' уже есть в основе).
+    Пример: **heißen** (называться), основа: **heiß-**
+    -   du: heiß**t** (а не heißst)
+    Другие примеры: tanzen (танцевать) -> du tanzt, sitzen (сидеть) -> du sitzt.
+
+**4. Глаголы "sein" (быть) и "haben" (иметь)**
+Эти важнейшие глаголы имеют полностью особое спряжение, которое нужно запомнить:
+*   **sein (быть):**
+    -   ich bin
+    -   du bist
+    -   er/sie/es ist
+    -   wir sind
+    -   ihr seid
+    -   sie/Sie sind
+*   **haben (иметь):**
+    -   ich habe
+    -   du hast
+    -   er/sie/es hat
+    -   wir haben
+    -   ihr habt
+    -   sie/Sie haben
+
+**5. Модальные глаголы (Modalverben)**
+Модальные глаголы (können, müssen, dürfen, sollen, wollen, mögen) также имеют особенности спряжения в Präsens, особенно в единственном числе. Их мы рассмотрим подробнее в отдельном уроке.
+
+Помните, что практика – ключ к успеху в спряжении глаголов!`,
+    vocabulary: [
+      { german: 'lernen', russian: 'учить, изучать', example: 'Ich lerne Deutsch.' },
+      { german: 'sprechen', russian: 'говорить', example: 'Du sprichst sehr gut Englisch.' },
+      { german: 'lesen', russian: 'читать', example: 'Er liest ein interessantes Buch.' },
+      { german: 'fahren', russian: 'ехать, ездить', example: 'Wir fahren am Wochenende ans Meer.' },
+      { german: 'arbeiten', russian: 'работать', example: 'Ihr arbeitet viel.' },
+      { german: 'sein', russian: 'быть', example: 'Sie sind Studenten.' },
+      { german: 'haben', russian: 'иметь', example: 'Ich habe eine Frage.' },
+      { german: 'wohnen', russian: 'жить, проживать', example: 'Wo wohnst du?' },
+      { german: 'spielen', russian: 'играть', example: 'Die Kinder spielen im Garten.' },
+      { german: 'heißen', russian: 'называться', example: 'Wie heißt du?' }
+    ],
     exercises: [
       {
-        id: 'a2-verben-ex1',
+        id: 'a2-verben-praesens-adv-ex1',
         type: 'multiple_choice',
-        question: 'Какая форма глагола "spielen" (играть) верна для местоимения "ihr"?',
-        options: ['spiele', 'spielst', 'spielt', 'spielen'],
-        correctAnswer: 'spielt',
-        explanation: 'Для местоимения "ihr" (вы, мн.ч., неформ.) к основе глагола "spiel-" добавляется окончание "-t".',
+        question: 'Какая форма глагола "wohnen" (жить) верна для местоимения "ihr"?',
+        options: ['wohne', 'wohnst', 'wohnt', 'wohnen'],
+        correctAnswer: 'wohnt',
+        explanation: 'Для местоимения "ihr" (вы, мн.ч., неформ.) к основе глагола "wohn-" добавляется окончание "-t".',
       },
       {
-        id: 'a2-verben-ex2',
+        id: 'a2-verben-praesens-adv-ex2',
         type: 'fill_in_the_blank',
-        question: 'Вставьте правильную форму глагола "lesen": Du ___ ein Buch.',
-        sentenceParts: ['Du ', ' ein Buch.'],
-        correctAnswer: 'liest',
-        explanation: 'Глагол "lesen" - сильный, корневая гласная "e" меняется на "ie" во 2-м лице ед.ч. (du liest).',
+        question: 'Вставьте правильную форму глагола "sehen" (видеть): Du ___ den Film.',
+        sentenceParts: ['Du ', ' den Film.'],
+        correctAnswer: 'siehst',
+        explanation: 'Глагол "sehen" - сильный, корневая гласная "e" меняется на "ie" во 2-м лице ед.ч. (du siehst).',
       },
       {
-        id: 'a2-verben-ex3',
+        id: 'a2-verben-praesens-adv-ex3',
         type: 'translation',
-        question: 'Переведите на немецкий: "Мы работаем сегодня."',
-        prompt: 'Мы работаем сегодня.',
+        question: 'Переведите на немецкий: "Он спит долго."',
+        prompt: 'Он спит долго.',
         languageDirection: 'to_german',
-        correctAnswer: 'Wir arbeiten heute.',
-        explanation: 'Глагол "arbeiten" (работать) для "wir" (мы) имеет форму "arbeiten".',
+        correctAnswer: 'Er schläft lange.',
+        explanation: 'Глагол "schlafen" (спать) - сильный, "a" меняется на "ä" в 3-м лице ед.ч. (er schläft).',
+      },
+      {
+        id: 'a2-verben-praesens-adv-ex4',
+        type: 'multiple_choice',
+        question: 'Какая форма глагола "finden" (находить) верна для "er/sie/es"?',
+        options: ['findt', 'findet', 'findst', 'find'],
+        correctAnswer: 'findet',
+        explanation: 'Основа глагола "finden" заканчивается на -d, поэтому для 3-го лица ед.ч. добавляется -et: "findet".',
+      },
+      {
+        id: 'a2-verben-praesens-adv-ex5',
+        type: 'fill_in_the_blank',
+        question: 'Вставьте правильную форму глагола "sein": Wir ___ Freunde.',
+        sentenceParts: ['Wir ', ' Freunde.'],
+        correctAnswer: 'sind',
+        explanation: 'Глагол "sein" (быть) для "wir" (мы) имеет форму "sind".',
+      },
+      {
+        id: 'a2-verben-praesens-adv-ex6',
+        type: 'multiple_choice',
+        question: 'Какая форма глагола "reisen" (путешествовать) верна для "du"?',
+        options: ['reist', 'reises', 'reisst', 'reisen'],
+        correctAnswer: 'reist',
+        explanation: 'Основа глагола "reisen" заканчивается на -s. Во 2-м лице ед.ч. (du) окончание "-t" (а не "-st"): du reist.',
+      },
+       {
+        id: 'a2-verben-praesens-adv-ex7',
+        type: 'translation',
+        question: 'Переведите на немецкий: "У вас (вежл. форма) есть машина?"',
+        prompt: 'У вас (вежл. форма) есть машина?',
+        languageDirection: 'to_german',
+        correctAnswer: 'Haben Sie ein Auto?',
+        explanation: 'Глагол "haben" (иметь) для "Sie" (Вы, вежл.) имеет форму "haben".',
       }
     ],
   },
