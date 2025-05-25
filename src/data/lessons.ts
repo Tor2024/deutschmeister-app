@@ -23,6 +23,7 @@ import { lessonA1LexikEssenTrinken } from './lessons/a1-lexik-essen-trinken';
 import { lessonA1LexikHobbysFreizeit } from './lessons/a1-lexik-hobbys-freizeit';
 import { lessonA1LexikZahlenFarben } from './lessons/a1-lexik-zahlen-farben';
 import { lessonA1LexikWochentageMonateJahreszeiten } from './lessons/a1-lexik-wochentage-monate-jahreszeiten';
+import { lessonA1LexikKleidung } from './lessons/a1-lexik-kleidung';
 
 
 // A2 Grammar
@@ -75,7 +76,7 @@ import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
 import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere';
 import { lessonB1LexikMedienKommunikation } from './lessons/b1-lexik-medien-kommunikation';
-import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter'; 
+import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter';
 
 // B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -136,6 +137,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1LexikHobbysFreizeit,
   lessonA1LexikZahlenFarben,
   lessonA1LexikWochentageMonateJahreszeiten,
+  lessonA1LexikKleidung,
 
   // A2 Grammar
   lessonA2Artikel,
@@ -184,7 +186,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikBildungStudium,
   lessonB1LexikArbeitKarriere,
   lessonB1LexikMedienKommunikation,
-  lessonB1LexikUmweltWetter, 
+  lessonB1LexikUmweltWetter,
 
   // B2 Grammar
   lessonB2Konjunktiv2,

@@ -18,6 +18,7 @@ import { testA1LexikEssenTrinken } from './tests/a1-lexik-essen-trinken-test';
 import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test';
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
+import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -65,7 +66,7 @@ import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
 import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test';
 import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunikation-test';
-import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test'; 
+import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -118,6 +119,7 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikHobbysFreizeit,
   testA1LexikZahlenFarben,
   testA1LexikWochentageMonateJahreszeiten,
+  testA1LexikKleidung,
 
   // A2 Tests
   testA2Artikel,
@@ -164,7 +166,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
   testB1LexikMedienKommunikation,
-  testB1LexikUmweltWetter, 
+  testB1LexikUmweltWetter,
 
   // B2 Tests
   testB2Konjunktiv2,
