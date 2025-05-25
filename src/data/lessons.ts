@@ -11,7 +11,8 @@ import { lessonA2Praepositionen } from './lessons/a2-praepositionen';
 import { lessonA2Possessivpronomen } from './lessons/a2-possessivpronomen';
 import { lessonA2PersonalpronomenAkkDat } from './lessons/a2-personalpronomen-akk-dat';
 import { lessonA2Adjektivsteigerung } from './lessons/a2-adjektivsteigerung';
-import { lessonA2Imperativ } from './lessons/a2-imperativ'; // Новый импорт
+import { lessonA2Imperativ } from './lessons/a2-imperativ';
+import { lessonA2Satzbau } from './lessons/a2-satzbau'; // Новый импорт
 
 // B1 Lessons
 import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
@@ -43,7 +44,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Possessivpronomen,
   lessonA2PersonalpronomenAkkDat,
   lessonA2Adjektivsteigerung,
-  lessonA2Imperativ, // Добавлен в массив
+  lessonA2Imperativ,
+  lessonA2Satzbau, // Добавлен в массив
 
   // B1
   lessonB1Nebensaetze,
