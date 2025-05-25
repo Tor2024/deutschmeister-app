@@ -46,6 +46,7 @@ import { testA2LexikReisenVerkehr } from './tests/a2-lexik-reisen-verkehr-test';
 import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerper-test';
 import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
+import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
 
 // B1 Tests
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
@@ -148,6 +149,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikGesundheitKoerper,
   testA2LexikKleidung,
   testA2LexikEinkaufen,
+  testA2LexikInDerStadt,
 
   // B1 Tests
   testB1Nebensaetze,
