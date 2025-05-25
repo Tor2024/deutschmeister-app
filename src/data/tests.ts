@@ -44,7 +44,7 @@ import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 import { testA2LexikArbeitBeruf } from './tests/a2-lexik-arbeit-beruf-test';
 import { testA2LexikReisenVerkehr } from './tests/a2-lexik-reisen-verkehr-test';
 import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerper-test';
-import { testA2LexikKleidung as testA2LexikKleidungA2 } from './tests/a2-lexik-kleidung-test'; // Renamed to avoid conflict
+import { testA2LexikKleidung as testA2LexikKleidungTest } from './tests/a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
 import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
 import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
@@ -96,7 +96,6 @@ import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipial
 import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
 import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
 import { testC1LexikWissenschaftForschung } from './tests/c1-lexik-wissenschaft-forschung-test';
-import { testC1LevelTest } from './tests/c1-level-test';
 
 
 // C2 Tests
@@ -112,6 +111,8 @@ import { testA1LevelTest } from './tests/a1-level-test';
 import { testA2LevelTest } from './tests/a2-level-test';
 import { testB1LevelTest } from './tests/b1-level-test';
 import { testB2LevelTest } from './tests/b2-level-test';
+import { testC1LevelTest } from './tests/c1-level-test';
+import { testC2LevelTest } from './tests/c2-level-test';
 
 
 export const MOCK_TESTS: Test[] = [
@@ -120,7 +121,7 @@ export const MOCK_TESTS: Test[] = [
   testA1PronomenSeinHaben,
   testA1Pluralbildung,
   testA1Akkusativ,
-  testA1Modalverben, // Original A1 Modalverben test
+  testA1Modalverben,
   testA1Negation,
   testA1SatzbauGrundlagen,
   testA1Possessivpronomen,
@@ -144,7 +145,7 @@ export const MOCK_TESTS: Test[] = [
   testA2VerbenPraesens,
   testA2Pluralbildung,
   testA2Perfekt,
-  testA2Modalverben, // A2 Modalverben test
+  testA2Modalverben,
   testA2Praepositionen,
   testA2Possessivpronomen,
   testA2PersonalpronomenAkkDat,
@@ -163,7 +164,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikArbeitBeruf,
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
-  testA2LexikKleidungA2, // Renamed to avoid conflict
+  testA2LexikKleidungTest,
   testA2LexikEinkaufen,
   testA2LexikInDerStadt,
   testA2LexikFesteTraditionen,
@@ -278,7 +279,8 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
   testA2LevelTest,
   testB1LevelTest,
   testB2LevelTest,
-  testC1LevelTest, // Added C1 Level Test
+  testC1LevelTest,
+  testC2LevelTest, 
   {
     id: 'a2-grammar-module-1-test',
     level: 'A2',
