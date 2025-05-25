@@ -19,6 +19,7 @@ import { testA2VerbenPraesens } from './tests/a2-verben-praesens-test';
 import { testA2Pluralbildung } from './tests/a2-pluralbildung-test';
 import { testA2Perfekt } from './tests/a2-perfekt-test';
 import { testA2Modalverben } from './tests/a2-modalverben-test';
+import { testA2Praepositionen } from './tests/a2-praepositionen-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -45,6 +46,7 @@ export const MOCK_TESTS: Test[] = [
   testA2Pluralbildung,
   testA2Perfekt,
   testA2Modalverben,
+  testA2Praepositionen,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
