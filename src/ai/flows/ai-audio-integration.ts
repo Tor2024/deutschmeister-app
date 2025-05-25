@@ -25,7 +25,7 @@ export type GenerateAudioExercisesInput = z.infer<
 
 // Schemas for AI-generated exercise types
 const BaseAIExerciseSchema = z.object({
-  explanation: z.string().describe("Explanation for the correct answer or general concept related to the exercise."),
+  explanation: z.string().describe("Explanation for the correct answer or general concept related to the exercise. This explanation MUST be in Russian if the target audience primarily speaks Russian (e.g., for levels A1-B1)."),
 });
 
 const MultipleChoiceAISchema = BaseAIExerciseSchema.extend({
@@ -74,6 +74,8 @@ const prompt = ai.definePrompt({
   input: {schema: GenerateAudioExercisesInputSchema},
   output: {schema: GenerateAudioExercisesOutputSchema},
   prompt: `You are an expert German language teacher. You will generate exercises based on an audio transcript.
+  The target audience for these exercises primarily speaks Russian, especially for levels A1-B1.
+  Therefore, ALL EXPLANATIONS (the 'explanation' field in each exercise object) MUST BE IN RUSSIAN.
 
   The topic of the audio is: {{{topic}}}
   The language level of the audio is: {{{level}}}
@@ -85,18 +87,18 @@ const prompt = ai.definePrompt({
       - Include a 'question' text.
       - Include an 'options' array with at least 2-4 plausible options.
       - Include a 'correctAnswer' which must exactly match one of the options.
-      - Include a brief 'explanation'.
+      - Include a brief 'explanation' IN RUSSIAN.
   2.  Fill-in-the-blank exercises. (type: 'fill_in_the_blank')
       - Include a 'questionTextWithPlaceholder' field containing the sentence with a '[BLANK]' placeholder where the user should fill in the word.
       - Include a 'correctAnswer' field with the word(s) for the blank.
-      - Include a brief 'explanation'.
+      - Include a brief 'explanation' IN RUSSIAN.
   3.  Translation exercises (German to Russian, or if the transcript is very simple, Russian to German, using simple phrases from the transcript). (type: 'translation')
       - Include a 'prompt' field with the text to translate.
-      - Include a 'languageDirection' field ('to_german' or 'from_german'). 
-      - If 'languageDirection' is 'from_german', the 'correctAnswer' and 'explanation' MUST be in Russian.
-      - If 'languageDirection' is 'to_german', the 'correctAnswer' and 'explanation' should be in German.
+      - Include a 'languageDirection' field ('to_german' or 'from_german').
+      - If 'languageDirection' is 'from_german', the 'correctAnswer' AND 'explanation' MUST be in Russian.
+      - If 'languageDirection' is 'to_german', the 'correctAnswer' should be in German, and the 'explanation' MUST be in Russian.
       - Include a 'correctAnswer' field with the correct translation.
-      - Include a brief 'explanation'.
+      - Include a brief 'explanation' (ensure it's in Russian as per the rules above).
 
   The exercises should be appropriate for the given German language level ({{{level}}}).
   Return the exercises as a JSON array of objects, where each object conforms to one of the exercise type structures defined in the output schema.
@@ -105,6 +107,7 @@ const prompt = ai.definePrompt({
   For multiple_choice, the correctAnswer MUST be one of the strings present in the options array.
   For fill_in_the_blank, ensure the [BLANK] placeholder is clearly in the questionTextWithPlaceholder.
   For translation, if translating from German ('from_german'), the prompt should be a German phrase from the transcript and the correctAnswer and explanation must be its Russian translation and explanation in Russian.
+  Remember: ALL 'explanation' fields, regardless of exercise type or translation direction, MUST be in Russian.
   `,
 });
 
