@@ -230,10 +230,10 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a1-akkusativ',
     ],
     questions: [
-      testA1ArtikelGenus.questions[0], // Какой определенный артикль у слова "Buch"?
-      testA1PronomenSeinHaben.questions[1], // Вставьте правильную форму глагола "haben": Wir ___ viele Bücher.
-      testA1Pluralbildung.questions[2], // Как будет "ребенок" (das Kind) во множественном числе?
-      testA1Akkusativ.questions[1], // Вставьте правильную форму: Ich sehe ___ (eine Katze).
+      testA1ArtikelGenus.questions[0], 
+      testA1PronomenSeinHaben.questions[1], 
+      testA1Pluralbildung.questions[2], 
+      testA1Akkusativ.questions[1], 
       {
         id: 'a1-gm1-q5-alphabet',
         type: 'multiple_choice',
@@ -257,11 +257,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a1-imperativ',
     ],
     questions: [
-      testA1Negation.questions[0], // Выберите правильное отрицание: Das ist ___ Tisch.
-      testA1SatzbauGrundlagen.questions[2], // Как начинается общий вопрос (Ja/Nein-Frage)?
-      testA1Modalverben.questions[0], // Вставьте правильную форму "können": Ich ___ gut schwimmen.
-      testA1Possessivpronomen.questions[0], // Выберите правильную форму: Das ist ___ (мой) Ball
-      testA1Imperativ.questions[0] // Какая форма Imperativ для "du" от глагола "machen"?
+      testA1Negation.questions[0], 
+      testA1SatzbauGrundlagen.questions[2], 
+      testA1Modalverben.questions[0], 
+      testA1Possessivpronomen.questions[0], 
+      testA1Imperativ.questions[0] 
     ]
   },
   {
@@ -277,11 +277,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'a2-modalverben',
     ],
     questions: [
-      testA2Artikel.questions[0], // Выберите правильный определенный артикль для слова "Hund" (м.р.) в Akkusativ
-      testA2VerbenPraesens.questions[1], // Вставьте правильную форму глагола "lesen" (читать): Du ___ ein Buch.
-      testA2Pluralbildung.questions[0], // Какое множественное число у слова "der Mann"?
-      testA2Perfekt.questions[0], // Выберите правильный вспомогательный глагол для Perfekt: Ich ___ gestern ins Kino ___. (gehen)
-      testA2Modalverben.questions[1] // Какая форма глагола "sollen" подходит для "er/sie/es"?
+      testA2Artikel.questions[0], 
+      testA2VerbenPraesens.questions[1], 
+      testA2Pluralbildung.questions[0], 
+      testA2Perfekt.questions[0], 
+      testA2Modalverben.questions[1] 
     ]
   },
   {
@@ -297,11 +297,11 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'b1-verben-mit-praepositionen',
     ],
     questions: [
-      testB1Nebensaetze.questions[0], // Выберите правильный союз: "Ich kann heute nicht kommen, ___ ich krank bin."
-      testB1Relativsaetze.questions[0], // Выберите правильное относительное местоимение: "Das ist der Mann, ___ Auto ich kaufen möchte."
-      testB1Praeteritum.questions[0], // Какая форма Präteritum глагола "machen" для "er"?
-      testB1Adjektivdeklination.questions[0], // Выберите правильное окончание: Das ist der schnell___ Zug.
-      testB1VerbenMitPraepositionen.questions[0] // Выберите правильный предлог: "Ich interessiere mich ___ Politik."
+      testB1Nebensaetze.questions[0], 
+      testB1Relativsaetze.questions[0], 
+      testB1Praeteritum.questions[0], 
+      testB1Adjektivdeklination.questions[0], 
+      testB1VerbenMitPraepositionen.questions[0] 
     ]
   },
   {
@@ -316,11 +316,31 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       'b2-subjektive-modalverben',
     ],
     questions: [
-        testB2Konjunktiv2.questions[0], // Выберите правильную форму Konjunktiv II для "Ich habe mehr Zeit":
-        testB2NomenVerb.questions[0], // Какой глагол используется в устойчивом сочетании "___ eine wichtige Rolle spielen"?
-        testB2Passiv.questions[0], // Преобразуйте предложение в Perfekt Passiv: "Man hat das Haus schnell gebaut."
-        testB2SubjektiveModalverben.questions[0], // Какой модальный глагол выражает наивысшую степень уверенности в предположении?
-        testB2Konjunktiv2.questions[3], // Какая форма Konjunktiv II глагола "können" для "wir"?
+        testB2Konjunktiv2.questions[0], 
+        testB2NomenVerb.questions[0], 
+        testB2Passiv.questions[0], 
+        testB2SubjektiveModalverben.questions[0], 
+        testB2Konjunktiv2.questions[3], 
+    ]
+  },
+  {
+    id: 'c1-grammar-module-1-test',
+    level: 'C1',
+    topic: 'C1 - Грамматический Модуль 1 (Тест)',
+    description: 'Проверка знаний по темам: Косвенная речь, Причастные обороты (атрибуты и обстоятельства), Konjunktiv I/II (углубленно), Обстоятельственные придаточные (углубленно).',
+    coveredLessonIds: [
+      'c1-indirekte-rede',
+      'c1-partizipialkonstruktionen',
+      'c1-konjunktiv-vertiefung',
+      'c1-partizipialkonstruktionen-adverbial',
+      'c1-adverbialsaetze-vertiefung',
+    ],
+    questions: [
+        testC1IndirekteRede.questions[0],
+        testC1Partizipialkonstruktionen.questions[0],
+        testC1KonjunktivVertiefung.questions[0],
+        testC1PartizipialkonstruktionenAdverbial.questions[0],
+        testC1AdverbialsaetzeVertiefung.questions[0],
     ]
   }
 ];
@@ -331,3 +351,4 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
+
