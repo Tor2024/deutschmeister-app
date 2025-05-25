@@ -9,6 +9,7 @@ import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
 import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
 import { lessonA1Negation } from './lessons/a1-negation';
 import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
+import { lessonA1Modalverben } from './lessons/a1-modalverben';
 
 
 // A2 Lessons
@@ -73,6 +74,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1Akkusativ,
   lessonA1Negation,
   lessonA1SatzbauGrundlagen,
+  lessonA1Modalverben,
 
   // A2
   lessonA2Artikel,
