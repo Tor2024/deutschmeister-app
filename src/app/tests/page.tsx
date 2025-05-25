@@ -23,18 +23,22 @@ export default function TestsPage() {
     return acc;
   }, {} as Record<LanguageLevel, Test[]>);
 
-  const modularTestsByTypeAndLevel = allLevels.reduce((acc, level) => {
-    acc[level] = {
-      modular: MOCK_MODULAR_TESTS.filter(test => test.level === level && test.testType === 'modular'),
-      level: MOCK_MODULAR_TESTS.filter(test => test.level === level && test.testType === 'level'),
-    };
+  const modularTests = MOCK_MODULAR_TESTS.filter(test => test.testType === 'modular');
+  const modularTestsByLevel = allLevels.reduce((acc, level) => {
+    acc[level] = modularTests.filter(test => test.level === level);
     return acc;
-  }, {} as Record<LanguageLevel, { modular: ModularTest[], level: ModularTest[] }>);
+  }, {} as Record<LanguageLevel, ModularTest[]>);
+  
+  const levelTests = MOCK_MODULAR_TESTS.filter(test => test.testType === 'level');
+  const levelTestsByLevel = allLevels.reduce((acc, level) => {
+    acc[level] = levelTests.filter(test => test.level === level);
+    return acc;
+  }, {} as Record<LanguageLevel, ModularTest[]>);
 
 
   const noThematicTestsAvailable = MOCK_TESTS.filter(t => t.testType === 'thematic').length === 0;
-  const noModularTestsAvailable = MOCK_MODULAR_TESTS.filter(t => t.testType === 'modular').length === 0;
-  const noLevelTestsAvailable = MOCK_MODULAR_TESTS.filter(t => t.testType === 'level').length === 0;
+  const noModularTestsAvailableOverall = modularTests.length === 0;
+  const noLevelTestsAvailableOverall = levelTests.length === 0;
 
   if (isLoading) {
     return <div className="container mx-auto py-8 px-4 text-center">Загрузка данных о прогрессе...</div>;
@@ -42,32 +46,38 @@ export default function TestsPage() {
 
   const renderTestCard = (test: Test | ModularTest) => {
     const testScoreData = progress.testResults[test.id];
-    const isModularOrLevel = 'description' in test; // Check if it's ModularTest
+    const isModular = test.testType === 'modular';
+    const isLevelTest = test.testType === 'level';
 
     return (
       <Card 
         key={test.id} 
         className={cn(
           "flex flex-col shadow-md hover:shadow-lg transition-shadow",
-          isModularOrLevel && test.testType === 'level' ? "bg-primary/10 border-primary" : 
-          isModularOrLevel ? "bg-secondary/20 border-secondary" : ""
+          isLevelTest ? "bg-primary/10 border-primary dark:bg-primary/20 dark:border-primary/70" : 
+          isModular ? "bg-secondary/20 border-secondary dark:bg-secondary/30 dark:border-secondary/50" : "border-border"
         )}
       >
         <CardHeader>
           <div className="flex justify-between items-start">
             <CardTitle className="text-xl mb-1 flex items-center">
-              {isModularOrLevel && test.testType === 'level' ? <Award className="mr-2 h-5 w-5 text-primary" /> :
-               isModularOrLevel ? <Layers className="mr-2 h-5 w-5 text-primary/80" /> :
+              {isLevelTest ? <Award className="mr-2 h-5 w-5 text-primary" /> :
+               isModular ? <Layers className="mr-2 h-5 w-5 text-primary/80" /> :
                <FileText className="mr-2 h-5 w-5 text-primary/80" />
               }
               {test.topic}
             </CardTitle>
-            <Badge variant={isModularOrLevel && test.testType === 'level' ? "default" : "outline"}>{test.level}</Badge>
+            <Badge 
+              variant={isLevelTest ? "default" : "outline"} 
+              className={cn(isLevelTest && "bg-primary text-primary-foreground")}
+            >
+              {test.level}
+            </Badge>
           </div>
-          {isModularOrLevel && (test as ModularTest).description && (
+          {test.testType !== 'thematic' && (test as ModularTest).description && (
               <CardDescription className="text-sm text-muted-foreground pt-1">{(test as ModularTest).description}</CardDescription>
           )}
-           {!isModularOrLevel && (
+           {test.testType === 'thematic' && (
              <CardDescription className="text-sm text-muted-foreground pt-1">Тест по теме урока.</CardDescription>
            )}
         </CardHeader>
@@ -88,10 +98,10 @@ export default function TestsPage() {
           )}
         </CardContent>
         <CardFooter className="pt-4">
-          <Button asChild className="w-full">
+          <Button asChild className="w-full" variant={isLevelTest ? "default" : "outline"}>
             <Link href={`/tests/${test.id}`}>
-              {isModularOrLevel && test.testType === 'level' ? 'Пройти уровневый тест' : 
-               isModularOrLevel ? 'Начать модульный тест' : 
+              {isLevelTest ? 'Пройти уровневый тест' : 
+               isModular ? 'Начать модульный тест' : 
                'Начать тест по теме'}
             </Link>
           </Button>
@@ -109,7 +119,7 @@ export default function TestsPage() {
         </h1>
       </div>
 
-      {noThematicTestsAvailable && noModularTestsAvailable && noLevelTestsAvailable ? (
+      {noThematicTestsAvailable && noModularTestsAvailableOverall && noLevelTestsAvailableOverall ? (
          <Card className="text-center shadow-lg">
          <CardHeader>
            <div className="flex flex-col items-center gap-4">
@@ -133,10 +143,10 @@ export default function TestsPage() {
          </CardContent>
        </Card>
       ) : (
-        <>
+        <div className="space-y-12">
           {/* Thematic Tests Section */}
           {!noThematicTestsAvailable && (
-            <div className="mb-12">
+            <div>
               <h2 className="text-2xl font-semibold text-secondary-foreground mb-6 flex items-center">
                 <FileText className="mr-3 h-7 w-7 text-secondary" />
                 Тесты по темам уроков
@@ -151,51 +161,51 @@ export default function TestsPage() {
                   </Fragment>
                 )
               ))}
-              {(noModularTestsAvailable && noLevelTestsAvailable) ? null : <Separator className="my-10" />}
             </div>
           )}
 
           {/* Modular Tests Section */}
-          {!noModularTestsAvailable && (
-            <div className="mb-12">
+          {!noModularTestsAvailableOverall && (
+            <div>
+              { !noThematicTestsAvailable && <Separator className="my-10" /> }
               <h2 className="text-2xl font-semibold text-secondary-foreground mb-6 flex items-center">
                 <Layers className="mr-3 h-7 w-7 text-secondary" />
                 Модульные тесты
               </h2>
               {allLevels.map(level => (
-                modularTestsByTypeAndLevel[level].modular.length > 0 && (
+                modularTestsByLevel[level].length > 0 && (
                   <Fragment key={`modular-${level}`}>
                     <h3 className="text-xl font-medium text-muted-foreground mt-8 mb-4">Уровень {level}</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {modularTestsByTypeAndLevel[level].modular.map(test => renderTestCard(test))}
+                      {modularTestsByLevel[level].map(test => renderTestCard(test))}
                     </div>
                   </Fragment>
                 )
               ))}
-              {noLevelTestsAvailable ? null : <Separator className="my-10" />}
             </div>
           )}
           
           {/* Level Tests Section */}
-          {!noLevelTestsAvailable && (
-            <div className="mb-12">
+          {!noLevelTestsAvailableOverall && (
+            <div>
+              { (!noThematicTestsAvailable || !noModularTestsAvailableOverall) && <Separator className="my-10" /> }
               <h2 className="text-2xl font-semibold text-primary mb-6 flex items-center">
                 <Award className="mr-3 h-7 w-7 text-primary" />
                 Итоговые уровневые тесты
               </h2>
               {allLevels.map(level => (
-                modularTestsByTypeAndLevel[level].level.length > 0 && (
+                levelTestsByLevel[level].length > 0 && (
                   <Fragment key={`level-${level}`}>
                     <h3 className="text-xl font-medium text-muted-foreground mt-8 mb-4">Уровень {level}</h3>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {modularTestsByTypeAndLevel[level].level.map(test => renderTestCard(test))}
+                      {levelTestsByLevel[level].map(test => renderTestCard(test))}
                     </div>
                   </Fragment>
                 )
               ))}
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );
