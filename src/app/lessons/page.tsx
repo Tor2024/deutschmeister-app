@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -10,7 +11,8 @@ import type { Lesson, LanguageLevel } from '@/types';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { LANGUAGE_LEVELS } from '@/lib/constants';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, BookOpenCheck } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function LessonsPage() {
   const [lessons, setLessons] = useState<Lesson[]>(MOCK_LESSONS);
@@ -28,7 +30,10 @@ export default function LessonsPage() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-        <h1 className="text-3xl font-bold text-primary">Уроки немецкого языка</h1>
+        <h1 className="text-3xl font-bold text-primary flex items-center">
+          <BookOpenCheck className="mr-3 h-8 w-8" />
+          Уроки немецкого языка
+        </h1>
         <div className="w-full md:w-auto">
           <Select 
             value={filteredLevel}
@@ -54,20 +59,29 @@ export default function LessonsPage() {
           {lessonsToDisplay.map(lesson => {
             const isCompleted = progress.completedLessons.includes(lesson.id);
             return (
-              <Card key={lesson.id} className="flex flex-col shadow-md hover:shadow-lg transition-shadow">
+              <Card 
+                key={lesson.id} 
+                className={cn(
+                  "flex flex-col shadow-md hover:shadow-lg transition-shadow",
+                  isCompleted && "border-accent"
+                )}
+              >
                 <CardHeader>
                   <div className="flex justify-between items-start">
                     <CardTitle className="text-xl mb-1">{lesson.topic}</CardTitle>
-                    <Badge variant={isCompleted ? "default" : "secondary"} className={isCompleted ? "bg-accent text-accent-foreground" : ""}>
+                    <Badge 
+                      variant={isCompleted ? "default" : "secondary"} 
+                      className={cn(isCompleted && "bg-accent text-accent-foreground")}
+                    >
                       {lesson.level}
                     </Badge>
                   </div>
                   <CardDescription>Уровень: {lesson.level}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">
-                  <p className="text-sm text-muted-foreground line-clamp-3">{lesson.theory}</p>
+                  <p className="text-sm text-muted-foreground line-clamp-4">{lesson.theory}</p>
                 </CardContent>
-                <CardFooter className="flex justify-between items-center">
+                <CardFooter className="flex justify-between items-center pt-4">
                   <Button asChild variant="default">
                     <Link href={`/lessons/${lesson.id}`}>
                       {isCompleted ? 'Повторить урок' : 'Начать урок'}
@@ -83,3 +97,4 @@ export default function LessonsPage() {
     </div>
   );
 }
+
