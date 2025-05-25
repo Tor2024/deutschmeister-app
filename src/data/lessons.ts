@@ -1557,9 +1557,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2Konjunktiv2,
   lessonB2NomenVerb,
   lessonB2Passiv,
-  lessoC1IndirekteRede,
-  lessoC1Partizipialkonstruktionen,
-  lessoC2Stilmittel,
-  lessoC2NominalstilVerbalstil,
+  lessonC1IndirekteRede,
+  lessonC1Partizipialkonstruktionen,
+  lessonC2Stilmittel,
+  lessonC2NominalstilVerbalstil,
 ];
-
