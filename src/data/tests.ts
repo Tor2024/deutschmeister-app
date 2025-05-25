@@ -47,6 +47,8 @@ import { testA2LexikGesundheitKoerper } from './tests/a2-lexik-gesundheit-koerpe
 import { testA2LexikKleidung } from './tests/a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './tests/a2-lexik-einkaufen-test';
 import { testA2LexikInDerStadt } from './tests/a2-lexik-in-der-stadt-test';
+import { testA2LexikFesteTraditionen } from './tests/a2-lexik-feste-traditionen-test';
+
 
 // B1 Tests
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
@@ -70,6 +72,7 @@ import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 import { testB1LexikKulturFreizeit } from './tests/b1-lexik-kultur-freizeit-test';
 import { testB1LexikBeziehungen } from './tests/b1-lexik-beziehungen-test';
 
+
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
 import { testB2NomenVerb } from './tests/b2-nomen-verb-test';
@@ -83,6 +86,7 @@ import { testB2Wortbildung } from './tests/b2-wortbildung-test';
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
 import { testB2LexikKulturKunst } from './tests/b2-lexik-kultur-kunst-test';
 
+
 // C1 Tests
 import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
 import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstruktionen-test';
@@ -92,6 +96,7 @@ import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vert
 import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
 import { testC1LexikWissenschaftForschung } from './tests/c1-lexik-wissenschaft-forschung-test';
 
+
 // C2 Tests
 import { testC2Stilmittel } from './tests/c2-stilmittel-test';
 import { testC2NominalstilVerbalstil } from './tests/c2-nominalstil-verbalstil-test';
@@ -99,6 +104,7 @@ import { testC2Modalpartikeln } from './tests/c2-modalpartikeln-test';
 import { testC2LexikGlobaleProbleme } from './tests/c2-lexik-globale-probleme-test';
 import { testC2LexikMedienkritikDigitaleGesellschaft } from './tests/c2-lexik-medienkritik-digitale-gesellschaft-test';
 import { testC2LexikSozialeTrends } from './tests/c2-lexik-soziale-trends-test';
+
 
 
 export const MOCK_TESTS: Test[] = [
@@ -150,6 +156,7 @@ export const MOCK_TESTS: Test[] = [
   testA2LexikKleidung,
   testA2LexikEinkaufen,
   testA2LexikInDerStadt,
+  testA2LexikFesteTraditionen,
 
   // B1 Tests
   testB1Nebensaetze,
