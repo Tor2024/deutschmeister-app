@@ -5,6 +5,7 @@ export const testB1LexikArbeitKarriere: Test = {
   id: 'b1-lexik-arbeit-karriere-test',
   level: 'B1',
   topic: 'Работа и карьера (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-lexik-arbeit-karriere-test-q1',

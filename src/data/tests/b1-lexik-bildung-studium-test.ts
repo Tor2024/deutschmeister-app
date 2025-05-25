@@ -5,6 +5,7 @@ export const testB1LexikBildungStudium: Test = {
   id: 'b1-lexik-bildung-studium-test',
   level: 'B1',
   topic: 'Образование и Учеба (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-lexik-bildung-studium-test-q1',

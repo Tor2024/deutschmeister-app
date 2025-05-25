@@ -14,11 +14,19 @@ import { testA1PraepositionenDativ } from './a1-praepositionen-dativ-test';
 import { testA1TrennbarVerben } from './a1-trennbar-verben-test';
 import { testA1LexikFamilie } from './a1-lexik-familie-test';
 import { testA1LexikEssenTrinken } from './a1-lexik-essen-trinken-test';
+import { testA1LexikHausWohnung } from './a1-lexik-haus-wohnung-test';
+import { testA1LexikHobbysFreizeit } from './a1-lexik-hobbys-freizeit-test';
+import { testA1LexikZahlenFarben } from './a1-lexik-zahlen-farben-test';
+import { testA1LexikWochentageMonateJahreszeiten } from './a1-lexik-wochentage-monate-jahreszeiten-test';
+import { testA1LexikKleidung } from './a1-lexik-kleidung-test';
+import { testA1LexikUhrzeitTagesablauf } from './a1-lexik-uhrzeit-tagesablauf-test';
+
 
 export const testA1LevelTest: ModularTest = {
   id: 'a1-final-level-test',
   level: 'A1',
   topic: 'Итоговый тест по уровню A1',
+  testType: 'level',
   description: 'Комплексная проверка знаний по грамматике и лексике уровня A1. Охватывает основные темы, необходимые для базового общения.',
   coveredLessonIds: [
     'a1-alphabet-begruessungen',
@@ -72,29 +80,13 @@ export const testA1LevelTest: ModularTest = {
     // Lexik (Beispiel)
     testA1LexikFamilie.questions[0], // Как по-немецки "мама"?
     testA1LexikEssenTrinken.questions[0], // Как по-немецки "хлеб"?
-    {
-      id: 'a1-level-test-q-zeit',
-      type: 'multiple_choice',
-      question: 'Как сказать по-немецки "половина седьмого" (6:30)?',
-      options: ['halb sechs', 'sechs Uhr dreißig', 'Viertel vor sieben', 'halb sieben'],
-      correctAnswer: 'halb sieben',
-      explanation: 'Для "половины" используется "halb" + следующий час. 6:30 = halb sieben.',
-    },
-    {
-      id: 'a1-level-test-q-praep-akk',
-      type: 'fill_in_the_blank',
-      question: 'Вставьте правильный артикль: Das Geschenk ist für ___ (мой брат).',
-      sentenceParts: ['Das Geschenk ist für ', '.'],
-      correctAnswer: 'meinen Bruder',
-      explanation: 'Предлог "für" требует Akkusativ. "Mein Bruder" (м.р.) в Akkusativ становится "meinen Bruder".',
-    },
-    {
-      id: 'a1-level-test-q-praep-dat',
-      type: 'fill_in_the_blank',
-      question: 'Вставьте правильный артикль: Ich fahre mit ___ (der Bus).',
-      sentenceParts: ['Ich fahre mit ', '.'],
-      correctAnswer: 'dem Bus',
-      explanation: 'Предлог "mit" требует Dativ. "Der Bus" (м.р.) в Dativ становится "dem Bus".',
-    },
+    testA1LexikHobbysFreizeit.questions[0],
+    testA1LexikZahlenFarben.questions[0],
+    testA1LexikWochentageMonateJahreszeiten.questions[0],
+    testA1LexikKleidung.questions[0],
+    testA1LexikUhrzeitTagesablauf.questions[0],
+    // Praepositionen
+    testA1PraepositionenAkkusativ.questions[0],
+    testA1PraepositionenDativ.questions[0],
   ],
 };

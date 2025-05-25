@@ -5,6 +5,7 @@ export const testB2LexikUmweltNachhaltigkeit: Test = {
   id: 'b2-lexik-umwelt-nachhaltigkeit-test',
   level: 'B2',
   topic: 'Окружающая среда и устойчивое развитие (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-lexik-umwelt-test-q1',

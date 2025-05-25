@@ -5,6 +5,7 @@ export const testB1InfinitivMitZu: Test = {
   id: 'b1-infinitiv-mit-zu-test',
   level: 'B1',
   topic: "Инфинитивные конструкции с 'zu' (Тест)",
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-infinitiv-zu-test-q1',

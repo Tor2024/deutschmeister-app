@@ -5,6 +5,7 @@ export const testA1PraepositionenAkkusativ: Test = {
   id: 'a1-praepositionen-akkusativ-test',
   level: 'A1',
   topic: 'Предлоги с Akkusativ (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-praep-akk-test-q1',

@@ -5,6 +5,7 @@ export const testA1LexikHobbysFreizeit: Test = {
   id: 'a1-lexik-hobbys-freizeit-test',
   level: 'A1',
   topic: 'Хобби и свободное время (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-hobbys-freizeit-test-q1',

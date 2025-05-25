@@ -5,6 +5,7 @@ export const testA1LexikHausWohnung: Test = {
   id: 'a1-lexik-haus-wohnung-test',
   level: 'A1',
   topic: 'Дом и квартира (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-haus-wohnung-test-q1',

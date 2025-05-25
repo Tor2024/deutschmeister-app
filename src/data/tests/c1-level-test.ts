@@ -7,11 +7,14 @@ import { testC1PartizipialkonstruktionenAdverbial } from './c1-partizipialkonstr
 import { testC1AdverbialsaetzeVertiefung } from './c1-adverbialsaetze-vertiefung-test';
 import { testC1LexikPolitikGesellschaft } from './c1-lexik-politik-gesellschaft-test';
 import { testC1LexikWissenschaftForschung } from './c1-lexik-wissenschaft-forschung-test';
+import { testC1LexikWirtschaftGlobalermarkt } from './c1-lexik-wirtschaft-globalermarkt-test';
+
 
 export const testC1LevelTest: ModularTest = {
   id: 'c1-final-level-test',
   level: 'C1',
   topic: 'Итоговый тест по уровню C1',
+  testType: 'level',
   description: 'Комплексная проверка знаний по грамматике и лексике уровня C1.',
   coveredLessonIds: [
     'c1-indirekte-rede',
@@ -21,6 +24,7 @@ export const testC1LevelTest: ModularTest = {
     'c1-adverbialsaetze-vertiefung',
     'c1-lexik-politik-gesellschaft',
     'c1-lexik-wissenschaft-forschung',
+    'c1-lexik-wirtschaft-globalermarkt',
   ],
   questions: [
     // From c1-indirekte-rede-test
@@ -38,11 +42,11 @@ export const testC1LevelTest: ModularTest = {
     // From c1-adverbialsaetze-vertiefung-test
     testC1AdverbialsaetzeVertiefung.questions[0],
     testC1AdverbialsaetzeVertiefung.questions[2],
-    // From c1-lexik-politik-gesellschaft-test
+    // From c1-lexik
     testC1LexikPolitikGesellschaft.questions[0],
-    testC1LexikPolitikGesellschaft.questions[2],
-    // From c1-lexik-wissenschaft-forschung-test
     testC1LexikWissenschaftForschung.questions[0],
-    testC1LexikWissenschaftForschung.questions[2],
+    testC1LexikWirtschaftGlobalermarkt.questions[0],
+    testC1LexikPolitikGesellschaft.questions[1],
+    testC1LexikWissenschaftForschung.questions[1],
   ],
 };

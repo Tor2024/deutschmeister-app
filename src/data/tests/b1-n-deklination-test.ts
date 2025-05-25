@@ -5,6 +5,7 @@ export const testB1NDeklination: Test = {
   id: 'b1-n-deklination-test',
   level: 'B1',
   topic: 'n-Deklination (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-n-dekl-test-q1',

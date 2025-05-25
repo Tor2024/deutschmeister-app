@@ -5,6 +5,7 @@ export const testA1Pluralbildung: Test = {
   id: 'a1-pluralbildung-test',
   level: 'A1',
   topic: 'Множественное число (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-plural-test-q1',

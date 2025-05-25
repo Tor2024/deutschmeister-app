@@ -5,6 +5,7 @@ export const testA2LexikGesundheitKoerper: Test = {
   id: 'a2-lexik-gesundheit-koerper-test',
   level: 'A2',
   topic: 'Здоровье и тело (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-lexik-gesundheit-koerper-test-q1',

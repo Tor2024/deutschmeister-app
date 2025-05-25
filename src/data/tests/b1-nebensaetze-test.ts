@@ -5,6 +5,7 @@ export const testB1Nebensaetze: Test = {
   id: 'b1-nebensaetze-test',
   level: 'B1',
   topic: 'Придаточные предложения (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-nebensaetze-test-q1',

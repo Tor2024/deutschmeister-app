@@ -5,6 +5,7 @@ export const testB1Konjunktiv2Einfuehrung: Test = {
   id: 'b1-konjunktiv2-einfuehrung-test',
   level: 'B1',
   topic: 'Konjunktiv II (Введение) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-konj2-einf-test-q1',

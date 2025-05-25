@@ -5,6 +5,7 @@ export const testB2SubjektiveModalverben: Test = {
   id: 'b2-subjektive-modalverben-test',
   level: 'B2',
   topic: 'Субъективное значение модальных глаголов (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-subj-modal-test-q1',

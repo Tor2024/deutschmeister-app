@@ -5,6 +5,7 @@ export const testA2NebensaetzeEinfach: Test = {
   id: 'a2-nebensaetze-einfach-test',
   level: 'A2',
   topic: 'Простые придаточные предложения (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-nebensaetze-einfach-test-q1',

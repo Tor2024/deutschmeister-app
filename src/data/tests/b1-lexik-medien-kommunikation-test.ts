@@ -5,6 +5,7 @@ export const testB1LexikMedienKommunikation: Test = {
   id: 'b1-lexik-medien-kommunikation-test',
   level: 'B1',
   topic: 'СМИ и коммуникация (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-lexik-medien-kommunikation-test-q1',

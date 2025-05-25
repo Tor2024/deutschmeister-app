@@ -5,6 +5,7 @@ export const testB1Konsekutivsaetze: Test = {
   id: 'b1-konsekutivsaetze-test',
   level: 'B1',
   topic: 'Придаточные следствия (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-konsekutiv-test-q1',

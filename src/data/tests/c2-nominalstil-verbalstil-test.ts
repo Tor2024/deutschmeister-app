@@ -5,6 +5,7 @@ export const testC2NominalstilVerbalstil: Test = {
   id: 'c2-nominalstil-verbalstil-test',
   level: 'C2',
   topic: 'Номинальный и вербальный стили (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c2-nomverb-stil-test-q1',

@@ -5,6 +5,7 @@ export const testA1ArtikelGenus: Test = {
   id: 'a1-artikel-genus-test',
   level: 'A1',
   topic: 'Артикли и род существительных (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-artikel-genus-test-q1',

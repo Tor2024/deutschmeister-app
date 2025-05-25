@@ -5,6 +5,7 @@ export const testB2NominalisierungVerbalisierung: Test = {
   id: 'b2-nominalisierung-verbalisierung-test',
   level: 'B2',
   topic: 'Номинализация и вербализация (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-nomverb-stil-test-q1',

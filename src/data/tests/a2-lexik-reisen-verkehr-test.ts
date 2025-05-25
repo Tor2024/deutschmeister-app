@@ -5,6 +5,7 @@ export const testA2LexikReisenVerkehr: Test = {
   id: 'a2-lexik-reisen-verkehr-test',
   level: 'A2',
   topic: 'Путешествия и транспорт (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-lexik-reisen-verkehr-test-q1',

@@ -5,6 +5,7 @@ export const testB1Relativsaetze: Test = {
   id: 'b1-relativsaetze-test',
   level: 'B1',
   topic: 'Относительные придаточные предложения (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-relativ-test-q1',

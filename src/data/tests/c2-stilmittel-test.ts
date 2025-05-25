@@ -5,14 +5,15 @@ export const testC2Stilmittel: Test = {
   id: 'c2-stilmittel-test',
   level: 'C2',
   topic: 'Стилистические средства и языковые регистры (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c2-stilmittel-test-q1',
       type: 'multiple_choice',
-      question: 'Какое стилистическое средство используется во фразе "Die Zeit rennt wie ein wildes Pferd"?',
-      options: ['Metapher (Метафора)', 'Vergleich (Сравнение)', 'Personifikation (Олицетворение)', 'Hyperbel (Гипербола)'],
+      question: 'Какое стилистическое средство используется во фразе "Er kämpfte wie ein Löwe"?',
+      options: ['Metapher (Метафора)', 'Vergleich (Сравнение)', 'Ironie (Ирония)', 'Hyperbel (Гипербола)'],
       correctAnswer: 'Vergleich (Сравнение)',
-      explanation: 'Использование союза "wie" (как) указывает на прямое сравнение времени с дикой лошадью.',
+      explanation: 'Использование союза "wie" (как) указывает на сравнение.',
     },
     {
       id: 'c2-stilmittel-test-q2',
@@ -48,7 +49,7 @@ export const testC2Stilmittel: Test = {
         'Вопрос, ответ на который очевиден или не предполагается, и который служит для усиления утверждения.',
         'Вопрос, заданный в грубой форме.'
       ],
-      correctAnswer: 'Вопрос, ответ на который очевиden или не предполагается, и который служит для усиления утверждения.',
+      correctAnswer: 'Вопрос, ответ на который очевиден или не предполагается, и который служит для усиления утверждения.',
       explanation: 'Риторический вопрос используется для акцентирования внимания или для выражения утверждения в вопросительной форме, не ожидая фактического ответа.',
     },
   ],

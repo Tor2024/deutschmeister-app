@@ -5,6 +5,7 @@ export const testC1Partizipialkonstruktionen: Test = {
   id: 'c1-partizipialkonstruktionen-test',
   level: 'C1',
   topic: 'Причастные обороты (атрибуты) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c1-partizip-attr-test-q1',

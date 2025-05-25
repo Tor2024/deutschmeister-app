@@ -5,6 +5,7 @@ export const testA2VerbenPraesens: Test = {
   id: 'a2-verben-praesens-test',
   level: 'A2',
   topic: 'Спряжение глаголов в Präsens (углубленно) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-verben-praesens-test-q1',

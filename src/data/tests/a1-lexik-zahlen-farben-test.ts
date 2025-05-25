@@ -5,6 +5,7 @@ export const testA1LexikZahlenFarben: Test = {
   id: 'a1-lexik-zahlen-farben-test',
   level: 'A1',
   topic: 'Числа (0-100) и Цвета (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-zahlen-farben-test-q1',

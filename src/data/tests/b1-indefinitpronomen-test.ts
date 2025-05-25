@@ -5,6 +5,7 @@ export const testB1Indefinitpronomen: Test = {
   id: 'b1-indefinitpronomen-test',
   level: 'B1',
   topic: 'Неопределенные местоимения (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-indefinit-test-q1',

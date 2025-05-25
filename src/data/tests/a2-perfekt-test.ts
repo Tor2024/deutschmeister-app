@@ -5,6 +5,7 @@ export const testA2Perfekt: Test = {
   id: 'a2-perfekt-test',
   level: 'A2',
   topic: 'Прошедшее время Perfekt (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-perfekt-test-q1',

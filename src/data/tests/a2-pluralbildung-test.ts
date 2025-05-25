@@ -5,6 +5,7 @@ export const testA2Pluralbildung: Test = {
   id: 'a2-pluralbildung-test',
   level: 'A2',
   topic: 'Множественное число (углубленно) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-plural-adv-test-q1',

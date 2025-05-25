@@ -5,6 +5,7 @@ export const testA2Artikel: Test = {
   id: 'a2-artikel-test',
   level: 'A2',
   topic: 'Артикли (углубленно) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-artikel-test-q1',

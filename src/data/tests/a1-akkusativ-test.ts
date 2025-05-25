@@ -5,6 +5,7 @@ export const testA1Akkusativ: Test = {
   id: 'a1-akkusativ-test',
   level: 'A1',
   topic: 'Винительный падеж (Akkusativ) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-akkusativ-test-q1',

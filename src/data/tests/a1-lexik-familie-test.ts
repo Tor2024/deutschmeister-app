@@ -5,6 +5,7 @@ export const testA1LexikFamilie: Test = {
   id: 'a1-lexik-familie-test',
   level: 'A1',
   topic: 'Семья и друзья (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-familie-test-q1',

@@ -17,6 +17,7 @@ export const testB2LevelTest: ModularTest = {
   id: 'b2-final-level-test',
   level: 'B2',
   topic: 'Итоговый тест по уровню B2',
+  testType: 'level',
   description: 'Комплексная проверка знаний по грамматике и лексике уровня B2.',
   coveredLessonIds: [
     'b2-konjunktiv2',
@@ -33,31 +34,23 @@ export const testB2LevelTest: ModularTest = {
     'b2-lexik-wissenschaft-technologie',
   ],
   questions: [
-    // Konjunktiv II
+    // Grammar
     testB2Konjunktiv2.questions[0], 
     testB2Konjunktiv2.questions[1], 
-    // Nomen-Verb-Verbindungen
     testB2NomenVerb.questions[0], 
     testB2NomenVerb.questions[1], 
-    // Passiv
     testB2Passiv.questions[0], 
     testB2Passiv.questions[3], // Zustandspassiv
-    // Passiv-Ersatzformen
     testB2PassivErsatzformen.questions[0],
     testB2PassivErsatzformen.questions[1],
-    // Subjektive Modalverben
     testB2SubjektiveModalverben.questions[0],
     testB2SubjektiveModalverben.questions[1],
-    // Komplexe Satzverbindungen
     testB2KomplexeSatzverbindungen.questions[0],
     testB2KomplexeSatzverbindungen.questions[2],
-    // Nominalisierung/Verbalisierung
     testB2NominalisierungVerbalisierung.questions[0],
     testB2NominalisierungVerbalisierung.questions[1],
-    // Futur II
     testB2Futur2.questions[0],
     testB2Futur2.questions[3],
-    // Wortbildung
     testB2Wortbildung.questions[0],
     testB2Wortbildung.questions[2],
     // Lexik

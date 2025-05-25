@@ -5,6 +5,7 @@ export const testB1Plusquamperfekt: Test = {
   id: 'b1-plusquamperfekt-test',
   level: 'B1',
   topic: 'Предпрошедшее время Plusquamperfekt (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-plusquamperfekt-test-q1',

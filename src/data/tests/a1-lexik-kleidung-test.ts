@@ -5,6 +5,7 @@ export const testA1LexikKleidung: Test = {
   id: 'a1-lexik-kleidung-test',
   level: 'A1',
   topic: 'Одежда (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-kleidung-test-q1',

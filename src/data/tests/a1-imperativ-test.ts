@@ -5,6 +5,7 @@ export const testA1Imperativ: Test = {
   id: 'a1-imperativ-test',
   level: 'A1',
   topic: 'Повелительное наклонение (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-imperativ-test-q1',

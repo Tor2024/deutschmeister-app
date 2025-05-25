@@ -5,6 +5,7 @@ export const testB2Passiv: Test = {
   id: 'b2-passiv-test',
   level: 'B2',
   topic: 'Пассивный залог (углубленно) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-passiv-test-q1',

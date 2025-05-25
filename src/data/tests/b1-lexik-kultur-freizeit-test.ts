@@ -5,6 +5,7 @@ export const testB1LexikKulturFreizeit: Test = {
   id: 'b1-lexik-kultur-freizeit-test',
   level: 'B1',
   topic: 'Культура, Искусство и Свободное время (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-lexik-kultur-freizeit-test-q1',

@@ -1,3 +1,4 @@
+
 import type { LanguageLevel, ExerciseType as ExerciseTypeName } from '@/lib/constants';
 
 export interface BaseExercise {
@@ -77,11 +78,13 @@ export interface Test {
   level: LanguageLevel;
   topic: string;
   questions: Exercise[];
+  testType?: 'thematic' | 'modular' | 'level'; // Added to distinguish test types
 }
 
 export interface ModularTest extends Test {
   coveredLessonIds: string[];
   description?: string; // Optional description for the module
+  // testType is inherited from Test and can be 'modular' or 'level'
 }
 
 

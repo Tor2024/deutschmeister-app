@@ -5,6 +5,7 @@ export const testC2Modalpartikeln: Test = {
   id: 'c2-modalpartikeln-test',
   level: 'C2',
   topic: 'Модальные частицы (Modalpartikeln) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c2-modalpartikeln-test-q1',

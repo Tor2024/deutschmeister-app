@@ -5,6 +5,7 @@ export const testA1SatzbauGrundlagen: Test = {
   id: 'a1-satzbau-grundlagen-test',
   level: 'A1',
   topic: 'Порядок слов (Основы) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-satzbau-test-q1',

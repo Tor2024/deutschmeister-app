@@ -5,6 +5,7 @@ export const testA1TrennbarVerben: Test = {
   id: 'a1-trennbar-verben-test',
   level: 'A1',
   topic: 'Отделяемые приставки (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-trennbar-test-q1',

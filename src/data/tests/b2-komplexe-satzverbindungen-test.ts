@@ -5,6 +5,7 @@ export const testB2KomplexeSatzverbindungen: Test = {
   id: 'b2-komplexe-satzverbindungen-test',
   level: 'B2',
   topic: 'Сложные союзы и коннекторы (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-komplexekonj-test-q1',

@@ -5,6 +5,7 @@ export const testB1Futur1: Test = {
   id: 'b1-futur1-test',
   level: 'B1',
   topic: 'Будущее время Futur I (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-futur1-test-q1',

@@ -5,6 +5,7 @@ export const testB1Adjektivdeklination: Test = {
   id: 'b1-adjektivdeklination-test',
   level: 'B1',
   topic: 'Склонение прилагательных (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-adjdekl-test-q1',

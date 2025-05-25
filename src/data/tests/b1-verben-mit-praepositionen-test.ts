@@ -5,6 +5,7 @@ export const testB1VerbenMitPraepositionen: Test = {
   id: 'b1-verben-mit-praepositionen-test',
   level: 'B1',
   topic: 'Глаголы с предлогами (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-verben-praep-test-q1',

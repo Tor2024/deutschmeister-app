@@ -5,6 +5,7 @@ export const testA1Negation: Test = {
   id: 'a1-negation-test',
   level: 'A1',
   topic: 'Отрицание (nicht и kein) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-negation-test-q1',

@@ -22,7 +22,7 @@ import { testA2OrdinalzahlenDatum } from './a2-ordinalzahlen-datum-test';
 import { testA2LexikArbeitBeruf } from './a2-lexik-arbeit-beruf-test';
 import { testA2LexikReisenVerkehr } from './a2-lexik-reisen-verkehr-test';
 import { testA2LexikGesundheitKoerper } from './a2-lexik-gesundheit-koerper-test';
-import { testA2LexikKleidung } from './a2-lexik-kleidung-test';
+import { testA2LexikKleidung as testA2LexikKleidungTest } from './a2-lexik-kleidung-test';
 import { testA2LexikEinkaufen } from './a2-lexik-einkaufen-test';
 import { testA2LexikInDerStadt } from './a2-lexik-in-der-stadt-test';
 import { testA2LexikFesteTraditionen } from './a2-lexik-feste-traditionen-test';
@@ -31,6 +31,7 @@ export const testA2LevelTest: ModularTest = {
   id: 'a2-final-level-test',
   level: 'A2',
   topic: 'Итоговый тест по уровню A2',
+  testType: 'level',
   description: 'Комплексная проверка знаний по грамматике и лексике уровня A2.',
   coveredLessonIds: [
     'a2-artikel',
@@ -85,7 +86,7 @@ export const testA2LevelTest: ModularTest = {
     testA2LexikArbeitBeruf.questions[0],
     testA2LexikReisenVerkehr.questions[0],
     testA2LexikGesundheitKoerper.questions[0],
-    testA2LexikKleidung.questions[0],
+    testA2LexikKleidungTest.questions[0],
     testA2LexikEinkaufen.questions[0],
     testA2LexikInDerStadt.questions[0],
     testA2LexikFesteTraditionen.questions[0],

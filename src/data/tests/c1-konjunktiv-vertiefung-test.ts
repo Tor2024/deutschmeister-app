@@ -5,6 +5,7 @@ export const testC1KonjunktivVertiefung: Test = {
   id: 'c1-konjunktiv-vertiefung-test',
   level: 'C1',
   topic: 'Konjunktiv I und II (Углубленное применение) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c1-konj-vert-test-q1',
@@ -16,7 +17,7 @@ export const testC1KonjunktivVertiefung: Test = {
         'Wenn ich Zeit gehabt hätte, wäre ich das Projekt beendet.'
       ],
       correctAnswer: 'Wenn ich Zeit gehabt hätte, hätte ich das Projekt beenden können.',
-      explanation: 'Нереальное условие в прошлом: Konjunktiv II от haben/sein + Partizip II. "Wenn ich Zeit gehabt hätte, hätte ich das Projekt beenden können." (с модальным глаголом в Infinitiv Perfekt Passiv).',
+      explanation: 'Нереальное условие в прошлом: Konjunktiv II от haben/sein + Partizip II. "Wenn ich Zeit gehabt hätte (hätte + gehabt), hätte ich das Projekt beenden können." (с модальным глаголом в Infinitiv Perfekt Passiv).',
     },
     {
       id: 'c1-konj-vert-test-q2',
@@ -50,10 +51,10 @@ export const testC1KonjunktivVertiefung: Test = {
     {
       id: 'c1-konj-vert-test-q5',
       type: 'fill_in_the_blank',
-      question: 'Завершите нереальное условие в прошлом: Wenn wir früher losgefahren ___ , ___ wir den Stau vermieden.',
-      sentenceParts: ['Wenn wir früher losgefahren ', ' , ', ' wir den Stau vermieden.'],
-      correctAnswer: 'wären, hätten',
-      explanation: 'Первая часть: wären + losgefahren (fahren с sein). Вторая часть: hätten + vermieden (vermeiden с haben).',
+      question: 'Завершите нереальное условие в прошлом: Wenn es nicht so stark geschneit ___ , ___ wir Ski gefahren.',
+      sentenceParts: ['Wenn es nicht so stark geschneit ', ' , ', ' wir Ski gefahren.'],
+      correctAnswer: 'hätte, wären',
+      explanation: 'Первая часть: hätte + geschneit. Вторая часть: wären + gefahren (fahren с sein).',
     }
   ],
 };

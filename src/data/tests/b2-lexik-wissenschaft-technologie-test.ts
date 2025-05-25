@@ -5,6 +5,7 @@ export const testB2LexikWissenschaftTechnologie: Test = {
   id: 'b2-lexik-wissenschaft-technologie-test',
   level: 'B2',
   topic: 'Наука и технологии (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-lexik-wissenschaft-technologie-test-q1',

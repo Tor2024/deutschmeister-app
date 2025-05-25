@@ -5,6 +5,7 @@ export const testA2Adjektivdeklination: Test = {
   id: 'a2-adjektivdeklination-test',
   level: 'A2',
   topic: 'Склонение прилагательных (основы) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-adjdekl-test-q1',

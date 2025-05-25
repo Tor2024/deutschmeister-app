@@ -5,6 +5,7 @@ export const testA2Adjektivsteigerung: Test = {
   id: 'a2-adjektivsteigerung-test',
   level: 'A2',
   topic: 'Степени сравнения прилагательных (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-adjsteigerung-test-q1',

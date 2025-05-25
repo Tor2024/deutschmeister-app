@@ -5,6 +5,7 @@ export const testC1LexikWissenschaftForschung: Test = {
   id: 'c1-lexik-wissenschaft-forschung-test',
   level: 'C1',
   topic: 'Наука и исследования (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c1-lexik-wissenschaft-forschung-test-q1',
@@ -50,5 +51,3 @@ export const testC1LexikWissenschaftForschung: Test = {
     },
   ],
 };
-
-    

@@ -25,6 +25,7 @@ export const testB1LevelTest: ModularTest = {
   id: 'b1-final-level-test',
   level: 'B1',
   topic: 'Итоговый тест по уровню B1',
+  testType: 'level',
   description: 'Комплексная проверка знаний по грамматике и лексике уровня B1.',
   coveredLessonIds: [
     'b1-nebensaetze',

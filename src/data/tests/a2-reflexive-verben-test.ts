@@ -5,6 +5,7 @@ export const testA2ReflexiveVerben: Test = {
   id: 'a2-reflexive-verben-test',
   level: 'A2',
   topic: 'Возвратные глаголы (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-reflexiv-test-q1',

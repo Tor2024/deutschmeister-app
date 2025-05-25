@@ -5,6 +5,7 @@ export const testA1LexikWochentageMonateJahreszeiten: Test = {
   id: 'a1-lexik-wochentage-monate-jahreszeiten-test',
   level: 'A1',
   topic: 'Дни недели, месяцы, времена года (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-wochentage-test-q1',

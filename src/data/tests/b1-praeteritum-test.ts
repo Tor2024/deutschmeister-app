@@ -5,6 +5,7 @@ export const testB1Praeteritum: Test = {
   id: 'b1-praeteritum-test',
   level: 'B1',
   topic: 'Прошедшее время Präteritum (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-praeteritum-test-q1',

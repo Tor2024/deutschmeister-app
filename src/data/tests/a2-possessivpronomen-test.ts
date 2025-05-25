@@ -5,6 +5,7 @@ export const testA2Possessivpronomen: Test = {
   id: 'a2-possessivpronomen-test',
   level: 'A2',
   topic: 'Притяжательные местоимения (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-possessiv-test-q1',

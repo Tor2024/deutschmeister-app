@@ -5,6 +5,7 @@ export const testB2LexikKulturKunst: Test = {
   id: 'b2-lexik-kultur-kunst-test',
   level: 'B2',
   topic: 'Культура и искусство (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-lexik-kultur-kunst-test-q1',

@@ -5,6 +5,7 @@ export const testA2LexikArbeitBeruf: Test = {
   id: 'a2-lexik-arbeit-beruf-test',
   level: 'A2',
   topic: 'Работа и профессия (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-lexik-arbeit-beruf-test-q1',

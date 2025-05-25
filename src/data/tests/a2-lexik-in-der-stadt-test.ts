@@ -5,6 +5,7 @@ export const testA2LexikInDerStadt: Test = {
   id: 'a2-lexik-in-der-stadt-test',
   level: 'A2',
   topic: 'В городе / Ориентация (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-lexik-stadt-test-q1',

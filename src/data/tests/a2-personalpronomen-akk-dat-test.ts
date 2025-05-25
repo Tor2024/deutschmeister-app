@@ -5,6 +5,7 @@ export const testA2PersonalpronomenAkkDat: Test = {
   id: 'a2-personalpronomen-akk-dat-test',
   level: 'A2',
   topic: 'Личные местоимения (Akkusativ, Dativ) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-personalpronomen-akkdat-test-q1',

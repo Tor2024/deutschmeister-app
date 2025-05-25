@@ -5,6 +5,7 @@ export const testA2TemporalsaetzeAlsWenn: Test = {
   id: 'a2-temporalsaetze-als-wenn-test',
   level: 'A2',
   topic: "Придаточные времени с 'als' и 'wenn' (Тест)",
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-temporalsaetze-als-wenn-test-q1',
@@ -26,7 +27,7 @@ export const testA2TemporalsaetzeAlsWenn: Test = {
       id: 'a2-temporalsaetze-als-wenn-test-q3',
       type: 'multiple_choice',
       question: 'Какой союз подойдет: ___ du morgen kommst, backe ich einen Kuchen.',
-      options: ['Als', 'Wenn', 'Weil'],
+      options: ['Als', 'Wenn', 'Dass'],
       correctAnswer: 'Wenn',
       explanation: 'Речь идет об однократном событии в будущем (которое также может быть условием), поэтому используется "wenn".',
     },

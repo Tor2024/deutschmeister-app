@@ -5,6 +5,7 @@ export const testC1LexikPolitikGesellschaft: Test = {
   id: 'c1-lexik-politik-gesellschaft-test',
   level: 'C1',
   topic: 'Политика и общество (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c1-lexik-politik-gesellschaft-test-q1',

@@ -5,6 +5,7 @@ export const testC2LexikSozialeTrends: Test = {
   id: 'c2-lexik-soziale-trends-test',
   level: 'C2',
   topic: 'Современные общественные тенденции (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c2-lexik-soziale-trends-test-q1',

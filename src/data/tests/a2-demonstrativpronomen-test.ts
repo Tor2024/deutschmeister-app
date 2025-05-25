@@ -5,6 +5,7 @@ export const testA2Demonstrativpronomen: Test = {
   id: 'a2-demonstrativpronomen-test',
   level: 'A2',
   topic: 'Указательные местоимения (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-demonstrativ-test-q1',

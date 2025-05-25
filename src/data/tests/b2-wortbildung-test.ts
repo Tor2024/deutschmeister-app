@@ -5,6 +5,7 @@ export const testB2Wortbildung: Test = {
   id: 'b2-wortbildung-test',
   level: 'B2',
   topic: 'Словообразование (Wortbildung) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-wortbildung-test-q1',

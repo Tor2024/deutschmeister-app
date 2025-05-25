@@ -5,6 +5,7 @@ export const testC1LexikWirtschaftGlobalermarkt: Test = {
   id: 'c1-lexik-wirtschaft-globalermarkt-test',
   level: 'C1',
   topic: 'Экономика и глобальный рынок (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c1-lexik-wirtschaft-test-q1',

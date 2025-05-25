@@ -5,6 +5,7 @@ export const testA1PraepositionenDativ: Test = {
   id: 'a1-praepositionen-dativ-test',
   level: 'A1',
   topic: 'Предлоги с Dativ (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-praep-dativ-test-q1',
@@ -17,10 +18,10 @@ export const testA1PraepositionenDativ: Test = {
     {
       id: 'a1-praep-dativ-test-q2',
       type: 'fill_in_the_blank',
-      question: 'Вставьте правильный артикль: Ich komme aus ___ (die Schweiz - ж.р., но страны с артиклем на А1 часто упрощают). Используем "das Land" (ср.р.) для упрощения: Ich komme aus ___ (das Land).',
+      question: 'Вставьте правильный артикль: Ich komme aus ___ (das Land).',
       sentenceParts: ['Ich komme aus ', '.'], // dem Land
       correctAnswer: 'dem Land',
-      explanation: 'Предлог "aus" требует Dativ. "Das Land" (ср.р.) в Dativ становится "dem Land". Если бы была "die Schweiz", то "der Schweiz".',
+      explanation: 'Предлог "aus" требует Dativ. "Das Land" (ср.р.) в Dativ становится "dem Land".',
     },
     {
       id: 'a1-praep-dativ-test-q3',

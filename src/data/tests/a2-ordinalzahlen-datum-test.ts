@@ -5,6 +5,7 @@ export const testA2OrdinalzahlenDatum: Test = {
   id: 'a2-ordinalzahlen-datum-test',
   level: 'A2',
   topic: 'Порядковые числительные и даты (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-ordinal-datum-test-q1',

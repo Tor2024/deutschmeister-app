@@ -5,6 +5,7 @@ export const testC1PartizipialkonstruktionenAdverbial: Test = {
   id: 'c1-partizipialkonstruktionen-adverbial-test',
   level: 'C1',
   topic: 'Причастные обороты (обстоятельства) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c1-partizip-adv-b-test-q1',

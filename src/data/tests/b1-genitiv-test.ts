@@ -5,6 +5,7 @@ export const testB1Genitiv: Test = {
   id: 'b1-genitiv-test',
   level: 'B1',
   topic: 'Падеж Genitiv (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-genitiv-test-q1',

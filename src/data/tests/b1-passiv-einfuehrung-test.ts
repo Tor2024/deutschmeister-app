@@ -5,6 +5,7 @@ export const testB1PassivEinfuehrung: Test = {
   id: 'b1-passiv-einfuehrung-test',
   level: 'B1',
   topic: 'Пассивный залог (Введение) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-passiv-einf-test-q1',

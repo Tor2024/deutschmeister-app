@@ -5,6 +5,7 @@ export const testB2NomenVerb: Test = {
   id: 'b2-nomen-verb-test',
   level: 'B2',
   topic: 'Устойчивые сочетания (Nomen-Verb) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-nomenverb-test-q1',

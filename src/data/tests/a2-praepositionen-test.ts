@@ -5,6 +5,7 @@ export const testA2Praepositionen: Test = {
   id: 'a2-praepositionen-test',
   level: 'A2',
   topic: 'Предлоги (Dativ, Akkusativ, Wechselpräpositionen) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-praep-test-q1',

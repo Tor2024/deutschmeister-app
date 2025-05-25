@@ -5,6 +5,7 @@ export const testA2LexikFesteTraditionen: Test = {
   id: 'a2-lexik-feste-traditionen-test',
   level: 'A2',
   topic: 'Праздники и традиции (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-lexik-feste-traditionen-test-q1',

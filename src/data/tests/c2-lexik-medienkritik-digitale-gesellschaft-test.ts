@@ -5,6 +5,7 @@ export const testC2LexikMedienkritikDigitaleGesellschaft: Test = {
   id: 'c2-lexik-medienkritik-digitale-gesellschaft-test',
   level: 'C2',
   topic: 'Медиакритика и цифровое общество (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c2-lexik-medienkritik-test-q1',
@@ -50,7 +51,7 @@ export const testC2LexikMedienkritikDigitaleGesellschaft: Test = {
       type: 'short_answer',
       question: 'Welche Rolle spielt der Datenschutz in der digitalen Gesellschaft? Nennen Sie zwei Aspekte.',
       correctAnswer: 'Mögliche Aspekte: Schutz der Privatsphäre, Verhinderung von Datenmissbrauch, Kontrolle über eigene Daten, Vertrauen in digitale Dienste.',
-      explanation: 'Der Datenschutz ist entscheidend für die Rechte des Einzelnen im digitalen Raum.',
+      explanation: 'Der Datenschutz ist entscheidend für die Rechte des Einzelnen im digitalen Raum.'
     }
   ],
 };

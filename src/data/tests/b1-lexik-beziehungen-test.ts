@@ -5,6 +5,7 @@ export const testB1LexikBeziehungen: Test = {
   id: 'b1-lexik-beziehungen-test',
   level: 'B1',
   topic: 'Межличностные отношения (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-lexik-beziehungen-test-q1',

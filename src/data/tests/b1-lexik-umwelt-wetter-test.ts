@@ -5,6 +5,7 @@ export const testB1LexikUmweltWetter: Test = {
   id: 'b1-lexik-umwelt-wetter-test',
   level: 'B1',
   topic: 'Окружающая среда и погода (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b1-lexik-umwelt-wetter-test-q1',

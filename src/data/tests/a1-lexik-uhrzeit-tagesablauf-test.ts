@@ -5,6 +5,7 @@ export const testA1LexikUhrzeitTagesablauf: Test = {
   id: 'a1-lexik-uhrzeit-tagesablauf-test',
   level: 'A1',
   topic: 'Время (часы) и Распорядок дня (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-uhrzeit-tagesablauf-test-q1',

@@ -5,6 +5,7 @@ export const testA1LexikEssenTrinken: Test = {
   id: 'a1-lexik-essen-trinken-test',
   level: 'A1',
   topic: 'Еда и напитки (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-lexik-essen-trinken-test-q1',

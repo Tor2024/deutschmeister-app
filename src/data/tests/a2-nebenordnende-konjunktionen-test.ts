@@ -5,6 +5,7 @@ export const testA2NebenordnendeKonjunktionen: Test = {
   id: 'a2-nebenordnende-konjunktionen-test',
   level: 'A2',
   topic: 'Сочинительные союзы (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a2-nebenkonj-test-q1',

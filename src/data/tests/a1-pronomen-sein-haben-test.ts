@@ -5,6 +5,7 @@ export const testA1PronomenSeinHaben: Test = {
   id: 'a1-pronomen-sein-haben-test',
   level: 'A1',
   topic: "Местоимения и 'sein'/'haben' (Тест)",
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-pronomen-sein-haben-test-q1',

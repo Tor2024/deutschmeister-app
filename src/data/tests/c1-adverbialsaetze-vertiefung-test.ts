@@ -5,14 +5,15 @@ export const testC1AdverbialsaetzeVertiefung: Test = {
   id: 'c1-adverbialsaetze-vertiefung-test',
   level: 'C1',
   topic: 'Обстоятельственные придаточные предложения (Углубленно) (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c1-adverbialsaetze-test-q1',
       type: 'multiple_choice',
-      question: 'Выберите правильный союз для выражения причины, когда причина уже известна или придаточное стоит перед главным: "___ er sehr erfahren ist, hat er die Aufgabe schnell gelöst."',
-      options: ['weil', 'da', 'damit', 'obwohl'],
-      correctAnswer: 'da',
-      explanation: 'Союз "da" (так как, поскольку) часто используется, когда причина известна или когда придаточное причины предшествует главному предложению.',
+      question: 'Выберите правильный союз для выражения причины: "Ich kann heute nicht kommen, ___ ich einen wichtigen Termin habe."',
+      options: ['obwohl', 'damit', 'weil', 'während'],
+      correctAnswer: 'weil',
+      explanation: 'Союз "weil" (потому что) используется для указания причины.',
     },
     {
       id: 'c1-adverbialsaetze-test-q2',
@@ -43,10 +44,10 @@ export const testC1AdverbialsaetzeVertiefung: Test = {
     {
       id: 'c1-adverbialsaetze-test-q5',
       type: 'fill_in_the_blank',
-      question: 'Заполните пропуск в придаточном следствия: "Es war ein solcher Sturm, ___ viele Bäume umfielen."',
-      sentenceParts: ['Es war ein solcher Sturm, ', ' viele Bäume umfielen.'],
+      question: 'Заполните пропуск в придаточном следствия: "Der Film war so spannend, ___ ich die Zeit vergaß."',
+      sentenceParts: ['Der Film war so spannend, ', ' ich die Zeit vergaß.'],
       correctAnswer: 'dass',
-      explanation: 'Конструкция "solch-..., dass..." (такой..., что...) используется для выражения следствия.',
+      explanation: 'Конструкция "so..., dass..." (так..., что...) используется для выражения следствия.',
     },
     {
       id: 'c1-adverbialsaetze-test-q6',

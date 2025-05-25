@@ -5,6 +5,7 @@ export const testC2LexikGlobaleProbleme: Test = {
   id: 'c2-lexik-globale-probleme-test',
   level: 'C2',
   topic: 'Глобальные проблемы и будущее человечества (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'c2-lexik-globale-probleme-test-q1',

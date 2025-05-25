@@ -5,6 +5,7 @@ export const testA1Modalverben: Test = {
   id: 'a1-modalverben-test',
   level: 'A1',
   topic: 'Модальные глаголы (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'a1-modal-test-q1',

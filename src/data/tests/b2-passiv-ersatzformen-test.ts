@@ -5,6 +5,7 @@ export const testB2PassivErsatzformen: Test = {
   id: 'b2-passiv-ersatzformen-test',
   level: 'B2',
   topic: 'Альтернативы пассивному залогу (Тест)',
+  testType: 'thematic',
   questions: [
     {
       id: 'b2-passiversatz-test-q1',
