@@ -93,6 +93,7 @@ import { testC2Stilmittel } from './tests/c2-stilmittel-test';
 import { testC2NominalstilVerbalstil } from './tests/c2-nominalstil-verbalstil-test';
 import { testC2Modalpartikeln } from './tests/c2-modalpartikeln-test';
 import { testC2LexikGlobaleProbleme } from './tests/c2-lexik-globale-probleme-test';
+import { testC2LexikMedienkritikDigitaleGesellschaft } from './tests/c2-lexik-medienkritik-digitale-gesellschaft-test';
 
 
 export const MOCK_TESTS: Test[] = [
@@ -189,6 +190,7 @@ export const MOCK_TESTS: Test[] = [
   testC2NominalstilVerbalstil,
   testC2Modalpartikeln,
   testC2LexikGlobaleProbleme,
+  testC2LexikMedienkritikDigitaleGesellschaft,
 ];
 
 // Helper function to get a test by its ID

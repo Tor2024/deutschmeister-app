@@ -109,6 +109,8 @@ import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
 
 // C2 Lexik
 import { lessonC2LexikGlobaleProbleme } from './lessons/c2-lexik-globale-probleme';
+import { lessonC2LexikMedienkritikDigitaleGesellschaft } from './lessons/c2-lexik-medienkritik-digitale-gesellschaft';
+
 
 export const MOCK_LESSONS: Lesson[] = [
   // A1 Grammar
@@ -211,6 +213,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC2Modalpartikeln,
   // C2 Lexik
   lessonC2LexikGlobaleProbleme,
+  lessonC2LexikMedienkritikDigitaleGesellschaft,
 ];
 
 // Helper function to get the count of lessons per level
