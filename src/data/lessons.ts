@@ -7,6 +7,7 @@ import { lessonA1PersonalpronomenSeinHaben } from './lessons/a1-personalpronomen
 import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
 import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
 import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
+import { lessonA1Negation } from './lessons/a1-negation';
 
 
 // A2 Lessons
@@ -23,7 +24,7 @@ import { lessonA2Imperativ } from './lessons/a2-imperativ';
 import { lessonA2Satzbau } from './lessons/a2-satzbau';
 import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
-import { lessonA2Negation } from './lessons/a2-negation';
+import { lessonA2Negation as lessonA2NegationDetailed } from './lessons/a2-negation';
 
 
 // B1 Lessons
@@ -69,11 +70,12 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1ArtikelGenus,
   lessonA1Pluralbildung,
   lessonA1Akkusativ,
+  lessonA1Negation,
 
   // A2
   lessonA2Artikel,
   lessonA2VerbenPraesens,
-  lessonA2Pluralbildung,
+  lessonA2Pluralbildung, // This is a more advanced A2 plural lesson
   lessonA2Perfekt,
   lessonA2Modalverben,
   lessonA2Praepositionen,
@@ -84,7 +86,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Satzbau,
   lessonA2NebensaetzeEinfach,
   lessonA2NebenordnendeKonjunktionen,
-  lessonA2Negation,
+  lessonA2NegationDetailed, // This is the more detailed A2 negation lesson
 
   // B1
   lessonB1Nebensaetze,
