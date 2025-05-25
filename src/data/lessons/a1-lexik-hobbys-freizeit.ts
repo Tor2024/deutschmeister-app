@@ -115,5 +115,11 @@ Sonntags gehe ich oft mit meinem Hund spazieren. Manchmal male ich auch Bilder.
       correctAnswer: 'кататься на велосипеде',
       explanation: '"Rad fahren" означает "кататься на велосипеде".',
     },
+    {
+      id: 'a1-lexik-hobbys-freizeit-wp1',
+      type: 'writing_prompt',
+      question: 'Was machst du gern in deiner Freizeit? Schreibe 2-3 Sätze. (Что ты любишь делать в свое свободное время? Напиши 2-3 предложения.)',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
