@@ -1,5 +1,5 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonA1LexikWochentageMonateJahreszeiten: Lesson = {
   id: 'a1-lexik-wochentage-monate-jahreszeiten',
@@ -79,6 +79,27 @@ export const lessonA1LexikWochentageMonateJahreszeiten: Lesson = {
     { german: 'der Herbst', russian: 'осень', example: 'Im Herbst fallen die Blätter.' },
     { german: 'der Winter', russian: 'зима', example: 'Im Winter schneit es oft.' },
     { german: 'die Jahreszeit (-en)', russian: 'время года', example: 'Meine Lieblingsjahreszeit ist der Sommer.' },
+  ],
+  readingText: `
+Mein Lieblingsmonat ist der Juli. Im Juli ist es oft warm und sonnig. Das ist Sommer!
+Am Montag und Dienstag gehe ich zur Arbeit. Am Mittwoch habe ich frei.
+Der Winter beginnt im Dezember. Im Winter ist es kalt. Manchmal schneit es. Der Januar und Februar sind auch Wintermonate.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'a1-lexik-wochentage-rq1',
+      question: 'Какой любимый месяц автора текста?',
+      options: ['Январь', 'Май', 'Июль', 'Декабрь'],
+      correctAnswer: 'Июль',
+      explanation: 'В тексте сказано: "Mein Lieblingsmonat ist der Juli."'
+    },
+    {
+      id: 'a1-lexik-wochentage-rq2',
+      question: 'В какой день недели у автора выходной?',
+      options: ['Понедельник', 'Вторник', 'Среда', 'Пятница'],
+      correctAnswer: 'Среда',
+      explanation: 'В тексте сказано: "Am Mittwoch habe ich frei."'
+    }
   ],
   exercises: [
     {
