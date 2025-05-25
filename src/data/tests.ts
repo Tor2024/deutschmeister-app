@@ -70,7 +70,7 @@ import { testB1LexikArbeitKarriere } from './tests/b1-lexik-arbeit-karriere-test
 import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunikation-test';
 import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 import { testB1LexikKulturFreizeit } from './tests/b1-lexik-kultur-freizeit-test';
-import { testB1LexikBeziehungen } from './tests/b1-lexik-beziehungen-test'; // Added B1 Lexik Test
+import { testB1LexikBeziehungen } from './tests/b1-lexik-beziehungen-test';
 
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -146,7 +146,7 @@ export const MOCK_TESTS: Test[] = [
   testA2TemporalsaetzeAlsWenn,
   testA2Demonstrativpronomen,
   testA2OrdinalzahlenDatum,
-  testA2LexikArbeitBeruf,
+  testA2LexikArbeitBeruf, // New A2 Lexik Test
   testA2LexikReisenVerkehr,
   testA2LexikGesundheitKoerper,
   testA2LexikKleidung,
@@ -174,7 +174,7 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikMedienKommunikation,
   testB1LexikUmweltWetter,
   testB1LexikKulturFreizeit,
-  testB1LexikBeziehungen, // Added B1 Lexik Test
+  testB1LexikBeziehungen,
 
   // B2 Tests
   testB2Konjunktiv2,
