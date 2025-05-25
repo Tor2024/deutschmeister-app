@@ -33,7 +33,7 @@ export const lessonC1LexikPolitikGesellschaft: Lesson = {
     { german: 'die Ungleichheit (-en)', russian: 'неравенство', example: 'Wachsende Ungleichheit ist ein globales Problem.' },
     { german: 'die Menschenrechte (Pl.)', russian: 'права человека', example: 'Die Einhaltung der Menschenrechte ist fundamental.' },
     { german: 'die Meinungsfreiheit', russian: 'свобода слова, свобода мнений', example: 'Meinungsfreiheit ist ein Grundrecht.' },
-    { german: 'die Globalisierung', russian: 'глобализация', example: 'Die Globalisierung hat sowohl Vor- als auch Nachteile.' },
+    { german: 'die Globalisierung', russian: 'глобализация', example: 'Die Globalisierung vernetzt die Weltwirtschaft.' },
     { german: 'die Krise (-n)', russian: 'кризис', example: 'Die wirtschaftliche Krise betrifft viele Länder.' },
     { german: 'die Debatte (-n)', russian: 'дебаты, дискуссия', example: 'Es gab eine hitzige Debatte im Parlament.' },
     { german: 'diskutieren (über + A)', russian: 'дискутировать (о чём-л.)', example: 'Wir haben lange über dieses Thema diskutiert.' },
@@ -124,5 +124,11 @@ Die Rolle der Medien in diesem Kontext ist ambivalent. Einerseits können sie al
       correctAnswer: 'выборы',
       explanation: '"Die Wahl" (мн.ч. "die Wahlen") означает "выборы".',
     },
+    {
+      id: 'c1-lexik-politik-gesellschaft-wp1',
+      type: 'writing_prompt',
+      question: 'Äußern Sie Ihre Meinung zu einer aktuellen sozialen oder politischen Herausforderung in Ihrem Land oder weltweit. Begründen Sie Ihre Ansicht. (ca. 5-7 Sätze)',
+      suggestedLength: '5-7 Sätze'
+    }
   ],
 };
