@@ -110,6 +110,7 @@ import { testC2LexikSozialeTrends } from './tests/c2-lexik-soziale-trends-test';
 import { testA1LevelTest } from './tests/a1-level-test';
 import { testA2LevelTest } from './tests/a2-level-test';
 import { testB1LevelTest } from './tests/b1-level-test';
+import { testB2LevelTest } from './tests/b2-level-test';
 
 
 export const MOCK_TESTS: Test[] = [
@@ -275,6 +276,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
   testA1LevelTest,
   testA2LevelTest,
   testB1LevelTest,
+  testB2LevelTest,
   {
     id: 'a2-grammar-module-1-test',
     level: 'A2',
