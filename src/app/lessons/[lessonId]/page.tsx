@@ -9,13 +9,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, MessageSquareText, Info } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, MessageSquareText, Info, Brain, VenetianMask } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
 import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-exercise';
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
 import { generateAudioExercises, type GenerateAudioExercisesInput, type GenerateAudioExercisesOutput } from '@/ai/flows/ai-audio-integration';
+import { evaluateWritingExercise, type EvaluateWritingInput, type EvaluateWritingOutput } from '@/ai/flows/evaluate-writing-exercise';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -44,6 +45,8 @@ export default function LessonPage() {
   const [isSubmittingReading, setIsSubmittingReading] = useState(false);
 
   const [userWritingAnswers, setUserWritingAnswers] = useState<Record<string, string>>({});
+  const [aiWritingFeedback, setAiWritingFeedback] = useState<Record<string, EvaluateWritingOutput & { error?: string }>>({});
+  const [isEvaluatingAi, setIsEvaluatingAi] = useState<Record<string, boolean>>({});
 
 
   const { completeLesson, recordExerciseAttempt, progress } = useUserProgress();
@@ -128,22 +131,74 @@ export default function LessonPage() {
 
   const handleWritingAnswerChange = (exerciseId: string, answer: string) => {
     setUserWritingAnswers(prev => ({...prev, [exerciseId]: answer}));
+    // Clear previous AI feedback when user changes answer
+    setAiWritingFeedback(prev => {
+      const newFeedback = {...prev};
+      delete newFeedback[exerciseId];
+      return newFeedback;
+    });
+     setExerciseFeedback(prev => {
+      const newFeedback = { ...prev };
+      delete newFeedback[exerciseId]; 
+      return newFeedback;
+    });
   };
 
 
-  const handleSubmitExercise = (exercise: ExerciseTypeUnion) => {
+  const handleSubmitExercise = async (exercise: ExerciseTypeUnion) => {
     if (exercise.type === 'writing_prompt') {
         const userAnswer = userWritingAnswers[exercise.id];
         if (userAnswer === undefined || userAnswer.trim() === '') {
             toast({ title: "Внимание", description: "Пожалуйста, напишите ваш ответ.", variant: "destructive" });
             return;
         }
-        toast({ title: "Ответ сохранен", description: "Ваш письменный ответ сохранен для самостоятельной работы.", variant: "default" });
+        
+        setIsEvaluatingAi(prev => ({ ...prev, [exercise.id]: true }));
         setExerciseFeedback(prev => ({
           ...prev,
-          [exercise.id]: { correct: null, explanation: "Письменное задание сохранено. Автоматическая проверка не предусмотрена." }
+          [exercise.id]: { correct: null, explanation: "Идет оценка ИИ..." }
         }));
-        // Не вызываем recordExerciseAttempt для письменных заданий, так как нет автоматической проверки
+
+        try {
+          if (!lesson) {
+            toast({ title: "Ошибка", description: "Урок не загружен.", variant: "destructive" });
+            setIsEvaluatingAi(prev => ({ ...prev, [exercise.id]: false }));
+            return;
+          }
+          const input: EvaluateWritingInput = {
+            userAnswer: userAnswer,
+            promptQuestion: exercise.question,
+            languageLevel: lesson.level
+          };
+          const aiResult = await evaluateWritingExercise(input);
+          setAiWritingFeedback(prev => ({ ...prev, [exercise.id]: aiResult }));
+          setExerciseFeedback(prev => ({
+            ...prev,
+            [exercise.id]: { correct: null, explanation: aiResult.overallAssessment }
+          }));
+          toast({ title: "Оценка ИИ получена", description: aiResult.overallAssessment, variant: "default" });
+
+        } catch (error) {
+            console.error("AI evaluation error:", error);
+            const errorMessage = error instanceof Error ? error.message : "Произошла неизвестная ошибка.";
+            setAiWritingFeedback(prev => ({
+              ...prev,
+              [exercise.id]: {
+                correctedAnswer: userAnswer, // Show original answer on error
+                feedbackExplanation: `Ошибка оценки ИИ: ${errorMessage}`,
+                overallAssessment: "Ошибка",
+                error: errorMessage 
+              }
+            }));
+            setExerciseFeedback(prev => ({
+              ...prev,
+              [exercise.id]: { correct: null, explanation: "Ошибка оценки ИИ." }
+            }));
+            toast({ title: "Ошибка оценки ИИ", description: "Не удалось получить оценку от ИИ.", variant: "destructive" });
+        } finally {
+            setIsEvaluatingAi(prev => ({ ...prev, [exercise.id]: false }));
+        }
+        // Не вызываем recordExerciseAttempt для письменных заданий, так как нет автоматической проверки правильности/неправильности
         return;
     }
 
@@ -362,34 +417,30 @@ export default function LessonPage() {
             {allExercises.map((exercise, index) => {
               const isMastered = progress.exerciseAttempts[exercise.id]?.mastered;
               const feedback = exerciseFeedback[exercise.id];
+              const currentAiFeedback = aiWritingFeedback[exercise.id];
+              const isAiEvaluating = isEvaluatingAi[exercise.id];
               
-              // Adjust styling logic for writing prompts
-              let isAttemptedAndCorrect = false;
-              let isAttemptedAndIncorrect = false;
-              let isWritingPromptSubmittedAndUnverified = false;
-
-              if (exercise.type !== 'writing_prompt' && feedback) {
-                isAttemptedAndCorrect = feedback.correct === true;
-                isAttemptedAndIncorrect = feedback.correct === false;
-              } else if (exercise.type === 'writing_prompt' && feedback) {
-                isWritingPromptSubmittedAndUnverified = true; // correct is null
+              let cardBorderColor = "border-border";
+              if (isMastered) {
+                cardBorderColor = "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500";
+              } else if (feedback) {
+                if (feedback.correct === true) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
+                else if (feedback.correct === false) cardBorderColor = "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600";
+                else if (feedback.correct === null && exercise.type === 'writing_prompt') { // AI evaluated or error
+                    cardBorderColor = currentAiFeedback?.error ? "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600" 
+                                                          : "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
+                }
               }
+
 
               return (
                 <Card 
                   key={exercise.id} 
-                  className={cn(
-                    "p-6 rounded-lg",
-                    isMastered ? "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500" :
-                    isAttemptedAndCorrect ? "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600" :
-                    isAttemptedAndIncorrect ? "border-red-500 bg-red-50 dark:bg-red-800/20 dark:border-red-600" :
-                    isWritingPromptSubmittedAndUnverified ? "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600" : // Neutral color for submitted writing
-                    "border-border"
-                  )}
+                  className={cn("p-6 rounded-lg", cardBorderColor)}
                 >
                   <p className="font-semibold text-lg mb-3">
                     {isMastered && <Award className="inline mr-2 h-5 w-5 text-green-600 dark:text-green-400" />}
-                    {exercise.type === 'writing_prompt' && <MessageSquareText className="inline mr-2 h-5 w-5 text-primary" />}
+                    {exercise.type === 'writing_prompt' && <VenetianMask className="inline mr-2 h-5 w-5 text-primary" />}
                     Упражнение {index + 1}: {exercise.question}
                   </p>
                   
@@ -429,7 +480,7 @@ export default function LessonPage() {
                         onChange={(e) => handleWritingAnswerChange(exercise.id, e.target.value)}
                         placeholder="Ваш ответ..."
                         className="min-h-[100px]"
-                        disabled={isMastered || !!feedback}
+                        disabled={isMastered || !!feedback || isAiEvaluating}
                       />
                     </div>
                   )}
@@ -444,34 +495,68 @@ export default function LessonPage() {
                       {isMastered ? <><Award className="mr-2 h-4 w-4"/>Освоено</> : "Проверить ответ"}
                     </Button>
                   )}
-                  {exercise.type === 'writing_prompt' && !isMastered && !feedback && (
+                  {exercise.type === 'writing_prompt' && (
                      <Button 
                       onClick={() => handleSubmitExercise(exercise)} 
-                      disabled={isMastered || !!feedback || isSubmitting || !userWritingAnswers[exercise.id]} 
+                      disabled={isMastered || isAiEvaluating || !userWritingAnswers[exercise.id] || (!!feedback && !currentAiFeedback?.error) } // Disable if already submitted and no error
                       className="mt-4"
                     >
-                      Сохранить ответ
+                      {isAiEvaluating ? "Оценка ИИ..." : (currentAiFeedback && !currentAiFeedback.error ? "Оценено ИИ" : "Отправить на проверку ИИ")}
                     </Button>
                   )}
-
 
                   {feedback && !isMastered && (
                     <div className={cn(
                       "mt-4 p-3 rounded-md text-sm",
                       feedback.correct === true ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" : 
                       feedback.correct === false ? "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300" :
-                      "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300" // Neutral for submitted writing
+                      (currentAiFeedback?.error ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" 
+                                             : "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300")
                     )}>
                       {feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : 
                        feedback.correct === false ? <XCircle className="inline mr-2 h-5 w-5" /> :
-                       <Info className="inline mr-2 h-5 w-5" /> // Neutral icon
+                       <Info className="inline mr-2 h-5 w-5" />
                       }
                       {feedback.explanation || 
                        (feedback.correct === true ? "Верно!" : 
                         feedback.correct === false ? "Неверно." : 
-                        "Ответ сохранен для самостоятельной проверки.")}
+                        "Статус ответа")}
                     </div>
                   )}
+
+                  {currentAiFeedback && exercise.type === 'writing_prompt' && (
+                    <Card className="mt-4 p-4 border-dashed">
+                      <CardHeader className="p-2">
+                        <CardTitle className="text-lg flex items-center">
+                          <Brain className="mr-2 h-5 w-5 text-blue-500" /> Оценка ИИ
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-3 p-2">
+                        {currentAiFeedback.error && (
+                            <div className="text-destructive text-sm">
+                                <p><strong>Ошибка при оценке:</strong> {currentAiFeedback.error}</p>
+                            </div>
+                        )}
+                        {!currentAiFeedback.error && (
+                            <>
+                                <div>
+                                    <h4 className="font-semibold text-sm">Общая оценка:</h4>
+                                    <p className="text-sm text-muted-foreground">{currentAiFeedback.overallAssessment}</p>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold text-sm">Исправленный вариант:</h4>
+                                    <p className="text-sm bg-green-50 dark:bg-green-900/20 p-2 rounded-md whitespace-pre-line">{currentAiFeedback.correctedAnswer}</p>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold text-sm">Объяснение ошибок и рекомендации:</h4>
+                                    <p className="text-sm text-muted-foreground whitespace-pre-line">{currentAiFeedback.feedbackExplanation}</p>
+                                </div>
+                            </>
+                        )}
+                      </CardContent>
+                    </Card>
+                  )}
+
                   {index < allExercises.length - 1 && <Separator className="my-8" />}
                 </Card>
               );
