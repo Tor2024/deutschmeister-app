@@ -11,6 +11,7 @@ import { lessonA1Negation } from './lessons/a1-negation';
 import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
 import { lessonA1Modalverben } from './lessons/a1-modalverben';
 import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
+import { lessonA1Imperativ } from './lessons/a1-imperativ';
 
 
 // A2 Lessons
@@ -77,6 +78,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1SatzbauGrundlagen,
   lessonA1Modalverben,
   lessonA1Possessivpronomen,
+  lessonA1Imperativ,
 
   // A2
   lessonA2Artikel,
@@ -128,3 +130,17 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
 ];
+
+// Helper function to get the count of lessons per level
+export const getLessonsCountByLevel = (): Record<string, number> => {
+  const counts: Record<string, number> = {};
+  MOCK_LESSONS.forEach(lesson => {
+    counts[lesson.level] = (counts[lesson.level] || 0) + 1;
+  });
+  return counts;
+};
+
+// Helper function to get the count of all lessons
+export const getTotalLessonsCount = (): number => {
+  return MOCK_LESSONS.length;
+};
