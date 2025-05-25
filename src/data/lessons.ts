@@ -14,6 +14,7 @@ import { lessonA1Possessivpronomen } from './lessons/a1-possessivpronomen';
 import { lessonA1Imperativ } from './lessons/a1-imperativ';
 import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akkusativ';
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
+import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
 
 
 // A2 Lessons
@@ -83,6 +84,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1Imperativ,
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
+  lessonA1TrennbarVerben,
 
   // A2
   lessonA2Artikel,
