@@ -110,6 +110,7 @@ import { lessonB2LexikKulturKunst } from './lessons/b2-lexik-kultur-kunst';
 import { lessonB2LexikWissenschaftTechnologie } from './lessons/b2-lexik-wissenschaft-technologie';
 import { lessonB2LexikMedienKommunikation } from './lessons/b2-lexik-medien-kommunikation';
 import { lessonB2LexikPolitik } from './lessons/b2-lexik-politik';
+import { lessonB2LexikWirtschaftKonsum } from './lessons/b2-lexik-wirtschaft-konsum';
 
 
 // C1 Grammar
@@ -240,6 +241,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2LexikWissenschaftTechnologie,
   lessonB2LexikMedienKommunikation,
   lessonB2LexikPolitik,
+  lessonB2LexikWirtschaftKonsum,
 
   // C1 Grammar
   lessonC1IndirekteRede,
@@ -276,4 +278,3 @@ export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
 
-    
