@@ -16,7 +16,6 @@ import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akk
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
 
-
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
 import { lessonA2VerbenPraesens } from './lessons/a2-verben-praesens';
@@ -33,6 +32,7 @@ import { lessonA2NebensaetzeEinfach } from './lessons/a2-nebensaetze-einfach';
 import { lessonA2NebenordnendeKonjunktionen } from './lessons/a2-nebenordnende-konjunktionen';
 import { lessonA2Negation } from './lessons/a2-negation';
 import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
+import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 
 
 // B1 Lessons
@@ -103,6 +103,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2NebenordnendeKonjunktionen,
   lessonA2Negation,
   lessonA2ReflexiveVerben,
+  lessonA2Adjektivdeklination,
 
   // B1
   lessonB1Nebensaetze,
@@ -152,3 +153,4 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+
