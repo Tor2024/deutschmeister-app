@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck, Award, FileText, VenetianMask, Info, Brain, AlertTriangle, MessageSquareText } from 'lucide-react'; // Added MessageSquareText
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -17,6 +17,7 @@ import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-e
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
 import { generateAudioExercises, type GenerateAudioExercisesInput, type GenerateAudioExercisesOutput, type GeneratedExercise as AIGeneratedExercise } from '@/ai/flows/ai-audio-integration';
 import { evaluateWritingExercise, type EvaluateWritingInput, type EvaluateWritingOutput } from '@/ai/flows/evaluate-writing-exercise';
+import { evaluateTranslation, type EvaluateTranslationInput, type EvaluateTranslationOutput } from '@/ai/flows/evaluate-translation-flow'; // Added new flow
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -47,6 +48,9 @@ export default function LessonPage() {
   const [userWritingAnswers, setUserWritingAnswers] = useState<Record<string, string>>({});
   const [aiWritingFeedback, setAiWritingFeedback] = useState<Record<string, EvaluateWritingOutput & { error?: string }>>({});
   const [isEvaluatingAi, setIsEvaluatingAi] = useState<Record<string, boolean>>({});
+
+  const [aiTranslationFeedback, setAiTranslationFeedback] = useState<Record<string, EvaluateTranslationOutput & { error?: string }>>({});
+  const [isEvaluatingTranslationAi, setIsEvaluatingTranslationAi] = useState<Record<string, boolean>>({});
 
 
   const { completeLesson, recordExerciseAttempt, progress } = useUserProgress();
@@ -90,11 +94,11 @@ export default function LessonPage() {
             } as MultipleChoiceExercise;
           case 'fill_in_the_blank':
             const parts = aiEx.questionTextWithPlaceholder.split('[BLANK]');
-            const sentenceParts = parts.length === 2 ? parts : [aiEx.questionTextWithPlaceholder, ''];
+            const sentenceParts = parts.length === 2 ? parts : [aiEx.questionTextWithPlaceholder, '']; // Ensure two parts
             return {
               id: baseId,
               type: 'fill_in_the_blank',
-              question: aiEx.questionTextWithPlaceholder.replace('[BLANK]', '___'), // Or keep original for display
+              question: aiEx.questionTextWithPlaceholder.replace('[BLANK]', '___'),
               sentenceParts: sentenceParts,
               correctAnswer: aiEx.correctAnswer,
               explanation: aiEx.explanation,
@@ -105,18 +109,17 @@ export default function LessonPage() {
               id: baseId,
             } as TranslationExercise;
           default:
-            // This case should ideally not be reached if AI adheres to the schema
             console.warn("Unknown AI exercise type:", (aiEx as any).type);
             return {
               id: baseId,
-              type: 'multiple_choice', // Fallback type
+              type: 'multiple_choice',
               question: (aiEx as any).question || "AI Generated Question - Unknown Type",
               options: (aiEx as any).options || ["Option A", "Option B"],
               correctAnswer: (aiEx as any).correctAnswer || "Option A",
               explanation: (aiEx as any).explanation || "AI generated exercise of an unknown or unsupported type."
             } as MultipleChoiceExercise;
         }
-      });
+      }).filter(ex => ex !== null) as ExerciseTypeUnion[];
 
       setAiExercises(prevAiExercises => [...prevAiExercises, ...parsedAiExercises]);
       const exercisesCount = parsedAiExercises.length;
@@ -140,7 +143,7 @@ export default function LessonPage() {
     setUserAnswers(prev => ({ ...prev, [exerciseId]: answer }));
     setExerciseFeedback(prev => {
       const newFeedback = { ...prev };
-      delete newFeedback[exerciseId];
+      delete newFeedback[exerciseId]; // Reset feedback when answer changes
       return newFeedback;
     });
   };
@@ -156,12 +159,12 @@ export default function LessonPage() {
 
   const handleWritingAnswerChange = (exerciseId: string, answer: string) => {
     setUserWritingAnswers(prev => ({...prev, [exerciseId]: answer}));
-    setAiWritingFeedback(prev => {
+    setAiWritingFeedback(prev => { // Clear previous AI feedback for this exercise
       const newFeedback = {...prev};
       delete newFeedback[exerciseId];
       return newFeedback;
     });
-     setExerciseFeedback(prev => {
+     setExerciseFeedback(prev => { // Clear general feedback as well
       const newFeedback = { ...prev };
       delete newFeedback[exerciseId];
       return newFeedback;
@@ -198,7 +201,7 @@ export default function LessonPage() {
           setAiWritingFeedback(prev => ({ ...prev, [exercise.id]: aiResult }));
           setExerciseFeedback(prev => ({
             ...prev,
-            [exercise.id]: { correct: null, explanation: aiResult.overallAssessment }
+            [exercise.id]: { correct: null, explanation: aiResult.overallAssessment } // Using null for 'correct' for AI evaluated tasks
           }));
           toast({ title: "Оценка ИИ получена", description: aiResult.overallAssessment, variant: "default" });
 
@@ -225,8 +228,76 @@ export default function LessonPage() {
         return;
     }
 
+    if (exercise.type === 'translation') {
+        const userAnswer = userAnswers[exercise.id];
+        if (userAnswer === undefined || userAnswer.trim() === '') {
+            toast({ title: "Внимание", description: "Пожалуйста, дайте ваш перевод.", variant: "destructive" });
+            return;
+        }
+
+        setIsEvaluatingTranslationAi(prev => ({ ...prev, [exercise.id]: true }));
+        setExerciseFeedback(prev => ({
+          ...prev,
+          [exercise.id]: { correct: null, explanation: "Идет оценка перевода ИИ..." }
+        }));
+
+        try {
+          if (!lesson) {
+            toast({ title: "Ошибка", description: "Урок не загружен.", variant: "destructive" });
+            setIsEvaluatingTranslationAi(prev => ({ ...prev, [exercise.id]: false }));
+            return;
+          }
+          const translationExercise = exercise as TranslationExercise;
+          const input: EvaluateTranslationInput = {
+            userTranslation: userAnswer,
+            originalSentence: translationExercise.prompt,
+            sourceLanguage: translationExercise.languageDirection === 'to_german' ? "Russian" : "German", // Assuming Russian for non-German source
+            targetLanguage: translationExercise.languageDirection === 'to_german' ? "German" : "Russian",
+            modelAnswer: translationExercise.correctAnswer,
+            languageLevel: lesson.level
+          };
+          const aiResult = await evaluateTranslation(input);
+          setAiTranslationFeedback(prev => ({ ...prev, [exercise.id]: aiResult }));
+          
+          recordExerciseAttempt(exercise.id, aiResult.isSemanticallyAcceptable);
+          setExerciseFeedback(prev => ({
+            ...prev,
+            [exercise.id]: { correct: aiResult.isSemanticallyAcceptable, explanation: aiResult.feedback }
+          }));
+          toast({
+            title: aiResult.isSemanticallyAcceptable ? "Перевод принят!" : "Есть неточности в переводе",
+            description: aiResult.feedback,
+            variant: aiResult.isSemanticallyAcceptable ? "default" : "destructive",
+            className: aiResult.isSemanticallyAcceptable ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:border-green-500" : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:border-yellow-500",
+          });
+
+        } catch (error) {
+            console.error("AI translation evaluation error:", error);
+            const errorMessage = error instanceof Error ? error.message : "Произошла неизвестная ошибка.";
+            setAiTranslationFeedback(prev => ({
+              ...prev,
+              [exercise.id]: {
+                isSemanticallyAcceptable: false,
+                feedback: `Ошибка оценки перевода ИИ: ${errorMessage}`,
+                suggestedTranslation: userAnswer,
+                error: errorMessage
+              }
+            }));
+             setExerciseFeedback(prev => ({
+              ...prev,
+              [exercise.id]: { correct: false, explanation: "Ошибка оценки перевода ИИ." }
+            }));
+            toast({ title: "Ошибка оценки перевода ИИ", description: "Не удалось получить оценку от ИИ.", variant: "destructive" });
+        } finally {
+            setIsEvaluatingTranslationAi(prev => ({ ...prev, [exercise.id]: false }));
+        }
+        return;
+    }
+
+
+    // For other exercise types (multiple_choice, fill_in_the_blank)
     const userAnswer = userAnswers[exercise.id];
-    if (userAnswer === undefined || userAnswer.trim() === '') {
+    if (userAnswer === undefined || (typeof userAnswer === 'string' && userAnswer.trim() === '')) {
       toast({ title: "Внимание", description: "Пожалуйста, дайте ответ.", variant: "destructive" });
       return;
     }
@@ -234,15 +305,13 @@ export default function LessonPage() {
     let isCorrect = false;
     switch (exercise.type) {
         case 'multiple_choice':
-        case 'listening_comprehension':
+        case 'listening_comprehension': // Assuming similar structure
             isCorrect = userAnswer === (exercise as MultipleChoiceExercise).correctAnswer;
             break;
         case 'fill_in_the_blank':
             isCorrect = userAnswer.toLowerCase().trim() === (exercise as FillInTheBlankExercise).correctAnswer.toLowerCase().trim();
             break;
-        case 'translation':
-            isCorrect = userAnswer.toLowerCase().trim() === (exercise as TranslationExercise).correctAnswer.toLowerCase().trim();
-            break;
+        // Translation is handled above with AI
         default:
             break;
     }
@@ -288,14 +357,14 @@ export default function LessonPage() {
 
   const handleCompleteLesson = () => {
     if (lesson) {
-      const allStandardExercisesAttempted = lesson.exercises
-        .filter(ex => ex.type !== 'writing_prompt')
+      const allStandardExercisesAttemptedOrMastered = lesson.exercises
+        .filter(ex => ex.type !== 'writing_prompt') // Writing prompts don't block completion
         .every(ex => userAnswers[ex.id] !== undefined || progress.exerciseAttempts[ex.id]?.mastered);
 
       const standardExercisesExist = lesson.exercises.filter(ex => ex.type !== 'writing_prompt').length > 0;
 
-      if (standardExercisesExist && !allStandardExercisesAttempted) {
-          toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните все стандартные упражнения урока перед завершением.", variant: "destructive" });
+      if (standardExercisesExist && !allStandardExercisesAttemptedOrMastered) {
+          toast({ title: "Не все упражнения выполнены", description: "Пожалуйста, выполните или освойте все стандартные упражнения урока перед завершением.", variant: "destructive" });
           return;
       }
       completeLesson(lesson.id);
@@ -440,16 +509,20 @@ export default function LessonPage() {
             {allExercises.map((exercise, index) => {
               const isMastered = progress.exerciseAttempts[exercise.id]?.mastered;
               const feedback = exerciseFeedback[exercise.id];
-              const currentAiFeedback = aiWritingFeedback[exercise.id];
-              const isAiEvaluating = isEvaluatingAi[exercise.id];
+              const currentAiWritingEval = aiWritingFeedback[exercise.id];
+              const isAiWritingEvaluating = isEvaluatingAi[exercise.id];
+              const currentAiTranslationEval = aiTranslationFeedback[exercise.id];
+              const isAiTranslationEvaluating = isEvaluatingTranslationAi[exercise.id];
+
 
               let cardBorderColor = "border-border";
               if (exercise.type === 'writing_prompt') {
-                if (currentAiFeedback?.error) {
-                  cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600"; // AI error
-                } else if (feedback && feedback.correct === null) { // AI eval done, no error (or in progress and not yet errored)
-                  cardBorderColor = "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600"; // AI success or pending
-                }
+                if (currentAiWritingEval?.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
+                else if (feedback && feedback.correct === null) cardBorderColor = "border-blue-500 bg-blue-50 dark:bg-blue-800/20 dark:border-blue-600";
+              } else if (exercise.type === 'translation' && currentAiTranslationEval) {
+                 if (currentAiTranslationEval.error) cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600";
+                 else if (currentAiTranslationEval.isSemanticallyAcceptable) cardBorderColor = "border-green-500 bg-green-50 dark:bg-green-800/20 dark:border-green-600";
+                 else cardBorderColor = "border-yellow-500 bg-yellow-50 dark:bg-yellow-800/20 dark:border-yellow-600"; // for 'not quite right' but not an error
               } else if (isMastered) {
                 cardBorderColor = "border-green-600 bg-green-100 dark:bg-green-900/30 dark:border-green-500";
               } else if (feedback) {
@@ -466,6 +539,7 @@ export default function LessonPage() {
                   <p className="font-semibold text-lg mb-3">
                     {isMastered && exercise.type !== 'writing_prompt' && <Award className="inline mr-2 h-5 w-5 text-green-600 dark:text-green-400" />}
                     {exercise.type === 'writing_prompt' && <VenetianMask className="inline mr-2 h-5 w-5 text-primary" />}
+                    {exercise.type === 'translation' && <MessageSquareText className="inline mr-2 h-5 w-5 text-blue-500" />}
                     Упражнение {index + 1}: {exercise.question}
                   </p>
 
@@ -490,7 +564,7 @@ export default function LessonPage() {
                       exercise={exercise as TranslationExercise}
                       onAnswerChange={(answer) => handleAnswerChange(exercise.id, answer)}
                       userAnswer={userAnswers[exercise.id]}
-                      disabled={isMastered || !!feedback}
+                      disabled={isMastered || !!feedback || isAiTranslationEvaluating || (!!currentAiTranslationEval && !currentAiTranslationEval.error)}
                     />
                   )}
                   {exercise.type === 'writing_prompt' && (
@@ -505,13 +579,13 @@ export default function LessonPage() {
                         onChange={(e) => handleWritingAnswerChange(exercise.id, e.target.value)}
                         placeholder="Ваш ответ..."
                         className="min-h-[100px]"
-                        disabled={isAiEvaluating || (!!feedback && !currentAiFeedback?.error) }
+                        disabled={isAiWritingEvaluating || (!!feedback && !currentAiWritingEval?.error) }
                       />
                     </div>
                   )}
                    {/* TODO: Listening comprehension component */}
 
-                  {exercise.type !== 'writing_prompt' && (
+                  {exercise.type !== 'writing_prompt' && exercise.type !== 'translation' && (
                     <Button
                       onClick={() => handleSubmitExercise(exercise)}
                       disabled={isMastered || !!feedback || isSubmitting || !userAnswers[exercise.id]}
@@ -520,13 +594,22 @@ export default function LessonPage() {
                       {isMastered ? <><Award className="mr-2 h-4 w-4"/>Освоено</> : "Проверить ответ"}
                     </Button>
                   )}
+                   {exercise.type === 'translation' && (
+                     <Button
+                      onClick={() => handleSubmitExercise(exercise)}
+                      disabled={isMastered || isAiTranslationEvaluating || !userAnswers[exercise.id] || (!!currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable) }
+                      className="mt-4"
+                    >
+                      {isAiTranslationEvaluating ? "Оценка перевода..." : (currentAiTranslationEval && !currentAiTranslationEval.error && currentAiTranslationEval.isSemanticallyAcceptable ? "Перевод принят" : "Отправить на проверку ИИ")}
+                    </Button>
+                  )}
                   {exercise.type === 'writing_prompt' && (
                      <Button
                       onClick={() => handleSubmitExercise(exercise)}
-                      disabled={isAiEvaluating || !userWritingAnswers[exercise.id] || (!!feedback && !currentAiFeedback?.error) }
+                      disabled={isAiWritingEvaluating || !userWritingAnswers[exercise.id] || (!!feedback && !currentAiWritingEval?.error) }
                       className="mt-4"
                     >
-                      {isAiEvaluating ? "Оценка ИИ..." : (currentAiFeedback && !currentAiFeedback.error ? "Оценено ИИ" : "Отправить на проверку ИИ")}
+                      {isAiWritingEvaluating ? "Оценка ИИ..." : (currentAiWritingEval && !currentAiWritingEval.error ? "Оценено ИИ" : "Отправить на проверку ИИ")}
                     </Button>
                   )}
 
@@ -534,33 +617,49 @@ export default function LessonPage() {
                     <div className={cn(
                         "mt-4 p-3 rounded-md text-sm",
                         exercise.type === 'writing_prompt'
-                          ? (currentAiFeedback?.error
-                              ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" // AI Error
-                              : "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300" // AI Success or Pending
+                          ? (currentAiWritingEval?.error
+                              ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" // AI Writing Error
+                              : "bg-blue-100 text-blue-700 dark:bg-blue-800/30 dark:text-blue-300" // AI Writing Success or Pending
                             )
-                          : (feedback.correct === true
-                              ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" // Correct standard exercise
-                              : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300" // Incorrect standard exercise
-                            )
+                          : exercise.type === 'translation'
+                            ? (currentAiTranslationEval?.error
+                                ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" // AI Translation Error
+                                : (feedback.correct === true
+                                  ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" // Correct AI Translation
+                                  : "bg-yellow-100 text-yellow-700 dark:bg-yellow-800/30 dark:text-yellow-300" // AI Translation needs improvement
+                                  )
+                              )
+                            : (feedback.correct === true
+                                ? "bg-green-100 text-green-700 dark:bg-green-800/30 dark:text-green-300" // Correct standard exercise
+                                : "bg-red-100 text-red-700 dark:bg-red-800/30 dark:text-red-300" // Incorrect standard exercise
+                              )
                       )}
                     >
                       { exercise.type === 'writing_prompt'
-                        ? (currentAiFeedback?.error
+                        ? (currentAiWritingEval?.error
                             ? <AlertTriangle className="inline mr-2 h-5 w-5" />
-                            : (isAiEvaluating ? <Info className="inline mr-2 h-5 w-5 animate-pulse" /> : <Info className="inline mr-2 h-5 w-5" />)
+                            : (isAiWritingEvaluating ? <Info className="inline mr-2 h-5 w-5 animate-pulse" /> : <Info className="inline mr-2 h-5 w-5" />)
                           )
-                        : (feedback.correct === true
-                            ? <CheckCircle className="inline mr-2 h-5 w-5" />
-                            : <XCircle className="inline mr-2 h-5 w-5" />
-                          )
+                        : exercise.type === 'translation'
+                          ? (currentAiTranslationEval?.error
+                              ? <AlertTriangle className="inline mr-2 h-5 w-5" />
+                              : (isAiTranslationEvaluating
+                                  ? <Info className="inline mr-2 h-5 w-5 animate-pulse" />
+                                  : (feedback.correct === true ? <CheckCircle className="inline mr-2 h-5 w-5" /> : <Info className="inline mr-2 h-5 w-5" />)
+                                )
+                            )
+                          : (feedback.correct === true
+                              ? <CheckCircle className="inline mr-2 h-5 w-5" />
+                              : <XCircle className="inline mr-2 h-5 w-5" />
+                            )
                       }
                       {feedback.explanation ||
-                       (exercise.type !== 'writing_prompt' && (feedback.correct === true ? "Верно!" : "Неверно.")) ||
+                       (exercise.type !== 'writing_prompt' && exercise.type !== 'translation' && (feedback.correct === true ? "Верно!" : "Неверно.")) ||
                        "Статус ответа"}
                     </div>
                   )}
 
-                  {currentAiFeedback && exercise.type === 'writing_prompt' && (
+                  {currentAiWritingEval && exercise.type === 'writing_prompt' && (
                     <Card className="mt-4 p-4 border-dashed">
                       <CardHeader className="p-2">
                         <CardTitle className="text-lg flex items-center">
@@ -568,24 +667,53 @@ export default function LessonPage() {
                         </CardTitle>
                       </CardHeader>
                       <CardContent className="space-y-3 p-2">
-                        {currentAiFeedback.error && (
+                        {currentAiWritingEval.error && (
                             <div className="text-destructive text-sm">
-                                <p><strong>Ошибка при оценке ИИ:</strong> {currentAiFeedback.feedbackExplanation || currentAiFeedback.error}</p>
+                                <p><strong>Ошибка при оценке ИИ:</strong> {currentAiWritingEval.feedbackExplanation || currentAiWritingEval.error}</p>
                             </div>
                         )}
-                        {!currentAiFeedback.error && (
+                        {!currentAiWritingEval.error && (
                             <>
                                 <div>
                                     <h4 className="font-semibold text-sm">Общая оценка:</h4>
-                                    <p className="text-sm text-muted-foreground">{currentAiFeedback.overallAssessment}</p>
+                                    <p className="text-sm text-muted-foreground">{currentAiWritingEval.overallAssessment}</p>
                                 </div>
                                 <div>
                                     <h4 className="font-semibold text-sm">Исправленный вариант:</h4>
-                                    <p className="text-sm bg-green-50 dark:bg-green-900/20 p-2 rounded-md whitespace-pre-line">{currentAiFeedback.correctedAnswer}</p>
+                                    <p className="text-sm bg-green-50 dark:bg-green-900/20 p-2 rounded-md whitespace-pre-line">{currentAiWritingEval.correctedAnswer}</p>
                                 </div>
                                 <div>
                                     <h4 className="font-semibold text-sm">Объяснение ошибок и рекомендации:</h4>
-                                    <p className="text-sm text-muted-foreground whitespace-pre-line">{currentAiFeedback.feedbackExplanation}</p>
+                                    <p className="text-sm text-muted-foreground whitespace-pre-line">{currentAiWritingEval.feedbackExplanation}</p>
+                                </div>
+                            </>
+                        )}
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {currentAiTranslationEval && exercise.type === 'translation' && (
+                    <Card className="mt-4 p-4 border-dashed">
+                      <CardHeader className="p-2">
+                        <CardTitle className="text-lg flex items-center">
+                          <Brain className="mr-2 h-5 w-5 text-blue-500" /> Оценка перевода ИИ
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-3 p-2">
+                        {currentAiTranslationEval.error && (
+                            <div className="text-destructive text-sm">
+                                <p><strong>Ошибка при оценке перевода:</strong> {currentAiTranslationEval.feedback || currentAiTranslationEval.error}</p>
+                            </div>
+                        )}
+                        {!currentAiTranslationEval.error && (
+                            <>
+                                <div>
+                                    <h4 className="font-semibold text-sm">Оценка перевода:</h4>
+                                    <p className="text-sm text-muted-foreground">{currentAiTranslationEval.feedback}</p>
+                                </div>
+                                <div>
+                                    <h4 className="font-semibold text-sm">Предложенный вариант:</h4>
+                                    <p className="text-sm bg-green-50 dark:bg-green-900/20 p-2 rounded-md whitespace-pre-line">{currentAiTranslationEval.suggestedTranslation}</p>
                                 </div>
                             </>
                         )}
