@@ -50,6 +50,10 @@ import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
 import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 
+// B2 Tests
+import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
+
+
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
 
@@ -104,6 +108,9 @@ export const MOCK_TESTS: Test[] = [
   testB1Indefinitpronomen,
   testB1InfinitivMitZu,
   testB1Konsekutivsaetze,
+
+  // B2 Tests
+  testB2Konjunktiv2,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
