@@ -6,7 +6,7 @@ export const lessonA1AlphabetBegruessungen: Lesson = {
   id: 'a1-alphabet-begruessungen',
   level: 'A1',
   topic: 'Немецкий алфавит и первые приветствия',
-  theory: \`
+  theory: `
 Добро пожаловать в мир немецкого языка! Начнем с самых основ: алфавита и простых фраз.
 
 **1. Немецкий алфавит (Das deutsche Alphabet)**
@@ -70,7 +70,7 @@ Y y (ипсилон) Z z (цет)
         *   **Nicht so gut.** – Не очень хорошо.
 
 Это самые первые шаги. Постарайтесь запомнить эти фразы и буквы!
-\`,
+`,
   vocabulary: [
     { german: 'Hallo', russian: 'Привет' },
     { german: 'Guten Morgen', russian: 'Доброе утро' },
