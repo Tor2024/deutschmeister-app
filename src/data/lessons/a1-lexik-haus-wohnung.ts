@@ -124,5 +124,11 @@ Ich mag mein Haus sehr.
       correctAnswer: 'im Wohnzimmer',
       explanation: 'Диван (das Sofa) обычно находится в гостиной (im Wohnzimmer).',
     },
+    {
+      id: 'a1-lexik-haus-wohnung-wp1',
+      type: 'writing_prompt',
+      question: 'Опишите свою комнату (2-3 предложения). Какие предметы мебели там есть?',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
