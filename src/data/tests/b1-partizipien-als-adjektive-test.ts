@@ -51,4 +51,3 @@ export const testB1PartizipienAlsAdjektive: Test = {
     },
   ],
 };
-
