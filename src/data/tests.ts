@@ -27,6 +27,7 @@ import { testA2Imperativ } from './tests/a2-imperativ-test';
 import { testA2Satzbau } from './tests/a2-satzbau-test';
 import { testA2NebensaetzeEinfach } from './tests/a2-nebensaetze-einfach-test';
 import { testA2NebenordnendeKonjunktionen } from './tests/a2-nebenordnende-konjunktionen-test';
+import { testA2Negation } from './tests/a2-negation-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -61,6 +62,7 @@ export const MOCK_TESTS: Test[] = [
   testA2Satzbau,
   testA2NebensaetzeEinfach,
   testA2NebenordnendeKonjunktionen,
+  testA2Negation,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
