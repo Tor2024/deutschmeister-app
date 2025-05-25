@@ -8,6 +8,7 @@ import { lessonA1ArtikelGenus } from './lessons/a1-artikel-genus';
 import { lessonA1Pluralbildung } from './lessons/a1-pluralbildung';
 import { lessonA1Akkusativ } from './lessons/a1-akkusativ';
 import { lessonA1Negation } from './lessons/a1-negation';
+import { lessonA1SatzbauGrundlagen } from './lessons/a1-satzbau-grundlagen';
 
 
 // A2 Lessons
@@ -71,11 +72,12 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1Pluralbildung,
   lessonA1Akkusativ,
   lessonA1Negation,
+  lessonA1SatzbauGrundlagen,
 
   // A2
   lessonA2Artikel,
   lessonA2VerbenPraesens,
-  lessonA2Pluralbildung, // This is a more advanced A2 plural lesson
+  lessonA2Pluralbildung,
   lessonA2Perfekt,
   lessonA2Modalverben,
   lessonA2Praepositionen,
@@ -86,7 +88,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Satzbau,
   lessonA2NebensaetzeEinfach,
   lessonA2NebenordnendeKonjunktionen,
-  lessonA2NegationDetailed, // This is the more detailed A2 negation lesson
+  lessonA2NegationDetailed,
 
   // B1
   lessonB1Nebensaetze,
