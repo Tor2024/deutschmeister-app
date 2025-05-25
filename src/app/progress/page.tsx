@@ -11,9 +11,11 @@ import type { Exercise } from '@/types';
 import { BarChart, CheckCircle, ListChecks, TrendingUp, Zap, Activity, Award } from 'lucide-react';
 import Image from "next/image";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { useToast } from "@/hooks/use-toast"; // <<< ДОБАВЛЕН ИМПОРТ
 
 export default function UserProgressPage() {
   const { progress, isLoading, clearProgress } = useUserProgress();
+  const { toast } = useToast(); // <<< ИСПОЛЬЗОВАНИЕ ХУКА
 
   if (isLoading) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Zap className="animate-spin h-12 w-12 text-primary" /></div>;
@@ -26,7 +28,10 @@ export default function UserProgressPage() {
   const handleClearProgress = () => {
     if (window.confirm('Вы уверены, что хотите сбросить весь прогресс? Это действие необратимо.')) {
       clearProgress();
-      alert("Прогресс сброшен."); // Consider using toast
+      toast({ // <<< ЗАМЕНА ALERT НА TOAST
+        title: "Прогресс сброшен",
+        description: "Все ваши данные обучения были удалены.",
+      });
     }
   };
 
