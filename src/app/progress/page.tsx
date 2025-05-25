@@ -56,18 +56,18 @@ export default function UserProgressPage() {
       }
     }
     // Fallback if exerciseId not found in standard or AI exercises by direct ID match
-    // (This part was simplified, might need a more robust lookup for AI exercises if IDs are very dynamic)
     if (exerciseId.startsWith('ai-ex-')) {
         const parts = exerciseId.split('-');
-        // Example: ai-ex-a2-artikel-1718193433462-0
-        // We assume lessonId is the third part (index 2)
         if (parts.length > 2) { 
-            const lessonIdFromAIEx = parts[2]; 
-            const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdFromAIEx);
+            // Assuming lessonId is the third part (index 2) after "ai-ex-"
+            // e.g. ai-ex-a2-artikel-timestamp-index
+            // This logic might need refinement if lesson IDs can contain hyphens
+            const lessonIdCandidate = parts[2];
+            const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdCandidate);
             if (aiLesson) {
               return {
                 lessonTopic: aiLesson.topic,
-                exerciseQuestion: "Упражнение от ИИ" 
+                exerciseQuestion: "Упражнение от ИИ (детали в уроке)" 
               }
             }
         }
@@ -84,7 +84,7 @@ export default function UserProgressPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <Card key={progress.lastActivity || 'cleared'} className="mb-8 shadow-lg">
+      <Card key={JSON.stringify(progress.exerciseAttempts)} className="mb-8 shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-primary flex items-center">
             <BarChart className="mr-3 h-8 w-8" /> Ваш Прогресс в DeutschMeister
@@ -189,5 +189,3 @@ export default function UserProgressPage() {
     </div>
   );
 }
-
-    
