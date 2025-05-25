@@ -48,6 +48,7 @@ import { testB1Genitiv } from './tests/b1-genitiv-test';
 import { testB1NDeklination } from './tests/b1-n-deklination-test';
 import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
 import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
+import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -102,6 +103,7 @@ export const MOCK_TESTS: Test[] = [
   testB1NDeklination,
   testB1Indefinitpronomen,
   testB1InfinitivMitZu,
+  testB1Konsekutivsaetze,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
