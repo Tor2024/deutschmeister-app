@@ -34,6 +34,9 @@ import { testA2TemporalsaetzeAlsWenn } from './tests/a2-temporalsaetze-als-wenn-
 import { testA2Demonstrativpronomen } from './tests/a2-demonstrativpronomen-test';
 import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
 
+// B1 Tests
+import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
+
 
 // Импортируйте другие тесты здесь по мере их создания
 // import { testSomeOtherTopic } from './tests/some-other-topic-test';
@@ -73,6 +76,9 @@ export const MOCK_TESTS: Test[] = [
   testA2TemporalsaetzeAlsWenn,
   testA2Demonstrativpronomen,
   testA2OrdinalzahlenDatum,
+
+  // B1 Tests
+  testB1Nebensaetze,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
