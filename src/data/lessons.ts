@@ -16,7 +16,9 @@ import { lessonA1PraepositionenAkkusativ } from './lessons/a1-praepositionen-akk
 import { lessonA1PraepositionenDativ } from './lessons/a1-praepositionen-dativ';
 import { lessonA1TrennbarVerben } from './lessons/a1-trennbar-verben';
 import { lessonA1LexikFamilie } from './lessons/a1-lexik-familie';
-import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung'; // New lexical lesson for A1
+import { lessonA1LexikHausWohnung } from './lessons/a1-lexik-haus-wohnung';
+import { lessonA1LexikEssenTrinken } from './lessons/a1-lexik-essen-trinken';
+
 
 // A2 Lessons
 import { lessonA2Artikel } from './lessons/a2-artikel';
@@ -99,6 +101,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA1TrennbarVerben,
   lessonA1LexikFamilie,
   lessonA1LexikHausWohnung,
+  lessonA1LexikEssenTrinken,
 
   // A2
   lessonA2Artikel,

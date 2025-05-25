@@ -14,6 +14,7 @@ import { testA1PraepositionenDativ } from './tests/a1-praepositionen-dativ-test'
 import { testA1TrennbarVerben } from './tests/a1-trennbar-verben-test';
 import { testA1LexikFamilie } from './tests/a1-lexik-familie-test';
 import { testA1LexikHausWohnung } from './tests/a1-lexik-haus-wohnung-test';
+import { testA1LexikEssenTrinken } from './tests/a1-lexik-essen-trinken-test';
 
 
 // A2 Tests
@@ -93,6 +94,7 @@ export const MOCK_TESTS: Test[] = [
   testA1TrennbarVerben,
   testA1LexikFamilie,
   testA1LexikHausWohnung,
+  testA1LexikEssenTrinken,
 
   // A2 Tests
   testA2Artikel,
