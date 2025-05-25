@@ -55,6 +55,7 @@ import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
 import { testB2NomenVerb } from './tests/b2-nomen-verb-test';
 import { testB2Passiv } from './tests/b2-passiv-test';
 import { testB2PassivErsatzformen } from './tests/b2-passiv-ersatzformen-test';
+import { testB2SubjektiveModalverben } from './tests/b2-subjektive-modalverben-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -117,6 +118,7 @@ export const MOCK_TESTS: Test[] = [
   testB2NomenVerb,
   testB2Passiv,
   testB2PassivErsatzformen,
+  testB2SubjektiveModalverben,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
