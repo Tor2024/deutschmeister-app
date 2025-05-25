@@ -70,6 +70,8 @@ import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vert
 
 // C2 Tests
 import { testC2Stilmittel } from './tests/c2-stilmittel-test';
+import { testC2NominalstilVerbalstil } from './tests/c2-nominalstil-verbalstil-test';
+
 
 export const MOCK_TESTS: Test[] = [
   // A1 Tests
@@ -143,6 +145,7 @@ export const MOCK_TESTS: Test[] = [
 
   // C2 Tests
   testC2Stilmittel,
+  testC2NominalstilVerbalstil,
 ];
 
 // Helper function to get a test by its ID
