@@ -179,7 +179,8 @@ export default function LessonPage() {
       {lesson.vocabulary && lesson.vocabulary.length > 0 && (
         <Card className="mb-6 shadow-md">
           <CardHeader>
-            <CardTitle className="text-xl flex items-center"><BookOpenCheck className="mr-2 h-6 w-6 text-primary" />Словарь урока</CardTitle>
+            <CardTitle className="text-2xl flex items-center"><BookOpenCheck className="mr-2 h-6 w-6 text-primary" />Словарь урока</CardTitle>
+            <CardDescription>Ключевые слова и фразы для этого урока.</CardDescription>
           </CardHeader>
           <CardContent>
             <Table>
