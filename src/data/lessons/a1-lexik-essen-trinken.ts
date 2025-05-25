@@ -103,5 +103,11 @@ Abends essen wir nicht viel. Manchmal nur einen Joghurt oder Obst.
       correctAnswer: 'вкусный',
       explanation: '"Lecker" означает "вкусный".',
     },
+    {
+      id: 'a1-lexik-essen-trinken-wp1',
+      type: 'writing_prompt',
+      question: 'Напиши, что ты любишь есть и пить. (2-3 предложения)',
+      suggestedLength: '2-3 предложения'
+    }
   ],
 };
