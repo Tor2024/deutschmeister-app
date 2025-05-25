@@ -18,8 +18,8 @@ import { testA1LexikEssenTrinken } from './tests/a1-lexik-essen-trinken-test';
 import { testA1LexikHobbysFreizeit } from './tests/a1-lexik-hobbys-freizeit-test';
 import { testA1LexikZahlenFarben } from './tests/a1-lexik-zahlen-farben-test';
 import { testA1LexikWochentageMonateJahreszeiten } from './tests/a1-lexik-wochentage-monate-jahreszeiten-test';
-import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
 import { testA1LexikKleidung } from './tests/a1-lexik-kleidung-test';
+import { testA1LexikUhrzeitTagesablauf } from './tests/a1-lexik-uhrzeit-tagesablauf-test';
 
 // A2 Tests
 import { testA2Artikel } from './tests/a2-artikel-test';
@@ -105,6 +105,9 @@ import { testC2Modalpartikeln } from './tests/c2-modalpartikeln-test';
 import { testC2LexikGlobaleProbleme } from './tests/c2-lexik-globale-probleme-test';
 import { testC2LexikMedienkritikDigitaleGesellschaft } from './tests/c2-lexik-medienkritik-digitale-gesellschaft-test';
 import { testC2LexikSozialeTrends } from './tests/c2-lexik-soziale-trends-test';
+
+// Level Tests
+import { testA1LevelTest } from './tests/a1-level-test';
 
 
 export const MOCK_TESTS: Test[] = [
@@ -267,6 +270,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
       testA1Imperativ.questions[0]
     ]
   },
+  testA1LevelTest, // Added A1 Level Test
   {
     id: 'a2-grammar-module-1-test',
     level: 'A2',

@@ -39,5 +39,13 @@ export const testA1LexikUhrzeitTagesablauf: Test = {
       correctAnswer: 'Wie spät ist es?',
       explanation: '"Wie spät ist es?" или "Wie viel Uhr ist es?" означает "Который час?".',
     },
+    {
+      id: 'a1-lexik-uhrzeit-tagesablauf-test-q5',
+      type: 'fill_in_the_blank',
+      question: 'Дополните предложение: "Nach dem Mittagessen ___ ich meine Hausaufgaben."',
+      sentenceParts: ['Nach dem Mittagessen ', ' ich meine Hausaufgaben.'],
+      correctAnswer: 'mache',
+      explanation: 'Глагол "machen" (делать). "Hausaufgaben machen" - делать домашние задания. "Ich mache".',
+    },
   ],
 };

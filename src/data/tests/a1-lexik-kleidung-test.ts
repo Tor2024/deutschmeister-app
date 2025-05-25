@@ -39,5 +39,13 @@ export const testA1LexikKleidung: Test = {
       correctAnswer: 'Meine Schuhe sind schwarz.',
       explanation: '"Мои туфли" - "Meine Schuhe" (Plural). "черные" - "schwarz".',
     },
+     {
+      id: 'a1-lexik-kleidung-test-q5',
+      type: 'multiple_choice',
+      question: 'Какое слово означает "куртка"?',
+      options: ['der Mantel', 'die Jacke', 'das Hemd', 'die Bluse'],
+      correctAnswer: 'die Jacke',
+      explanation: '"Die Jacke" означает "куртка".',
+    },
   ],
 };

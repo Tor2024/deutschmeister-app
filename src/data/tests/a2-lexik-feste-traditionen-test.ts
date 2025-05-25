@@ -39,5 +39,13 @@ export const testA2LexikFesteTraditionen: Test = {
       correctAnswer: 'Ostereier',
       explanation: 'На Пасху дети традиционно ищут "Ostereier" (пасхальные яйца).',
     },
+    {
+      id: 'a2-lexik-feste-traditionen-test-q5',
+      type: 'fill_in_the_blank',
+      question: 'Дополните поздравление: "___ Rutsch ins neue Jahr!"',
+      sentenceParts: ['', ' Rutsch ins neue Jahr!'],
+      correctAnswer: 'Guten',
+      explanation: 'Популярное новогоднее поздравление: "Guten Rutsch ins neue Jahr!" (С наступающим Новым годом!).',
+    }
   ],
 };

@@ -6,50 +6,71 @@ export const lessonA2LexikFesteTraditionen: Lesson = {
   level: 'A2',
   topic: 'Праздники и традиции (Feste und Traditionen)',
   theory: `
-В этом уроке мы познакомимся с названиями некоторых важных праздников и традиций в немецкоязычных странах, а также выучим полезные слова и фразы, связанные с празднованием.
+В этом уроке мы познакомимся с названиями некоторых важных праздников и традиций в немецкоязычных странах, а также выучим полезные слова и фразы, связанные с празднованием. На уровне А2 мы расширим наши знания по сравнению с А1.
 
-**Основные праздники:**
-- **Weihnachten:** Рождество (24-26 декабря) - самый важный семейный праздник.
+**Основные праздники (расширенно):**
+- **Weihnachten:** Рождество (24-26 декабря). Важнейший семейный праздник.
+  - **der Heiligabend:** Сочельник (24 декабря) - вечер, когда обычно дарят подарки.
+  - **der erste/zweite Weihnachtsfeiertag:** Первый/второй день Рождества (25/26 декабря).
+  - **der Adventskranz:** рождественский венок (с четырьмя свечами).
+  - **der Weihnachtsmarkt:** рождественский базар.
 - **Silvester und Neujahr:** Канун Нового года (31 декабря) и Новый год (1 января).
+  - **das Feuerwerk:** фейерверк.
 - **Ostern:** Пасха (весенний праздник, дата меняется).
+  - **der Osterhase:** пасхальный заяц.
+  - **Ostereier suchen:** искать пасхальные яйца.
 - **der Geburtstag:** День рождения.
+  - **die Geburtstagstorte:** именинный торт.
+  - **das Geburtstagslied:** песня "С днем рождения".
+- **Karneval / Fasching / Fastnacht:** Карнавал (в разных регионах называется по-разному, зимне-весенний период перед постом).
+- **der Tag der Deutschen Einheit:** День немецкого единства (3 октября, национальный праздник Германии).
 
-**Традиции и слова:**
+**Традиции и слова (расширенно):**
 - **feiern:** праздновать
 - **gratulieren (zum Geburtstag/zu Weihnachten):** поздравлять (с днем рождения/с Рождеством)
+- **einladen (lädt ein, lud ein, hat eingeladen) zu + D:** приглашать (на что-л.)
 - **das Geschenk (-e):** подарок
+- **schenken:** дарить
 - **die Einladung (-en):** приглашение
 - **der Gast (Gäste):** гость
-- **der Weihnachtsbaum (Weihnachtsbäume):** рождественская ёлка
-- **die Ostereier (Pl.):** пасхальные яйца
+- **der Gastgeber / die Gastgeberin:** хозяин / хозяйка (принимающие гостей)
+- **sich freuen auf + A:** радоваться (предстоящему)
+- **sich freuen über + A:** радоваться (свершившемуся)
 - **Frohe Weihnachten!** Счастливого Рождества!
-- **Guten Rutsch ins neue Jahr!** С наступающим Новым годом! (букв. "Хорошего скольжения в новый год!")
-- **Frohes neues Jahr!** С Новым годом!
-- **Alles Gute zum Geburtstag!** Всего хорошего на день рождения! / С днем рождения!
+- **Guten Rutsch (ins neue Jahr)!** С наступающим Новым годом!
+- **Frohes neues Jahr! / Ein frohes neues Jahr!** С Новым годом!
+- **Frohe Ostern!** Светлой Пасхи!
+- **Herzlichen Glückwunsch zum Geburtstag! / Alles Gute zum Geburtstag!** Сердечные поздравления с днем рождения! / Всего хорошего на день рождения!
+- **Viel Spaß!** Желаю хорошо провести время! / Веселись!
 `,
   vocabulary: [
     { german: 'das Fest (-e)', russian: 'праздник' },
     { german: 'Weihnachten', russian: 'Рождество', example: 'Zu Weihnachten schmücken wir den Baum.' },
+    { german: 'der Heiligabend', russian: 'Сочельник (24 декабря)' },
+    { german: 'der Weihnachtsmarkt (-märkte)', russian: 'рождественский базар/ярмарка' },
     { german: 'Silvester', russian: 'Канун Нового года (31 декабря)' },
     { german: 'Neujahr', russian: 'Новый год (1 января)', example: 'An Neujahr besuchen wir Freunde.' },
+    { german: 'das Feuerwerk (-e)', russian: 'фейерверк', example: 'Um Mitternacht gibt es ein großes Feuerwerk.' },
     { german: 'Ostern', russian: 'Пасха', example: 'Zu Ostern suchen die Kinder Eier.' },
+    { german: 'der Osterhase (-n)', russian: 'пасхальный заяц' },
     { german: 'der Geburtstag (-e)', russian: 'день рождения', example: 'Wann hast du Geburtstag?' },
+    { german: 'die Geburtstagstorte (-n)', russian: 'именинный торт' },
     { german: 'feiern', russian: 'праздновать', example: 'Wir feiern heute Abend.' },
     { german: 'gratulieren (+D, zu+D)', russian: 'поздравлять (кого-л. с чем-л.)', example: 'Ich gratuliere dir zum Geburtstag.' },
+    { german: 'einladen (lädt ein) zu + D', russian: 'приглашать на', example: 'Ich lade dich zu meiner Party ein.' },
     { german: 'das Geschenk (-e)', russian: 'подарок', example: 'Was wünschst du dir als Geschenk?' },
-    { german: 'die Einladung (-en)', russian: 'приглашение', example: 'Danke für die Einladung!' },
+    { german: 'schenken', russian: 'дарить', example: 'Was schenkst du ihm?' },
     { german: 'der Gast (Gäste)', russian: 'гость', example: 'Wir haben heute Abend Gäste.' },
-    { german: 'der Weihnachtsbaum (¨-e)', russian: 'рождественская ёлка' },
-    { german: 'das Osterei (-er)', russian: 'пасхальное яйцо' },
     { german: 'Frohe Weihnachten!', russian: 'Счастливого Рождества!' },
     { german: 'Guten Rutsch!', russian: 'С Наступающим (Новым годом)!' },
     { german: 'Frohes Neues Jahr!', russian: 'С Новым Годом!' },
-    { german: 'Alles Gute zum Geburtstag!', russian: 'Всего хорошего на день рождения!' },
+    { german: 'Herzlichen Glückwunsch!', russian: 'Сердечные поздравления!' },
   ],
   readingText: `
 Familie Müller feiert Weihnachten. Im Wohnzimmer steht ein großer Weihnachtsbaum. Der Baum ist mit bunten Kugeln und Lichtern geschmückt.
 Am Heiligabend (24. Dezember) gibt es Geschenke. Die Kinder, Anna und Tim, sind sehr aufgeregt. Sie singen Weihnachtslieder und essen Plätzchen.
 Oma und Opa kommen auch zu Besuch. Es ist ein schönes Familienfest. Alle freuen sich und wünschen sich "Frohe Weihnachten!".
+Am ersten Weihnachtsfeiertag kocht Frau Müller ein traditionelles Essen: Gänsebraten mit Rotkohl und Klößen.
 `,
   readingComprehensionExercises: [
     {
