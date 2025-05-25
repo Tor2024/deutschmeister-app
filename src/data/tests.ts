@@ -24,6 +24,7 @@ import { testA2Possessivpronomen } from './tests/a2-possessivpronomen-test';
 import { testA2PersonalpronomenAkkDat } from './tests/a2-personalpronomen-akk-dat-test';
 import { testA2Adjektivsteigerung } from './tests/a2-adjektivsteigerung-test';
 import { testA2Imperativ } from './tests/a2-imperativ-test';
+import { testA2Satzbau } from './tests/a2-satzbau-test';
 
 
 // Импортируйте другие тесты здесь по мере их создания
@@ -55,6 +56,7 @@ export const MOCK_TESTS: Test[] = [
   testA2PersonalpronomenAkkDat,
   testA2Adjektivsteigerung,
   testA2Imperativ,
+  testA2Satzbau,
   // Добавляйте другие тесты сюда
   // testSomeOtherTopic,
 ];
