@@ -42,6 +42,7 @@ import { lessonB2PassivErsatzformen } from './lessons/b2-passiv-ersatzformen';
 import { lessonB2SubjektiveModalverben } from './lessons/b2-subjektive-modalverben';
 import { lessonB2KomplexeSatzverbindungen } from './lessons/b2-komplexe-satzverbindungen';
 import { lessonB2NominalisierungVerbalisierung } from './lessons/b2-nominalisierung-verbalisierung';
+import { lessonB2Futur2 } from './lessons/b2-futur2';
 
 
 // C1 Lessons
@@ -94,6 +95,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2SubjektiveModalverben,
   lessonB2KomplexeSatzverbindungen,
   lessonB2NominalisierungVerbalisierung,
+  lessonB2Futur2,
   
   // C1
   lessonC1IndirekteRede,
