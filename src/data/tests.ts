@@ -62,6 +62,7 @@ import { testB1NDeklination } from './tests/b1-n-deklination-test';
 import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
 import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
+import { testB1LexikBildungStudium } from './tests/b1-lexik-bildung-studium-test';
 
 // B2 Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -150,6 +151,7 @@ export const MOCK_TESTS: Test[] = [
   testB1Indefinitpronomen,
   testB1InfinitivMitZu,
   testB1Konsekutivsaetze,
+  testB1LexikBildungStudium,
 
   // B2 Tests
   testB2Konjunktiv2,

@@ -71,6 +71,9 @@ import { lessonB1Indefinitpronomen } from './lessons/b1-indefinitpronomen';
 import { lessonB1InfinitivMitZu } from './lessons/b1-infinitiv-mit-zu';
 import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 
+// B1 Lexik
+import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
+
 // B2 Grammar
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
 import { lessonB2NomenVerb } from './lessons/b2-nomen-verb';
@@ -160,6 +163,8 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1Indefinitpronomen,
   lessonB1InfinitivMitZu,
   lessonB1Konsekutivsaetze,
+  // B1 Lexik
+  lessonB1LexikBildungStudium,
 
   // B2 Grammar
   lessonB2Konjunktiv2,
