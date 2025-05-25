@@ -1,3 +1,4 @@
+
 // 'use server'
 'use server';
 
@@ -16,7 +17,7 @@ import {z} from 'genkit';
 
 
 const AdaptiveLessonInputSchema = z.object({
-  currentLevel: z.enum(['A2', 'B1', 'B2', 'C1', 'C2']).describe('The current German language level of the user.'),
+  currentLevel: z.enum(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']).describe('The current German language level of the user.'),
   completedLessons: z.array(z.string()).describe('List of lesson topics the user has completed.'),
   testResults: z.record(z.number()).describe('A map of lesson topic to test score (0-100).'),
   learningGoals: z.string().describe('The user learning goals or areas of interest in German, e.g., grammar, vocabulary, conversation.'),
@@ -60,3 +61,4 @@ const adaptiveLearningPathFlow = ai.defineFlow(
     return output!;
   }
 );
+
