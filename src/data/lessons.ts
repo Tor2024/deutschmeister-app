@@ -36,6 +36,7 @@ import { lessonA2ReflexiveVerben } from './lessons/a2-reflexive-verben';
 import { lessonA2Adjektivdeklination } from './lessons/a2-adjektivdeklination';
 import { lessonA2TemporalsaetzeAlsWenn } from './lessons/a2-temporalsaetze-als-wenn';
 import { lessonA2Demonstrativpronomen } from './lessons/a2-demonstrativpronomen';
+import { lessonA2OrdinalzahlenDatum } from './lessons/a2-ordinalzahlen-datum';
 
 
 // B1 Lessons
@@ -109,6 +110,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2Adjektivdeklination,
   lessonA2TemporalsaetzeAlsWenn,
   lessonA2Demonstrativpronomen,
+  lessonA2OrdinalzahlenDatum,
 
   // B1
   lessonB1Nebensaetze,
@@ -158,3 +160,4 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
+
