@@ -1,12 +1,12 @@
 
-import type { Lesson } from '@/types';
+import type { Lesson, ReadingComprehensionQuestion } from '@/types';
 
 export const lessonB2LexikKulturKunst: Lesson = {
   id: 'b2-lexik-kultur-kunst',
   level: 'B2',
   topic: 'Культура и искусство (Kultur und Kunst)',
   theory: `
-В этом уроке мы расширим словарный запас, необходимый для обсуждения тем, связанных с культурой и искусством. Вы научитесь называть различные виды искусства, культурные мероприятия, а также выражать свое мнение о произведениях искусства.
+In diesem уроке мы расширим словарный запас, необходимый для обсуждения тем, связанных с культурой и искусством. Вы научитесь называть различные виды искусства, культурные мероприятия, а также выражать свое мнение о произведениях искусства.
 
 **Основные направления и понятия:**
 - Умение описать свои впечатления от посещения музея, театра, концерта.
@@ -44,6 +44,49 @@ export const lessonB2LexikKulturKunst: Lesson = {
     { german: 'beeindruckend', russian: 'впечатляющий', example: 'Die Architektur war sehr beeindruckend.' },
     { german: 'faszinierend', russian: 'увлекательный, захватывающий', example: 'Es war eine faszinierende Geschichte.' },
     { german: 'kreativ', russian: 'творческий, креативный', example: 'Sie ist eine sehr kreative Person.' },
+  ],
+  readingText: `
+Die Rolle der Kunst in der Gesellschaft ist vielschichtig und hat sich im Laufe der Geschichte ständig gewandelt. Diente sie in früheren Epochen oft religiösen oder repräsentativen Zwecken der Herrschenden, so entwickelte sie sich zunehmend zu einem Medium des individuellen Ausdrucks und der gesellschaftlichen Reflexion.
+Moderne Kunst, beispielsweise, konfrontiert den Betrachter häufig mit ungewohnten Perspektiven und stellt tradierte Sehgewohnheiten in Frage. Sie kann provozieren, zum Nachdenken anregen oder einfach nur ästhetisches Vergnügen bereiten. Nicht selten spiegeln Kunstwerke die politischen und sozialen Umbrüche ihrer Zeit wider oder nehmen zukünftige Entwicklungen vorweg.
+Der Besuch von Museen, Galerien oder Theateraufführungen bietet die Möglichkeit, in andere Welten einzutauchen und den eigenen Horizont zu erweitern. Die Auseinandersetzung mit Kunst fördert Kreativität, Empathie und kritisches Denken – Fähigkeiten, die in unserer komplexen Welt von großer Bedeutung sind. Doch auch jenseits der etablierten Kulturinstitutionen findet Kunst statt: Street Art, digitale Kunst oder partizipative Projekte zeigen, wie lebendig und vielfältig das künstlerische Schaffen heute ist.
+`,
+  readingComprehensionExercises: [
+    {
+      id: 'b2-lexik-kultur-kunst-rq1',
+      question: 'Welche Funktion hatte Kunst in früheren Epochen oft, laut Text?',
+      options: [
+        'Sie diente hauptsächlich der Unterhaltung der breiten Bevölkerung.',
+        'Sie war primär ein Mittel des individuellen künstlerischen Ausdrucks.',
+        'Sie diente religiösen oder repräsentativen Zwecken der Herrschenden.',
+        'Sie konzentrierte sich auf die Abbildung des alltäglichen Lebens.'
+      ],
+      correctAnswer: 'Sie diente religiösen oder repräsentativen Zwecken der Herrschenden.',
+      explanation: 'Im Text steht: "Diente sie in früheren Epochen oft religiösen oder repräsentativen Zwecken der Herrschenden..."'
+    },
+    {
+      id: 'b2-lexik-kultur-kunst-rq2',
+      question: 'Was wird im Text als eine häufige Eigenschaft moderner Kunst genannt?',
+      options: [
+        'Sie ist immer leicht verständlich und gefällig.',
+        'Sie stellt tradierte Sehgewohnheiten in Frage und kann provozieren.',
+        'Sie konzentriert sich ausschließlich auf klassische Techniken.',
+        'Sie ist nur in großen, etablierten Museen zu finden.'
+      ],
+      correctAnswer: 'Sie stellt tradierte Sehgewohnheiten in Frage und kann provozieren.',
+      explanation: 'Der Text sagt über moderne Kunst: "...konfrontiert den Betrachter häufig mit ungewohnten Perspektiven und stellt tradierte Sehgewohnheiten in Frage. Sie kann provozieren..."'
+    },
+    {
+      id: 'b2-lexik-kultur-kunst-rq3',
+      question: 'Welche Fähigkeiten fördert die Auseinandersetzung mit Kunst laut Text?',
+      options: [
+        'Vor allem technische und handwerkliche Fertigkeiten.',
+        'Kreativität, Empathie und kritisches Denken.',
+        'Ausschließlich das kunsthistorische Wissen.',
+        'Die Fähigkeit, Kunstwerke schnell zu bewerten.'
+      ],
+      correctAnswer: 'Kreativität, Empathie und kritisches Denken.',
+      explanation: 'Im Text wird genannt: "Die Auseinandersetzung mit Kunst fördert Kreativität, Empathie und kritisches Denken..."'
+    }
   ],
   exercises: [
     {
