@@ -1,5 +1,5 @@
 
-import type { Lesson, MultipleChoiceExercise } from '@/types';
+import type { Lesson, MultipleChoiceExercise, VocabularyItem } from '@/types';
 
 const commonMCExercise: MultipleChoiceExercise = {
   id: 'mc1',
@@ -85,6 +85,16 @@ export const MOCK_LESSONS: Lesson[] = [
 `,
     audio: 'https://storage.googleapis.com/stg_public_misc/audio/placeholder_artikel_a2.mp3', 
     transcript: 'Der, die, das. Ein, eine, ein. Das ist ein Haus. Das Haus ist groß. Der Mann liest ein Buch. Ich sehe einen Hund. Ich habe keinen Hund.',
+    vocabulary: [
+      { german: 'der Mann', russian: 'мужчина', example: 'Der Mann ist groß.' },
+      { german: 'die Frau', russian: 'женщина', example: 'Die Frau liest ein Buch.' },
+      { german: 'das Kind', russian: 'ребенок', example: 'Das Kind spielt im Garten.' },
+      { german: 'der Tisch', russian: 'стол', example: 'Der Tisch ist aus Holz.' },
+      { german: 'die Lampe', russian: 'лампа', example: 'Die Lampe steht auf dem Tisch.' },
+      { german: 'das Buch', russian: 'книга', example: 'Ich lese das Buch.' },
+      { german: 'sehen', russian: 'видеть', example: 'Ich sehe einen Vogel.' },
+      { german: 'haben', russian: 'иметь', example: 'Wir haben keine Zeit.' },
+    ],
     exercises: [
       {
         id: 'a2-artikel-adv-ex1',

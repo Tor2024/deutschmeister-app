@@ -3,12 +3,12 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { MOCK_LESSONS } from '@/data/lessons';
-import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise } from '@/types';
+import type { Lesson, Exercise as ExerciseTypeUnion, MultipleChoiceExercise, FillInTheBlankExercise, TranslationExercise, VocabularyItem } from '@/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { useToast } from '@/hooks/use-toast';
-import { CheckCircle, XCircle, Lightbulb, Volume2 } from 'lucide-react';
+import { CheckCircle, XCircle, Lightbulb, Volume2, BookOpenCheck } from 'lucide-react';
 import Link from 'next/link';
 import AudioPlayer from '@/components/common/audio-player';
 import MultipleChoiceExerciseComponent from '@/components/exercises/multiple-choice-exercise';
@@ -16,7 +16,9 @@ import FillInTheBlankExerciseComponent from '@/components/exercises/fill-blank-e
 import TranslationExerciseComponent from '@/components/exercises/translation-exercise';
 import { generateAudioExercises, type GenerateAudioExercisesInput } from '@/ai/flows/ai-audio-integration';
 import { Separator } from '@/components/ui/separator';
-import { Badge } from '@/components/ui/badge'; // Added import for Badge
+import { Badge } from '@/components/ui/badge';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+
 
 // Helper to get a lesson, simulating data fetching
 const getLessonById = (id: string): Lesson | undefined => {
@@ -173,6 +175,34 @@ export default function LessonPage() {
           <p className="text-md whitespace-pre-line leading-relaxed">{lesson.theory}</p>
         </CardContent>
       </Card>
+
+      {lesson.vocabulary && lesson.vocabulary.length > 0 && (
+        <Card className="mb-6 shadow-md">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center"><BookOpenCheck className="mr-2 h-6 w-6 text-primary" />Словарь урока</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[30%]">Немецкое слово</TableHead>
+                  <TableHead className="w-[30%]">Перевод</TableHead>
+                  <TableHead>Пример</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {lesson.vocabulary.map((item, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="font-medium">{item.german}</TableCell>
+                    <TableCell>{item.russian}</TableCell>
+                    <TableCell className="italic text-muted-foreground">{item.example || '–'}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      )}
 
       {lesson.audio && lesson.transcript && (
         <Card className="mb-6 shadow-md">
