@@ -7,9 +7,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { useUserProgress } from '@/hooks/use-user-progress';
-// Removed generateAdaptiveLesson import
 import { LANGUAGE_LEVELS, type LanguageLevel } from '@/lib/constants';
-import { Lightbulb, Zap, BookOpenCheck, BarChart3 } from 'lucide-react'; // Added BookOpenCheck, BarChart3
+import { Lightbulb, Zap, BookOpenCheck, BarChart3 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MOCK_LESSONS, type Lesson } from '@/data/lessons';
@@ -18,7 +17,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 export default function DashboardPage() {
   const { progress, isLoading, setCurrentLevel, setLearningGoals } = useUserProgress();
-  const [recommendedLesson, setRecommendedLesson] = useState<Lesson | null>(null); // Changed state
+  const [recommendedLesson, setRecommendedLesson] = useState<Lesson | null>(null);
   const [noMoreLessons, setNoMoreLessons] = useState(false);
   const [currentGoalsInput, setCurrentGoalsInput] = useState('');
   const { toast } = useToast();
@@ -31,8 +30,16 @@ export default function DashboardPage() {
     setRecommendedLesson(null);
     setNoMoreLessons(false);
 
-    const userLevel = progress.currentLevel || 'A1';
-    const userLevelIndex = LANGUAGE_LEVELS.indexOf(userLevel);
+    if (!progress.currentLevel) {
+      toast({
+        title: "Уровень не выбран",
+        description: "Пожалуйста, сначала выберите ваш текущий уровень владения немецким.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const userLevelIndex = LANGUAGE_LEVELS.indexOf(progress.currentLevel);
 
     const relevantLessons = MOCK_LESSONS.filter(lesson => {
       const lessonLevelIndex = LANGUAGE_LEVELS.indexOf(lesson.level);
@@ -52,7 +59,7 @@ export default function DashboardPage() {
       });
     } else {
       setNoMoreLessons(true);
-      setRecommendedLesson(null); // Ensure no previous recommendation is shown
+      setRecommendedLesson(null); 
       toast({
         title: "Все уроки пройдены!",
         description: "Поздравляем! Вы прошли все доступные уроки, начиная с вашего текущего уровня. Попробуйте уровневые тесты или выберите уроки для повторения.",
@@ -66,6 +73,10 @@ export default function DashboardPage() {
     setCurrentLevel(level);
     setRecommendedLesson(null); 
     setNoMoreLessons(false);
+    toast({
+        title: "Уровень изменен",
+        description: `Ваш текущий уровень установлен на ${level}.`,
+    });
   };
 
   const handleGoalsInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -95,7 +106,14 @@ export default function DashboardPage() {
               Ваш персональный помощник в изучении немецкого языка.
             </p>
           </div>
-          <Image src="https://placehold.co/100x100.png" alt="DeutschMeister Logo" width={80} height={80} className="rounded-lg" data-ai-hint="language learning" />
+          <Image 
+            src="https://placehold.co/100x100.png" 
+            alt="DeutschMeister Logo" 
+            width={80} 
+            height={80} 
+            className="rounded-lg" 
+            data-ai-hint="language learning" 
+          />
         </CardHeader>
         <CardContent>
           {!progress.currentLevel ? (
@@ -140,7 +158,7 @@ export default function DashboardPage() {
                 <ProgressBar value={progressPercentage} className="w-full h-2.5" />
               </div>
 
-              <Button onClick={findNextLessonForMe} disabled={!progress.currentLevel} className="mt-4">
+              <Button onClick={findNextLessonForMe} className="mt-4">
                 <Lightbulb className="mr-2 h-5 w-5" />
                 Найти следующий урок для меня
               </Button>
@@ -189,7 +207,14 @@ export default function DashboardPage() {
             <CardDescription>Просмотрите доступные уроки по уровням.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Image src="https://placehold.co/600x400.png" alt="Уроки" width={600} height={400} className="rounded-md mb-4" data-ai-hint="education classroom" />
+            <Image 
+              src="https://placehold.co/600x400.png" 
+              alt="Уроки" 
+              width={600} 
+              height={400} 
+              className="rounded-md mb-4" 
+              data-ai-hint="education classroom" 
+            />
             <p>Откройте для себя структурированные уроки, охватывающие грамматику, лексику и многое другое.</p>
           </CardContent>
           <CardFooter>
@@ -204,7 +229,14 @@ export default function DashboardPage() {
             <CardDescription>Отслеживайте свои достижения и улучшения.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Image src="https://placehold.co/600x400.png" alt="Прогресс" width={600} height={400} className="rounded-md mb-4" data-ai-hint="charts graphs" />
+            <Image 
+              src="https://placehold.co/600x400.png" 
+              alt="Прогресс" 
+              width={600} 
+              height={400} 
+              className="rounded-md mb-4" 
+              data-ai-hint="charts graphs" 
+            />
              <p>Следите за своим прогрессом, просматривайте результаты тестов и завершенные уроки.</p>
           </CardContent>
           <CardFooter>
