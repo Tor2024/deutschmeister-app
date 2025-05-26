@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { LANGUAGE_LEVELS, type LanguageLevel } from '@/lib/constants';
-import { Lightbulb, Zap, BookOpen, BarChart3, Edit3, GraduationCap, Users } from 'lucide-react'; // Added Users icon
+import { Lightbulb, Zap, BookOpen, BarChart3, Edit3, GraduationCap, Users, BookOpenCheck } from 'lucide-react'; // Added BookOpenCheck
 import Link from 'next/link';
 import { MOCK_LESSONS, type Lesson } from '@/data/lessons';
 import { useToast } from '@/hooks/use-toast';
@@ -22,14 +22,16 @@ export default function DashboardPage() {
   const { progress, isLoading, setCurrentLevel, setLearningGoals } = useUserProgress();
   const [recommendedLesson, setRecommendedLesson] = useState<Lesson | null>(null);
   const [noMoreLessons, setNoMoreLessons] = useState(false);
-  const [currentGoalsInput, setCurrentGoalsInput] = useState('');
-  const [isSuggestingLesson, setIsSuggestingLesson] = useState(false);
-  const [suggestionError, setSuggestionError] = useState<string | null>(null);
+  // const [isSuggestingLesson, setIsSuggestingLesson] = useState(false);
+  // const [suggestionError, setSuggestionError] = useState<string | null>(null);
   const { toast } = useToast();
   const [visitorCount, setVisitorCount] = useState<number>(BASE_VISITOR_COUNT);
+  const [currentGoalsInput, setCurrentGoalsInput] = useState(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
 
   useEffect(() => {
-    setCurrentGoalsInput(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
+    if (progress.learningGoals) {
+      setCurrentGoalsInput(progress.learningGoals);
+    }
   }, [progress.learningGoals]);
 
   useEffect(() => {
@@ -46,30 +48,27 @@ export default function DashboardPage() {
 
 
   const findNextLessonForMe = useCallback(() => {
-    setIsSuggestingLesson(true);
+    // setIsSuggestingLesson(true);
     setRecommendedLesson(null);
     setNoMoreLessons(false);
-    setSuggestionError(null);
+    // setSuggestionError(null);
 
-    if (!progress.currentLevel) {
-      toast({
-        title: "Уровень не выбран",
-        description: "Пожалуйста, сначала выберите ваш текущий уровень владения немецким.",
-        variant: "destructive",
+    let lessonsToConsider = MOCK_LESSONS;
+    if (progress.currentLevel) {
+      const userLevelIndex = LANGUAGE_LEVELS.indexOf(progress.currentLevel);
+      lessonsToConsider = MOCK_LESSONS.filter(lesson => {
+        const lessonLevelIndex = LANGUAGE_LEVELS.indexOf(lesson.level);
+        return lessonLevelIndex >= userLevelIndex;
       });
-      setIsSuggestingLesson(false);
-      return;
+    } else {
+      // Если уровень не выбран, предлагаем с А1
+      lessonsToConsider = MOCK_LESSONS.filter(lesson => LANGUAGE_LEVELS.indexOf(lesson.level) >= 0);
     }
-
-    const userLevelIndex = LANGUAGE_LEVELS.indexOf(progress.currentLevel);
     
-    const relevantLessons = MOCK_LESSONS.filter(lesson => {
-      const lessonLevelIndex = LANGUAGE_LEVELS.indexOf(lesson.level);
-      // Предлагаем уроки текущего уровня или выше
-      return lessonLevelIndex >= userLevelIndex;
-    });
+    // Сортируем уроки в соответствии с их порядком в MOCK_LESSONS
+    // (предполагается, что MOCK_LESSONS уже отсортирован в желаемом порядке)
 
-    const nextLesson = relevantLessons.find(
+    const nextLesson = lessonsToConsider.find(
       (lesson) => !progress.completedLessons.includes(lesson.id)
     );
 
@@ -89,7 +88,7 @@ export default function DashboardPage() {
         duration: 7000,
       });
     }
-    setIsSuggestingLesson(false);
+    // setIsSuggestingLesson(false);
   }, [progress.currentLevel, progress.completedLessons, toast]);
 
 
@@ -97,7 +96,7 @@ export default function DashboardPage() {
     setCurrentLevel(level);
     setRecommendedLesson(null); 
     setNoMoreLessons(false);
-    setSuggestionError(null);
+    // setSuggestionError(null);
     toast({
         title: "Уровень изменен",
         description: `Ваш текущий уровень установлен на ${level}.`,
@@ -117,7 +116,7 @@ export default function DashboardPage() {
     return <div className="container mx-auto py-8 px-4 flex justify-center items-center min-h-[calc(100vh-10rem)]"><Zap className="animate-spin h-12 w-12 text-primary" /></div>;
   }
 
-  const completedLessonsCount = progress.completedLessons.length;
+  const completedLessonsCount = progress.completedLessons?.length || 0;
   const totalLessonsCount = MOCK_LESSONS.length;
   const progressPercentage = totalLessonsCount > 0 ? (completedLessonsCount / totalLessonsCount) * 100 : 0;
 
@@ -180,22 +179,26 @@ export default function DashboardPage() {
               </div>
 
               <div className="flex flex-wrap gap-2 mt-4">
-                <Button onClick={findNextLessonForMe} disabled={isSuggestingLesson}>
+                <Button onClick={findNextLessonForMe} > 
                   <Lightbulb className="mr-2 h-5 w-5" />
-                  {isSuggestingLesson ? "Ищем урок..." : "Найти следующий урок для меня"}
+                  Найти следующий урок для меня
                 </Button>
+                 {/* <Button onClick={() => fetchAndSetSuggestedLesson(false)} disabled={isSuggestingLesson || !progress.currentLevel}>
+                  <Lightbulb className="mr-2 h-5 w-5" />
+                  {isSuggestingLesson ? "Подбираем урок..." : "Предложить урок от ИИ"}
+                </Button> */}
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {suggestionError && (
+      {/* {suggestionError && (
         <Card className="mb-8 bg-red-50 dark:bg-red-900/30 border-red-500 shadow-md">
           <CardHeader><CardTitle className="text-xl text-red-700 dark:text-red-300">Ошибка</CardTitle></CardHeader>
           <CardContent><p className="text-md text-red-600 dark:text-red-400">{suggestionError}</p></CardContent>
         </Card>
-      )}
+      )} */}
 
       {recommendedLesson && (
         <Card className="mb-8 bg-primary/10 border-primary shadow-md">
@@ -254,13 +257,13 @@ export default function DashboardPage() {
             <CardDescription>Просмотрите доступные уроки по уровням.</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-center items-center mb-4 h-32 text-primary">
-              <BookOpen className="h-20 w-20" />
+             <div className="flex justify-center items-center h-20 text-primary">
+              <BookOpen className="h-16 w-16" />
             </div>
-            <p>Откройте для себя структурированные уроки, охватывающие грамматику, лексику и многое другое.</p>
+            <p className="text-center mt-2">Откройте для себя структурированные уроки, охватывающие грамматику, лексику и многое другое.</p>
           </CardContent>
           <CardFooter>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="w-full">
               <Link href="/lessons">Перейти к урокам</Link>
             </Button>
           </CardFooter>
@@ -271,13 +274,13 @@ export default function DashboardPage() {
             <CardDescription>Отслеживайте свои достижения и улучшения.</CardDescription>
           </CardHeader>
           <CardContent>
-             <div className="flex justify-center items-center mb-4 h-32 text-accent">
-              <BarChart3 className="h-20 w-20" />
+             <div className="flex justify-center items-center h-20 text-accent">
+              <BarChart3 className="h-16 w-16" />
             </div>
-             <p>Следите за своим прогрессом, просматривайте результаты тестов и завершенные уроки.</p>
+             <p className="text-center mt-2">Следите за своим прогрессом, просматривайте результаты тестов и завершенные уроки.</p>
           </CardContent>
           <CardFooter>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="w-full">
               <Link href="/progress">Смотреть прогресс</Link>
             </Button>
           </CardFooter>
@@ -312,3 +315,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+    
