@@ -8,27 +8,33 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { LANGUAGE_LEVELS, type LanguageLevel } from '@/lib/constants';
-import { Lightbulb, Zap, BookOpenCheck, BarChart3 } from 'lucide-react';
+import { Lightbulb, Zap, BookOpenCheck, BarChart3, Edit3 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MOCK_LESSONS, type Lesson } from '@/data/lessons';
 import { useToast } from '@/hooks/use-toast';
 import { Textarea } from '@/components/ui/textarea';
+import { generateAdaptiveLesson, type AdaptiveLessonInput, type AdaptiveLessonOutput } from '@/ai/flows/adaptive-learning-path';
 
 export default function DashboardPage() {
   const { progress, isLoading, setCurrentLevel, setLearningGoals } = useUserProgress();
   const [recommendedLesson, setRecommendedLesson] = useState<Lesson | null>(null);
   const [noMoreLessons, setNoMoreLessons] = useState(false);
   const [currentGoalsInput, setCurrentGoalsInput] = useState('');
+  const [isSuggestingLesson, setIsSuggestingLesson] = useState(false);
+  const [suggestionError, setSuggestionError] = useState<string | null>(null);
   const { toast } = useToast();
+
 
   useEffect(() => {
     setCurrentGoalsInput(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
   }, [progress.learningGoals]);
 
-  const findNextLessonForMe = useCallback(() => {
+  const findNextLessonForMe = useCallback(async () => {
     setRecommendedLesson(null);
     setNoMoreLessons(false);
+    setSuggestionError(null);
+    setIsSuggestingLesson(true);
 
     if (!progress.currentLevel) {
       toast({
@@ -36,14 +42,16 @@ export default function DashboardPage() {
         description: "Пожалуйста, сначала выберите ваш текущий уровень владения немецким.",
         variant: "destructive",
       });
+      setIsSuggestingLesson(false);
       return;
     }
-
+    
+    // Логика поиска следующего непройденного урока
     const userLevelIndex = LANGUAGE_LEVELS.indexOf(progress.currentLevel);
-
     const relevantLessons = MOCK_LESSONS.filter(lesson => {
       const lessonLevelIndex = LANGUAGE_LEVELS.indexOf(lesson.level);
-      return lessonLevelIndex >= userLevelIndex;
+      // Включаем уроки текущего уровня и всех последующих
+      return lessonLevelIndex >= userLevelIndex; 
     });
 
     const nextLesson = relevantLessons.find(
@@ -59,13 +67,14 @@ export default function DashboardPage() {
       });
     } else {
       setNoMoreLessons(true);
-      setRecommendedLesson(null); 
+      setRecommendedLesson(null);
       toast({
         title: "Все уроки пройдены!",
         description: "Поздравляем! Вы прошли все доступные уроки, начиная с вашего текущего уровня. Попробуйте уровневые тесты или выберите уроки для повторения.",
         duration: 7000,
       });
     }
+    setIsSuggestingLesson(false);
   }, [progress.currentLevel, progress.completedLessons, toast]);
 
 
@@ -73,6 +82,7 @@ export default function DashboardPage() {
     setCurrentLevel(level);
     setRecommendedLesson(null); 
     setNoMoreLessons(false);
+    setSuggestionError(null);
     toast({
         title: "Уровень изменен",
         description: `Ваш текущий уровень установлен на ${level}.`,
@@ -107,12 +117,13 @@ export default function DashboardPage() {
             </p>
           </div>
           <Image 
-            src="https://placehold.co/100x100.png" 
+            src="https://source.unsplash.com/100x100/?language,learning"
             alt="DeutschMeister Logo" 
             width={80} 
             height={80} 
-            className="rounded-lg" 
+            className="rounded-lg object-cover" 
             data-ai-hint="language learning" 
+            unoptimized
           />
         </CardHeader>
         <CardContent>
@@ -150,7 +161,6 @@ export default function DashboardPage() {
                   </Select>
               </div>
               
-
               <div className="mt-2">
                 <p className="text-sm text-muted-foreground mb-1">
                   Завершено уроков: {completedLessonsCount} из {totalLessonsCount}
@@ -158,14 +168,25 @@ export default function DashboardPage() {
                 <ProgressBar value={progressPercentage} className="w-full h-2.5" />
               </div>
 
-              <Button onClick={findNextLessonForMe} className="mt-4">
+              <Button onClick={findNextLessonForMe} disabled={isSuggestingLesson} className="mt-4">
                 <Lightbulb className="mr-2 h-5 w-5" />
-                Найти следующий урок для меня
+                {isSuggestingLesson ? "Ищем урок..." : "Найти следующий урок для меня"}
               </Button>
             </div>
           )}
         </CardContent>
       </Card>
+
+      {suggestionError && (
+        <Card className="mb-8 bg-red-50 dark:bg-red-900/30 border-red-500 shadow-md">
+          <CardHeader>
+            <CardTitle className="text-xl text-red-700 dark:text-red-300">Ошибка рекомендации</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-md text-red-600 dark:text-red-400">{suggestionError}</p>
+          </CardContent>
+        </Card>
+      )}
 
       {recommendedLesson && (
         <Card className="mb-8 bg-primary/10 border-primary shadow-md">
@@ -174,18 +195,15 @@ export default function DashboardPage() {
               <BookOpenCheck className="mr-3 h-7 w-7" /> Рекомендуемый урок</CardTitle>
           </CardHeader>
           <CardContent>
-            <h3 className="text-xl font-semibold mb-2">{recommendedLesson.topic} ({recommendedLesson.level})</h3>
-            <p className="text-md text-muted-foreground mb-4 whitespace-pre-line">
-              Этот урок следующий в вашей программе обучения.
-            </p>
-            <Button asChild>
+            <h3 className="text-xl font-semibold mb-1">{recommendedLesson.topic} ({recommendedLesson.level})</h3>
+            <Button asChild className="mt-3">
               <Link href={`/lessons/${recommendedLesson.id}`}>Начать урок: {recommendedLesson.topic}</Link>
             </Button>
           </CardContent>
         </Card>
       )}
-
-      {noMoreLessons && (
+      
+      {noMoreLessons && !recommendedLesson && (
          <Card className="mb-8 bg-green-50 dark:bg-green-900/30 border-green-500 shadow-md">
           <CardHeader>
             <CardTitle className="text-2xl text-green-700 dark:text-green-300 flex items-center">
@@ -207,14 +225,16 @@ export default function DashboardPage() {
             <CardDescription>Просмотрите доступные уроки по уровням.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Image 
-              src="https://placehold.co/600x400.png" 
-              alt="Уроки" 
-              width={600} 
-              height={400} 
-              className="rounded-md mb-4" 
-              data-ai-hint="education classroom" 
-            />
+            <div className="aspect-video w-full relative mb-4">
+              <Image 
+                src="https://source.unsplash.com/600x400/?education,classroom"
+                alt="Уроки" 
+                fill
+                className="rounded-md object-cover" 
+                data-ai-hint="education classroom" 
+                unoptimized
+              />
+            </div>
             <p>Откройте для себя структурированные уроки, охватывающие грамматику, лексику и многое другое.</p>
           </CardContent>
           <CardFooter>
@@ -229,14 +249,16 @@ export default function DashboardPage() {
             <CardDescription>Отслеживайте свои достижения и улучшения.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Image 
-              src="https://placehold.co/600x400.png" 
-              alt="Прогресс" 
-              width={600} 
-              height={400} 
-              className="rounded-md mb-4" 
-              data-ai-hint="charts graphs" 
-            />
+             <div className="aspect-video w-full relative mb-4">
+              <Image 
+                src="https://source.unsplash.com/600x400/?charts,graphs"
+                alt="Прогресс" 
+                fill
+                className="rounded-md object-cover" 
+                data-ai-hint="charts graphs" 
+                unoptimized
+              />
+            </div>
              <p>Следите за своим прогрессом, просматривайте результаты тестов и завершенные уроки.</p>
           </CardContent>
           <CardFooter>
@@ -249,9 +271,12 @@ export default function DashboardPage() {
 
       <Card className="mt-8 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-xl">Настройте свои цели обучения</CardTitle>
+          <CardTitle className="text-xl flex items-center">
+            <Edit3 className="mr-2 h-5 w-5" />
+            Настройте свои цели обучения
+          </CardTitle>
           <CardDescription>
-            Расскажите нам, на чем вы хотели бы сосредоточиться, чтобы мы могли лучше адаптировать уроки.
+            Расскажите нам, на чем вы хотели бы сосредоточиться, чтобы мы могли лучше адаптировать ваше обучение.
             {progress.learningGoals && progress.learningGoals.toLowerCase() !== "общее улучшение знаний немецкого языка." && (
                 <span className="block mt-1 text-sm">Текущие цели: <span className="font-medium text-primary">{progress.learningGoals}</span></span>
             )}
