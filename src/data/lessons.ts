@@ -79,7 +79,12 @@ import { lessonB1Praeteritum } from './lessons/b1-praeteritum';
 import { lessonB1PerfektReview } from './lessons/b1-perfekt-review';
 import { lessonB1Plusquamperfekt } from './lessons/b1-plusquamperfekt';
 import { lessonB1Futur1 } from './lessons/b1-futur1';
+import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
+import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
+import { lessonB1KonditionalsaetzeTyp1 } from './lessons/b1-konditionalsaetze-typ1';
+import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
 import { lessonB1Adjektivdeklination } from './lessons/b1-adjektivdeklination';
+import { lessonB1PartizipienAlsAdjektive } from './lessons/b1-partizipien-als-adjektive';
 import { lessonB1VerbenMitPraepositionen } from './lessons/b1-verben-mit-praepositionen';
 import { lessonB1Konjunktiv2Einfuehrung } from './lessons/b1-konjunktiv2-einfuehrung';
 import { lessonB1PassivEinfuehrung } from './lessons/b1-passiv-einfuehrung';
@@ -87,12 +92,7 @@ import { lessonB1Genitiv } from './lessons/b1-genitiv';
 import { lessonB1NDeklination } from './lessons/b1-n-deklination';
 import { lessonB1Indefinitpronomen } from './lessons/b1-indefinitpronomen';
 import { lessonB1InfinitivMitZu } from './lessons/b1-infinitiv-mit-zu';
-import { lessonB1KonditionalsaetzeTyp1 } from './lessons/b1-konditionalsaetze-typ1';
-import { lessonB1PartizipienAlsAdjektive } from './lessons/b1-partizipien-als-adjektive';
 import { lessonB1IndirekteRedeEinfuehrung } from './lessons/b1-indirekte-rede-einfuehrung';
-import { lessonB1Konsekutivsaetze } from './lessons/b1-konsekutivsaetze';
-import { lessonB1Nebensaetze } from './lessons/b1-nebensaetze';
-import { lessonB1Relativsaetze } from './lessons/b1-relativsaetze';
 // B1 Lexik
 import { lessonB1LexikBildungStudium } from './lessons/b1-lexik-bildung-studium';
 import { lessonB1LexikArbeitKarriere } from './lessons/b1-lexik-arbeit-karriere';
@@ -100,6 +100,8 @@ import { lessonB1LexikMedienKommunikation } from './lessons/b1-lexik-medien-komm
 import { lessonB1LexikUmweltWetter } from './lessons/b1-lexik-umwelt-wetter';
 import { lessonB1LexikKulturFreizeit } from './lessons/b1-lexik-kultur-freizeit';
 import { lessonB1LexikBeziehungen } from './lessons/b1-lexik-beziehungen';
+import { lessonB1LexikSportFreizeit } from './lessons/b1-lexik-sport-freizeit'; // Added
+
 
 // B2 Grammar & Lexik
 import { lessonB2Konjunktiv2 } from './lessons/b2-konjunktiv2';
@@ -141,7 +143,7 @@ import { lessonC1LexikInterkulturelleKommunikation } from './lessons/c1-lexik-in
 import { lessonC2Stilmittel } from './lessons/c2-stilmittel';
 import { lessonC2NominalstilVerbalstil } from './lessons/c2-nominalstil-verbalstil';
 import { lessonC2Modalpartikeln } from './lessons/c2-modalpartikeln';
-import { lessonC2Absolutformen } from './lessons/c2-absolutformen'; // Added
+import { lessonC2Absolutformen } from './lessons/c2-absolutformen';
 // C2 Lexik
 import { lessonC2LexikGlobaleProbleme } from './lessons/c2-lexik-globale-probleme';
 import { lessonC2LexikMedienkritikDigitaleGesellschaft } from './lessons/c2-lexik-medienkritik-digitale-gesellschaft';
@@ -149,66 +151,63 @@ import { lessonC2LexikSozialeTrends } from './lessons/c2-lexik-soziale-trends';
 
 
 export const MOCK_LESSONS: Lesson[] = [
-  // --- A1 ---
-  // Grundlagen
+  // A1 - Grundlagen & erste Kommunikation
   lessonA1AlphabetBegruessungen,
-  lessonA1PersonalpronomenSeinHaben,
   lessonA1LexikPersoenlicheInfos,
-  lessonA1GrammatikPraesensVerben,
-  lessonA1ArtikelGenus,
-  lessonA1Pluralbildung,
+  lessonA1PersonalpronomenSeinHaben,
   lessonA1LexikZahlenFarben,
-  lessonA1LexikFamilie,
-  // Aufbau
-  lessonA1Akkusativ,
-  lessonA1Possessivpronomen,
-  lessonA1LexikKleidung,
-  lessonA1Negation,
-  lessonA1LexikEssenTrinken,
   lessonA1SatzbauGrundlagen,
   lessonA1WFragen,
+  lessonA1GrammatikPraesensVerben,
+
+  // A1 - Alltagsthemen & Grammatik-Basics
+  lessonA1ArtikelGenus,
+  lessonA1Pluralbildung,
+  lessonA1LexikFamilie,
+  lessonA1Possessivpronomen,
+  lessonA1LexikHausWohnung,
+  lessonA1Akkusativ,
+  lessonA1Negation,
+  lessonA1LexikEssenTrinken,
+  lessonA1LexikKleidung,
   lessonA1Modalverben,
   lessonA1LexikHobbysFreizeit,
   lessonA1Imperativ,
   lessonA1LexikUhrzeitTagesablauf,
-  // Vertiefung
+  lessonA1LexikWochentageMonateJahreszeiten,
+  lessonA1LexikGefuehleZustaende,
   lessonA1PraepositionenAkkusativ,
   lessonA1PraepositionenDativ,
   lessonA1PraepositionenDativWechsel,
-  lessonA1LexikSchuleArbeitEinfach,
   lessonA1TrennbarVerben,
+  lessonA1LexikSchuleArbeitEinfach,
   lessonA1LexikWetter,
-  lessonA1LexikWochentageMonateJahreszeiten,
-  lessonA1LexikGefuehleZustaende,
-  lessonA1LexikHausWohnung,
   lessonA1LexikOrdinalzahlenDatum,
 
-  // --- A2 ---
-  // Grundlagen Grammatik
+  // A2 - Vertiefung Grammatik & Erweiterung Alltag
   lessonA2Artikel,
   lessonA2VerbenPraesens,
   lessonA2Pluralbildung,
-  lessonA2GrammatikPraeteritumSeinHabenModal,
-  lessonA2Perfekt,
-  lessonA2Modalverben,
-  lessonA2ModalverbenPerfekt,
-  lessonA2TrennbareUntrennbareVerben,
-  lessonA2VerbLassen,
-  // Aufbau Grammatik
-  lessonA2Praepositionen,
-  lessonA2Possessivpronomen,
-  lessonA2PersonalpronomenAkkDat,
-  lessonA2Adjektivsteigerung,
   lessonA2Adjektivdeklination,
+  lessonA2Adjektivsteigerung,
+  lessonA2PersonalpronomenAkkDat,
+  lessonA2Possessivpronomen,
+  lessonA2Modalverben,
   lessonA2Imperativ,
+  lessonA2Negation,
   lessonA2Satzbau,
   lessonA2NebenordnendeKonjunktionen,
   lessonA2NebensaetzeEinfach,
-  lessonA2Negation,
+  lessonA2Praepositionen,
   lessonA2ReflexiveVerben,
-  lessonA2TemporalsaetzeAlsWenn,
   lessonA2Demonstrativpronomen,
+  lessonA2TemporalsaetzeAlsWenn,
   lessonA2OrdinalzahlenDatum,
+  lessonA2GrammatikPraeteritumSeinHabenModal,
+  lessonA2Perfekt,
+  lessonA2ModalverbenPerfekt,
+  lessonA2TrennbareUntrennbareVerben,
+  lessonA2VerbLassen,
   // A2 Lexik
   lessonA2LexikArbeitBeruf,
   lessonA2LexikReisenVerkehr,
@@ -225,25 +224,25 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonA2LexikBank,
   lessonA2LexikSchuleKurse,
 
-  // --- B1 ---
-  // Grammatik
+
+  // B1 - Ausbau Grammatik & komplexere Themen
   lessonB1Praeteritum,
   lessonB1PerfektReview,
   lessonB1Plusquamperfekt,
   lessonB1Futur1,
-  lessonB1Nebensaetze, // Общие придаточные
-  lessonB1Relativsaetze,
-  lessonB1KonditionalsaetzeTyp1,
-  lessonB1Konsekutivsaetze,
+  lessonB1Genitiv,
+  lessonB1NDeklination,
   lessonB1Adjektivdeklination,
-  lessonB1PartizipienAlsAdjektive,
   lessonB1VerbenMitPraepositionen,
   lessonB1Konjunktiv2Einfuehrung,
   lessonB1PassivEinfuehrung,
-  lessonB1Genitiv,
-  lessonB1NDeklination,
   lessonB1Indefinitpronomen,
+  lessonB1Nebensaetze,
+  lessonB1Relativsaetze,
+  lessonB1KonditionalsaetzeTyp1,
+  lessonB1Konsekutivsaetze,
   lessonB1InfinitivMitZu,
+  lessonB1PartizipienAlsAdjektive,
   lessonB1IndirekteRedeEinfuehrung,
   // B1 Lexik
   lessonB1LexikBildungStudium,
@@ -252,19 +251,19 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB1LexikUmweltWetter,
   lessonB1LexikKulturFreizeit,
   lessonB1LexikBeziehungen,
+  lessonB1LexikSportFreizeit,
 
-  // --- B2 ---
-  // Grammatik
+  // B2 - Fortgeschrittene Grammatik & Diskussionen
   lessonB2Konjunktiv2,
   lessonB2Passiv,
   lessonB2PassivErsatzformen,
   lessonB2SubjektiveModalverben,
+  lessonB2IndirekteRede,
   lessonB2NomenVerb,
   lessonB2KomplexeSatzverbindungen,
   lessonB2NominalisierungVerbalisierung,
   lessonB2Futur2,
   lessonB2Wortbildung,
-  lessonB2IndirekteRede,
   lessonB2PartizipialkonstruktionenEinfuehrung,
   // B2 Lexik
   lessonB2LexikUmweltNachhaltigkeit,
@@ -274,8 +273,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonB2LexikPolitik,
   lessonB2LexikWirtschaftKonsum,
 
-  // --- C1 ---
-  // Grammatik
+  // C1 - Akademische & professionelle Sprache
   lessonC1KonjunktivVertiefung,
   lessonC1IndirekteRede,
   lessonC1Partizipialkonstruktionen,
@@ -289,8 +287,7 @@ export const MOCK_LESSONS: Lesson[] = [
   lessonC1LexikWirtschaftGlobalermarkt,
   lessonC1LexikInterkulturelleKommunikation,
 
-  // --- C2 ---
-  // Grammatik & Stil
+  // C2 - Hohes Niveau & Stilistik
   lessonC2Stilmittel,
   lessonC2NominalstilVerbalstil,
   lessonC2Modalpartikeln,
@@ -314,5 +311,3 @@ export const getLessonsCountByLevel = (): Record<string, number> => {
 export const getTotalLessonsCount = (): number => {
   return MOCK_LESSONS.length;
 };
-
-    
