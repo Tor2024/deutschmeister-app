@@ -1,0 +1,23 @@
+{
+  "name": "DeutschMeister",
+  "short_name": "DeutschMeister",
+  "description": "Изучение немецкого языка с ИИ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F0F4F8",
+  "theme_color": "#64B5F6",
+  "icons": [
+    {
+      "src": "https://placehold.co/192x192.png?text=DM",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://placehold.co/512x512.png?text=DM",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
