@@ -9,21 +9,21 @@ import Link from 'next/link';
 import { MOCK_LESSONS } from '@/data/lessons';
 import type { Exercise } from '@/types';
 import { BarChart, CheckCircle, ListChecks, TrendingUp, Zap, Activity, Award } from 'lucide-react';
-import Image from "next/image";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useToast } from "@/hooks/use-toast";
-import { cn } from '@/lib/utils'; // Import cn for conditional classes
+import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function UserProgressPage() {
   const { progress, isLoading, clearProgress } = useUserProgress();
   const { toast } = useToast();
 
   if (isLoading) {
-    return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Zap className="animate-spin h-12 w-12 text-primary" /></div>;
+    return <div className="container mx-auto py-8 px-4 flex justify-center items-center min-h-[calc(100vh-10rem)]"><Zap className="animate-spin h-12 w-12 text-primary" /></div>;
   }
 
   const totalLessons = MOCK_LESSONS.length;
-  const completedLessonsCount = progress.completedLessons.length;
+  const completedLessonsCount = progress.completedLessons?.length || 0;
   const progressPercentage = totalLessons > 0 ? (completedLessonsCount / totalLessons) * 100 : 0;
 
   const handleClearProgress = () => {
@@ -57,34 +57,33 @@ export default function UserProgressPage() {
         }
       }
     }
-     // Fallback if exerciseId not found in standard or AI exercises by direct ID match
+    // Fallback if exerciseId not found in standard or AI exercises by direct ID match
+    // Improved parsing for AI exercise IDs like 'ai-ex-a1-lexik-familie-1678886400000-0'
     if (exerciseId.startsWith('ai-ex-')) {
-      // Example ID: ai-ex-a2-artikel-1678886400000-0
-      // We need to extract the lessonId part, which could be 'a2-artikel' or 'a1-lexik-familie'
       const parts = exerciseId.split('-');
-      if (parts.length >= 5) { // "ai", "ex", lessonId_part1, ..., lessonId_partN, timestamp, index
-          // Reconstruct lessonId by joining parts between "ai-ex-" and the last two numeric parts (timestamp and index)
+      if (parts.length >= 5) { // "ai", "ex", lesson_id_part1, ..., lesson_id_partN, timestamp, index
           const lessonIdCandidateParts = parts.slice(2, parts.length - 2);
           const lessonIdCandidate = lessonIdCandidateParts.join('-');
           const aiLesson = MOCK_LESSONS.find(l => l.id === lessonIdCandidate);
           if (aiLesson) {
             return {
               lessonTopic: aiLesson.topic,
-              exerciseQuestion: "Упражнение от ИИ",
+              exerciseQuestion: "Упражнение от ИИ (аудио)", // More descriptive
               lessonId: aiLesson.id
             }
           }
       }
     }
-    return { lessonTopic: "Неизвестный урок", exerciseQuestion: "ID: " + exerciseId, lessonId: null };
+    return { lessonTopic: "Неизвестный урок", exerciseQuestion: `ID: ${exerciseId.substring(0,30)}...`, lessonId: null };
   };
 
-  const exerciseAttemptsArray = Object.entries(progress.exerciseAttempts).map(([id, data]) => ({
-    id,
-    ...data,
-    ...getExerciseDetails(id)
-  }));
-
+  const exerciseAttemptsArray = progress.exerciseAttempts 
+    ? Object.entries(progress.exerciseAttempts).map(([id, data]) => ({
+        id,
+        ...data,
+        ...getExerciseDetails(id)
+      }))
+    : [];
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -129,7 +128,7 @@ export default function UserProgressPage() {
                 <CardTitle className="text-xl flex items-center"><CheckCircle className="mr-2 h-6 w-6 text-green-600 dark:text-green-400"/> Список пройденных уроков</CardTitle>
             </CardHeader>
             <CardContent>
-                {completedLessonsCount > 0 ? (
+                {completedLessonsCount > 0 && progress.completedLessons ? (
                     <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
                         {progress.completedLessons.map(lessonId => {
                             const lesson = MOCK_LESSONS.find(l => l.id === lessonId);
