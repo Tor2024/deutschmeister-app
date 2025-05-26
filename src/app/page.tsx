@@ -8,12 +8,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { LANGUAGE_LEVELS, type LanguageLevel } from '@/lib/constants';
-import { Lightbulb, Zap, BookOpenCheck, BarChart3, Edit3, GraduationCap, BookOpen } from 'lucide-react';
+import { Lightbulb, Zap, BookOpen, BarChart3, Edit3, GraduationCap, Users } from 'lucide-react'; // Added Users icon
 import Link from 'next/link';
 import { MOCK_LESSONS, type Lesson } from '@/data/lessons';
 import { useToast } from '@/hooks/use-toast';
 import { Textarea } from '@/components/ui/textarea';
 // import { generateAdaptiveLesson, type AdaptiveLessonInput, type AdaptiveLessonOutput } from '@/ai/flows/adaptive-learning-path';
+
+const VISITOR_COUNT_KEY = 'deutschMeisterVisitorCount';
+const BASE_VISITOR_COUNT = 1337; // Начальное значение, если в localStorage пусто
 
 export default function DashboardPage() {
   const { progress, isLoading, setCurrentLevel, setLearningGoals } = useUserProgress();
@@ -21,12 +24,26 @@ export default function DashboardPage() {
   const [noMoreLessons, setNoMoreLessons] = useState(false);
   const [currentGoalsInput, setCurrentGoalsInput] = useState('');
   const [isSuggestingLesson, setIsSuggestingLesson] = useState(false);
-  const [suggestionError, setSuggestionError] = useState<string | null>(null); // Keep this for potential errors from findNextLessonForMe
+  const [suggestionError, setSuggestionError] = useState<string | null>(null);
   const { toast } = useToast();
+  const [visitorCount, setVisitorCount] = useState<number>(BASE_VISITOR_COUNT);
 
   useEffect(() => {
     setCurrentGoalsInput(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
   }, [progress.learningGoals]);
+
+  useEffect(() => {
+    let currentCount = parseInt(localStorage.getItem(VISITOR_COUNT_KEY) || '0');
+    if (currentCount < BASE_VISITOR_COUNT) {
+      currentCount = BASE_VISITOR_COUNT;
+    }
+    // Инкрементируем счетчик на небольшое случайное число при каждой загрузке
+    const increment = Math.floor(Math.random() * 3) + 1;
+    currentCount += increment;
+    localStorage.setItem(VISITOR_COUNT_KEY, currentCount.toString());
+    setVisitorCount(currentCount);
+  }, []);
+
 
   const findNextLessonForMe = useCallback(() => {
     setIsSuggestingLesson(true);
@@ -48,6 +65,7 @@ export default function DashboardPage() {
     
     const relevantLessons = MOCK_LESSONS.filter(lesson => {
       const lessonLevelIndex = LANGUAGE_LEVELS.indexOf(lesson.level);
+      // Предлагаем уроки текущего уровня или выше
       return lessonLevelIndex >= userLevelIndex;
     });
 
@@ -64,7 +82,7 @@ export default function DashboardPage() {
       });
     } else {
       setNoMoreLessons(true);
-      setRecommendedLesson(null); // Ensure no lesson is shown if none found
+      setRecommendedLesson(null); 
       toast({
         title: "Все уроки пройдены!",
         description: "Поздравляем! Вы прошли все доступные уроки, начиная с вашего текущего уровня. Попробуйте уровневые тесты или выберите уроки для повторения.",
@@ -211,6 +229,23 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       )}
+
+      <Card className="mb-8 shadow-md">
+        <CardHeader>
+            <CardTitle className="text-xl flex items-center">
+                <Users className="mr-2 h-5 w-5 text-accent" />
+                Наше сообщество
+            </CardTitle>
+        </CardHeader>
+        <CardContent>
+            <p className="text-3xl font-semibold text-center text-primary">
+                Нас уже {visitorCount.toLocaleString('ru-RU')}!
+            </p>
+            <p className="text-sm text-muted-foreground text-center mt-1">
+                Присоединяйтесь к изучению немецкого вместе с DeutschMeister.
+            </p>
+        </CardContent>
+      </Card>
 
       <div className="grid md:grid-cols-2 gap-6 mb-8">
         <Card className="shadow-md hover:shadow-lg transition-shadow">
