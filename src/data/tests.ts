@@ -39,7 +39,7 @@ import { testA2VerbenPraesens } from './tests/a2-verben-praesens-test';
 import { testA2Pluralbildung } from './tests/a2-pluralbildung-test';
 import { testA2Perfekt } from './tests/a2-perfekt-test';
 import { testA2Modalverben } from './tests/a2-modalverben-test';
-import { testA2ModalverbenPerfekt } from './tests/a2-modalverben-perfekt-test'; // Added
+import { testA2ModalverbenPerfekt } from './tests/a2-modalverben-perfekt-test';
 import { testA2Praepositionen } from './tests/a2-praepositionen-test';
 import { testA2Possessivpronomen } from './tests/a2-possessivpronomen-test';
 import { testA2PersonalpronomenAkkDat } from './tests/a2-personalpronomen-akk-dat-test';
@@ -54,8 +54,8 @@ import { testA2ReflexiveVerben } from './tests/a2-reflexive-verben-test';
 import { testA2TemporalsaetzeAlsWenn } from './tests/a2-temporalsaetze-als-wenn-test';
 import { testA2Demonstrativpronomen } from './tests/a2-demonstrativpronomen-test';
 import { testA2OrdinalzahlenDatum } from './tests/a2-ordinalzahlen-datum-test';
-import { testA2VerbLassen } from './tests/a2-verb-lassen-test'; // Added
-import { testA2TrennbareUntrennbareVerben } from './tests/a2-trennbare-untrennbare-verben-test'; // Added
+import { testA2VerbLassen } from './tests/a2-verb-lassen-test';
+import { testA2TrennbareUntrennbareVerben } from './tests/a2-trennbare-untrennbare-verben-test';
 import { testA2GrammatikPraeteritumSeinHabenModal } from './tests/a2-grammatik-praeteritum-sein-haben-modal-test';
 
 
@@ -81,7 +81,7 @@ import { testB1PerfektReview } from './tests/b1-perfekt-review-test';
 import { testB1Plusquamperfekt } from './tests/b1-plusquamperfekt-test';
 import { testB1Futur1 } from './tests/b1-futur1-test';
 import { testB1Adjektivdeklination } from './tests/b1-adjektivdeklination-test';
-import { testB1PartizipienAlsAdjektive } from './tests/b1-partizipien-als-adjektive-test'; // Added
+import { testB1PartizipienAlsAdjektive } from './tests/b1-partizipien-als-adjektive-test';
 import { testB1VerbenMitPraepositionen } from './tests/b1-verben-mit-praepositionen-test';
 import { testB1Konjunktiv2Einfuehrung } from './tests/b1-konjunktiv2-einfuehrung-test';
 import { testB1PassivEinfuehrung } from './tests/b1-passiv-einfuehrung-test';
@@ -89,8 +89,8 @@ import { testB1Genitiv } from './tests/b1-genitiv-test';
 import { testB1NDeklination } from './tests/b1-n-deklination-test';
 import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
 import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
-import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test'; // Added
-import { testB1IndirekteRedeEinfuehrung } from './tests/b1-indirekte-rede-einfuehrung-test'; // Added
+import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test';
+import { testB1IndirekteRedeEinfuehrung } from './tests/b1-indirekte-rede-einfuehrung-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
 import { testB1Relativsaetze } from './tests/b1-relativsaetze-test';
@@ -113,8 +113,8 @@ import { testB2KomplexeSatzverbindungen } from './tests/b2-komplexe-satzverbindu
 import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-verbalisierung-test';
 import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
-import { testB2IndirekteRede } from './tests/b2-indirekte-rede-test'; // Added
-import { testB2PartizipialkonstruktionenEinfuehrung } from './tests/b2-partizipialkonstruktionen-einfuehrung-test'; // Added
+import { testB2IndirekteRede } from './tests/b2-indirekte-rede-test';
+import { testB2PartizipialkonstruktionenEinfuehrung } from './tests/b2-partizipialkonstruktionen-einfuehrung-test';
 
 // B2 Lexik Tests
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
@@ -130,8 +130,8 @@ import { testC1Partizipialkonstruktionen } from './tests/c1-partizipialkonstrukt
 import { testC1KonjunktivVertiefung } from './tests/c1-konjunktiv-vertiefung-test';
 import { testC1PartizipialkonstruktionenAdverbial } from './tests/c1-partizipialkonstruktionen-adverbial-test';
 import { testC1AdverbialsaetzeVertiefung } from './tests/c1-adverbialsaetze-vertiefung-test';
-import { testC1ErweiterteKonnektorenStil } from './tests/c1-erweiterte-konnektoren-stil-test'; // Added
-import { testC1Referenzbezuege } from './tests/c1-referenzbezuege-test'; // Added
+import { testC1ErweiterteKonnektorenStil } from './tests/c1-erweiterte-konnektoren-stil-test';
+import { testC1Referenzbezuege } from './tests/c1-referenzbezuege-test';
 
 // C1 Lexik Tests
 import { testC1LexikPolitikGesellschaft } from './tests/c1-lexik-politik-gesellschaft-test';
@@ -143,6 +143,7 @@ import { testC1LexikInterkulturelleKommunikation } from './tests/c1-lexik-interk
 import { testC2Stilmittel } from './tests/c2-stilmittel-test';
 import { testC2NominalstilVerbalstil } from './tests/c2-nominalstil-verbalstil-test';
 import { testC2Modalpartikeln } from './tests/c2-modalpartikeln-test';
+import { testC2Absolutformen } from './tests/c2-absolutformen-test'; // Added
 
 // C2 Lexik Tests
 import { testC2LexikGlobaleProbleme } from './tests/c2-lexik-globale-probleme-test';
@@ -153,7 +154,7 @@ export const MOCK_TESTS: Test[] = [
   // A1 Thematic Grammar & Lexik Tests
   testA1ArtikelGenus,
   testA1PronomenSeinHaben,
-  testA1GrammatikPraesensVerben, // Added
+  testA1GrammatikPraesensVerben,
   testA1Pluralbildung,
   testA1Akkusativ,
   testA1Modalverben,
@@ -163,10 +164,10 @@ export const MOCK_TESTS: Test[] = [
   testA1Imperativ,
   testA1PraepositionenAkkusativ,
   testA1PraepositionenDativ,
-  testA1PraepositionenDativWechsel, // Added
+  testA1PraepositionenDativWechsel,
   testA1TrennbarVerben,
-  testA1WFragen, // Added
-  testA1LexikOrdinalzahlenDatum, // Added
+  testA1WFragen,
+  testA1LexikOrdinalzahlenDatum,
 
   testA1LexikPersoenlicheInfos,
   testA1LexikZahlenFarben,
@@ -181,17 +182,16 @@ export const MOCK_TESTS: Test[] = [
   testA1LexikGefuehleZustaende,
   testA1LexikHausWohnung,
 
-
   // A2 Thematic Grammar & Lexik Tests
   testA2Artikel,
   testA2VerbenPraesens,
-  testA2GrammatikPraeteritumSeinHabenModal, // Added
+  testA2GrammatikPraeteritumSeinHabenModal,
   testA2Pluralbildung,
-  testA2TrennbareUntrennbareVerben, // Added
+  testA2TrennbareUntrennbareVerben,
   testA2Perfekt,
   testA2Modalverben,
-  testA2ModalverbenPerfekt, // Added
-  testA2VerbLassen, // Added
+  testA2ModalverbenPerfekt,
+  testA2VerbLassen,
   testA2Praepositionen,
   testA2Possessivpronomen,
   testA2PersonalpronomenAkkDat,
@@ -227,8 +227,12 @@ export const MOCK_TESTS: Test[] = [
   testB1PerfektReview,
   testB1Plusquamperfekt,
   testB1Futur1,
+  testB1Nebensaetze,
+  testB1Relativsaetze,
+  testB1KonditionalsaetzeTyp1,
+  testB1Konsekutivsaetze,
   testB1Adjektivdeklination,
-  testB1PartizipienAlsAdjektive, // Added
+  testB1PartizipienAlsAdjektive,
   testB1VerbenMitPraepositionen,
   testB1Konjunktiv2Einfuehrung,
   testB1PassivEinfuehrung,
@@ -236,11 +240,7 @@ export const MOCK_TESTS: Test[] = [
   testB1NDeklination,
   testB1Indefinitpronomen,
   testB1InfinitivMitZu,
-  testB1KonditionalsaetzeTyp1, // Added
-  testB1IndirekteRedeEinfuehrung, // Added
-  testB1Konsekutivsaetze,
-  testB1Nebensaetze,
-  testB1Relativsaetze,
+  testB1IndirekteRedeEinfuehrung,
 
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
@@ -251,16 +251,16 @@ export const MOCK_TESTS: Test[] = [
 
   // B2 Thematic Grammar & Lexik Tests
   testB2Konjunktiv2,
-  testB2NomenVerb,
   testB2Passiv,
   testB2PassivErsatzformen,
   testB2SubjektiveModalverben,
+  testB2NomenVerb,
   testB2KomplexeSatzverbindungen,
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
   testB2Wortbildung,
-  testB2IndirekteRede, // Added
-  testB2PartizipialkonstruktionenEinfuehrung, // Added
+  testB2IndirekteRede,
+  testB2PartizipialkonstruktionenEinfuehrung,
 
   testB2LexikUmweltNachhaltigkeit,
   testB2LexikKulturKunst,
@@ -270,13 +270,13 @@ export const MOCK_TESTS: Test[] = [
   testB2LexikWirtschaftKonsum,
 
   // C1 Thematic Grammar & Lexik Tests
+  testC1KonjunktivVertiefung,
   testC1IndirekteRede,
   testC1Partizipialkonstruktionen,
-  testC1KonjunktivVertiefung,
   testC1PartizipialkonstruktionenAdverbial,
   testC1AdverbialsaetzeVertiefung,
-  testC1ErweiterteKonnektorenStil, // Added
-  testC1Referenzbezuege, // Added
+  testC1ErweiterteKonnektorenStil,
+  testC1Referenzbezuege,
 
   testC1LexikPolitikGesellschaft,
   testC1LexikWissenschaftForschung,
@@ -287,6 +287,7 @@ export const MOCK_TESTS: Test[] = [
   testC2Stilmittel,
   testC2NominalstilVerbalstil,
   testC2Modalpartikeln,
+  testC2Absolutformen,
 
   testC2LexikGlobaleProbleme,
   testC2LexikMedienkritikDigitaleGesellschaft,
@@ -362,7 +363,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     level: 'A2',
     topic: 'A2 - Грамматический Модуль 1 (Тест)',
     testType: 'modular',
-    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt и Модальные глаголы.',
+    description: 'Проверка знаний по темам: Артикли (углубленно), Präsens (углубленно), Plural (углубленно), Perfekt и Модальные глаголы (Präsens).',
     coveredLessonIds: [
       'a2-artikel',
       'a2-verben-praesens',
@@ -450,11 +451,12 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
     level: 'C2',
     topic: 'C2 - Грамматический Модуль 1 (Тест)',
     testType: 'modular',
-    description: 'Проверка знаний по темам: Стилистические средства и языковые регистры, Номинальный и вербальный стили, Модальные частицы.',
+    description: 'Проверка знаний по темам: Стилистические средства и языковые регистры, Номинальный и вербальный стили, Модальные частицы, Абсолютные конструкции.',
     coveredLessonIds: [
       'c2-stilmittel',
       'c2-nominalstil-verbalstil',
       'c2-modalpartikeln',
+      'c2-absolutformen',
     ],
     questions: [
         testC2Stilmittel.questions[0],
@@ -463,6 +465,7 @@ export const MOCK_MODULAR_TESTS: ModularTest[] = [
         testC2NominalstilVerbalstil.questions[1],
         testC2Modalpartikeln.questions[0],
         testC2Modalpartikeln.questions[1],
+        testC2Absolutformen.questions[0],
     ]
   },
   // Level Tests
