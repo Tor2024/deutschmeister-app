@@ -81,7 +81,6 @@ import { testB1PerfektReview } from './tests/b1-perfekt-review-test';
 import { testB1Plusquamperfekt } from './tests/b1-plusquamperfekt-test';
 import { testB1Futur1 } from './tests/b1-futur1-test';
 import { testB1Adjektivdeklination } from './tests/b1-adjektivdeklination-test';
-import { testB1PartizipienAlsAdjektive } from './tests/b1-partizipien-als-adjektive-test';
 import { testB1VerbenMitPraepositionen } from './tests/b1-verben-mit-praepositionen-test';
 import { testB1Konjunktiv2Einfuehrung } from './tests/b1-konjunktiv2-einfuehrung-test';
 import { testB1PassivEinfuehrung } from './tests/b1-passiv-einfuehrung-test';
@@ -90,6 +89,7 @@ import { testB1NDeklination } from './tests/b1-n-deklination-test';
 import { testB1Indefinitpronomen } from './tests/b1-indefinitpronomen-test';
 import { testB1InfinitivMitZu } from './tests/b1-infinitiv-mit-zu-test';
 import { testB1KonditionalsaetzeTyp1 } from './tests/b1-konditionalsaetze-typ1-test';
+import { testB1PartizipienAlsAdjektive } from './tests/b1-partizipien-als-adjektive-test';
 import { testB1IndirekteRedeEinfuehrung } from './tests/b1-indirekte-rede-einfuehrung-test';
 import { testB1Konsekutivsaetze } from './tests/b1-konsekutivsaetze-test';
 import { testB1Nebensaetze } from './tests/b1-nebensaetze-test';
@@ -102,6 +102,9 @@ import { testB1LexikMedienKommunikation } from './tests/b1-lexik-medien-kommunik
 import { testB1LexikUmweltWetter } from './tests/b1-lexik-umwelt-wetter-test';
 import { testB1LexikKulturFreizeit } from './tests/b1-lexik-kultur-freizeit-test';
 import { testB1LexikBeziehungen } from './tests/b1-lexik-beziehungen-test';
+import { testB1LexikSportFreizeit } from './tests/b1-lexik-sport-freizeit-test';
+import { testB1LexikGesunderLebensstil } from './tests/b1-lexik-gesunder-lebensstil-test'; // Added
+
 
 // B2 Grammar Tests
 import { testB2Konjunktiv2 } from './tests/b2-konjunktiv2-test';
@@ -109,13 +112,12 @@ import { testB2NomenVerb } from './tests/b2-nomen-verb-test';
 import { testB2Passiv } from './tests/b2-passiv-test';
 import { testB2PassivErsatzformen } from './tests/b2-passiv-ersatzformen-test';
 import { testB2SubjektiveModalverben } from './tests/b2-subjektive-modalverben-test';
+import { testB2IndirekteRede } from './tests/b2-indirekte-rede-test';
+import { testB2PartizipialkonstruktionenEinfuehrung } from './tests/b2-partizipialkonstruktionen-einfuehrung-test';
 import { testB2KomplexeSatzverbindungen } from './tests/b2-komplexe-satzverbindungen-test';
 import { testB2NominalisierungVerbalisierung } from './tests/b2-nominalisierung-verbalisierung-test';
 import { testB2Futur2 } from './tests/b2-futur2-test';
 import { testB2Wortbildung } from './tests/b2-wortbildung-test';
-import { testB2IndirekteRede } from './tests/b2-indirekte-rede-test';
-import { testB2PartizipialkonstruktionenEinfuehrung } from './tests/b2-partizipialkonstruktionen-einfuehrung-test';
-
 
 // B2 Lexik Tests
 import { testB2LexikUmweltNachhaltigkeit } from './tests/b2-lexik-umwelt-nachhaltigkeit-test';
@@ -124,6 +126,7 @@ import { testB2LexikWissenschaftTechnologie } from './tests/b2-lexik-wissenschaf
 import { testB2LexikMedienKommunikation } from './tests/b2-lexik-medien-kommunikation-test';
 import { testB2LexikPolitik } from './tests/b2-lexik-politik-test';
 import { testB2LexikWirtschaftKonsum } from './tests/b2-lexik-wirtschaft-konsum-test';
+
 
 // C1 Grammar Tests
 import { testC1IndirekteRede } from './tests/c1-indirekte-rede-test';
@@ -232,12 +235,7 @@ export const MOCK_TESTS: Test[] = [
   testB1PerfektReview,
   testB1Plusquamperfekt,
   testB1Futur1,
-  testB1Nebensaetze,
-  testB1Relativsaetze,
-  testB1KonditionalsaetzeTyp1,
-  testB1Konsekutivsaetze,
   testB1Adjektivdeklination,
-  testB1PartizipienAlsAdjektive,
   testB1VerbenMitPraepositionen,
   testB1Konjunktiv2Einfuehrung,
   testB1PassivEinfuehrung,
@@ -245,7 +243,12 @@ export const MOCK_TESTS: Test[] = [
   testB1NDeklination,
   testB1Indefinitpronomen,
   testB1InfinitivMitZu,
+  testB1KonditionalsaetzeTyp1,
+  testB1PartizipienAlsAdjektive,
   testB1IndirekteRedeEinfuehrung,
+  testB1Konsekutivsaetze,
+  testB1Nebensaetze,
+  testB1Relativsaetze,
 
   testB1LexikBildungStudium,
   testB1LexikArbeitKarriere,
@@ -253,18 +256,21 @@ export const MOCK_TESTS: Test[] = [
   testB1LexikUmweltWetter,
   testB1LexikKulturFreizeit,
   testB1LexikBeziehungen,
+  testB1LexikSportFreizeit,
+  testB1LexikGesunderLebensstil,
+
 
   // B2 Thematic Grammar & Lexik Tests
   testB2Konjunktiv2,
   testB2Passiv,
   testB2PassivErsatzformen,
   testB2SubjektiveModalverben,
+  testB2IndirekteRede,
   testB2NomenVerb,
   testB2KomplexeSatzverbindungen,
   testB2NominalisierungVerbalisierung,
   testB2Futur2,
   testB2Wortbildung,
-  testB2IndirekteRede,
   testB2PartizipialkonstruktionenEinfuehrung,
 
   testB2LexikUmweltNachhaltigkeit,
@@ -488,5 +494,3 @@ export const getTestById = (id: string): Test | ModularTest | undefined => {
   const allTests: (Test | ModularTest)[] = [...MOCK_TESTS, ...MOCK_MODULAR_TESTS];
   return allTests.find(test => test.id === id);
 };
-
-    
