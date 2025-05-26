@@ -8,21 +8,22 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Progress as ProgressBar } from "@/components/ui/progress";
 import { useUserProgress } from '@/hooks/use-user-progress';
 import { LANGUAGE_LEVELS, type LanguageLevel } from '@/lib/constants';
-import { Lightbulb, Zap, BookOpenCheck, BarChart3, Edit3, GraduationCap, BookOpen } from 'lucide-react'; // Added GraduationCap, BookOpen
+import { Lightbulb, Zap, BookOpenCheck, BarChart3, Edit3, GraduationCap, BookOpen } from 'lucide-react';
 import Link from 'next/link';
-// import Image from 'next/image'; // Image component is no longer needed here
 import { MOCK_LESSONS, type Lesson } from '@/data/lessons';
 import { useToast } from '@/hooks/use-toast';
 import { Textarea } from '@/components/ui/textarea';
-import { generateAdaptiveLesson, type AdaptiveLessonInput, type AdaptiveLessonOutput } from '@/ai/flows/adaptive-learning-path';
+// import { generateAdaptiveLesson, type AdaptiveLessonInput, type AdaptiveLessonOutput } from '@/ai/flows/adaptive-learning-path'; // AI-рекомендация пока заменена на простую логику
 
 export default function DashboardPage() {
   const { progress, isLoading, setCurrentLevel, setLearningGoals } = useUserProgress();
+  // const [suggestedLesson, setSuggestedLesson] = useState<AdaptiveLessonOutput | null>(null);
+  // const [suggestedLessonId, setSuggestedLessonId] = useState<string | null>(null);
+  // const [isGeneratingLesson, setIsGeneratingLesson] = useState(false);
   const [recommendedLesson, setRecommendedLesson] = useState<Lesson | null>(null);
   const [noMoreLessons, setNoMoreLessons] = useState(false);
   const [currentGoalsInput, setCurrentGoalsInput] = useState('');
-  const [isSuggestingLesson, setIsSuggestingLesson] = useState(false); // For manual button click
-  const [isAutoSuggesting, setIsAutoSuggesting] = useState(false); // For automatic suggestion on load
+  const [isSuggestingLesson, setIsSuggestingLesson] = useState(false);
   const [suggestionError, setSuggestionError] = useState<string | null>(null);
   const { toast } = useToast();
 
@@ -30,134 +31,118 @@ export default function DashboardPage() {
     setCurrentGoalsInput(progress.learningGoals || "Общее улучшение знаний немецкого языка.");
   }, [progress.learningGoals]);
 
-  // Function for AI-based lesson suggestion
-  const fetchAndSetSuggestedLesson = useCallback(async (isAuto: boolean = false) => {
-    if (!progress.currentLevel) {
-      if (!isAuto) { // Only toast if it's a manual action and level is not set
-        toast({
-          title: "Уровень не выбран",
-          description: "Пожалуйста, сначала выберите ваш текущий уровень.",
-          variant: "destructive",
-        });
-      }
-      return;
-    }
-    if (isAuto) setIsAutoSuggesting(true); else setIsSuggestingLesson(true);
-    setSuggestionError(null);
-    setRecommendedLesson(null);
-    setNoMoreLessons(false);
-
-    try {
-      const completedLessonTopics = progress.completedLessons.map(id => MOCK_LESSONS.find(l => l.id === id)?.topic || '');
-      const testResultsByTopic: Record<string, number> = {};
-      Object.entries(progress.testResults).forEach(([testId, result]) => {
-        // Assuming test ID might be related to lesson topic or that AI can infer from test ID
-        // This part might need refinement based on how test IDs relate to topics
-        const lessonForTest = MOCK_LESSONS.find(l => l.id === testId || l.exercises.some(ex => ex.id.startsWith(testId)));
-        if (lessonForTest) {
-          testResultsByTopic[lessonForTest.topic] = result.score;
-        }
-      });
-
-      const input: AdaptiveLessonInput = {
-        currentLevel: progress.currentLevel,
-        completedLessons: completedLessonTopics.filter(topic => !!topic),
-        testResults: testResultsByTopic,
-        learningGoals: progress.learningGoals || "Общее улучшение знаний немецкого языка.",
-      };
-      const suggestion: AdaptiveLessonOutput = await generateAdaptiveLesson(input);
-
-      if (suggestion && suggestion.lessonTopic) {
-        const foundLesson = MOCK_LESSONS.find(
-          lesson => lesson.topic.trim().toLowerCase() === suggestion.lessonTopic.trim().toLowerCase()
-        );
-
-        if (foundLesson) {
-          setRecommendedLesson(foundLesson);
-          if (!isAuto) {
-            toast({
-              title: "Рекомендован урок от ИИ!",
-              description: `"${foundLesson.topic}" (${foundLesson.level}). ${suggestion.reason}`,
-              duration: 7000,
-            });
-          }
-        } else {
-          // Try a more fuzzy search if exact match fails
-          const lowerSuggestionTopic = suggestion.lessonTopic.trim().toLowerCase();
-          const commonKeywords = [
-            "артикли", "artikel", "präsens", "plural", "akkusativ", "dativ", "genitiv",
-            "modalverben", "модальные глаголы", "perfekt", "präteritum", "plusquamperfekt",
-            "nebensätze", "придаточные предложения", "relativsätze", "konjunktiv", "passiv",
-            "склонение прилагательных", "adjektivdeklination", "порядок слов", "satzbau",
-            "указательные местоимения", "demonstrativpronomen"
-          ];
-
-          let keywordMatchLesson: Lesson | null = null;
-          for (const keyword of commonKeywords) {
-            if (lowerSuggestionTopic.includes(keyword)) {
-              keywordMatchLesson = MOCK_LESSONS.find(lesson =>
-                lesson.topic.toLowerCase().includes(keyword) &&
-                (lesson.level === progress.currentLevel || LANGUAGE_LEVELS.indexOf(lesson.level) === LANGUAGE_LEVELS.indexOf(progress.currentLevel!) + 1) &&
-                !progress.completedLessons.includes(lesson.id)
-              ) || null;
-              if (keywordMatchLesson) break;
-            }
-          }
-
-          if (keywordMatchLesson) {
-            setRecommendedLesson(keywordMatchLesson);
-             if (!isAuto) {
-              toast({
-                title: "Рекомендован урок от ИИ (похожая тема):",
-                description: `"${keywordMatchLesson.topic}" (${keywordMatchLesson.level}). ${suggestion.reason}`,
-                duration: 7000,
-              });
-            }
-          } else {
-            setNoMoreLessons(true); // Or set a specific message about AI suggestion not found
-            setRecommendedLesson(null); // Clear any previous recommendation
-             if (!isAuto) {
-              toast({
-                title: "Рекомендация ИИ",
-                description: `ИИ предложил тему: "${suggestion.lessonTopic}". ${suggestion.reason}. К сожалению, урок с таким точным названием не найден. Попробуйте "Найти следующий урок".`,
-                variant: "default",
-                duration: 10000,
-              });
-            }
-            // Store the AI's raw suggestion if needed for display
-            // setAiRawSuggestion({ topic: suggestion.lessonTopic, reason: suggestion.reason });
-          }
-        }
-      } else {
-        if (!isAuto) {
-          toast({ title: "ИИ не смог предложить урок", description: "Пожалуйста, попробуйте позже или выберите урок из списка.", variant: "default" });
-        }
-      }
-    } catch (error) {
-      console.error("AI lesson suggestion error:", error);
-      setSuggestionError("Не удалось получить рекомендацию от ИИ. Пожалуйста, попробуйте позже.");
-      if (!isAuto) {
-        toast({ title: "Ошибка рекомендации", description: "Не удалось связаться с ИИ.", variant: "destructive" });
-      }
-    } finally {
-      if (isAuto) setIsAutoSuggesting(false); else setIsSuggestingLesson(false);
-    }
-  }, [progress.currentLevel, progress.completedLessons, progress.testResults, progress.learningGoals, toast]);
-
-  // Uncomment to enable automatic suggestion on load if user has progress
-  // useEffect(() => {
-  //   if (progress.currentLevel && (progress.completedLessons.length > 0 || Object.keys(progress.testResults).length > 0 || progress.learningGoals !== "Общее улучшение знаний немецкого языка.")) {
-  //     // fetchAndSetSuggestedLesson(true); // Auto-fetch AI suggestion
+  // // AI-based lesson suggestion - temporarily replaced with simpler logic
+  // const fetchAndSetSuggestedLesson = useCallback(async (isAuto: boolean = false) => {
+  //   if (!progress.currentLevel) {
+  //     if (!isAuto) {
+  //       toast({
+  //         title: "Уровень не выбран",
+  //         description: "Пожалуйста, сначала выберите ваш текущий уровень.",
+  //         variant: "destructive",
+  //       });
+  //     }
+  //     return;
   //   }
-  // }, [fetchAndSetSuggestedLesson, progress.currentLevel, progress.completedLessons, progress.testResults, progress.learningGoals]);
+  //   if (isAuto) setIsGeneratingLesson(true); else setIsSuggestingLesson(true);
+  //   setSuggestionError(null);
+  //   setSuggestedLesson(null);
+  //   setSuggestedLessonId(null);
+  //   setNoMoreLessons(false);
 
+  //   try {
+  //     const completedLessonTopics = progress.completedLessons.map(id => MOCK_LESSONS.find(l => l.id === id)?.topic || '');
+  //     const testResultsByTopic: Record<string, number> = {};
+  //     Object.entries(progress.testResults).forEach(([testId, result]) => {
+  //       const lessonForTest = MOCK_LESSONS.find(l => l.id === testId || l.exercises.some(ex => ex.id.startsWith(testId)));
+  //       if (lessonForTest) {
+  //         testResultsByTopic[lessonForTest.topic] = result.score;
+  //       }
+  //     });
 
-  // Simplified "next lesson" logic
+  //     const input: AdaptiveLessonInput = {
+  //       currentLevel: progress.currentLevel,
+  //       completedLessons: completedLessonTopics.filter(topic => !!topic),
+  //       testResults: testResultsByTopic,
+  //       learningGoals: progress.learningGoals || "Общее улучшение знаний немецкого языка.",
+  //     };
+  //     const suggestion: AdaptiveLessonOutput = await generateAdaptiveLesson(input);
+  //     setSuggestedLesson(suggestion);
+
+  //     if (suggestion && suggestion.lessonTopic) {
+  //       const lowerSuggestionTopic = suggestion.lessonTopic.trim().toLowerCase();
+  //       let foundLesson = MOCK_LESSONS.find(
+  //         lesson => lesson.topic.trim().toLowerCase() === lowerSuggestionTopic
+  //       );
+
+  //       if (!foundLesson) {
+  //         const commonKeywords = [
+  //           "артикли", "artikel", "präsens", "plural", "akkusativ", "dativ", "genitiv",
+  //           "modalverben", "модальные глаголы", "perfekt", "präteritum", "plusquamperfekt",
+  //           "nebensätze", "придаточные предложения", "relativsätze", "konjunktiv", "passiv",
+  //           "склонение прилагательных", "adjektivdeklination", "порядок слов", "satzbau",
+  //           "указательные местоимения", "demonstrativpronomen", "косвенная речь", "indirekte rede"
+  //         ];
+
+  //         for (const keyword of commonKeywords) {
+  //           if (lowerSuggestionTopic.includes(keyword.toLowerCase())) {
+  //             foundLesson = MOCK_LESSONS.find(lesson =>
+  //               lesson.topic.toLowerCase().includes(keyword.toLowerCase()) &&
+  //               (lesson.level === progress.currentLevel || LANGUAGE_LEVELS.indexOf(lesson.level) === LANGUAGE_LEVELS.indexOf(progress.currentLevel!) + 1) &&
+  //               !progress.completedLessons.includes(lesson.id)
+  //             ) || null;
+  //             if (foundLesson) break;
+  //           }
+  //         }
+  //       }
+        
+  //       if (foundLesson) {
+  //         setSuggestedLessonId(foundLesson.id);
+  //         if(!isAuto){
+  //             toast({
+  //             title: "Рекомендован урок от ИИ!",
+  //             description: `"${foundLesson.topic}" (${foundLesson.level}). ${suggestion.reason}`,
+  //             duration: 7000,
+  //           });
+  //         }
+  //       } else {
+  //         setNoMoreLessons(true);
+  //         if(!isAuto){
+  //           toast({
+  //             title: "Рекомендация ИИ",
+  //             description: `ИИ предложил тему: "${suggestion.lessonTopic}". ${suggestion.reason}. К сожалению, урок с таким точным названием не найден в нашей базе. Попробуйте поискать похожие темы в общем списке уроков.`,
+  //             variant: "default",
+  //             duration: 10000,
+  //           });
+  //         }
+  //       }
+  //     } else {
+  //       if(!isAuto){
+  //         toast({ title: "ИИ не смог предложить урок", description: "Пожалуйста, попробуйте позже или выберите урок из списка.", variant: "default" });
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("AI lesson suggestion error:", error);
+  //     const errorMessage = error instanceof Error ? error.message : "Не удалось связаться с ИИ.";
+  //     setSuggestionError(`Не удалось получить рекомендацию от ИИ. ${errorMessage}`);
+  //     if(!isAuto){
+  //       toast({ title: "Ошибка рекомендации ИИ", description: errorMessage, variant: "destructive" });
+  //     }
+  //   } finally {
+  //      if (isAuto) setIsGeneratingLesson(false); else setIsSuggestingLesson(false);
+  //   }
+  // }, [progress.currentLevel, progress.completedLessons, progress.testResults, progress.learningGoals, toast]);
+
+  // useEffect(() => {
+  //    if (progress.currentLevel && (progress.completedLessons.length > 0 || Object.keys(progress.testResults).length > 0 || (progress.learningGoals && progress.learningGoals.toLowerCase() !== "общее улучшение знаний немецкого языка."))) {
+  //     // fetchAndSetSuggestedLesson(true); // Автоматически предлагать урок при загрузке, если есть прогресс
+  //    }
+  // }, [fetchAndSetSuggestedLesson, progress.currentLevel, progress.completedLessons.length, progress.testResults, progress.learningGoals]);
+
   const findNextLessonForMe = useCallback(() => {
+    setIsSuggestingLesson(true);
     setRecommendedLesson(null);
     setNoMoreLessons(false);
     setSuggestionError(null);
-    setIsSuggestingLesson(true); // Use the same loading state as AI for consistency
 
     if (!progress.currentLevel) {
       toast({
@@ -170,11 +155,14 @@ export default function DashboardPage() {
     }
 
     const userLevelIndex = LANGUAGE_LEVELS.indexOf(progress.currentLevel);
+    
+    // Фильтруем уроки, начиная с текущего уровня пользователя
     const relevantLessons = MOCK_LESSONS.filter(lesson => {
       const lessonLevelIndex = LANGUAGE_LEVELS.indexOf(lesson.level);
       return lessonLevelIndex >= userLevelIndex;
     });
 
+    // Ищем первый непройденный урок
     const nextLesson = relevantLessons.find(
       (lesson) => !progress.completedLessons.includes(lesson.id)
     );
@@ -201,9 +189,11 @@ export default function DashboardPage() {
 
   const handleLevelSelect = (level: LanguageLevel) => {
     setCurrentLevel(level);
-    setRecommendedLesson(null);
+    setRecommendedLesson(null); // Сбрасываем рекомендацию при смене уровня
     setNoMoreLessons(false);
     setSuggestionError(null);
+    // setSuggestedLesson(null);
+    // setSuggestedLessonId(null);
     toast({
         title: "Уровень изменен",
         description: `Ваш текущий уровень установлен на ${level}.`,
@@ -217,8 +207,7 @@ export default function DashboardPage() {
   const handleSaveGoals = () => {
     setLearningGoals(currentGoalsInput);
     toast({ title: "Цели сохранены!", description: "Ваши учебные цели обновлены." });
-    // Optionally, trigger AI suggestion if goals changed significantly
-    // fetchAndSetSuggestedLesson(true);
+    // fetchAndSetSuggestedLesson(true); // Автоматически предложить новый урок после сохранения целей
   };
 
   if (isLoading) {
@@ -236,11 +225,13 @@ export default function DashboardPage() {
           <div>
             <CardTitle className="text-3xl font-bold">Добро пожаловать в DeutschMeister!</CardTitle>
             <p className="text-lg text-muted-foreground mt-1">
-              Ваш персональный помощник в изучении немецкого языка.
+              Ваш интеллектуальный помощник в изучении немецкого языка! Мы поможем вам освоить грамматику и лексику, создавая персонализированные задания при помощи искусственного интеллекта и отслеживая ваш прогресс на пути к успеху.
             </p>
           </div>
           <div className="p-2">
-            <GraduationCap className="h-16 w-16 text-primary" />
+             <div className="flex justify-center items-center h-24 w-24 text-primary">
+                <GraduationCap className="h-20 w-20" />
+            </div>
           </div>
         </CardHeader>
         <CardContent>
@@ -286,30 +277,47 @@ export default function DashboardPage() {
               </div>
 
               <div className="flex flex-wrap gap-2 mt-4">
-                <Button onClick={findNextLessonForMe} disabled={isSuggestingLesson || isAutoSuggesting}>
+                <Button onClick={findNextLessonForMe} disabled={isSuggestingLesson}>
                   <Lightbulb className="mr-2 h-5 w-5" />
                   {isSuggestingLesson ? "Ищем урок..." : "Найти следующий урок для меня"}
                 </Button>
-                <Button onClick={() => fetchAndSetSuggestedLesson(false)} disabled={isSuggestingLesson || isAutoSuggesting} variant="outline">
+                {/* Закомментированная кнопка для AI-рекомендации
+                <Button onClick={() => fetchAndSetSuggestedLesson(false)} disabled={isSuggestingLesson || isGeneratingLesson} variant="outline">
                   <Zap className="mr-2 h-5 w-5" />
-                  {isSuggestingLesson ? "ИИ думает..." : "Предложить урок от ИИ"}
+                  {isGeneratingLesson ? "ИИ думает..." : "Предложить урок от ИИ"}
                 </Button>
+                */}
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
+      {/* Блок для вывода AI-рекомендации (сейчас не используется активно, но оставлен для возможного будущего улучшения)
       {suggestionError && (
         <Card className="mb-8 bg-red-50 dark:bg-red-900/30 border-red-500 shadow-md">
-          <CardHeader>
-            <CardTitle className="text-xl text-red-700 dark:text-red-300">Ошибка рекомендации</CardTitle>
-          </CardHeader>
+          <CardHeader><CardTitle className="text-xl text-red-700 dark:text-red-300">Ошибка рекомендации</CardTitle></CardHeader>
+          <CardContent><p className="text-md text-red-600 dark:text-red-400">{suggestionError}</p></CardContent>
+        </Card>
+      )}
+
+      {suggestedLesson && (
+        <Card className="mb-8 bg-primary/10 border-primary shadow-md">
+          <CardHeader><CardTitle className="text-2xl text-primary flex items-center"><BookOpenCheck className="mr-3 h-7 w-7" /> Рекомендуемый урок от ИИ</CardTitle></CardHeader>
           <CardContent>
-            <p className="text-md text-red-600 dark:text-red-400">{suggestionError}</p>
+            <h3 className="text-xl font-semibold mb-1">{suggestedLesson.lessonTopic}</h3>
+            <p className="text-muted-foreground text-sm mb-3">{suggestedLesson.reason}</p>
+            {suggestedLessonId ? (
+              <Button asChild className="mt-3">
+                <Link href={`/lessons/${suggestedLessonId}`}>Начать урок: {suggestedLesson.lessonTopic}</Link>
+              </Button>
+            ) : (
+              <p className="text-sm text-destructive">К сожалению, урок с таким точным названием не найден в нашей базе. Попробуйте поискать похожие темы в общем списке уроков.</p>
+            )}
           </CardContent>
         </Card>
       )}
+      */}
 
       {recommendedLesson && (
         <Card className="mb-8 bg-primary/10 border-primary shadow-md">
